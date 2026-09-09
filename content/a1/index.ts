@@ -2,6 +2,7 @@ import type { Level, Lesson } from "../schema";
 import { kennenlernen } from "./units/kennenlernen";
 import { familieUndFreunde } from "./units/familie-und-freunde";
 import { essenUndTrinken } from "./units/essen-und-trinken";
+import { tagesablaufUndZeit } from "./units/tagesablauf-und-zeit";
 
 function planned(id: string, title: string, summary: string): Lesson {
   return { id, title, summary, status: "planned", sections: [], vocab: [], exercises: [] };
@@ -17,48 +18,7 @@ export const a1: Level = {
     kennenlernen,
     familieUndFreunde,
     essenUndTrinken,
-    {
-      id: "tagesablauf-und-zeit",
-      title: "Tagesablauf und Zeit",
-      theme: "Daily routine and time",
-      lessons: [
-        planned(
-          "die-uhrzeit",
-          "Die Uhrzeit",
-          "Telling time formally and informally: halb drei, Viertel nach.",
-        ),
-        planned(
-          "wochentage-und-monate",
-          "Wochentage und Monate",
-          "Days, months, seasons, and dates.",
-        ),
-        planned(
-          "mein-tagesablauf",
-          "Mein Tagesablauf",
-          "Daily routine verbs and sequencing: zuerst, dann, danach.",
-        ),
-        planned(
-          "trennbare-verben",
-          "Trennbare Verben",
-          "Separable verbs: aufstehen, einkaufen, mitkommen and the prefix at the end.",
-        ),
-        planned(
-          "der-imperativ",
-          "Der Imperativ",
-          "Imperatives for du, ihr, and Sie.",
-        ),
-        planned(
-          "zeitangaben",
-          "Zeitangaben",
-          "um, am, im, von ... bis: time prepositions.",
-        ),
-        planned(
-          "perfekt-einfuehrung",
-          "Das Perfekt (Einführung)",
-          "Talking about the past: haben or sein plus the participle.",
-        ),
-      ],
-    },
+    tagesablaufUndZeit,
     {
       id: "wohnen",
       title: "Wohnen",
