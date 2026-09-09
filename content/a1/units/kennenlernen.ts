@@ -1,9 +1,5 @@
 import type { Lesson, Unit } from "../../schema";
 
-function planned(id: string, title: string, summary: string): Lesson {
-  return { id, title, summary, status: "planned", sections: [], vocab: [], exercises: [] };
-}
-
 const halloUndGutenTag: Lesson = {
   id: "hallo-und-guten-tag",
   title: "Hallo und Guten Tag",
@@ -897,6 +893,508 @@ const seinUndHaben: Lesson = {
   ],
 };
 
+const zahlenAb100: Lesson = {
+  id: "zahlen-ab-100",
+  title: "Zahlen ab 100",
+  summary: "Numbers up to a million, decimals, years, and big prices.",
+  status: "ready",
+  sections: [
+    {
+      heading: "Hundert bis eine Million",
+      blocks: [
+        {
+          type: "paragraph",
+          text: "From one hundred on, the number simply reads left to right, and each block keeps its own unit-first order: 1.234 is eintausendzweihundertvierunddreißig.",
+        },
+        {
+          type: "table",
+          caption: "Big numbers",
+          head: ["Number", "German"],
+          rows: [
+            ["100", "hundert / einhundert"],
+            ["200", "zweihundert"],
+            ["350", "dreihundertfünfzig"],
+            ["1.000", "tausend / eintausend"],
+            ["2.500", "zweitausendfünfhundert"],
+            ["100.000", "hunderttausend"],
+            ["1.000.000", "eine Million"],
+          ],
+        },
+        {
+          type: "example",
+          de: "1.234 = eintausendzweihundertvierunddreißig",
+          en: "One thousand two hundred thirty-four.",
+        },
+        {
+          type: "tip",
+          text: "German uses a dot for thousands (1.000) and a comma for decimals (1,5). Eine Million is a feminine noun; Millionen is the plural.",
+        },
+      ],
+    },
+    {
+      heading: "Jahreszahlen",
+      blocks: [
+        {
+          type: "paragraph",
+          text: "Years are read as plain cardinal numbers. For the years before 2000, Germans often split at the hundred: 1989 is neunzehnhundertneunundachtzig.",
+        },
+        {
+          type: "example",
+          de: "Ich bin 1995 geboren. Neunzehnhundertfünfundneunzig.",
+          en: "I was born in 1995. Nineteen ninety-five.",
+        },
+        {
+          type: "example",
+          de: "Das ist im Jahr 2026. Zweitausendsechsundzwanzig.",
+          en: "That is in the year 2026.",
+        },
+        {
+          type: "tip",
+          text: "Ordinal years stay rare in speech: use the cardinal, and add im Jahr if the meaning is not obvious.",
+        },
+      ],
+    },
+    {
+      heading: "Große Zahlen im Alltag",
+      blocks: [
+        {
+          type: "paragraph",
+          text: "Big prices and measurements work exactly like small ones: the comma is spoken as Komma, the unit follows the number.",
+        },
+        {
+          type: "example",
+          de: "Das kostet 250 Euro.",
+          en: "That costs 250 euros.",
+        },
+        {
+          type: "example",
+          de: "1,5 Kilo Äpfel, bitte.",
+          en: "1.5 kilos of apples, please.",
+        },
+        {
+          type: "example",
+          de: "3,5 ist drei Komma fünf.",
+          en: "3.5 is three point five.",
+        },
+      ],
+    },
+  ],
+  vocab: [
+    { id: "hundert", de: "hundert", en: "hundred", part: "number", audio: true },
+    { id: "tausend", de: "tausend", en: "thousand", part: "number", audio: true },
+    { id: "die-million", de: "eine Million", en: "a million", part: "number", audio: true },
+    { id: "zweihundert", de: "zweihundert", en: "two hundred", part: "number", audio: true },
+    { id: "dreihundertfuenfzig", de: "dreihundertfünfzig", en: "three hundred fifty", part: "number", audio: true },
+    { id: "zweitausend", de: "zweitausend", en: "two thousand", part: "number", audio: true },
+    { id: "das-komma", de: "das Komma", en: "the decimal point", part: "noun n.", plural: "die Kommas", audio: true },
+    { id: "das-kilo", de: "das Kilo", en: "the kilo", part: "noun n.", plural: "die Kilos", audio: true },
+    { id: "der-punkt", de: "der Punkt", en: "the dot, the point", part: "noun m.", plural: "die Punkte", audio: true },
+    { id: "geboren", de: "geboren", en: "born", part: "adjective", audio: true },
+    { id: "das-jahr", de: "das Jahr", en: "the year", part: "noun n.", plural: "die Jahre", audio: true },
+  ],
+  exercises: [
+    {
+      id: "mc-zahlen-ab-100",
+      type: "multiple-choice",
+      title: "Die große Zahl",
+      instruction: "Choose the correct German number.",
+      prompt: "125",
+      options: ["einhundertfünfundzwanzig", "einhundertzwanzigfünf", "hundertfünfundzwanzig"],
+      correctIndex: 0,
+      explain: "Blocks read left to right: einhundert + fünfundzwanzig.",
+    },
+    {
+      id: "listening-zahlen-ab-100",
+      type: "listening",
+      title: "Welche Zahl?",
+      instruction: "Play the audio and pick the number you heard.",
+      prompt: "eintausendzweihundert",
+      options: ["eintausendzweihundert", "zweitausendeinhundert", "eintausendzweihundertvierzig"],
+      correctIndex: 0,
+    },
+    {
+      id: "fill-zahlen-ab-100",
+      type: "fill-blank",
+      title: "Zahlen schreiben",
+      instruction: "Write the missing number words.",
+      sentence: "3,5 ist drei ___ fünf. Das kostet ___ Euro. (250)",
+      blanks: [
+        { answers: ["Komma"], hint: "decimal point" },
+        { answers: ["zweihundertfünfzig", "250"], hint: "250" },
+      ],
+    },
+    {
+      id: "matching-zahlen-ab-100",
+      type: "matching",
+      title: "Zahlen zuordnen",
+      instruction: "Match each German number to its digit.",
+      pairs: [
+        ["zweihundert", "200"],
+        ["tausend", "1.000"],
+        ["eine Million", "1.000.000"],
+        ["dreihundertfünfzig", "350"],
+        ["zweitausendfünfhundert", "2.500"],
+      ],
+    },
+    {
+      id: "word-order-zahlen-ab-100",
+      type: "word-order",
+      title: "Der Satz",
+      instruction: "Build the sentence: The house costs 250,000 euros.",
+      chunks: ["Das", "Haus", "kostet", "zweihundertfünfzigtausend", "Euro."],
+      explain: "The number counts as one word in second position after the verb.",
+    },
+    {
+      id: "flashcard-zahlen-ab-100",
+      type: "flashcard",
+      title: "Große Zahlen",
+      instruction: "Say the German number out loud before revealing.",
+      items: [
+        { front: "hundert", back: "100", frontAudio: true },
+        { front: "zweihundert", back: "200", frontAudio: true },
+        { front: "tausend", back: "1.000", frontAudio: true },
+        { front: "zweitausend", back: "2.000", frontAudio: true },
+        { front: "eine Million", back: "1.000.000", frontAudio: true },
+        { front: "das Komma", back: "the decimal point", frontAudio: true },
+      ],
+    },
+  ],
+};
+
+const persoenlicheDaten: Lesson = {
+  id: "persoenliche-daten",
+  title: "Persönliche Daten",
+  summary: "Name, address, email, and phone: giving and asking for personal data.",
+  status: "ready",
+  sections: [
+    {
+      heading: "Die Daten",
+      blocks: [
+        {
+          type: "table",
+          caption: "Personal data",
+          head: ["German", "English"],
+          rows: [
+            ["der Vorname", "the first name"],
+            ["der Nachname", "the last name"],
+            ["die Adresse", "the address"],
+            ["die Straße", "the street"],
+            ["die Hausnummer", "the house number"],
+            ["die Postleitzahl", "the postcode"],
+            ["der Wohnort", "the place of residence"],
+            ["das Land", "the country"],
+            ["die Telefonnummer", "the phone number"],
+            ["die Handynummer", "the mobile number"],
+            ["die E-Mail-Adresse", "the email address"],
+            ["das Geburtsdatum", "the date of birth"],
+          ],
+        },
+        {
+          type: "tip",
+          text: "PLZ is the everyday short form for Postleitzahl. Numbers in addresses are read as cardinals: Hauptstraße 5 is Hauptstraße fünf.",
+        },
+      ],
+    },
+    {
+      heading: "Fragen stellen",
+      blocks: [
+        {
+          type: "paragraph",
+          text: "On forms and in offices, the formal register rules. The question Wie ist ...? plus a noun covers almost everything.",
+        },
+        {
+          type: "example",
+          de: "Wie heißen Sie? Mein Name ist Anna Müller.",
+          en: "What is your name? My name is Anna Müller.",
+        },
+        {
+          type: "example",
+          de: "Wie ist Ihre Adresse? Ich wohne in der Hauptstraße 5.",
+          en: "What is your address? I live at Hauptstraße 5.",
+        },
+        {
+          type: "example",
+          de: "Wie ist Ihre Telefonnummer? 0172 34 56 78.",
+          en: "What is your phone number? 0172 34 56 78.",
+        },
+        {
+          type: "example",
+          de: "Wann sind Sie geboren? Am 5. Mai 1995.",
+          en: "When were you born? On May 5th, 1995.",
+        },
+        {
+          type: "tip",
+          text: "Ihr with a capital I is the formal possessive: Ihr Name, Ihre Adresse, Ihre Telefonnummer. With friends it is dein Name, deine Adresse.",
+        },
+      ],
+    },
+    {
+      heading: "Das Formular",
+      blocks: [
+        {
+          type: "example",
+          de: "Vorname: Anna. Nachname: Müller. Straße: Hauptstraße 5. PLZ: 10115. Ort: Berlin.",
+          en: "A form filled out with personal data.",
+        },
+        {
+          type: "tip",
+          text: "Forms are sorted by last name: Müller comes under M. Saying Mein Nachname is Müller beats Mein Name is Anna Müller in official contexts.",
+        },
+      ],
+    },
+  ],
+  vocab: [
+    { id: "der-vorname", de: "der Vorname", en: "the first name", part: "noun m.", plural: "die Vornamen", audio: true },
+    { id: "der-nachname", de: "der Nachname", en: "the last name", part: "noun m.", plural: "die Nachnamen", audio: true },
+    { id: "die-adresse", de: "die Adresse", en: "the address", part: "noun f.", plural: "die Adressen", audio: true },
+    { id: "die-strasse", de: "die Straße", en: "the street", part: "noun f.", plural: "die Straßen", audio: true },
+    { id: "die-hausnummer", de: "die Hausnummer", en: "the house number", part: "noun f.", plural: "die Hausnummern", audio: true },
+    { id: "die-postleitzahl", de: "die Postleitzahl", en: "the postcode", part: "noun f.", plural: "die Postleitzahlen", audio: true },
+    { id: "der-wohnort", de: "der Wohnort", en: "the place of residence", part: "noun m.", plural: "die Wohnorte", audio: true },
+    { id: "das-land", de: "das Land", en: "the country", part: "noun n.", plural: "die Länder", audio: true },
+    { id: "die-telefonnummer", de: "die Telefonnummer", en: "the phone number", part: "noun f.", plural: "die Telefonnummern", audio: true },
+    { id: "die-handynummer", de: "die Handynummer", en: "the mobile number", part: "noun f.", plural: "die Handynummern", audio: true },
+    { id: "die-email-adresse", de: "die E-Mail-Adresse", en: "the email address", part: "noun f.", plural: "die E-Mail-Adressen", audio: true },
+    { id: "das-geburtsdatum", de: "das Geburtsdatum", en: "the date of birth", part: "noun n.", plural: "die Geburtsdaten", audio: true },
+    { id: "der-wohnen", de: "wohnen", en: "to live", part: "verb", audio: true },
+  ],
+  exercises: [
+    {
+      id: "mc-daten",
+      type: "multiple-choice",
+      title: "Die richtige Frage",
+      instruction: "Choose the question that asks for the name.",
+      prompt: "You want to know someone's name (formally).",
+      options: ["Wie heißen Sie?", "Wie alt sind Sie?", "Wo wohnen Sie?"],
+      correctIndex: 0,
+      explain: "heißen asks for the name.",
+    },
+    {
+      id: "listening-daten",
+      type: "listening",
+      title: "Was hörst du?",
+      instruction: "Play the audio and pick the word you heard.",
+      prompt: "die Postleitzahl",
+      options: ["die Postleitzahl", "die Telefonnummer", "die Adresse"],
+      correctIndex: 0,
+    },
+    {
+      id: "fill-daten",
+      type: "fill-blank",
+      title: "Persönliche Daten",
+      instruction: "Complete the answers.",
+      sentence: "Mein ___ ist Müller. Meine ___ ist Hauptstraße 5.",
+      blanks: [
+        { answers: ["Nachname"], hint: "last name" },
+        { answers: ["Adresse"], hint: "address" },
+      ],
+    },
+    {
+      id: "matching-daten",
+      type: "matching",
+      title: "Die Daten",
+      instruction: "Match each German word to its meaning.",
+      pairs: [
+        ["der Vorname", "the first name"],
+        ["die Postleitzahl", "the postcode"],
+        ["der Wohnort", "the place of residence"],
+        ["die E-Mail-Adresse", "the email address"],
+        ["das Geburtsdatum", "the date of birth"],
+      ],
+    },
+    {
+      id: "word-order-daten",
+      type: "word-order",
+      title: "Der Satz",
+      instruction: "Build the sentence: My first name is Anna.",
+      chunks: ["Mein", "Vorname", "ist", "Anna."],
+      explain: "ist holds the second position.",
+    },
+    {
+      id: "flashcard-daten",
+      type: "flashcard",
+      title: "Formularkarten",
+      instruction: "Say the German word out loud before revealing.",
+      items: [
+        { front: "der Vorname", back: "the first name", frontAudio: true },
+        { front: "der Nachname", back: "the last name", frontAudio: true },
+        { front: "die Postleitzahl", back: "the postcode", frontAudio: true },
+        { front: "der Wohnort", back: "the place of residence", frontAudio: true },
+        { front: "die Telefonnummer", back: "the phone number", frontAudio: true },
+        { front: "das Geburtsdatum", back: "the date of birth", frontAudio: true },
+      ],
+    },
+  ],
+};
+
+const anrede: Lesson = {
+  id: "formelle-und-informelle-anrede",
+  title: "Du oder Sie?",
+  summary: "Formal and informal address, titles, and when to use which.",
+  status: "ready",
+  sections: [
+    {
+      heading: "Du oder Sie?",
+      blocks: [
+        {
+          type: "paragraph",
+          text: "German distinguishes two levels of address. Sie is the default with strangers and adults you do not know well. du is for friends, family, children, and people who offered it.",
+        },
+        {
+          type: "table",
+          caption: "When to use which",
+          head: ["Situation", "Form"],
+          rows: [
+            ["friends, family, children", "du"],
+            ["classmates, teammates", "du"],
+            ["strangers, shops, offices", "Sie"],
+            ["colleagues (varies by company)", "Sie, sometimes du"],
+            ["authorities, officials", "Sie"],
+          ],
+        },
+        {
+          type: "example",
+          de: "Wir können uns duzen.",
+          en: "We can use du with each other.",
+        },
+        {
+          type: "tip",
+          text: "When in doubt, use Sie. The other person will offer du; you never have to guess.",
+        },
+      ],
+    },
+    {
+      heading: "Herr und Frau",
+      blocks: [
+        {
+          type: "paragraph",
+          text: "Titles come before the last name and take the verb form of sie (plural). Frau covers both Mrs and Ms.",
+        },
+        {
+          type: "example",
+          de: "Guten Tag, Herr Schmidt! Guten Tag, Frau Weber!",
+          en: "Good day, Mr Schmidt! Good day, Ms Weber!",
+        },
+        {
+          type: "example",
+          de: "Können Sie mir helfen, Frau Müller?",
+          en: "Can you help me, Ms Müller?",
+        },
+        {
+          type: "tip",
+          text: "Herr + first name is a common learner mistake. In formal German it is always Herr + last name. With first names you switch to du anyway.",
+        },
+      ],
+    },
+    {
+      heading: "Das Register wechseln",
+      blocks: [
+        {
+          type: "table",
+          caption: "Formal and informal pairs",
+          head: ["Formal (Sie)", "Informal (du)"],
+          rows: [
+            ["Wie heißen Sie?", "Wie heißt du?"],
+            ["Wo wohnen Sie?", "Wo wohnst du?"],
+            ["Wie ist Ihr Name?", "Wie ist dein Name?"],
+            ["Was möchten Sie trinken?", "Was möchtest du trinken?"],
+          ],
+        },
+        {
+          type: "tip",
+          text: "The verb ending follows the pronoun: Sie wohnen like sie wohnen, but du wohnst with -st. Ihr in the possessive turns into dein with friends.",
+        },
+      ],
+    },
+  ],
+  vocab: [
+    { id: "duzen", de: "duzen", en: "to use du with someone", part: "verb", audio: true },
+    { id: "siezen", de: "siezen", en: "to use Sie with someone", part: "verb", audio: true },
+    { id: "der-herr", de: "der Herr", en: "the gentleman, Mr", part: "noun m.", plural: "die Herren", audio: true },
+    { id: "die-frau", de: "die Frau", en: "the woman, Mrs, Ms", part: "noun f.", plural: "die Frauen", audio: true },
+    { id: "die-anrede", de: "die Anrede", en: "the form of address", part: "noun f.", plural: "die Anreden", audio: true },
+    { id: "der-kollege", de: "der Kollege", en: "the colleague (male)", part: "noun m.", plural: "die Kollegen", audio: true },
+    { id: "die-kollegin", de: "die Kollegin", en: "the colleague (female)", part: "noun f.", plural: "die Kolleginnen", audio: true },
+    { id: "kennen", de: "kennen", en: "to know (someone)", part: "verb", audio: true },
+    { id: "helfen", de: "helfen", en: "to help", part: "verb", audio: true },
+  ],
+  exercises: [
+    {
+      id: "mc-anrede",
+      type: "multiple-choice",
+      title: "Du oder Sie?",
+      instruction: "Choose the correct form.",
+      prompt: "A stranger asks for directions. You say ...",
+      options: [
+        "Können Sie mir helfen?",
+        "Kannst du mir helfen?",
+        "Helfen du mir?",
+      ],
+      correctIndex: 0,
+      explain: "With strangers, Sie is the default.",
+    },
+    {
+      id: "listening-anrede",
+      type: "listening",
+      title: "Was hörst du?",
+      instruction: "Play the audio and pick the sentence you heard.",
+      prompt: "Guten Tag, Herr Schmidt!",
+      options: [
+        "Guten Tag, Herr Schmidt!",
+        "Guten Tag, Frau Schmidt!",
+        "Guten Tag, Herr Weber!",
+      ],
+      correctIndex: 0,
+    },
+    {
+      id: "fill-anrede",
+      type: "fill-blank",
+      title: "Formal oder informell?",
+      instruction: "Complete with the right pronoun.",
+      sentence: "Wo wohnen ___? (formal) Wie heißt ___? (informal)",
+      blanks: [
+        { answers: ["Sie"], hint: "formal" },
+        { answers: ["du"], hint: "informal" },
+      ],
+    },
+    {
+      id: "matching-anrede",
+      type: "matching",
+      title: "Formal und informell",
+      instruction: "Match each formal phrase to its informal pair.",
+      pairs: [
+        ["Wie heißen Sie?", "Wie heißt du?"],
+        ["Wo wohnen Sie?", "Wo wohnst du?"],
+        ["Ihr Name", "dein Name"],
+        ["Ihre Adresse", "deine Adresse"],
+        ["Was möchten Sie?", "Was möchtest du?"],
+      ],
+    },
+    {
+      id: "word-order-anrede",
+      type: "word-order",
+      title: "Der Satz",
+      instruction: "Build the sentence: We can use du with each other.",
+      chunks: ["Wir", "können", "uns", "duzen."],
+      explain: "The modal is second; duzen closes the sentence.",
+    },
+    {
+      id: "flashcard-anrede",
+      type: "flashcard",
+      title: "Anredekarten",
+      instruction: "Say the German out loud before revealing.",
+      items: [
+        { front: "Wie heißen Sie?", back: "What is your name? (formal)", frontAudio: true },
+        { front: "Wie heißt du?", back: "What is your name? (informal)", frontAudio: true },
+        { front: "Herr Schmidt", back: "Mr Schmidt", frontAudio: true },
+        { front: "Frau Weber", back: "Ms Weber", frontAudio: true },
+        { front: "duzen", back: "to use du", frontAudio: true },
+        { front: "siezen", back: "to use Sie", frontAudio: true },
+      ],
+    },
+  ],
+};
+
 export const kennenlernen: Unit = {
   id: "kennenlernen",
   title: "Kennenlernen",
@@ -905,22 +1403,10 @@ export const kennenlernen: Unit = {
     halloUndGutenTag,
     alphabetUndAussprache,
     zahlen,
-    planned(
-      "zahlen-ab-100",
-      "Zahlen ab 100",
-      "Numbers up to a million, decimals, years, and big prices.",
-    ),
+    zahlenAb100,
     laenderUndSprachen,
     seinUndHaben,
-    planned(
-      "persoenliche-daten",
-      "Persönliche Daten",
-      "Name, address, email, and phone: giving and asking for personal data.",
-    ),
-    planned(
-      "formelle-und-informelle-anrede",
-      "Du oder Sie?",
-      "Formal and informal address, titles, and when to use which.",
-    ),
+    persoenlicheDaten,
+    anrede,
   ],
 };
