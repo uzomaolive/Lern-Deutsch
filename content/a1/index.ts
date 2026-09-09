@@ -1,0 +1,310 @@
+import type { Level, Lesson } from "../schema";
+import { kennenlernen } from "./units/kennenlernen";
+
+function planned(id: string, title: string, summary: string): Lesson {
+  return { id, title, summary, status: "planned", sections: [], vocab: [], exercises: [] };
+}
+
+export const a1: Level = {
+  id: "a1",
+  title: "A1",
+  subtitle: "Beginner",
+  description:
+    "Greetings, introductions, daily life, and the foundations of German grammar: present tense, cases, and word order.",
+  units: [
+    kennenlernen,
+    {
+      id: "familie-und-freunde",
+      title: "Familie und Freunde",
+      theme: "Family and friends",
+      lessons: [
+        planned(
+          "meine-familie",
+          "Meine Familie",
+          "Family members and simple sentences about them.",
+        ),
+        planned(
+          "possessivartikel",
+          "Mein, dein, sein",
+          "Possessive determiners in the nominative and accusative.",
+        ),
+        planned(
+          "personalpronomen",
+          "Personalpronomen",
+          "Personal pronouns in the nominative and accusative.",
+        ),
+        planned(
+          "hobbys-und-freunde",
+          "Hobbys und Freunde",
+          "Talking about hobbies and friends; gern and lieber.",
+        ),
+        planned(
+          "w-fragen",
+          "W-Fragen",
+          "All question words: wer, was, wo, wann, warum and friends.",
+        ),
+        planned(
+          "verneinung",
+          "Nicht oder kein?",
+          "Negation rules: when nicht, when kein.",
+        ),
+        planned(
+          "adjektive-grundlagen",
+          "Adjektive: groß oder klein?",
+          "Describing people and things with predicate adjectives.",
+        ),
+      ],
+    },
+    {
+      id: "essen-und-trinken",
+      title: "Essen und Trinken",
+      theme: "Food and drink",
+      lessons: [
+        planned(
+          "lebensmittel",
+          "Lebensmittel",
+          "Food and drink vocabulary: what is on the table.",
+        ),
+        planned(
+          "im-restaurant",
+          "Im Restaurant",
+          "Ordering food and drinks; Ich möchte ... and the bill.",
+        ),
+        planned(
+          "der-akkusativ",
+          "Der Akkusativ",
+          "The accusative case: articles, ein and kein, direct objects.",
+        ),
+        planned(
+          "modalverben",
+          "Modalverben: können, möchten, wollen, müssen",
+          "Modal verbs in the present tense with the infinitive at the end.",
+        ),
+        planned(
+          "plural-bildung",
+          "Der Plural",
+          "Plural patterns: -e, -er, -n, -s, no change, and umlauts.",
+        ),
+        planned(
+          "preise-und-bezahlen",
+          "Preise und Bezahlen",
+          "Prices in euros, paying, and restaurant numbers.",
+        ),
+      ],
+    },
+    {
+      id: "tagesablauf-und-zeit",
+      title: "Tagesablauf und Zeit",
+      theme: "Daily routine and time",
+      lessons: [
+        planned(
+          "die-uhrzeit",
+          "Die Uhrzeit",
+          "Telling time formally and informally: halb drei, Viertel nach.",
+        ),
+        planned(
+          "wochentage-und-monate",
+          "Wochentage und Monate",
+          "Days, months, seasons, and dates.",
+        ),
+        planned(
+          "mein-tagesablauf",
+          "Mein Tagesablauf",
+          "Daily routine verbs and sequencing: zuerst, dann, danach.",
+        ),
+        planned(
+          "trennbare-verben",
+          "Trennbare Verben",
+          "Separable verbs: aufstehen, einkaufen, mitkommen and the prefix at the end.",
+        ),
+        planned(
+          "der-imperativ",
+          "Der Imperativ",
+          "Imperatives for du, ihr, and Sie.",
+        ),
+        planned(
+          "zeitangaben",
+          "Zeitangaben",
+          "um, am, im, von ... bis: time prepositions.",
+        ),
+        planned(
+          "perfekt-einfuehrung",
+          "Das Perfekt (Einführung)",
+          "Talking about the past: haben or sein plus the participle.",
+        ),
+      ],
+    },
+    {
+      id: "wohnen",
+      title: "Wohnen",
+      theme: "Living",
+      lessons: [
+        planned(
+          "mein-zuhause",
+          "Mein Zuhause",
+          "Rooms, furniture, and describing where things are.",
+        ),
+        planned(
+          "wo-wohnt-was",
+          "Wo? Mit dem Dativ",
+          "Locations: auf dem Tisch, in der Küche.",
+        ),
+        planned(
+          "wohin-geht-es",
+          "Wohin? Mit dem Akkusativ",
+          "Movement: Ich lege das Buch auf den Tisch.",
+        ),
+        planned(
+          "farben",
+          "Farben",
+          "Colors and simple adjective use.",
+        ),
+        planned(
+          "wohnungsanzeigen",
+          "Wohnungsanzeigen",
+          "Reading apartment ads: Zimmer, Miete, Balkon.",
+        ),
+      ],
+    },
+    {
+      id: "arbeit-und-beruf",
+      title: "Arbeit und Beruf",
+      theme: "Work and professions",
+      lessons: [
+        planned(
+          "berufe",
+          "Berufe",
+          "Professions and workplaces; Was sind Sie von Beruf?",
+        ),
+        planned(
+          "praepositionen-mit-dativ",
+          "Präpositionen mit Dativ",
+          "mit, nach, aus, zu, von, bei: fixed dative prepositions.",
+        ),
+        planned(
+          "pronomen-im-dativ",
+          "Pronomen im Dativ",
+          "mir, dir, ihm, ihr: dative pronouns in everyday phrases.",
+        ),
+        planned(
+          "wortstellung",
+          "Wortstellung",
+          "Verb in second position and inversion after fronted elements.",
+        ),
+        planned(
+          "im-buero",
+          "Im Büro",
+          "Workplace small talk and polite requests.",
+        ),
+      ],
+    },
+    {
+      id: "stadt-und-orientierung",
+      title: "Stadt und Orientierung",
+      theme: "City and getting around",
+      lessons: [
+        planned(
+          "die-stadt",
+          "Die Stadt",
+          "Places in the city: der Bahnhof, die Apotheke, das Kino.",
+        ),
+        planned(
+          "richtungen",
+          "Richtungen und Wege",
+          "Asking and giving directions: links, rechts, geradeaus.",
+        ),
+        planned(
+          "wo-woher-wohin",
+          "Wo, woher, wohin?",
+          "Location, origin, and destination with the right preposition.",
+        ),
+        planned(
+          "oeffentliche-verkehrsmittel",
+          "Öffentliche Verkehrsmittel",
+          "Buses and trains: tickets and times.",
+        ),
+        planned(
+          "das-wetter",
+          "Das Wetter",
+          "Weather basics: Es regnet, die Sonne scheint.",
+        ),
+      ],
+    },
+    {
+      id: "einkaufen",
+      title: "Einkaufen",
+      theme: "Shopping",
+      lessons: [
+        planned(
+          "kleidung",
+          "Kleidung",
+          "Clothes, sizes, and colors.",
+        ),
+        planned(
+          "einkaufsdialoge",
+          "Einkaufsdialoge",
+          "Buying things: Wie viel kostet das?",
+        ),
+        planned(
+          "kontraktionen",
+          "am, im, zum, zur",
+          "Article contractions: am, im, ins, zum, zur, beim, vom.",
+        ),
+        planned(
+          "umtausch-und-reklamation",
+          "Umtausch und Reklamation",
+          "Exchanging goods and complaining politely.",
+        ),
+      ],
+    },
+    {
+      id: "gesundheit-und-koerper",
+      title: "Gesundheit und Körper",
+      theme: "Health and body",
+      lessons: [
+        planned(
+          "der-koerper",
+          "Der Körper",
+          "Body parts and simple ailments.",
+        ),
+        planned(
+          "beim-arzt",
+          "Beim Arzt",
+          "At the doctor: describing how you feel.",
+        ),
+        planned(
+          "gesundheitstipps",
+          "Gesundheitstipps",
+          "Healthy habits with sollen and imperatives.",
+        ),
+      ],
+    },
+    {
+      id: "freizeit-und-reisen",
+      title: "Freizeit und Reisen",
+      theme: "Free time and travel",
+      lessons: [
+        planned(
+          "hobbys-und-sport",
+          "Hobbys und Sport",
+          "Free time activities and sports.",
+        ),
+        planned(
+          "nach-berlin-oder-in-die-schweiz",
+          "Nach Berlin oder in die Schweiz?",
+          "nach, in, and aus with countries and cities.",
+        ),
+        planned(
+          "reisen",
+          "Reisen",
+          "Travel vocabulary and vowel-changing verbs: fahren, lesen, sprechen.",
+        ),
+        planned(
+          "einladungen",
+          "Einladungen",
+          "Invitations: Wann? Wo? Um wie viel Uhr?",
+        ),
+      ],
+    },
+  ],
+};

@@ -1,0 +1,115 @@
+import type { Metadata } from "next";
+import Link from "next/link";
+import { notFound } from "next/navigation";
+import { ContentBlocks } from "@/components/lessons/blocks";
+import { VocabTable } from "@/components/lessons/VocabTable";
+import { LessonExercises } from "@/components/lessons/LessonExercises";
+import { repository } from "@/content";
+
+interface LessonPageProps {
+  params: Promise<{ level: string; unit: string; lesson: string }>;
+}
+
+export async function generateStaticParams() {
+  return repository.readyLessons().map(({ lesson, unit, level }) => ({
+    level: level.id,
+    unit: unit.id,
+    lesson: lesson.id,
+  }));
+}
+
+export async function generateMetadata({
+  params,
+}: LessonPageProps): Promise<Metadata> {
+  const { level: levelId, unit: unitId, lesson: lessonId } = await params;
+  const lesson = repository.getLesson(
+    levelId as "a1" | "a2",
+    unitId,
+    lessonId,
+  );
+  if (!lesson) return {};
+  return { title: lesson.title };
+}
+
+export default async function LessonPage({ params }: LessonPageProps) {
+  const { level: levelId, unit: unitId, lesson: lessonId } = await params;
+  const level = repository.getLevel(levelId as "a1" | "a2");
+  if (!level) notFound();
+  const unit = repository.getUnit(level.id, unitId);
+  if (!unit) notFound();
+  const lesson = repository.getLesson(level.id, unit.id, lessonId);
+  if (!lesson || lesson.status !== "ready") notFound();
+
+  const unitIndex = level.units.findIndex((candidate) => candidate.id === unit.id);
+
+  const flats = repository.allLessons();
+  const currentIndex = flats.findIndex(
+    (flat) =>
+      flat.key ===
+      repository.lessonKey(level.id, unit.id, lesson.id),
+  );
+  const nextReady = flats
+    .slice(currentIndex + 1)
+    .find((flat) => flat.lesson.status === "ready");
+  const nextLesson = nextReady
+    ? {
+        href: `/l/${nextReady.level.id}/${nextReady.unit.id}/${nextReady.lesson.id}`,
+        title: nextReady.lesson.title,
+      }
+    : null;
+
+  return (
+    <article className="mx-auto max-w-3xl px-4 py-10">
+      <nav aria-label="Breadcrumb" className="text-sm text-stone-500">
+        <Link href="/" className="hover:text-amber-700">
+          Course
+        </Link>
+        <span aria-hidden="true"> / </span>
+        <span>
+          {level.title} · Unit {unitIndex + 1}: {unit.title}
+        </span>
+      </nav>
+
+      <h1 className="mt-4 text-3xl font-bold tracking-tight text-stone-900">
+        {lesson.title}
+      </h1>
+      <p className="mt-2 text-stone-600">{lesson.summary}</p>
+
+      {lesson.sections.length > 0 ? (
+        <section className="mt-8 space-y-6">
+          {lesson.sections.map((section) => (
+            <section key={section.heading}>
+              <h2 className="mb-3 text-xl font-semibold text-stone-900">
+                {section.heading}
+              </h2>
+              <ContentBlocks blocks={section.blocks} />
+            </section>
+          ))}
+        </section>
+      ) : null}
+
+      {lesson.vocab.length > 0 ? (
+        <section className="mt-10">
+          <h2 className="mb-3 text-xl font-semibold text-stone-900">
+            Vocabulary
+          </h2>
+          <VocabTable items={lesson.vocab} />
+        </section>
+      ) : null}
+
+      {lesson.exercises.length > 0 ? (
+        <section className="mt-10 space-y-6">
+          <h2 className="text-xl font-semibold text-stone-900">Exercises</h2>
+          <LessonExercises
+            levelId={level.id}
+            unitId={unit.id}
+            lessonId={lesson.id}
+            exercises={lesson.exercises}
+            nextLesson={nextLesson}
+            lessonStatus={lesson.status}
+          />
+        </section>
+      ) : null}
+    </article>
+  );
+}

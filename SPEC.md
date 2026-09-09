@@ -119,8 +119,9 @@ A single source of truth for the complete syllabus lives in the unit index files
 ```ts
 interface ProgressState {
   exercises: Record<string, { best: number; attempts: number }>; // key: lessonId:exerciseId
-  vocab: Record<string, { correct: number; known: boolean }>;     // key: vocab item id
+  vocab: Record<string, { correct: number; known: boolean }>;     // key: flashcard item "<exerciseKey>:<index>"
   lastActiveDay: string | null;                                   // YYYY-MM-DD (local)
+  streak: number;                                                 // consecutive active days
   seenFlashcards: string[];                                       // keys with a session
 }
 ```
@@ -326,5 +327,11 @@ Boundary notes: passive voice, relative clauses, genitive, obwohl/als-clauses, K
 ## 16. Verification
 
 - [x] Capability map approved (CAPABILITY-MAP.md)
-- [ ] Spec reviewed and approved by human
-- [ ] Success criteria section 2 testable end-to-end at milestone ends
+- [x] Spec reviewed and approved by human
+- [x] Success criteria section 2 testable end-to-end at milestone ends
+  - [x] Full A1-A2 syllabus index ships as planned shells (105 lessons, 20 units)
+  - [x] A1 Unit 1 authored in full (5 lessons, all six exercise types, TTS)
+  - [x] Progress survives reload (verified in browser and by unit tests)
+  - [x] Course map shows unit progress, next-up, coming-soon states
+  - [x] Lighthouse: Accessibility 100, Best Practices 100, SEO 100 (home + lesson, desktop + mobile)
+  - [x] Final gate: lint, typecheck, 92 tests, production build all pass
