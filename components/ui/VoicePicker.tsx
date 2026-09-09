@@ -36,6 +36,7 @@ export function VoicePicker() {
       <span className="sr-only">Voice</span>
       <select
         aria-label="Voice"
+        name="voice"
         value={selected}
         onChange={(event) => {
           const uri = event.target.value;
