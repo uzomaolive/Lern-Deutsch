@@ -1,0 +1,107 @@
+{
+ "zahlen": [
+  "eins",
+  "zwei",
+  "drei",
+  "vier",
+  "fünf",
+  "sechs",
+  "sieben",
+  "acht",
+  "neun",
+  "zehn",
+  "elf",
+  "zwölf",
+  "dreizehn",
+  "vierzehn",
+  "fünfzehn",
+  "sechzehn",
+  "siebzehn",
+  "achtzehn",
+  "neunzehn",
+  "zwanzig",
+  "einundzwanzig",
+  "dreißig",
+  "vierzig",
+  "fünfzig",
+  "sechzig",
+  "siebzig",
+  "achtzig",
+  "neunzig",
+  "hundert",
+  "tausend",
+  "eine Million"
+ ],
+ "wochentage": [
+  "der Montag",
+  "der Dienstag",
+  "der Mittwoch",
+  "der Donnerstag",
+  "der Freitag",
+  "der Samstag",
+  "der Sonntag",
+  "das Wochenende"
+ ],
+ "monate": [
+  "der Januar",
+  "der Februar",
+  "der März",
+  "der April",
+  "der Mai",
+  "der Juni",
+  "der Juli",
+  "der August",
+  "der September",
+  "der Oktober",
+  "der November",
+  "der Dezember"
+ ],
+ "jahreszeiten": [
+  "der Frühling",
+  "der Sommer",
+  "der Herbst",
+  "der Winter"
+ ],
+ "farben": [
+  "schwarz",
+  "grau",
+  "blau",
+  "grün",
+  "weiß",
+  "rot",
+  "gelb",
+  "braun"
+ ],
+ "zeit": [
+  "die Sekunde",
+  "die Minute",
+  "die Stunde",
+  "der Tag",
+  "die Woche",
+  "das Jahr"
+ ],
+ "tageszeiten": [
+  "der Morgen",
+  "der Vormittag",
+  "der Mittag",
+  "der Nachmittag",
+  "der Abend",
+  "die Nacht"
+ ],
+ "himmelsrichtungen": [
+  "der Norden",
+  "der Süden",
+  "der Westen",
+  "der Osten"
+ ],
+ "masse": [
+  "der Meter",
+  "der Zentimeter",
+  "der Kilometer",
+  "der Quadratmeter",
+  "der Liter",
+  "das Gramm",
+  "das Kilo",
+  "das Pfund"
+ ]
+}

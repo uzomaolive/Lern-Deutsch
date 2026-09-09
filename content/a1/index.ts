@@ -9,6 +9,9 @@ import { stadtUndOrientierung } from "./units/stadt-und-orientierung";
 import { einkaufen } from "./units/einkaufen";
 import { gesundheitUndKoerper } from "./units/gesundheit-und-koerper";
 import { freizeitUndReisen } from "./units/freizeit-und-reisen";
+import { grammatikKompakt1 } from "./units/grammatik-kompakt-1";
+import { grammatikKompakt2 } from "./units/grammatik-kompakt-2";
+import { wortschatz } from "./units/wortschatz";
 
 export const a1: Level = {
   id: "a1",
@@ -27,5 +30,8 @@ export const a1: Level = {
     einkaufen,
     gesundheitUndKoerper,
     freizeitUndReisen,
+    grammatikKompakt1,
+    grammatikKompakt2,
+    wortschatz,
   ],
 };

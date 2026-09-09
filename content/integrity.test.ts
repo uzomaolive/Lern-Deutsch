@@ -21,10 +21,9 @@ describe("curriculum integrity", () => {
     expect(levels.map((level) => level.id).sort()).toEqual(["a1", "a2"]);
   });
 
-  it("has the ten thematic units per level from the spec inventory", () => {
-    for (const level of levels) {
-      expect(level.units.length).toBe(10);
-    }
+  it("has the thematic units per level from the spec inventory", () => {
+    expect(levels.find((l) => l.id === "a1")?.units.length).toBe(13);
+    expect(levels.find((l) => l.id === "a2")?.units.length).toBe(10);
   });
 
   it("gives every unit at least one lesson", () => {
