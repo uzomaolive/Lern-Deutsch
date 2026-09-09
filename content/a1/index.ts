@@ -1,6 +1,7 @@
 import type { Level, Lesson } from "../schema";
 import { kennenlernen } from "./units/kennenlernen";
 import { familieUndFreunde } from "./units/familie-und-freunde";
+import { essenUndTrinken } from "./units/essen-und-trinken";
 
 function planned(id: string, title: string, summary: string): Lesson {
   return { id, title, summary, status: "planned", sections: [], vocab: [], exercises: [] };
@@ -15,43 +16,7 @@ export const a1: Level = {
   units: [
     kennenlernen,
     familieUndFreunde,
-    {
-      id: "essen-und-trinken",
-      title: "Essen und Trinken",
-      theme: "Food and drink",
-      lessons: [
-        planned(
-          "lebensmittel",
-          "Lebensmittel",
-          "Food and drink vocabulary: what is on the table.",
-        ),
-        planned(
-          "im-restaurant",
-          "Im Restaurant",
-          "Ordering food and drinks; Ich möchte ... and the bill.",
-        ),
-        planned(
-          "der-akkusativ",
-          "Der Akkusativ",
-          "The accusative case: articles, ein and kein, direct objects.",
-        ),
-        planned(
-          "modalverben",
-          "Modalverben: können, möchten, wollen, müssen",
-          "Modal verbs in the present tense with the infinitive at the end.",
-        ),
-        planned(
-          "plural-bildung",
-          "Der Plural",
-          "Plural patterns: -e, -er, -n, -s, no change, and umlauts.",
-        ),
-        planned(
-          "preise-und-bezahlen",
-          "Preise und Bezahlen",
-          "Prices in euros, paying, and restaurant numbers.",
-        ),
-      ],
-    },
+    essenUndTrinken,
     {
       id: "tagesablauf-und-zeit",
       title: "Tagesablauf und Zeit",
