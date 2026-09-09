@@ -1,5 +1,6 @@
 import type { Level, Lesson } from "../schema";
 import { kennenlernen } from "./units/kennenlernen";
+import { familieUndFreunde } from "./units/familie-und-freunde";
 
 function planned(id: string, title: string, summary: string): Lesson {
   return { id, title, summary, status: "planned", sections: [], vocab: [], exercises: [] };
@@ -13,48 +14,7 @@ export const a1: Level = {
     "Greetings, introductions, daily life, and the foundations of German grammar: present tense, cases, and word order.",
   units: [
     kennenlernen,
-    {
-      id: "familie-und-freunde",
-      title: "Familie und Freunde",
-      theme: "Family and friends",
-      lessons: [
-        planned(
-          "meine-familie",
-          "Meine Familie",
-          "Family members and simple sentences about them.",
-        ),
-        planned(
-          "possessivartikel",
-          "Mein, dein, sein",
-          "Possessive determiners in the nominative and accusative.",
-        ),
-        planned(
-          "personalpronomen",
-          "Personalpronomen",
-          "Personal pronouns in the nominative and accusative.",
-        ),
-        planned(
-          "hobbys-und-freunde",
-          "Hobbys und Freunde",
-          "Talking about hobbies and friends; gern and lieber.",
-        ),
-        planned(
-          "w-fragen",
-          "W-Fragen",
-          "All question words: wer, was, wo, wann, warum and friends.",
-        ),
-        planned(
-          "verneinung",
-          "Nicht oder kein?",
-          "Negation rules: when nicht, when kein.",
-        ),
-        planned(
-          "adjektive-grundlagen",
-          "Adjektive: groß oder klein?",
-          "Describing people and things with predicate adjectives.",
-        ),
-      ],
-    },
+    familieUndFreunde,
     {
       id: "essen-und-trinken",
       title: "Essen und Trinken",
