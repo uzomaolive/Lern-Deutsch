@@ -16,11 +16,11 @@ describe("pickGermanVoice", () => {
     ).toBe(google);
   });
 
-  it("ranks newer macOS voices above Anna", () => {
-    const flo = voice("Flo (German (Germany))", "de-DE");
+  it("prefers the crisp classic Anna over newer macOS voices", () => {
+    const anna = voice("Anna", "de-DE");
     expect(
-      pickGermanVoice([voice("Anna", "de-DE"), flo, voice("Reed (German (Germany))", "de-DE")]),
-    ).toBe(flo);
+      pickGermanVoice([voice("Flo (German (Germany))", "de-DE"), anna, voice("Reed (German (Germany))", "de-DE")]),
+    ).toBe(anna);
   });
 
   it("falls back to any German voice", () => {

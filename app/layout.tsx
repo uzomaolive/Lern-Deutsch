@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import Link from "next/link";
 import { ProgressProvider } from "@/components/progress/ProgressProvider";
+import { VoicePicker } from "@/components/ui/VoicePicker";
 import "./globals.css";
 
 const geistSans = Geist({
@@ -38,7 +39,8 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
             >
               Lern Deutsch <span className="text-amber-700">A1-A2</span>
             </Link>
-            <nav aria-label="Main">
+            <nav aria-label="Main" className="flex items-center gap-4">
+              <VoicePicker />
               <Link
                 href="/"
                 className="text-sm text-stone-600 hover:text-stone-900"

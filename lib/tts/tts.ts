@@ -9,23 +9,25 @@
  */
 
 const GERMAN_LANG = "de-DE";
-const LEARNER_RATE = 0.95;
+/** Slightly slow on purpose: learners understand clearer speech better. */
+const LEARNER_RATE = 0.9;
 
 export interface SpeechLike {
   name: string;
   lang: string;
 }
 
-/** Voice quality hints, best first. Platform-dependent; the top hits are
- * Google's neural voice, the newer macOS system voices, then the classics. */
+/** Voice quality hints, best first. Google's neural voice is the best on
+ * Chrome; Anna is the crisp, classic macOS German voice; the newer macOS
+ * voices (Flo, Eddy, Reed) can sound muffled through speechSynthesis. */
 const PREFERRED_VOICE_HINTS = [
   "Google",
-  "Flo",
-  "Eddy",
-  "Reed",
   "Anna",
   "Katja",
   "Markus",
+  "Flo",
+  "Eddy",
+  "Reed",
   "Vicki",
   "Steffi",
 ];
@@ -60,17 +62,71 @@ export function canSpeak(): boolean {
   return typeof window !== "undefined" && "speechSynthesis" in window;
 }
 
-let cachedVoices: SpeechSynthesisVoice[] | null = null;
+export interface GermanVoice {
+  name: string;
+  lang: string;
+  uri: string;
+}
 
-function loadVoices(): SpeechSynthesisVoice[] {
-  if (!canSpeak()) return [];
-  const voices = window.speechSynthesis.getVoices();
-  if (voices.length > 0) {
-    cachedVoices = voices;
-  } else if (cachedVoices) {
-    return cachedVoices;
+const VOICE_PREFERENCE_KEY = "lern-deutsch:tts:voice";
+
+export function preferredVoiceUri(): string | null {
+  if (typeof window === "undefined") return null;
+  return window.localStorage.getItem(VOICE_PREFERENCE_KEY);
+}
+
+export function setPreferredVoiceUri(uri: string): void {
+  if (typeof window === "undefined") return;
+  window.localStorage.setItem(VOICE_PREFERENCE_KEY, uri);
+}
+
+function waitForVoices(timeoutMs = 2000): Promise<SpeechSynthesisVoice[]> {
+  return new Promise((resolve) => {
+    if (!canSpeak()) {
+      resolve([]);
+      return;
+    }
+    const synth = window.speechSynthesis;
+    const loaded = synth.getVoices();
+    if (loaded.length > 0) {
+      resolve(loaded);
+      return;
+    }
+    const finish = (voices: SpeechSynthesisVoice[]): void => {
+      synth.removeEventListener("voiceschanged", onChanged);
+      resolve(voices);
+    };
+    const onChanged = (): void => finish(synth.getVoices());
+    synth.addEventListener("voiceschanged", onChanged);
+    setTimeout(() => finish(synth.getVoices()), timeoutMs);
+  });
+}
+
+/** All German voices on this device, for the voice picker. */
+export async function getGermanVoices(): Promise<GermanVoice[]> {
+  const voices = await waitForVoices();
+  return voices
+    .filter((voice) => voice.lang.toLowerCase().startsWith("de"))
+    .map((voice) => ({
+      name: voice.name,
+      lang: voice.lang,
+      uri: voice.voiceURI,
+    }));
+}
+
+function pickVoice(
+  voices: SpeechSynthesisVoice[],
+): SpeechSynthesisVoice | null {
+  const preferred = preferredVoiceUri();
+  if (preferred) {
+    const match = voices.find(
+      (voice) =>
+        voice.voiceURI === preferred &&
+        voice.lang.toLowerCase().startsWith("de"),
+    );
+    if (match) return match;
   }
-  return voices;
+  return pickGermanVoice(voices);
 }
 
 function speakWithVoice(
@@ -82,6 +138,8 @@ function speakWithVoice(
   const utterance = new SpeechSynthesisUtterance(text);
   utterance.lang = GERMAN_LANG;
   utterance.rate = rate;
+  utterance.pitch = 1;
+  utterance.volume = 1;
   if (voice) utterance.voice = voice;
   synth.speak(utterance);
 }
@@ -91,28 +149,19 @@ export function speak(text: string, rate: number = LEARNER_RATE): void {
   if (!canSpeak() || text.trim().length === 0) return;
 
   const synth = window.speechSynthesis;
-  const voices = loadVoices();
+  const voices = synth.getVoices();
 
   if (voices.length > 0) {
     synth.cancel();
-    speakWithVoice(synth, text, rate, pickGermanVoice(voices));
+    speakWithVoice(synth, text, rate, pickVoice(voices));
     return;
   }
 
   // Voice list not loaded yet: wait for it (Chrome fires "voiceschanged"
   // shortly after load) so the German voice is used from the start.
-  let attempts = 0;
-  const waitForVoices = (): void => {
-    const loaded = loadVoices();
-    attempts += 1;
-    if (loaded.length > 0 || attempts >= 10) {
-      synth.removeEventListener("voiceschanged", waitForVoices);
-      synth.cancel();
-      speakWithVoice(synth, text, rate, pickGermanVoice(loaded));
-      return;
-    }
-    setTimeout(waitForVoices, 150);
-  };
-  synth.addEventListener("voiceschanged", waitForVoices);
-  waitForVoices();
+  void waitForVoices().then((loaded) => {
+    if (loaded.length === 0) return;
+    synth.cancel();
+    speakWithVoice(synth, text, rate, pickVoice(loaded));
+  });
 }
