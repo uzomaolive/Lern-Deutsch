@@ -774,6 +774,366 @@ const imBuerro: Lesson = {
   ],
 };
 
+const derDativ: Lesson = {
+  id: "der-dativ",
+  title: "Der Dativ",
+  summary: "Say who receives, who benefits, and who you help.",
+  status: "ready",
+  sections: [
+    {
+      heading: "Der Dativ: wer bekommt etwas?",
+      blocks: [
+        {
+          type: "paragraph",
+          text: "The dative is the case of the receiver. In Ich gebe dem Kind einen Apfel, the apple is the accusative object and the child, who receives it, is the dative object. The dative answers the question wem? (to whom?).",
+        },
+        {
+          type: "table",
+          caption: "Articles in the dative",
+          head: ["Gender", "Nominative", "Accusative", "Dative"],
+          rows: [
+            ["masculine", "der Mann", "den Mann", "dem Mann"],
+            ["feminine", "die Frau", "die Frau", "der Frau"],
+            ["neuter", "das Kind", "das Kind", "dem Kind"],
+            ["plural", "die Kinder", "die Kinder", "den Kindern"],
+          ],
+        },
+        {
+          type: "tip",
+          text: "The dative articles are easy to spot: masculine and neuter both become dem, feminine becomes der, and the plural always adds an -n: den Kindern.",
+        },
+      ],
+    },
+    {
+      heading: "Dativ nach Präpositionen",
+      blocks: [
+        {
+          type: "paragraph",
+          text: "The prepositions mit, nach, aus, zu, von, and bei always demand the dative. You already use them every day; now you know why the articles change.",
+        },
+        {
+          type: "table",
+          caption: "Dative prepositions in action",
+          head: ["Preposition", "Example"],
+          rows: [
+            ["mit", "mit dem Zug, mit mir"],
+            ["nach", "nach Hause (no article)"],
+            ["aus", "aus der Schweiz"],
+            ["zu", "zum Bahnhof (zu dem)"],
+            ["von", "vom Bahnhof (von dem)"],
+            ["bei", "beim Arzt (bei dem)"],
+          ],
+        },
+      ],
+    },
+    {
+      heading: "Verben mit Dativ",
+      blocks: [
+        {
+          type: "paragraph",
+          text: "A few everyday verbs take only the dative for the person. They are worth learning by heart because English often uses a different pattern.",
+        },
+        {
+          type: "table",
+          caption: "Dative verbs",
+          head: ["Verb", "Example", "English"],
+          rows: [
+            ["helfen", "Kannst du mir helfen?", "Can you help me?"],
+            ["gefallen", "Das gefällt mir.", "I like that."],
+            ["schmecken", "Das schmeckt mir.", "That tastes good to me."],
+            ["gehören", "Das Buch gehört mir.", "The book belongs to me."],
+            ["antworten", "Antworte mir bitte!", "Answer me, please!"],
+            ["danken", "Ich danke dir.", "I thank you."],
+          ],
+        },
+        {
+          type: "tip",
+          text: "The dative pronouns: mir, dir, ihm, ihr, uns, euch, ihnen. Notice that the person always comes first: Das schmeckt mir is I-like-it, not it-tastes-me.",
+        },
+      ],
+    },
+    {
+      heading: "Zwei Objekte",
+      blocks: [
+        {
+          type: "paragraph",
+          text: "When a sentence has both a dative and an accusative object, the dative (the person) comes first, then the accusative (the thing).",
+        },
+        {
+          type: "example",
+          de: "Ich gebe dem Kind einen Apfel.",
+          en: "I give the child an apple. (person first, thing second)",
+        },
+        {
+          type: "example",
+          de: "Sie schenkt der Oma Blumen.",
+          en: "She gives grandma flowers.",
+        },
+        {
+          type: "example",
+          de: "Wir bringen dem Vater das Buch.",
+          en: "We bring father the book.",
+        },
+      ],
+    },
+  ],
+  vocab: [
+    { id: "der-dativ", de: "der Dativ", en: "the dative case", part: "noun m.", audio: true },
+    { id: "schmecken", de: "schmecken", en: "to taste (good to someone)", part: "verb", audio: true },
+    { id: "gefallen", de: "gefallen", en: "to please, be liked", part: "verb", audio: true },
+    { id: "gehoeren", de: "gehören", en: "to belong to", part: "verb", audio: true },
+    { id: "antworten", de: "antworten", en: "to answer", part: "verb", audio: true },
+    { id: "danken", de: "danken", en: "to thank", part: "verb", audio: true },
+    { id: "dem-mann", de: "dem Mann", en: "to the man (dative)", part: "phrase", phrase: true, audio: true },
+    { id: "der-frau", de: "der Frau", en: "to the woman (dative)", part: "phrase", phrase: true, audio: true },
+    { id: "mir", de: "mir", en: "to me", part: "pronoun", audio: true },
+    { id: "dir", de: "dir", en: "to you", part: "pronoun", audio: true },
+    { id: "dem-kind", de: "dem Kind", en: "to the child (dative)", part: "phrase", phrase: true, audio: true },
+    { id: "schenken", de: "schenken", en: "to give (a gift)", part: "verb", audio: true },
+  ],
+  exercises: [
+    {
+      id: "mc-dativ-konsolidiert",
+      type: "multiple-choice",
+      title: "Der Dativ",
+      instruction: "Choose the dative pronoun.",
+      prompt: "Das schmeckt ___.",
+      options: ["mir", "mich", "ich"],
+      correctIndex: 0,
+      explain: "schmecken takes the dative: mir.",
+    },
+    {
+      id: "listening-dativ-konsolidiert",
+      type: "listening",
+      title: "Was hörst du?",
+      instruction: "Play the audio and pick the sentence you heard.",
+      prompt: "Ich gebe dem Kind einen Apfel.",
+      options: [
+        "Ich gebe dem Kind einen Apfel.",
+        "Ich gebe dem Kind ein Apfel.",
+        "Ich gebe das Kind einen Apfel.",
+      ],
+      correctIndex: 0,
+    },
+    {
+      id: "fill-dativ-konsolidiert",
+      type: "fill-blank",
+      title: "Der Dativ",
+      instruction: "Complete with the dative forms.",
+      sentence: "Kannst du ___ helfen? (me) Ich gebe ___ Kind einen Apfel. (the)",
+      blanks: [
+        { answers: ["mir"], hint: "dative pronoun" },
+        { answers: ["dem"], hint: "dative article, neuter" },
+      ],
+    },
+    {
+      id: "matching-dativ-konsolidiert",
+      type: "matching",
+      title: "Nominativ und Dativ",
+      instruction: "Match each nominative to its dative form.",
+      pairs: [
+        ["der Mann", "dem Mann"],
+        ["die Frau", "der Frau"],
+        ["das Kind", "dem Kind"],
+        ["die Kinder", "den Kindern"],
+        ["ich", "mir"],
+      ],
+    },
+    {
+      id: "word-order-dativ-konsolidiert",
+      type: "word-order",
+      title: "Der Satz",
+      instruction: "Build the sentence: I give the child an apple.",
+      chunks: ["Ich", "gebe", "dem", "Kind", "einen", "Apfel."],
+      explain: "Dative person first, accusative thing second.",
+    },
+    {
+      id: "flashcard-dativ-konsolidiert",
+      type: "flashcard",
+      title: "Dativkarten",
+      instruction: "Say the German out loud before revealing.",
+      items: [
+        { front: "mir", back: "to me", frontAudio: true },
+        { front: "dir", back: "to you", frontAudio: true },
+        { front: "dem Mann", back: "to the man", frontAudio: true },
+        { front: "der Frau", back: "to the woman", frontAudio: true },
+        { front: "Das schmeckt mir.", back: "I like the taste.", frontAudio: true },
+        { front: "Das gehört mir.", back: "That belongs to me.", frontAudio: true },
+      ],
+    },
+  ],
+};
+
+const konjunktionen: Lesson = {
+  id: "konjunktionen",
+  title: "Konjunktionen",
+  summary: "Connect simple sentences and give reasons: und, oder, aber, denn, sondern.",
+  status: "ready",
+  sections: [
+    {
+      heading: "Sätze verbinden",
+      blocks: [
+        {
+          type: "paragraph",
+          text: "Conjunctions glue two sentences together. The first four do not change the word order at all: the verb of the second sentence stays exactly where it was. This makes them beginner-friendly.",
+        },
+        {
+          type: "table",
+          caption: "The five conjunctions",
+          head: ["Conjunction", "Meaning", "Example"],
+          rows: [
+            ["und", "and", "Ich trinke Tee, und du trinkst Kaffee."],
+            ["oder", "or", "Möchtest du Tee oder Kaffee?"],
+            ["aber", "but", "Ich mag Tee, aber ich trinke lieber Kaffee."],
+            ["denn", "because (reason)", "Ich lerne Deutsch, denn ich lebe in Deutschland."],
+            ["sondern", "but rather (after negation)", "Ich trinke keinen Tee, sondern Kaffee."],
+          ],
+        },
+        {
+          type: "tip",
+          text: "denn is the easy because: the verb stays in position two, no special word order. weil does the same job but sends the verb to the end, and weil belongs to A2.",
+        },
+      ],
+    },
+    {
+      heading: "und, oder, aber",
+      blocks: [
+        {
+          type: "paragraph",
+          text: "und adds, oder offers a choice, and aber contrasts. All three behave exactly like English and, or, but.",
+        },
+        {
+          type: "example",
+          de: "Ich heiße Anna und ich komme aus Berlin.",
+          en: "My name is Anna and I come from Berlin.",
+        },
+        {
+          type: "example",
+          de: "Willst du Kaffee oder Tee?",
+          en: "Do you want coffee or tea?",
+        },
+        {
+          type: "example",
+          de: "Er ist müde, aber er arbeitet weiter.",
+          en: "He is tired, but he keeps working.",
+        },
+      ],
+    },
+    {
+      heading: "denn und sondern",
+      blocks: [
+        {
+          type: "paragraph",
+          text: "denn gives the reason for the first sentence. sondern is the special one: it only appears after a negative statement and means but rather, the alternative.",
+        },
+        {
+          type: "example",
+          de: "Ich lerne Deutsch, denn ich möchte in Deutschland arbeiten.",
+          en: "I am learning German because I want to work in Germany.",
+        },
+        {
+          type: "example",
+          de: "Ich habe kein Auto, sondern ein Fahrrad.",
+          en: "I do not have a car, but a bicycle.",
+        },
+        {
+          type: "example",
+          de: "Er ist nicht aus Berlin, sondern aus Hamburg.",
+          en: "He is not from Berlin but from Hamburg.",
+        },
+        {
+          type: "tip",
+          text: "Test: does the sentence deny something first? Then the next part uses sondern. No negation? Then aber.",
+        },
+      ],
+    },
+  ],
+  vocab: [
+    { id: "und", de: "und", en: "and", part: "conjunction", audio: true },
+    { id: "oder", de: "oder", en: "or", part: "conjunction", audio: true },
+    { id: "aber", de: "aber", en: "but", part: "conjunction", audio: true },
+    { id: "denn", de: "denn", en: "because", part: "conjunction", audio: true },
+    { id: "sondern", de: "sondern", en: "but rather", part: "conjunction", audio: true },
+    { id: "weil", de: "weil (A2 preview)", en: "because (verb at the end)", part: "conjunction", audio: true },
+    { id: "die-konjunktion", de: "die Konjunktion", en: "the conjunction", part: "noun f.", plural: "die Konjunktionen", audio: true },
+    { id: "muede", de: "müde", en: "tired", part: "adjective", audio: true },
+    { id: "weiterarbeiten", de: "weiterarbeiten", en: "to keep working", part: "verb", audio: true },
+    { id: "das-fahrrad", de: "das Fahrrad", en: "the bicycle", part: "noun n.", plural: "die Fahrräder", audio: true },
+    { id: "die-entscheidung", de: "die Entscheidung", en: "the decision", part: "noun f.", plural: "die Entscheidungen", audio: true },
+  ],
+  exercises: [
+    {
+      id: "mc-konjunktion",
+      type: "multiple-choice",
+      title: "Die Konjunktion",
+      instruction: "Choose the correct conjunction.",
+      prompt: "Ich lerne Deutsch, ___ ich lebe in Deutschland.",
+      options: ["denn", "aber", "sondern"],
+      correctIndex: 0,
+      explain: "denn gives the reason and keeps the verb in position two.",
+    },
+    {
+      id: "listening-konjunktion",
+      type: "listening",
+      title: "Was hörst du?",
+      instruction: "Play the audio and pick the sentence you heard.",
+      prompt: "Ich habe kein Auto, sondern ein Fahrrad.",
+      options: [
+        "Ich habe kein Auto, sondern ein Fahrrad.",
+        "Ich habe kein Auto, aber ein Fahrrad.",
+        "Ich habe ein Auto, sondern ein Fahrrad.",
+      ],
+      correctIndex: 0,
+    },
+    {
+      id: "fill-konjunktion",
+      type: "fill-blank",
+      title: "Die Konjunktionen",
+      instruction: "Complete with the right conjunction.",
+      sentence: "Ich trinke keinen Tee, ___ Kaffee. Ich mag Tee, ___ ich trinke lieber Kaffee.",
+      blanks: [
+        { answers: ["sondern"], hint: "after negation" },
+        { answers: ["aber"], hint: "contrast" },
+      ],
+    },
+    {
+      id: "matching-konjunktion",
+      type: "matching",
+      title: "Bedeutungen",
+      instruction: "Match each conjunction to its meaning.",
+      pairs: [
+        ["und", "and"],
+        ["oder", "or"],
+        ["aber", "but"],
+        ["denn", "because"],
+        ["sondern", "but rather"],
+      ],
+    },
+    {
+      id: "word-order-konjunktion",
+      type: "word-order",
+      title: "Der Satz",
+      instruction: "Build the sentence: I am learning German because I live in Germany.",
+      chunks: ["Ich", "lerne", "Deutsch,", "denn", "ich", "lebe", "in", "Deutschland."],
+      explain: "denn keeps the verb of the second sentence in position two.",
+    },
+    {
+      id: "flashcard-konjunktion",
+      type: "flashcard",
+      title: "Konjunktionskarten",
+      instruction: "Say the German sentence out loud before revealing.",
+      items: [
+        { front: "und", back: "and", frontAudio: true },
+        { front: "oder", back: "or", frontAudio: true },
+        { front: "aber", back: "but", frontAudio: true },
+        { front: "denn", back: "because", frontAudio: true },
+        { front: "sondern", back: "but rather", frontAudio: true },
+        { front: "Ich lerne Deutsch, denn ich lebe hier.", back: "I learn German because I live here.", frontAudio: true },
+      ],
+    },
+  ],
+};
+
 export const arbeitUndBeruf: Unit = {
   id: "arbeit-und-beruf",
   title: "Arbeit und Beruf",
@@ -782,7 +1142,9 @@ export const arbeitUndBeruf: Unit = {
     berufe,
     praepositionenMitDativ,
     pronomenImDativ,
+    derDativ,
     wortstellung,
+    konjunktionen,
     imBuerro,
   ],
 };

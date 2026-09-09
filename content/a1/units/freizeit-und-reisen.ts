@@ -550,6 +550,504 @@ const einladungen: Lesson = {
   ],
 };
 
+const wiederholung: Lesson = {
+  id: "wiederholung",
+  title: "Wiederholung A1",
+  summary: "Bring your A1 German together: review and consolidation.",
+  status: "ready",
+  sections: [
+    {
+      heading: "Was kannst du jetzt?",
+      blocks: [
+        {
+          type: "paragraph",
+          text: "You have finished the A1 grammar. Before the mock exams, take stock. You can introduce yourself, conjugate regular and strong verbs, ask W-questions and yes/no questions, use der/die/das and ein/eine, negate with nicht and kein, form the Perfekt with haben and sein, give imperatives, use the dative with prepositions and verbs, and connect sentences with und, oder, aber, denn, and sondern.",
+        },
+        {
+          type: "table",
+          caption: "The A1 checklist",
+          head: ["Area", "You can"],
+          rows: [
+            ["Present tense", "conjugate regular, strong, and modal verbs"],
+            ["Cases", "use nominative, accusative, and dative"],
+            ["Articles", "choose der/die/das, ein/eine, kein"],
+            ["Negation", "place nicht and kein correctly"],
+            ["Questions", "ask with question words and verb-first"],
+            ["Past", "build the Perfekt with haben and sein"],
+            ["Commands", "give imperatives for du, ihr, Sie"],
+            ["Sentence structure", "keep the verb in position two"],
+            ["Connectors", "join sentences with und, oder, aber, denn"],
+          ],
+        },
+        {
+          type: "tip",
+          text: "If any row feels shaky, open that lesson again before the mock exam. The mock exams are designed to show you exactly which row needs work.",
+        },
+      ],
+    },
+    {
+      heading: "Schnelle Wiederholung",
+      blocks: [
+        {
+          type: "paragraph",
+          text: "Here are the three tables that hold A1 together. Read them aloud once, then do the exercises: the mixed practice below mixes everything on purpose.",
+        },
+        {
+          type: "table",
+          caption: "sein und haben",
+          head: ["Person", "sein", "haben"],
+          rows: [
+            ["ich", "bin", "habe"],
+            ["du", "bist", "hast"],
+            ["er / sie / es", "ist", "hat"],
+            ["wir", "sind", "haben"],
+            ["ihr", "seid", "habt"],
+            ["sie / Sie", "sind", "haben"],
+          ],
+        },
+        {
+          type: "table",
+          caption: "The three cases",
+          head: ["Gender", "Nominative", "Accusative", "Dative"],
+          rows: [
+            ["masculine", "der Mann", "den Mann", "dem Mann"],
+            ["feminine", "die Frau", "die Frau", "der Frau"],
+            ["neuter", "das Kind", "das Kind", "dem Kind"],
+            ["plural", "die Kinder", "die Kinder", "den Kindern"],
+          ],
+        },
+        {
+          type: "tip",
+          text: "One sentence to test all three cases: Ich gebe dem Kind einen Apfel. Ich (nominative), dem Kind (dative, the receiver), einen Apfel (accusative, the thing).",
+        },
+      ],
+    },
+    {
+      heading: "Dein Plan",
+      blocks: [
+        {
+          type: "paragraph",
+          text: "A1 ends with two mock exams in this course: one in Goethe style and one in telc style. Do them without notes, like the real exam, then review the topics you missed.",
+        },
+        {
+          type: "example",
+          de: "Ich kann ein bisschen Deutsch. Ich kann mich vorstellen und einen Termin machen.",
+          en: "I can speak a little German. I can introduce myself and make an appointment.",
+        },
+        {
+          type: "tip",
+          text: "Congratulations: with the Perfekt, the dative, and the connectors, you have everything you need to start A2, where subordinate clauses and the future arrive.",
+        },
+      ],
+    },
+  ],
+  vocab: [
+    { id: "die-wiederholung", de: "die Wiederholung", en: "the review", part: "noun f.", plural: "die Wiederholungen", audio: true },
+    { id: "wiederholen", de: "wiederholen", en: "to repeat, review", part: "verb", audio: true },
+    { id: "die-pruefung", de: "die Prüfung", en: "the exam", part: "noun f.", plural: "die Prüfungen", audio: true },
+    { id: "vorstellen", de: "sich vorstellen", en: "to introduce oneself", part: "verb", audio: true },
+    { id: "ein-bisschen", de: "ein bisschen", en: "a little", part: "adverb", audio: true },
+    { id: "der-checklist", de: "die Checkliste", en: "the checklist", part: "noun f.", plural: "die Checklisten", audio: true },
+    { id: "sicher", de: "sicher", en: "certain, safe", part: "adjective", audio: true },
+    { id: "der-tipp", de: "der Tipp", en: "the tip", part: "noun m.", plural: "die Tipps", audio: true },
+    { id: "fertig", de: "fertig", en: "done, finished", part: "adjective", audio: true },
+    { id: "losgehen", de: "losgehen", en: "to get going, start", part: "verb", audio: true },
+  ],
+  exercises: [
+    {
+      id: "mc-wiederholung",
+      type: "multiple-choice",
+      title: "Alles zusammen",
+      instruction: "Mixed A1 practice: choose the correct form.",
+      prompt: "Ich ___ gestern nach Berlin gefahren.",
+      options: ["bin", "habe", "haben"],
+      correctIndex: 0,
+      explain: "Movement takes sein: bin gefahren.",
+    },
+    {
+      id: "listening-wiederholung",
+      type: "listening",
+      title: "Was hörst du?",
+      instruction: "Play the audio and pick the sentence you heard.",
+      prompt: "Ich kann mich vorstellen und einen Termin machen.",
+      options: [
+        "Ich kann mich vorstellen und einen Termin machen.",
+        "Ich kann mich vorstellen und ein Termin machen.",
+        "Ich kann mich vorstellen und einen Termin machen?",
+      ],
+      correctIndex: 0,
+    },
+    {
+      id: "fill-wiederholung",
+      type: "fill-blank",
+      title: "Die Lücken",
+      instruction: "Complete the mixed sentences.",
+      sentence: "Ich ___ aus Deutschland. (come) Wir ___ gestern nach Berlin gefahren. Das schmeckt ___.",
+      blanks: [
+        { answers: ["komme"], hint: "kommen, ich" },
+        { answers: ["sind"], hint: "sein + movement" },
+        { answers: ["mir"], hint: "dative pronoun" },
+      ],
+    },
+    {
+      id: "matching-wiederholung",
+      type: "matching",
+      title: "Alles gemischt",
+      instruction: "Match each item to its partner.",
+      pairs: [
+        ["haben (ich)", "habe"],
+        ["fahren (du)", "fährst"],
+        ["essen (Partizip)", "gegessen"],
+        ["die Frau (dativ)", "der Frau"],
+        ["nicht after negation + but", "sondern"],
+      ],
+    },
+    {
+      id: "word-order-wiederholung",
+      type: "word-order",
+      title: "Der Satz",
+      instruction: "Build the sentence: I can introduce myself and make an appointment.",
+      chunks: ["Ich", "kann", "mich", "vorstellen", "und", "einen", "Termin", "machen."],
+      explain: "The modal is second; both infinitives close the sentence.",
+    },
+    {
+      id: "flashcard-wiederholung",
+      type: "flashcard",
+      title: "A1-Karten",
+      instruction: "Say the German out loud before revealing.",
+      items: [
+        { front: "ich bin", back: "I am", frontAudio: true },
+        { front: "du fährst", back: "you drive", frontAudio: true },
+        { front: "gegessen", back: "eaten", frontAudio: true },
+        { front: "dem Mann", back: "to the man (dative)", frontAudio: true },
+        { front: "sondern", back: "but rather", frontAudio: true },
+        { front: "sich vorstellen", back: "to introduce oneself", frontAudio: true },
+      ],
+    },
+  ],
+};
+
+const goetheMockExam: Lesson = {
+  id: "goethe-a1-mock-exam",
+  title: "Goethe-Style A1 Mock Exam",
+  summary: "A full A1-style practice round for everyday life in Germany.",
+  status: "ready",
+  sections: [
+    {
+      heading: "So funktioniert die Prüfung",
+      blocks: [
+        {
+          type: "paragraph",
+          text: "The real Goethe A1 exam has four parts: Hören (listening), Lesen (reading), Schreiben (writing), and Sprechen (speaking). This mock exam practises the same skills with the same kind of tasks: listening and choosing, filling forms, matching notices, and building correct sentences.",
+        },
+        {
+          type: "table",
+          caption: "The exam parts",
+          head: ["Part", "What happens", "Here you practise"],
+          rows: [
+            ["Hören", "you hear short texts and pick answers", "listening exercises"],
+            ["Lesen", "you read notices and forms", "reading and matching"],
+            ["Schreiben", "you fill in forms and write short messages", "fill-blank tasks"],
+            ["Sprechen", "you introduce yourself and ask questions", "word-order sentences"],
+          ],
+        },
+        {
+          type: "tip",
+          text: "Exam vocabulary you will actually meet: der Termin, die Anmeldung, das Formular, das Bürgeramt, die Krankenversicherung, der Aufenthaltstitel, das Konto. Learn these as a set, they appear in every A1 paper.",
+        },
+      ],
+    },
+    {
+      heading: "Teil 1: Wortschatz für den Alltag",
+      blocks: [
+        {
+          type: "paragraph",
+          text: "Goethe A1 loves the practical Germany: appointments, forms, and documents. These words are the exam's favourite topic and the words you really need after landing.",
+        },
+        {
+          type: "table",
+          caption: "Exam vocabulary",
+          head: ["German", "English"],
+          rows: [
+            ["der Termin", "the appointment"],
+            ["die Anmeldung", "the registration"],
+            ["das Formular", "the form"],
+            ["das Bürgeramt", "the citizen's office"],
+            ["die Krankenversicherung", "the health insurance"],
+            ["der Aufenthaltstitel", "the residence permit"],
+            ["das Konto", "the bank account"],
+            ["die Meldebescheinigung", "the registration certificate"],
+          ],
+        },
+        {
+          type: "example",
+          de: "Ich habe morgen einen Termin beim Bürgeramt.",
+          en: "I have an appointment at the citizen's office tomorrow.",
+        },
+      ],
+    },
+    {
+      heading: "Teil 2: Grammatik in der Prüfung",
+      blocks: [
+        {
+          type: "paragraph",
+          text: "The exam checks the same grammar you already know: articles, cases, the Perfekt, modals, and word order. The exercises below mix all of it the way the exam does.",
+        },
+        {
+          type: "example",
+          de: "Ich möchte einen Termin machen. Kann ich das Formular hier bekommen?",
+          en: "I would like to make an appointment. Can I get the form here?",
+        },
+      ],
+    },
+  ],
+  vocab: [
+    { id: "die-pruefung", de: "die Prüfung", en: "the exam", part: "noun f.", plural: "die Prüfungen", audio: true },
+    { id: "der-termin", de: "der Termin", en: "the appointment", part: "noun m.", plural: "die Termine", audio: true },
+    { id: "die-anmeldung", de: "die Anmeldung", en: "the registration", part: "noun f.", plural: "die Anmeldungen", audio: true },
+    { id: "das-formular", de: "das Formular", en: "the form", part: "noun n.", plural: "die Formulare", audio: true },
+    { id: "das-buergeramt", de: "das Bürgeramt", en: "the citizen's office", part: "noun n.", plural: "die Bürgerämter", audio: true },
+    { id: "die-krankenversicherung", de: "die Krankenversicherung", en: "the health insurance", part: "noun f.", plural: "die Krankenversicherungen", audio: true },
+    { id: "der-aufenthaltstitel", de: "der Aufenthaltstitel", en: "the residence permit", part: "noun m.", plural: "die Aufenthaltstitel", audio: true },
+    { id: "das-konto", de: "das Konto", en: "the bank account", part: "noun n.", plural: "die Konten", audio: true },
+    { id: "die-meldebescheinigung", de: "die Meldebescheinigung", en: "the registration certificate", part: "noun f.", plural: "die Meldebescheinigungen", audio: true },
+    { id: "die-hoeren", de: "das Hören", en: "the listening (exam part)", part: "noun n.", audio: true },
+    { id: "das-lesen", de: "das Lesen", en: "the reading (exam part)", part: "noun n.", audio: true },
+    { id: "das-schreiben", de: "das Schreiben", en: "the writing (exam part)", part: "noun n.", audio: true },
+  ],
+  exercises: [
+    {
+      id: "mc-goethe-woerter",
+      type: "multiple-choice",
+      title: "Teil 1: Wortschatz",
+      instruction: "Choose the word that fits the exam sentence.",
+      prompt: "Ich habe morgen einen ___ beim Bürgeramt.",
+      options: ["Termin", "Formular", "Aufenthaltstitel"],
+      correctIndex: 0,
+      explain: "The appointment is der Termin: einen Termin haben.",
+    },
+    {
+      id: "listening-goethe-hoeren",
+      type: "listening",
+      title: "Teil: Hören",
+      instruction: "Play the audio and pick what you heard.",
+      prompt: "Ich möchte einen Termin machen.",
+      options: [
+        "Ich möchte einen Termin machen.",
+        "Ich möchte ein Formular machen.",
+        "Ich möchte einen Termin haben.",
+      ],
+      correctIndex: 0,
+    },
+    {
+      id: "fill-goethe-formular",
+      type: "fill-blank",
+      title: "Teil: Schreiben",
+      instruction: "Fill in the form sentences.",
+      sentence: "Mein ___ ist Anna Müller. (last name) Ich habe ___ Termin. (an, masculine)",
+      blanks: [
+        { answers: ["Nachname"], hint: "last name" },
+        { answers: ["einen"], hint: "accusative, masculine" },
+      ],
+    },
+    {
+      id: "matching-goethe-lesen",
+      type: "matching",
+      title: "Teil: Lesen",
+      instruction: "Match each document word to its meaning.",
+      pairs: [
+        ["die Anmeldung", "the registration"],
+        ["das Formular", "the form"],
+        ["der Aufenthaltstitel", "the residence permit"],
+        ["die Krankenversicherung", "the health insurance"],
+        ["das Konto", "the bank account"],
+      ],
+    },
+    {
+      id: "word-order-goethe",
+      type: "word-order",
+      title: "Teil: Sprechen",
+      instruction: "Build the sentence: I have an appointment at the citizen's office tomorrow.",
+      chunks: ["Ich", "habe", "morgen", "einen", "Termin", "beim", "Bürgeramt."],
+      explain: "Time (morgen) comes before the object.",
+    },
+    {
+      id: "flashcard-goethe",
+      type: "flashcard",
+      title: "Prüfungswortschatz",
+      instruction: "Say the German exam word out loud before revealing.",
+      items: [
+        { front: "der Termin", back: "the appointment", frontAudio: true },
+        { front: "die Anmeldung", back: "the registration", frontAudio: true },
+        { front: "das Formular", back: "the form", frontAudio: true },
+        { front: "das Bürgeramt", back: "the citizen's office", frontAudio: true },
+        { front: "der Aufenthaltstitel", back: "the residence permit", frontAudio: true },
+        { front: "die Krankenversicherung", back: "the health insurance", frontAudio: true },
+      ],
+    },
+  ],
+};
+
+const telcMockExam: Lesson = {
+  id: "telc-a1-mock-exam",
+  title: "telc-Style A1 Mock Exam",
+  summary: "Housing and city life: apartment notices, transport, shops, directions.",
+  status: "ready",
+  sections: [
+    {
+      heading: "So funktioniert telc",
+      blocks: [
+        {
+          type: "paragraph",
+          text: "The telc A1 exam is organized like Goethe A1: Hören, Lesen, Schreiben, and Sprechen. Its favourite topics are housing and city life: apartment notices, transport, shops, and directions. This mock exam practises exactly those.",
+        },
+        {
+          type: "table",
+          caption: "telc topics",
+          head: ["Topic", "Words you need"],
+          rows: [
+            ["Housing", "die Miete, der Vermieter, die Wohnung, der Stock"],
+            ["Transport", "die Haltestelle, der Bahnsteig, die Fahrkarte"],
+            ["Shops", "der Supermarkt, die Apotheke, öffnen, schließen"],
+            ["Directions", "links, rechts, geradeaus, an der Ampel"],
+          ],
+        },
+        {
+          type: "tip",
+          text: "telc notices are short and use the imperative: Bitte links abbiegen. Öffnungszeiten: Mo-Fr 9-18 Uhr. Learn to read the imperative in notices: it is the same form you already know.",
+        },
+      ],
+    },
+    {
+      heading: "Die Wohnung",
+      blocks: [
+        {
+          type: "paragraph",
+          text: "Apartment notices are a telc classic. They are packed with abbreviations and numbers: 2-Zimmer-Wohnung, 58 qm, 3. Stock, 850 Euro kalt, zzgl. Nebenkosten.",
+        },
+        {
+          type: "example",
+          de: "2-Zimmer-Wohnung, 58 qm, Balkon, 850 Euro kalt.",
+          en: "Two-room apartment, 58 sqm, balcony, 850 euros cold.",
+        },
+        {
+          type: "example",
+          de: "Die Wohnung ist im dritten Stock. Der Vermieter heißt Herr Weber.",
+          en: "The apartment is on the third floor. The landlord is called Mr Weber.",
+        },
+      ],
+    },
+    {
+      heading: "Unterwegs",
+      blocks: [
+        {
+          type: "paragraph",
+          text: "The transport section of telc checks directions and timetables: when the bus leaves, where the platform is, how to change trains.",
+        },
+        {
+          type: "example",
+          de: "Entschuldigung, wo ist der Bahnsteig? Gehen Sie geradeaus, dann links.",
+          en: "Excuse me, where is the platform? Go straight ahead, then left.",
+        },
+        {
+          type: "example",
+          de: "Der Bus hat zehn Minuten Verspätung.",
+          en: "The bus is ten minutes late.",
+        },
+        {
+          type: "tip",
+          text: "Notice the imperative inside directions: Gehen Sie geradeaus. The polite form with Sie is what appears in exam listening texts.",
+        },
+      ],
+    },
+  ],
+  vocab: [
+    { id: "der-vermieter", de: "der Vermieter", en: "the landlord", part: "noun m.", plural: "die Vermieter", audio: true },
+    { id: "die-miete", de: "die Miete", en: "the rent", part: "noun f.", plural: "die Mieten", audio: true },
+    { id: "die-nebenkosten", de: "die Nebenkosten", en: "the utilities", part: "noun pl.", audio: true },
+    { id: "der-supermarkt", de: "der Supermarkt", en: "the supermarket", part: "noun m.", plural: "die Supermärkte", audio: true },
+    { id: "oeffnen", de: "öffnen", en: "to open", part: "verb", audio: true },
+    { id: "schliessen", de: "schließen", en: "to close", part: "verb", audio: true },
+    { id: "die-oefnungszeiten", de: "die Öffnungszeiten", en: "the opening hours", part: "noun pl.", audio: true },
+    { id: "die-haltestelle", de: "die Haltestelle", en: "the stop", part: "noun f.", plural: "die Haltestellen", audio: true },
+    { id: "der-bahnsteig", de: "der Bahnsteig", en: "the platform", part: "noun m.", plural: "die Bahnsteige", audio: true },
+    { id: "die-fahrkarte", de: "die Fahrkarte", en: "the ticket", part: "noun f.", plural: "die Fahrkarten", audio: true },
+    { id: "die-verspaetung", de: "die Verspätung", en: "the delay", part: "noun f.", plural: "die Verspätungen", audio: true },
+    { id: "abbiegen", de: "abbiegen", en: "to turn (a corner)", part: "verb", audio: true },
+  ],
+  exercises: [
+    {
+      id: "mc-telc-anzeige",
+      type: "multiple-choice",
+      title: "Teil: Lesen",
+      instruction: "Read the notice and answer.",
+      prompt: "In einer Anzeige steht: 2-Zimmer-Wohnung, 3. Stock. Wo ist die Wohnung?",
+      options: ["im dritten Stock", "im Erdgeschoss", "im zweiten Stock"],
+      correctIndex: 0,
+      explain: "3. Stock means the third floor.",
+    },
+    {
+      id: "listening-telc-hoeren",
+      type: "listening",
+      title: "Teil: Hören",
+      instruction: "Play the audio and pick the sentence you heard.",
+      prompt: "Der Bus hat zehn Minuten Verspätung.",
+      options: [
+        "Der Bus hat zehn Minuten Verspätung.",
+        "Der Bus hat zehn Minuten Haltestelle.",
+        "Der Zug hat zehn Minuten Verspätung.",
+      ],
+      correctIndex: 0,
+    },
+    {
+      id: "fill-telc-schreiben",
+      type: "fill-blank",
+      title: "Teil: Schreiben",
+      instruction: "Complete the housing sentences.",
+      sentence: "Die Wohnung ist im dritten ___. (floor) Die Miete ist 850 Euro ___.",
+      blanks: [
+        { answers: ["Stock"], hint: "the floor" },
+        { answers: ["kalt"], hint: "without utilities" },
+      ],
+    },
+    {
+      id: "matching-telc-lesen",
+      type: "matching",
+      title: "Teil: Lesen",
+      instruction: "Match each word to its meaning.",
+      pairs: [
+        ["die Haltestelle", "the stop"],
+        ["der Bahnsteig", "the platform"],
+        ["die Fahrkarte", "the ticket"],
+        ["die Öffnungszeiten", "the opening hours"],
+        ["der Supermarkt", "the supermarket"],
+      ],
+    },
+    {
+      id: "word-order-telc",
+      type: "word-order",
+      title: "Teil: Sprechen",
+      instruction: "Build the directions: Go straight ahead, then left.",
+      chunks: ["Gehen", "Sie", "geradeaus,", "dann", "links."],
+      explain: "The imperative leads, the direction follows.",
+    },
+    {
+      id: "flashcard-telc",
+      type: "flashcard",
+      title: "telc-Wortschatz",
+      instruction: "Say the German word out loud before revealing.",
+      items: [
+        { front: "die Haltestelle", back: "the stop", frontAudio: true },
+        { front: "der Bahnsteig", back: "the platform", frontAudio: true },
+        { front: "die Fahrkarte", back: "the ticket", frontAudio: true },
+        { front: "die Miete", back: "the rent", frontAudio: true },
+        { front: "der Vermieter", back: "the landlord", frontAudio: true },
+        { front: "die Öffnungszeiten", back: "the opening hours", frontAudio: true },
+      ],
+    },
+  ],
+};
+
 export const freizeitUndReisen: Unit = {
   id: "freizeit-und-reisen",
   title: "Freizeit und Reisen",
@@ -559,5 +1057,8 @@ export const freizeitUndReisen: Unit = {
     nachBerlin,
     reisen,
     einladungen,
+    wiederholung,
+    goetheMockExam,
+    telcMockExam,
   ],
 };

@@ -743,6 +743,174 @@ const wohnungsanzeigen: Lesson = {
   ],
 };
 
+const adjektivendungen: Lesson = {
+  id: "adjektivendungen",
+  title: "Adjektivendungen",
+  summary: "Describe people and places with simple, correct adjective endings.",
+  status: "ready",
+  sections: [
+    {
+      heading: "Adjektive vor Nomen",
+      blocks: [
+        {
+          type: "paragraph",
+          text: "After sein, adjectives stay bare: Das Haus ist groß. But in front of a noun, the adjective takes an ending that matches the noun's gender: ein großes Haus, eine große Küche, ein neuer Computer. The ending tells the listener which gender follows.",
+        },
+        {
+          type: "table",
+          caption: "Endings after ein (nominative)",
+          head: ["Gender", "Noun", "Example"],
+          rows: [
+            ["masculine", "der Computer", "ein neuer Computer"],
+            ["feminine", "die Küche", "eine neue Küche"],
+            ["neuter", "das Haus", "ein neues Haus"],
+            ["plural", "die Schuhe", "meine neuen Schuhe"],
+          ],
+        },
+        {
+          type: "tip",
+          text: "The endings rhyme with the article: ein neuter r (neuer), eine with e (neue), ein neuter s (neues). Say them aloud and your ear will learn them faster than your eyes.",
+        },
+      ],
+    },
+    {
+      heading: "Endungen nach der, die, das",
+      blocks: [
+        {
+          type: "paragraph",
+          text: "After the definite article the endings change: -e appears after der and die and das, and the plural takes -en. This is the other half of the system.",
+        },
+        {
+          type: "table",
+          caption: "Endings after der/die/das (nominative)",
+          head: ["Gender", "Example"],
+          rows: [
+            ["masculine", "der neue Computer"],
+            ["feminine", "die neue Küche"],
+            ["neuter", "das neue Haus"],
+            ["plural", "die neuen Schuhe"],
+          ],
+        },
+        {
+          type: "example",
+          de: "Das ist der neue Computer. Das ist ein neuer Computer.",
+          en: "This is the new computer. This is a new computer.",
+        },
+      ],
+    },
+    {
+      heading: "Der Akkusativ",
+      blocks: [
+        {
+          type: "paragraph",
+          text: "In the accusative, only the masculine changes: ein neuen becomes einen neuen, and after den the ending is -en. Everything else stays the same.",
+        },
+        {
+          type: "table",
+          caption: "Accusative endings",
+          head: ["Noun", "After ein", "After der"],
+          rows: [
+            ["der Computer (m.)", "einen neuen Computer", "den neuen Computer"],
+            ["die Küche (f.)", "eine neue Küche", "die neue Küche"],
+            ["das Haus (n.)", "ein neues Haus", "das neue Haus"],
+            ["die Schuhe (pl.)", "neue Schuhe", "die neuen Schuhe"],
+          ],
+        },
+        {
+          type: "example",
+          de: "Ich kaufe einen neuen Computer. Sie hat ein neues Auto.",
+          en: "I am buying a new computer. She has a new car.",
+        },
+        {
+          type: "tip",
+          text: "A1 only needs these two rows: nominative and accusative, and only the masculine changes in the accusative. The full system arrives in A2; this is already enough to describe your things correctly.",
+        },
+      ],
+    },
+  ],
+  vocab: [
+    { id: "neu", de: "neu", en: "new", part: "adjective", audio: true },
+    { id: "gross", de: "groß", en: "big", part: "adjective", audio: true },
+    { id: "klein", de: "klein", en: "small", part: "adjective", audio: true },
+    { id: "jung", de: "jung", en: "young", part: "adjective", audio: true },
+    { id: "schoen", de: "schön", en: "beautiful", part: "adjective", audio: true },
+    { id: "teuer", de: "teuer", en: "expensive", part: "adjective", audio: true },
+    { id: "billig", de: "billig", en: "cheap", part: "adjective", audio: true },
+    { id: "gut", de: "gut", en: "good", part: "adjective", audio: true },
+    { id: "ein-neuer-computer", de: "ein neuer Computer", en: "a new computer", part: "phrase", phrase: true, audio: true },
+    { id: "eine-neue-kueche", de: "eine neue Küche", en: "a new kitchen", part: "phrase", phrase: true, audio: true },
+    { id: "ein-neues-haus", de: "ein neues Haus", en: "a new house", part: "phrase", phrase: true, audio: true },
+    { id: "einen-neuen", de: "einen neuen Computer", en: "a new computer (accusative)", part: "phrase", phrase: true, audio: true },
+  ],
+  exercises: [
+    {
+      id: "mc-adjektivendung",
+      type: "multiple-choice",
+      title: "Die Endung",
+      instruction: "Choose the correct adjective ending.",
+      prompt: "Das ist ein ___ Computer.",
+      options: ["neuer", "neue", "neues"],
+      correctIndex: 0,
+      explain: "Masculine after ein takes -er: neuer.",
+    },
+    {
+      id: "listening-adjektivendung",
+      type: "listening",
+      title: "Was hörst du?",
+      instruction: "Play the audio and pick the phrase you heard.",
+      prompt: "ein neues Haus",
+      options: ["ein neues Haus", "ein neuer Haus", "eine neue Haus"],
+      correctIndex: 0,
+    },
+    {
+      id: "fill-adjektivendung",
+      type: "fill-blank",
+      title: "Die Endungen",
+      instruction: "Complete with the right endings.",
+      sentence: "Das ist ein ___ Computer. (neu) Ich kaufe einen ___ Computer. (neu)",
+      blanks: [
+        { answers: ["neuer"], hint: "nominative, masculine" },
+        { answers: ["neuen"], hint: "accusative, masculine" },
+      ],
+    },
+    {
+      id: "matching-adjektivendung",
+      type: "matching",
+      title: "Artikel und Endung",
+      instruction: "Match each article to its ending.",
+      pairs: [
+        ["ein Computer", "-er"],
+        ["eine Küche", "-e"],
+        ["ein Haus", "-es"],
+        ["den Computer", "-en"],
+        ["die neuen Schuhe", "-en (plural)"],
+      ],
+    },
+    {
+      id: "word-order-adjektivendung",
+      type: "word-order",
+      title: "Der Satz",
+      instruction: "Build the sentence: I am buying a new computer.",
+      chunks: ["Ich", "kaufe", "einen", "neuen", "Computer."],
+      explain: "Accusative masculine: einen neuen.",
+    },
+    {
+      id: "flashcard-adjektivendung",
+      type: "flashcard",
+      title: "Endungskarten",
+      instruction: "Say the German phrase out loud before revealing.",
+      items: [
+        { front: "ein neuer Computer", back: "a new computer", frontAudio: true },
+        { front: "eine neue Küche", back: "a new kitchen", frontAudio: true },
+        { front: "ein neues Haus", back: "a new house", frontAudio: true },
+        { front: "der neue Computer", back: "the new computer", frontAudio: true },
+        { front: "einen neuen Computer", back: "a new computer (accusative)", frontAudio: true },
+        { front: "meine neuen Schuhe", back: "my new shoes", frontAudio: true },
+      ],
+    },
+  ],
+};
+
 export const wohnen: Unit = {
   id: "wohnen",
   title: "Wohnen",
@@ -751,6 +919,7 @@ export const wohnen: Unit = {
     meinZuhause,
     woWohntWas,
     wohinGehtEs,
+    adjektivendungen,
     farben,
     wohnungsanzeigen,
   ],

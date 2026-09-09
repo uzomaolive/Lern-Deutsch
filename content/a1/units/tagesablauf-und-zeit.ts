@@ -1203,6 +1203,357 @@ const perfektEinfuehrung: Lesson = {
   ],
 };
 
+const perfektMitHaben: Lesson = {
+  id: "perfekt-mit-haben",
+  title: "Das Perfekt mit haben",
+  summary: "Talk about what you did at the weekend: haben + participle.",
+  status: "ready",
+  sections: [
+    {
+      heading: "Wann haben?",
+      blocks: [
+        {
+          type: "paragraph",
+          text: "Most verbs build their past tense with haben. The rule of thumb: if the action stays with the subject, if nothing moves and nothing changes, haben is the helper. Eating, learning, watching, buying, writing: all haben.",
+        },
+        {
+          type: "table",
+          caption: "Verbs with haben",
+          head: ["Infinitive", "Participle", "English"],
+          rows: [
+            ["machen", "gemacht", "to make, do"],
+            ["lernen", "gelernt", "to learn"],
+            ["spielen", "gespielt", "to play"],
+            ["kaufen", "gekauft", "to buy"],
+            ["kochen", "gekocht", "to cook"],
+            ["arbeiten", "gearbeitet", "to work"],
+            ["studieren", "studiert", "to study (at university)"],
+            ["essen", "gegessen", "to eat"],
+            ["trinken", "getrunken", "to drink"],
+            ["sehen", "gesehen", "to see"],
+            ["schreiben", "geschrieben", "to write"],
+            ["lesen", "gelesen", "to read"],
+            ["haben", "gehabt", "to have"],
+          ],
+        },
+        {
+          type: "tip",
+          text: "The helper haben is conjugated in the present and stands in position two. The participle waits at the very end. Ich habe gestern Pizza gegessen: that is the whole pattern.",
+        },
+      ],
+    },
+    {
+      heading: "Die Partizipien",
+      blocks: [
+        {
+          type: "paragraph",
+          text: "Regular verbs form the participle with ge + stem + t: machen becomes gemacht. Verbs ending in -ieren skip the ge-: studieren becomes studiert. Irregular verbs change their vowel and end in -en: essen becomes gegessen.",
+        },
+        {
+          type: "table",
+          caption: "Regular and irregular participles",
+          head: ["Regular (ge + stem + t)", "Irregular (ge + stem + en)"],
+          rows: [
+            ["machen -> gemacht", "essen -> gegessen"],
+            ["lernen -> gelernt", "trinken -> getrunken"],
+            ["spielen -> gespielt", "sehen -> gesehen"],
+            ["kaufen -> gekauft", "schreiben -> geschrieben"],
+            ["arbeiten -> gearbeitet", "lesen -> gelesen"],
+            ["studieren -> studiert (no ge-)", "nehmen -> genommen"],
+          ],
+        },
+        {
+          type: "tip",
+          text: "The irregular list is short and worth memorizing as a poem: essen gegessen, trinken getrunken, sehen gesehen, schreiben geschrieben, lesen gelesen, nehmen genommen.",
+        },
+      ],
+    },
+    {
+      heading: "Am Wochenende",
+      blocks: [
+        {
+          type: "example",
+          de: "Ich habe am Wochenende Fußball gespielt.",
+          en: "I played football at the weekend.",
+        },
+        {
+          type: "example",
+          de: "Wir haben gestern einen Film gesehen.",
+          en: "We watched a film yesterday.",
+        },
+        {
+          type: "example",
+          de: "Sie hat einen Brief geschrieben.",
+          en: "She wrote a letter.",
+        },
+        {
+          type: "tip",
+          text: "Time markers for the spoken past: gestern (yesterday), am Wochenende (at the weekend), letzte Woche (last week), heute Morgen (this morning).",
+        },
+      ],
+    },
+  ],
+  vocab: [
+    { id: "gemacht", de: "gemacht", en: "made, done", part: "participle", audio: true },
+    { id: "gelernt", de: "gelernt", en: "learned", part: "participle", audio: true },
+    { id: "gespielt", de: "gespielt", en: "played", part: "participle", audio: true },
+    { id: "gekauft", de: "gekauft", en: "bought", part: "participle", audio: true },
+    { id: "gekocht", de: "gekocht", en: "cooked", part: "participle", audio: true },
+    { id: "gearbeitet", de: "gearbeitet", en: "worked", part: "participle", audio: true },
+    { id: "studiert", de: "studiert", en: "studied", part: "participle", audio: true },
+    { id: "gegessen", de: "gegessen", en: "eaten", part: "participle", audio: true },
+    { id: "getrunken", de: "getrunken", en: "drunk", part: "participle", audio: true },
+    { id: "gesehen", de: "gesehen", en: "seen", part: "participle", audio: true },
+    { id: "geschrieben", de: "geschrieben", en: "written", part: "participle", audio: true },
+    { id: "gelesen", de: "gelesen", en: "read", part: "participle", audio: true },
+    { id: "gehabt", de: "gehabt", en: "had", part: "participle", audio: true },
+    { id: "am-wochenende", de: "am Wochenende", en: "at the weekend", part: "phrase", phrase: true, audio: true },
+    { id: "letzte-woche", de: "letzte Woche", en: "last week", part: "phrase", phrase: true, audio: true },
+  ],
+  exercises: [
+    {
+      id: "mc-haben",
+      type: "multiple-choice",
+      title: "Das Partizip",
+      instruction: "Choose the correct participle.",
+      prompt: "Ich habe gestern einen Film ___ (sehen).",
+      options: ["gesehen", "geseht", "sehen"],
+      correctIndex: 0,
+      explain: "sehen is irregular: gesehen.",
+    },
+    {
+      id: "listening-haben",
+      type: "listening",
+      title: "Was hörst du?",
+      instruction: "Play the audio and pick the sentence you heard.",
+      prompt: "Wir haben gestern einen Film gesehen.",
+      options: [
+        "Wir haben gestern einen Film gesehen.",
+        "Wir haben gestern einen Film gekauft.",
+        "Wir haben gestern einen Film gespielt.",
+      ],
+      correctIndex: 0,
+    },
+    {
+      id: "fill-haben",
+      type: "fill-blank",
+      title: "Das Perfekt",
+      instruction: "Complete with the participle.",
+      sentence: "Ich habe am Wochenende Fußball ___ (spielen). Sie hat einen Brief ___ (schreiben).",
+      blanks: [
+        { answers: ["gespielt"], hint: "regular participle" },
+        { answers: ["geschrieben"], hint: "irregular participle" },
+      ],
+    },
+    {
+      id: "matching-haben",
+      type: "matching",
+      title: "Infinitiv und Partizip",
+      instruction: "Match each infinitive to its participle.",
+      pairs: [
+        ["machen", "gemacht"],
+        ["kaufen", "gekauft"],
+        ["essen", "gegessen"],
+        ["lesen", "gelesen"],
+        ["studieren", "studiert"],
+      ],
+    },
+    {
+      id: "word-order-haben",
+      type: "word-order",
+      title: "Der Satz",
+      instruction: "Build the sentence: I played football at the weekend.",
+      chunks: ["Ich", "habe", "am", "Wochenende", "Fußball", "gespielt."],
+      explain: "The participle closes the sentence bracket.",
+    },
+    {
+      id: "flashcard-haben",
+      type: "flashcard",
+      title: "Partizipkarten",
+      instruction: "Say the infinitive and the participle out loud.",
+      items: [
+        { front: "machen", back: "gemacht", frontAudio: true },
+        { front: "spielen", back: "gespielt", frontAudio: true },
+        { front: "essen", back: "gegessen", frontAudio: true },
+        { front: "sehen", back: "gesehen", frontAudio: true },
+        { front: "schreiben", back: "geschrieben", frontAudio: true },
+        { front: "lesen", back: "gelesen", frontAudio: true },
+      ],
+    },
+  ],
+};
+
+const perfektMitSein: Lesson = {
+  id: "perfekt-mit-sein",
+  title: "Das Perfekt mit sein",
+  summary: "Talk about trips, arrivals, and movement in the past.",
+  status: "ready",
+  sections: [
+    {
+      heading: "Wann sein?",
+      blocks: [
+        {
+          type: "paragraph",
+          text: "A small group of verbs builds its past with sein instead of haben. The rule: movement and change of state. If the subject actually moves from A to B, or if it changes in some way, use sein. Ich bin nach Berlin gefahren: I moved, so sein.",
+        },
+        {
+          type: "table",
+          caption: "Verbs with sein",
+          head: ["Infinitive", "Participle", "English"],
+          rows: [
+            ["gehen", "gegangen", "to go (walk)"],
+            ["kommen", "gekommen", "to come"],
+            ["fahren", "gefahren", "to drive, travel"],
+            ["fliegen", "geflogen", "to fly"],
+            ["laufen", "gelaufen", "to run"],
+            ["aufstehen", "aufgestanden", "to get up"],
+            ["bleiben", "geblieben", "to stay"],
+            ["sein", "gewesen", "to be"],
+            ["werden", "geworden", "to become"],
+          ],
+        },
+        {
+          type: "tip",
+          text: "The test: did the subject move or change? Ich bin gelaufen: movement, sein. Ich habe gegessen: no movement, haben. If you are unsure, haben is the safe default.",
+        },
+      ],
+    },
+    {
+      heading: "Die Formen",
+      blocks: [
+        {
+          type: "paragraph",
+          text: "sein is conjugated in the present and stands in position two, exactly like haben in the other past. The participle still closes the sentence.",
+        },
+        {
+          type: "example",
+          de: "Wir sind nach Berlin gefahren.",
+          en: "We drove to Berlin.",
+        },
+        {
+          type: "example",
+          de: "Ich bin gestern zu Hause geblieben.",
+          en: "I stayed at home yesterday.",
+        },
+        {
+          type: "example",
+          de: "Sie ist um sieben Uhr aufgestanden.",
+          en: "She got up at seven o'clock.",
+        },
+        {
+          type: "tip",
+          text: "Separable verbs keep their pattern with sein too: aufstehen -> aufgestanden. The ge- sits between prefix and stem.",
+        },
+      ],
+    },
+    {
+      heading: "Reisen und Alltag",
+      blocks: [
+        {
+          type: "example",
+          de: "Ich bin nach Hamburg gefahren. Wir sind mit dem Zug gekommen.",
+          en: "I drove to Hamburg. We came by train.",
+        },
+        {
+          type: "example",
+          de: "Er ist gestern nach Berlin geflogen.",
+          en: "He flew to Berlin yesterday.",
+        },
+        {
+          type: "example",
+          de: "Wir sind den ganzen Tag gelaufen.",
+          en: "We walked all day.",
+        },
+      ],
+    },
+  ],
+  vocab: [
+    { id: "gegangen", de: "gegangen", en: "gone, walked", part: "participle", audio: true },
+    { id: "gekommen", de: "gekommen", en: "come", part: "participle", audio: true },
+    { id: "gefahren", de: "gefahren", en: "driven, traveled", part: "participle", audio: true },
+    { id: "geflogen", de: "geflogen", en: "flown", part: "participle", audio: true },
+    { id: "gelaufen", de: "gelaufen", en: "run, walked", part: "participle", audio: true },
+    { id: "aufgestanden", de: "aufgestanden", en: "got up", part: "participle", audio: true },
+    { id: "geblieben", de: "geblieben", en: "stayed", part: "participle", audio: true },
+    { id: "gewesen", de: "gewesen", en: "been", part: "participle", audio: true },
+    { id: "geworden", de: "geworden", en: "become", part: "participle", audio: true },
+    { id: "zu-hause-bleiben", de: "zu Hause bleiben", en: "to stay at home", part: "phrase", phrase: true, audio: true },
+    { id: "den-ganzen-tag", de: "den ganzen Tag", en: "all day", part: "phrase", phrase: true, audio: true },
+    { id: "die-bewegung", de: "die Bewegung", en: "the movement", part: "noun f.", plural: "die Bewegungen", audio: true },
+  ],
+  exercises: [
+    {
+      id: "mc-sein-hilfsverb",
+      type: "multiple-choice",
+      title: "Haben oder sein?",
+      instruction: "Choose the correct helper.",
+      prompt: "Wir ___ nach Berlin gefahren.",
+      options: ["sind", "haben", "habe"],
+      correctIndex: 0,
+      explain: "Movement takes sein: sind gefahren.",
+    },
+    {
+      id: "listening-sein-hilfsverb",
+      type: "listening",
+      title: "Was hörst du?",
+      instruction: "Play the audio and pick the sentence you heard.",
+      prompt: "Ich bin gestern zu Hause geblieben.",
+      options: [
+        "Ich bin gestern zu Hause geblieben.",
+        "Ich habe gestern zu Hause gearbeitet.",
+        "Ich bin gestern nach Hause gefahren.",
+      ],
+      correctIndex: 0,
+    },
+    {
+      id: "fill-sein-hilfsverb",
+      type: "fill-blank",
+      title: "Das Perfekt",
+      instruction: "Complete with the helper and the participle.",
+      sentence: "Wir ___ nach Berlin gefahren. Ich bin zu Hause ___ (bleiben).",
+      blanks: [
+        { answers: ["sind"], hint: "movement, wir" },
+        { answers: ["geblieben"], hint: "participle of bleiben" },
+      ],
+    },
+    {
+      id: "matching-sein-hilfsverb",
+      type: "matching",
+      title: "Infinitiv und Partizip",
+      instruction: "Match each infinitive to its participle.",
+      pairs: [
+        ["gehen", "gegangen"],
+        ["kommen", "gekommen"],
+        ["fahren", "gefahren"],
+        ["fliegen", "geflogen"],
+        ["aufstehen", "aufgestanden"],
+      ],
+    },
+    {
+      id: "word-order-sein-hilfsverb",
+      type: "word-order",
+      title: "Der Satz",
+      instruction: "Build the sentence: We drove to Berlin.",
+      chunks: ["Wir", "sind", "nach", "Berlin", "gefahren."],
+      explain: "The helper is second; the participle closes.",
+    },
+    {
+      id: "flashcard-sein-hilfsverb",
+      type: "flashcard",
+      title: "Sein-Karten",
+      instruction: "Say the participle out loud before revealing.",
+      items: [
+        { front: "gehen", back: "gegangen", frontAudio: true },
+        { front: "kommen", back: "gekommen", frontAudio: true },
+        { front: "fahren", back: "gefahren", frontAudio: true },
+        { front: "fliegen", back: "geflogen", frontAudio: true },
+        { front: "aufstehen", back: "aufgestanden", frontAudio: true },
+        { front: "bleiben", back: "geblieben", frontAudio: true },
+      ],
+    },
+  ],
+};
+
 export const tagesablaufUndZeit: Unit = {
   id: "tagesablauf-und-zeit",
   title: "Tagesablauf und Zeit",
@@ -1215,5 +1566,7 @@ export const tagesablaufUndZeit: Unit = {
     derImperativ,
     zeitangaben,
     perfektEinfuehrung,
+    perfektMitHaben,
+    perfektMitSein,
   ],
 };

@@ -319,6 +319,10 @@ Grammar A2 (must-know list):
 
 Boundary notes: passive voice, relative clauses, genitive, obwohl/als-clauses, Konjunktiv II past, and um...zu/damit are B1 territory. Not in this spec; documented here so scope stays honest.
 
+### Ankommo-aligned additions (A1)
+
+Extra lessons added 2026-09-09 mirroring the chapter set of app.ankommo.de (Goethe/telc-oriented, Germany-life vocabulary), without touching the existing lessons: Nomen und Verben, Bestimmte und unbestimmte Artikel, Ja-Nein-Fragen, Starke Verben, Perfekt mit haben, Perfekt mit sein, Adjektivendungen, Der Dativ (consolidated), Konjunktionen, Wiederholung A1, Goethe-Style A1 Mock Exam, telc-Style A1 Mock Exam. Total A1 lessons: 66.
+
 ## 15. Open Questions
 
 - Product name and visual identity (working title in code: "Lern Deutsch A1-A2"). Trivial to change later.

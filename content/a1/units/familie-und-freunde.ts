@@ -1134,6 +1134,348 @@ const adjektiveGrundlagen: Lesson = {
   ],
 };
 
+const jaNeinFragen: Lesson = {
+  id: "ja-nein-fragen",
+  title: "Ja-Nein-Fragen",
+  summary: "Yes/no questions: verb first, and the little word doch.",
+  status: "ready",
+  sections: [
+    {
+      heading: "Die Entscheidungsfrage",
+      blocks: [
+        {
+          type: "paragraph",
+          text: "A yes/no question is the easiest question in German: put the verb first. No helper word like English 'do' is needed. Du lernst Deutsch becomes Lernst du Deutsch? simply by swapping verb and subject.",
+        },
+        {
+          type: "table",
+          caption: "Statement and question",
+          head: ["Statement", "Question"],
+          rows: [
+            ["Du lernst Deutsch.", "Lernst du Deutsch?"],
+            ["Sie kommt aus Berlin.", "Kommt sie aus Berlin?"],
+            ["Wir haben Zeit.", "Haben wir Zeit?"],
+            ["Er arbeitet heute.", "Arbeitet er heute?"],
+          ],
+        },
+        {
+          type: "tip",
+          text: "The verb holds position one in the question. Everything else stays where it was. That swap is the whole trick.",
+        },
+      ],
+    },
+    {
+      heading: "Ja, nein, doch",
+      blocks: [
+        {
+          type: "paragraph",
+          text: "German has three short answers. ja agrees, nein disagrees, and doch is the special one: you use doch when someone asks a negative question and the real answer is positive.",
+        },
+        {
+          type: "table",
+          caption: "The three answers",
+          head: ["Question", "Answer", "Meaning"],
+          rows: [
+            ["Kommst du mit?", "Ja!", "Yes, I am coming."],
+            ["Kommst du mit?", "Nein.", "No, I am not coming."],
+            ["Kommst du nicht mit?", "Doch!", "Yes, I am coming! (contradicting the negative)"],
+          ],
+        },
+        {
+          type: "example",
+          de: "Hast du kein Auto? Doch, ich habe ein Auto!",
+          en: "You have no car? Yes, I do have a car!",
+        },
+        {
+          type: "tip",
+          text: "doch is the word that makes your German sound native. When someone asks a negative question and you want to say the opposite, never answer ja: answer doch.",
+        },
+      ],
+    },
+    {
+      heading: "Kurze Antworten",
+      blocks: [
+        {
+          type: "paragraph",
+          text: "In conversation, Germans answer with a short phrase built on the same verb, not a bare yes or no.",
+        },
+        {
+          type: "example",
+          de: "Lernst du Deutsch? Ja, ich lerne Deutsch.",
+          en: "Are you learning German? Yes, I am.",
+        },
+        {
+          type: "example",
+          de: "Wohnst du in Berlin? Nein, ich wohne in Hamburg.",
+          en: "Do you live in Berlin? No, I live in Hamburg.",
+        },
+        {
+          type: "example",
+          de: "Sprichst du kein Deutsch? Doch, ein bisschen.",
+          en: "You don't speak German? Yes, a little.",
+        },
+      ],
+    },
+  ],
+  vocab: [
+    { id: "ja", de: "ja", en: "yes", part: "interjection", audio: true },
+    { id: "nein", de: "nein", en: "no", part: "interjection", audio: true },
+    { id: "doch", de: "doch", en: "yes (contradicting a negative)", part: "interjection", audio: true },
+    { id: "die-frage", de: "die Frage", en: "the question", part: "noun f.", plural: "die Fragen", audio: true },
+    { id: "fragen", de: "fragen", en: "to ask", part: "verb", audio: true },
+    { id: "antworten", de: "antworten", en: "to answer", part: "verb", audio: true },
+    { id: "die-antwort", de: "die Antwort", en: "the answer", part: "noun f.", plural: "die Antworten", audio: true },
+    { id: "richtig", de: "richtig", en: "correct", part: "adjective", audio: true },
+    { id: "falsch", de: "falsch", en: "wrong", part: "adjective", audio: true },
+    { id: "ein-bisschen", de: "ein bisschen", en: "a little", part: "adverb", audio: true },
+  ],
+  exercises: [
+    {
+      id: "mc-janein",
+      type: "multiple-choice",
+      title: "Die Frage",
+      instruction: "Choose the question form.",
+      prompt: "Which of these is a question?",
+      options: ["Lernst du Deutsch?", "Du lernst Deutsch.", "Ich lerne Deutsch."],
+      correctIndex: 0,
+      explain: "The verb first makes it a yes/no question.",
+    },
+    {
+      id: "listening-janein",
+      type: "listening",
+      title: "Was hörst du?",
+      instruction: "Play the audio and pick the sentence you heard.",
+      prompt: "Sprichst du kein Deutsch?",
+      options: ["Sprichst du kein Deutsch?", "Sprichst du Deutsch?", "Du sprichst Deutsch."],
+      correctIndex: 0,
+    },
+    {
+      id: "fill-janein",
+      type: "fill-blank",
+      title: "Frage und Antwort",
+      instruction: "Complete the questions and answers.",
+      sentence: "___ du Deutsch? (learn) Nein, ich lerne ___.",
+      blanks: [
+        { answers: ["Lernst"], hint: "verb first" },
+        { answers: ["nicht"], hint: "negation" },
+      ],
+    },
+    {
+      id: "matching-janein",
+      type: "matching",
+      title: "Aussage oder Frage?",
+      instruction: "Match each statement to its question.",
+      pairs: [
+        ["Du lernst Deutsch.", "Lernst du Deutsch?"],
+        ["Sie kommt aus Berlin.", "Kommt sie aus Berlin?"],
+        ["Wir haben Zeit.", "Haben wir Zeit?"],
+        ["Er arbeitet heute.", "Arbeitet er heute?"],
+        ["Du wohnst in Hamburg.", "Wohnst du in Hamburg?"],
+      ],
+    },
+    {
+      id: "word-order-janein",
+      type: "word-order",
+      title: "Die Frage",
+      instruction: "Build the question: Are you learning German?",
+      chunks: ["Lernst", "du", "Deutsch?"],
+      explain: "The verb leads the question.",
+    },
+    {
+      id: "flashcard-janein",
+      type: "flashcard",
+      title: "Antwortkarten",
+      instruction: "Say the German out loud before revealing.",
+      items: [
+        { front: "ja", back: "yes", frontAudio: true },
+        { front: "nein", back: "no", frontAudio: true },
+        { front: "doch", back: "yes (contradicting)", frontAudio: true },
+        { front: "Lernst du Deutsch?", back: "Are you learning German?", frontAudio: true },
+        { front: "Kommst du mit?", back: "Are you coming along?", frontAudio: true },
+        { front: "Nein, ich lerne nicht.", back: "No, I am not learning.", frontAudio: true },
+      ],
+    },
+  ],
+};
+
+const starkeVerben: Lesson = {
+  id: "starke-verben",
+  title: "Starke Verben",
+  summary: "Verbs that change their vowel in the du and er/sie/es forms.",
+  status: "ready",
+  sections: [
+    {
+      heading: "Was sind starke Verben?",
+      blocks: [
+        {
+          type: "paragraph",
+          text: "Most German verbs are regular: the stem stays the same and only the ending changes. A handful of very common verbs are strong: in the du and er/sie/es forms, the vowel of the stem changes as well. You already met several: fahren, sprechen, essen, lesen, schlafen.",
+        },
+        {
+          type: "paragraph",
+          text: "There are three patterns. a becomes ä: fahren becomes du fährst. e becomes i: sprechen becomes du sprichst. e becomes ie: lesen becomes du liest. The ich, wir, ihr, and sie forms stay regular.",
+        },
+        {
+          type: "table",
+          caption: "The three patterns",
+          head: ["Pattern", "Infinitive", "du", "er / sie / es"],
+          rows: [
+            ["a -> ä", "fahren", "fährst", "fährt"],
+            ["a -> ä", "schlafen", "schläfst", "schläft"],
+            ["a -> ä", "laufen", "läufst", "läuft"],
+            ["e -> i", "sprechen", "sprichst", "spricht"],
+            ["e -> i", "essen", "isst", "isst"],
+            ["e -> i", "nehmen", "nimmst", "nimmt"],
+            ["e -> ie", "lesen", "liest", "liest"],
+            ["e -> ie", "sehen", "siehst", "sieht"],
+          ],
+        },
+        {
+          type: "tip",
+          text: "The change happens exactly where the ending is strongest: only du and er/sie/es. Wir sprechen, ihr sprecht, sie sprechen stay completely regular.",
+        },
+      ],
+    },
+    {
+      heading: "Die wichtigsten starken Verben",
+      blocks: [
+        {
+          type: "paragraph",
+          text: "These are the strong verbs you will use every day. Learn them in groups of three: infinitive, du-form, er-form.",
+        },
+        {
+          type: "table",
+          caption: "Strong verbs in the present",
+          head: ["Infinitive", "English", "du", "er / sie / es"],
+          rows: [
+            ["fahren", "to drive, travel", "fährst", "fährt"],
+            ["schlafen", "to sleep", "schläfst", "schläft"],
+            ["laufen", "to run", "läufst", "läuft"],
+            ["tragen", "to carry", "trägst", "trägt"],
+            ["waschen", "to wash", "wäschst", "wäscht"],
+            ["geben", "to give", "gibst", "gibt"],
+            ["helfen", "to help", "hilfst", "hilft"],
+            ["sprechen", "to speak", "sprichst", "spricht"],
+            ["essen", "to eat", "isst", "isst"],
+            ["nehmen", "to take", "nimmst", "nimmt"],
+            ["treffen", "to meet", "triffst", "trifft"],
+            ["lesen", "to read", "liest", "liest"],
+            ["sehen", "to see", "siehst", "sieht"],
+          ],
+        },
+      ],
+    },
+    {
+      heading: "Starke Verben im Alltag",
+      blocks: [
+        {
+          type: "example",
+          de: "Er fährt nach Berlin. Du schläfst lange. Wir laufen im Park.",
+          en: "He drives to Berlin. You sleep long. We run in the park.",
+        },
+        {
+          type: "example",
+          de: "Sie spricht sehr gut Deutsch. Was isst du zum Frühstück?",
+          en: "She speaks German very well. What do you eat for breakfast?",
+        },
+        {
+          type: "example",
+          de: "Er liest ein Buch. Siehst du das Haus?",
+          en: "He is reading a book. Do you see the house?",
+        },
+        {
+          type: "tip",
+          text: "The e -> i group is the trickiest: Sprech! becomes Sprich!, Gib!, Iss!, Nimm!. The change also survives in the imperative, which you will learn later in this unit.",
+        },
+      ],
+    },
+  ],
+  vocab: [
+    { id: "stark", de: "stark", en: "strong", part: "adjective", audio: true },
+    { id: "fahren", de: "fahren", en: "to drive, travel", part: "verb", audio: true },
+    { id: "schlafen", de: "schlafen", en: "to sleep", part: "verb", audio: true },
+    { id: "laufen", de: "laufen", en: "to run", part: "verb", audio: true },
+    { id: "tragen", de: "tragen", en: "to carry, wear", part: "verb", audio: true },
+    { id: "waschen", de: "waschen", en: "to wash", part: "verb", audio: true },
+    { id: "geben", de: "geben", en: "to give", part: "verb", audio: true },
+    { id: "helfen", de: "helfen", en: "to help", part: "verb", audio: true },
+    { id: "treffen", de: "treffen", en: "to meet", part: "verb", audio: true },
+    { id: "lesen", de: "lesen", en: "to read", part: "verb", audio: true },
+    { id: "sehen", de: "sehen", en: "to see", part: "verb", audio: true },
+    { id: "du-faehrst", de: "du fährst", en: "you drive", part: "phrase", phrase: true, audio: true },
+    { id: "er-spricht", de: "er spricht", en: "he speaks", part: "phrase", phrase: true, audio: true },
+    { id: "du-liest", de: "du liest", en: "you read", part: "phrase", phrase: true, audio: true },
+  ],
+  exercises: [
+    {
+      id: "mc-stark",
+      type: "multiple-choice",
+      title: "Die Form",
+      instruction: "Choose the correct du-form.",
+      prompt: "fahren (du): ___",
+      options: ["fährst", "fahrst", "fahrt"],
+      correctIndex: 0,
+      explain: "a changes to ä in the du-form: fährst.",
+    },
+    {
+      id: "listening-stark",
+      type: "listening",
+      title: "Was hörst du?",
+      instruction: "Play the audio and pick the sentence you heard.",
+      prompt: "Er liest ein Buch.",
+      options: ["Er liest ein Buch.", "Er lest ein Buch.", "Er liest das Buch."],
+      correctIndex: 0,
+    },
+    {
+      id: "fill-stark",
+      type: "fill-blank",
+      title: "Die Vokalwechsel",
+      instruction: "Complete with the strong verb forms.",
+      sentence: "Er ___ Deutsch. (sprechen) Du ___ das Buch. (lesen) Wir ___ nach Berlin. (fahren)",
+      blanks: [
+        { answers: ["spricht"], hint: "e -> i" },
+        { answers: ["liest"], hint: "e -> ie" },
+        { answers: ["fahren"], hint: "wir stays regular" },
+      ],
+    },
+    {
+      id: "matching-stark",
+      type: "matching",
+      title: "Infinitiv und Form",
+      instruction: "Match each infinitive to its du-form.",
+      pairs: [
+        ["fahren", "fährst"],
+        ["sprechen", "sprichst"],
+        ["lesen", "liest"],
+        ["essen", "isst"],
+        ["schlafen", "schläfst"],
+      ],
+    },
+    {
+      id: "word-order-stark",
+      type: "word-order",
+      title: "Der Satz",
+      instruction: "Build the sentence: We speak German.",
+      chunks: ["Wir", "sprechen", "Deutsch."],
+      explain: "wir keeps the regular form sprechen.",
+    },
+    {
+      id: "flashcard-stark",
+      type: "flashcard",
+      title: "Starkkarten",
+      instruction: "Say the infinitive and the du-form out loud.",
+      items: [
+        { front: "fahren", back: "du fährst", frontAudio: true },
+        { front: "sprechen", back: "du sprichst", frontAudio: true },
+        { front: "essen", back: "du isst", frontAudio: true },
+        { front: "lesen", back: "du liest", frontAudio: true },
+        { front: "sehen", back: "du siehst", frontAudio: true },
+        { front: "schlafen", back: "du schläfst", frontAudio: true },
+      ],
+    },
+  ],
+};
+
 export const familieUndFreunde: Unit = {
   id: "familie-und-freunde",
   title: "Familie und Freunde",
@@ -1144,6 +1486,8 @@ export const familieUndFreunde: Unit = {
     personalpronomen,
     hobbysUndFreunde,
     wFragen,
+    jaNeinFragen,
+    starkeVerben,
     verneinung,
     adjektiveGrundlagen,
   ],

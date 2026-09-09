@@ -1395,6 +1395,346 @@ const anrede: Lesson = {
   ],
 };
 
+const nomenUndVerben: Lesson = {
+  id: "nomen-und-verben",
+  title: "Nomen und Verben",
+  summary: "How German builds its sentences: gender, capitalization, and verb endings.",
+  status: "ready",
+  sections: [
+    {
+      heading: "Was ist ein Nomen?",
+      blocks: [
+        {
+          type: "paragraph",
+          text: "A noun (das Nomen) is a word for a person, a thing, a place, or an idea: der Mann (the man), der Tisch (the table), Berlin (Berlin), die Liebe (love). In German, every noun starts with a capital letter, no matter where it sits in the sentence. This is different from English: you write Ich habe einen Termin, with a capital T on Termin, even in the middle of the sentence.",
+        },
+        {
+          type: "paragraph",
+          text: "Every German noun also has a grammatical gender. There are three: masculine (der), feminine (die), and neuter (das). The gender is not logical; it is a property of the word itself. Der Tisch is masculine, die Lampe is feminine, das Fenster is neuter. English speakers must simply learn each noun together with its article, as one piece of vocabulary: der Tisch, die Lampe, das Fenster.",
+        },
+        {
+          type: "table",
+          caption: "Nouns with articles",
+          head: ["Article", "Gender", "Example", "English"],
+          rows: [
+            ["der", "masculine", "der Mann", "the man"],
+            ["die", "feminine", "die Frau", "the woman"],
+            ["das", "neuter", "das Kind", "the child"],
+          ],
+        },
+        {
+          type: "tip",
+          text: "Never learn a noun alone. Learn Tisch, not Tisch. The habit of saying der Tisch, die Lampe, das Fenster is the single best thing a beginner can do.",
+        },
+      ],
+    },
+    {
+      heading: "Verben und ihre Endungen",
+      blocks: [
+        {
+          type: "paragraph",
+          text: "A verb (das Verb) says what happens: learn, speak, live. In German, the verb changes its ending for each person. You do not need a separate word like 'I' or 'you' in front to know who does something; the ending already tells you.",
+        },
+        {
+          type: "paragraph",
+          text: "Take the verb lernen (to learn). Cut off the -en: you get the stem lern-. Then add the ending for each person. The pattern is the same for almost every regular verb in German.",
+        },
+        {
+          type: "table",
+          caption: "lernen conjugated",
+          head: ["Person", "Ending", "Form", "English"],
+          rows: [
+            ["ich", "-e", "ich lerne", "I learn"],
+            ["du", "-st", "du lernst", "you learn"],
+            ["er / sie / es", "-t", "er lernt", "he / she / it learns"],
+            ["wir", "-en", "wir lernen", "we learn"],
+            ["ihr", "-t", "ihr lernt", "you (all) learn"],
+            ["sie / Sie", "-en", "sie lernen", "they learn / you learn"],
+          ],
+        },
+        {
+          type: "example",
+          de: "Ich lerne Deutsch. Du lernst Englisch. Er lernt Spanisch.",
+          en: "I am learning German. You are learning English. He is learning Spanish.",
+        },
+        {
+          type: "tip",
+          text: "Notice how the endings follow a rhythm: -e, -st, -t, -en, -t, -en. Only sein and haben break the pattern, and you already know those two.",
+        },
+      ],
+    },
+    {
+      heading: "Der erste Satz",
+      blocks: [
+        {
+          type: "paragraph",
+          text: "A basic German sentence has the same shape as English: who does something (the subject), then the verb, then everything else.",
+        },
+        {
+          type: "example",
+          de: "Ich lerne Deutsch.",
+          en: "I learn German. (subject + verb + object)",
+        },
+        {
+          type: "example",
+          de: "Wir wohnen in Berlin.",
+          en: "We live in Berlin.",
+        },
+        {
+          type: "example",
+          de: "Sie arbeitet in einer Praxis.",
+          en: "She works in a practice.",
+        },
+        {
+          type: "tip",
+          text: "The verb sits in position two. That rule will follow you through the whole course: statements, questions, and fronted words all keep the verb second.",
+        },
+      ],
+    },
+  ],
+  vocab: [
+    { id: "das-nomen", de: "das Nomen", en: "the noun", part: "noun n.", plural: "die Nomen", audio: true },
+    { id: "das-verb", de: "das Verb", en: "the verb", part: "noun n.", plural: "die Verben", audio: true },
+    { id: "der-satz", de: "der Satz", en: "the sentence", part: "noun m.", plural: "die Sätze", audio: true },
+    { id: "die-endung", de: "die Endung", en: "the ending", part: "noun f.", plural: "die Endungen", audio: true },
+    { id: "der-stamm", de: "der Stamm", en: "the stem", part: "noun m.", plural: "die Stämme", audio: true },
+    { id: "lernen", de: "lernen", en: "to learn", part: "verb", audio: true },
+    { id: "sprechen", de: "sprechen", en: "to speak", part: "verb", audio: true },
+    { id: "wohnen", de: "wohnen", en: "to live", part: "verb", audio: true },
+    { id: "arbeiten", de: "arbeiten", en: "to work", part: "verb", audio: true },
+    { id: "wiederholen", de: "wiederholen", en: "to repeat", part: "verb", audio: true },
+    { id: "der-mann", de: "der Mann", en: "the man", part: "noun m.", plural: "die Männer", audio: true },
+    { id: "die-frau", de: "die Frau", en: "the woman", part: "noun f.", plural: "die Frauen", audio: true },
+    { id: "das-kind", de: "das Kind", en: "the child", part: "noun n.", plural: "die Kinder", audio: true },
+  ],
+  exercises: [
+    {
+      id: "mc-grossschreibung",
+      type: "multiple-choice",
+      title: "Die Großschreibung",
+      instruction: "Choose the correctly capitalized sentence.",
+      prompt: "In German, nouns are always capitalized. Which sentence is correct?",
+      options: ["Ich habe einen Termin.", "Ich habe einen termin.", "Ich habe Einen Termin."],
+      correctIndex: 0,
+      explain: "Termin is a noun and takes a capital letter in the middle of the sentence.",
+    },
+    {
+      id: "listening-endungen",
+      type: "listening",
+      title: "Was hörst du?",
+      instruction: "Play the audio and pick the sentence you heard.",
+      prompt: "Sie lernt Spanisch.",
+      options: ["Sie lernt Spanisch.", "Sie lernen Spanisch.", "Ich lerne Spanisch."],
+      correctIndex: 0,
+    },
+    {
+      id: "fill-endungen",
+      type: "fill-blank",
+      title: "Die Endungen",
+      instruction: "Complete with the right verb endings.",
+      sentence: "Ich ___ Deutsch. (lernen) Du ___ Englisch. (lernen) Wir ___ in Berlin. (wohnen)",
+      blanks: [
+        { answers: ["lerne"], hint: "ich takes -e" },
+        { answers: ["lernst"], hint: "du takes -st" },
+        { answers: ["wohnen"], hint: "wir takes -en" },
+      ],
+    },
+    {
+      id: "matching-endungen",
+      type: "matching",
+      title: "Person und Endung",
+      instruction: "Match each person to its verb ending.",
+      pairs: [
+        ["ich", "-e"],
+        ["du", "-st"],
+        ["er / sie / es", "-t"],
+        ["wir", "-en"],
+        ["ihr", "-t"],
+      ],
+    },
+    {
+      id: "word-order-nomen",
+      type: "word-order",
+      title: "Der Satz",
+      instruction: "Build the sentence: I am learning German.",
+      chunks: ["Ich", "lerne", "Deutsch."],
+      explain: "Subject first, verb second, object after.",
+    },
+    {
+      id: "flashcard-nomen",
+      type: "flashcard",
+      title: "Nomenkarten",
+      instruction: "Say the German noun with its article out loud.",
+      items: [
+        { front: "der Mann", back: "the man", frontAudio: true },
+        { front: "die Frau", back: "the woman", frontAudio: true },
+        { front: "das Kind", back: "the child", frontAudio: true },
+        { front: "lernen", back: "to learn", frontAudio: true },
+        { front: "sprechen", back: "to speak", frontAudio: true },
+        { front: "der Satz", back: "the sentence", frontAudio: true },
+      ],
+    },
+  ],
+};
+
+const artikel: Lesson = {
+  id: "artikel",
+  title: "Bestimmte und unbestimmte Artikel",
+  summary: "Definite (der, die, das) and indefinite (ein, eine): when to use which.",
+  status: "ready",
+  sections: [
+    {
+      heading: "Zwei Arten von Artikeln",
+      blocks: [
+        {
+          type: "paragraph",
+          text: "German has two kinds of articles, and they work like English a/an and the. The definite article points to something specific and known: der Mann, die Frau, das Kind. The indefinite article introduces something new, one of many: ein Mann, eine Frau, ein Kind.",
+        },
+        {
+          type: "table",
+          caption: "Definite and indefinite articles",
+          head: ["Gender", "Definite", "Indefinite", "English"],
+          rows: [
+            ["masculine", "der Mann", "ein Mann", "the man / a man"],
+            ["feminine", "die Frau", "eine Frau", "the woman / a woman"],
+            ["neuter", "das Kind", "ein Kind", "the child / a child"],
+            ["plural", "die Kinder", "keine Artikel", "the children / children"],
+          ],
+        },
+        {
+          type: "tip",
+          text: "Notice the plural row: there is no indefinite article in the plural. Children in general is simply Kinder, no article.",
+        },
+      ],
+    },
+    {
+      heading: "Bestimmt oder unbestimmt?",
+      blocks: [
+        {
+          type: "paragraph",
+          text: "The rule is the same as in English: first mention with ein, second mention with der/die/das. You introduce something, and from then on everyone knows which one you mean.",
+        },
+        {
+          type: "example",
+          de: "Ich habe einen Termin. Der Termin ist um zehn Uhr.",
+          en: "I have an appointment. The appointment is at ten o'clock. (first ein, then der)",
+        },
+        {
+          type: "example",
+          de: "Ich suche eine Wohnung. Die Wohnung ist im dritten Stock.",
+          en: "I am looking for an apartment. The apartment is on the third floor.",
+        },
+        {
+          type: "tip",
+          text: "This first-mention rule powers real conversations: you say einen Termin once, then everyone can say der Termin. It is the same logic as a and the in English.",
+        },
+      ],
+    },
+    {
+      heading: "Kein Artikel",
+      blocks: [
+        {
+          type: "paragraph",
+          text: "Some things never take an article: professions after sein, cities and countries without article, and most languages.",
+        },
+        {
+          type: "example",
+          de: "Ich bin Lehrer. (no article after sein + profession)",
+          en: "I am a teacher.",
+        },
+        {
+          type: "example",
+          de: "Ich wohne in Berlin. Ich spreche Deutsch.",
+          en: "I live in Berlin. I speak German.",
+        },
+        {
+          type: "tip",
+          text: "Question to test yourself: is it specific and known? Use der/die/das. Is it new or one of many? Use ein/eine. Is it a profession, a city, or a language? Often no article at all.",
+        },
+      ],
+    },
+  ],
+  vocab: [
+    { id: "der-artikel", de: "der Artikel", en: "the article", part: "noun m.", plural: "die Artikel", audio: true },
+    { id: "bestimmt", de: "bestimmt", en: "definite, specific", part: "adjective", audio: true },
+    { id: "unbestimmt", de: "unbestimmt", en: "indefinite", part: "adjective", audio: true },
+    { id: "der-termin", de: "der Termin", en: "the appointment", part: "noun m.", plural: "die Termine", audio: true },
+    { id: "das-formular", de: "das Formular", en: "the form", part: "noun n.", plural: "die Formulare", audio: true },
+    { id: "die-anmeldung", de: "die Anmeldung", en: "the registration", part: "noun f.", plural: "die Anmeldungen", audio: true },
+    { id: "das-buergeramt", de: "das Bürgeramt", en: "the citizen's office", part: "noun n.", plural: "die Bürgerämter", audio: true },
+    { id: "das-konto", de: "das Konto", en: "the bank account", part: "noun n.", plural: "die Konten", audio: true },
+    { id: "suchen", de: "suchen", en: "to look for", part: "verb", audio: true },
+    { id: "kennen", de: "kennen", en: "to know (someone/something)", part: "verb", audio: true },
+  ],
+  exercises: [
+    {
+      id: "mc-artikel",
+      type: "multiple-choice",
+      title: "Der Artikel",
+      instruction: "Choose the correct article.",
+      prompt: "Ich habe ___ Termin beim Bürgeramt.",
+      options: ["einen", "der", "kein"],
+      correctIndex: 0,
+      explain: "First mention of a masculine noun takes einen.",
+    },
+    {
+      id: "listening-artikel",
+      type: "listening",
+      title: "Was hörst du?",
+      instruction: "Play the audio and pick the sentence you heard.",
+      prompt: "Ich suche eine Wohnung.",
+      options: ["Ich suche eine Wohnung.", "Ich suche die Wohnung.", "Ich suche kein Wohnung."],
+      correctIndex: 0,
+    },
+    {
+      id: "fill-artikel",
+      type: "fill-blank",
+      title: "Bestimmt oder unbestimmt?",
+      instruction: "Complete with the right article.",
+      sentence: "Ich habe ___ Termin. ___ Termin ist um zehn Uhr.",
+      blanks: [
+        { answers: ["einen"], hint: "first mention, masculine" },
+        { answers: ["Der"], hint: "second mention, known" },
+      ],
+    },
+    {
+      id: "matching-artikel",
+      type: "matching",
+      title: "Artikel zuordnen",
+      instruction: "Match each noun to its article.",
+      pairs: [
+        ["der Termin", "einen (accusative)"],
+        ["die Wohnung", "eine"],
+        ["das Formular", "ein"],
+        ["die Kinder", "no article"],
+        ["der Mann", "ein"],
+      ],
+    },
+    {
+      id: "word-order-artikel",
+      type: "word-order",
+      title: "Der Satz",
+      instruction: "Build the sentence: I have an appointment at the citizen's office.",
+      chunks: ["Ich", "habe", "einen", "Termin", "beim", "Bürgeramt."],
+      explain: "beim is bei + dem, the dative contraction.",
+    },
+    {
+      id: "flashcard-artikel",
+      type: "flashcard",
+      title: "Artikelkarten",
+      instruction: "Say the German with its article out loud.",
+      items: [
+        { front: "der Termin", back: "the appointment", frontAudio: true },
+        { front: "das Formular", back: "the form", frontAudio: true },
+        { front: "die Anmeldung", back: "the registration", frontAudio: true },
+        { front: "das Bürgeramt", back: "the citizen's office", frontAudio: true },
+        { front: "das Konto", back: "the bank account", frontAudio: true },
+        { front: "einen Termin", back: "an appointment (accusative)", frontAudio: true },
+      ],
+    },
+  ],
+};
+
 export const kennenlernen: Unit = {
   id: "kennenlernen",
   title: "Kennenlernen",
@@ -1402,6 +1742,8 @@ export const kennenlernen: Unit = {
   lessons: [
     halloUndGutenTag,
     alphabetUndAussprache,
+    nomenUndVerben,
+    artikel,
     zahlen,
     zahlenAb100,
     laenderUndSprachen,
