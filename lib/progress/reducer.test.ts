@@ -6,12 +6,13 @@ import {
 } from "./reducer";
 import { emptyState, type ProgressState } from "./store";
 import { EXERCISE_COMPLETED_THRESHOLD } from "./scoring";
+import { todayKey, yesterdayKey } from "./streak";
 
 describe("recordExercise", () => {
   it("records a first result and stamps activity", () => {
     const state = recordExercise(emptyState(), "a1/k:mc1", 80);
     expect(state.exercises["a1/k:mc1"]).toEqual({ best: 80, attempts: 1 });
-    expect(state.lastActiveDay).toBe("2026-09-09");
+    expect(state.lastActiveDay).toBe(todayKey());
     expect(state.streak).toBe(1);
   });
 
@@ -25,7 +26,7 @@ describe("recordExercise", () => {
   it("extends the streak on consecutive days", () => {
     let state: ProgressState = {
       ...emptyState(),
-      lastActiveDay: "2026-09-08",
+      lastActiveDay: yesterdayKey(new Date()),
       streak: 2,
     };
     state = recordExercise(state, "a1/k:mc1", 100);
