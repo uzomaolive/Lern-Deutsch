@@ -1,26 +1,40 @@
 import { describe, expect, it } from "vitest";
 import { canSpeak, pickGermanVoice, speak } from "./tts";
 
+const voice = (name: string, lang: string) => ({ name, lang });
+
 describe("pickGermanVoice", () => {
-  it("prefers an exact de-DE voice", () => {
-    const voice = { lang: "de-DE" };
+  it("prefers an exact de-DE voice over other German dialects", () => {
+    const chosen = voice("Anna", "de-DE");
+    expect(pickGermanVoice([voice("Hanna", "de-AT"), chosen])).toBe(chosen);
+  });
+
+  it("ranks Google Deutsch above the classic voices", () => {
+    const google = voice("Google Deutsch", "de-DE");
     expect(
-      pickGermanVoice([{ lang: "en-US" }, { lang: "fr-FR" }, voice]),
-    ).toBe(voice);
+      pickGermanVoice([voice("Anna", "de-DE"), google, voice("Katja", "de-DE")]),
+    ).toBe(google);
+  });
+
+  it("ranks newer macOS voices above Anna", () => {
+    const flo = voice("Flo (German (Germany))", "de-DE");
+    expect(
+      pickGermanVoice([voice("Anna", "de-DE"), flo, voice("Reed (German (Germany))", "de-DE")]),
+    ).toBe(flo);
   });
 
   it("falls back to any German voice", () => {
-    const voice = { lang: "de" };
-    expect(pickGermanVoice([{ lang: "en-US" }, voice])).toBe(voice);
+    const voice2 = { name: "Jemand", lang: "de" };
+    expect(pickGermanVoice([{ name: "John", lang: "en-US" }, voice2])).toBe(voice2);
   });
 
   it("matches case-insensitively", () => {
-    const voice = { lang: "De-DE" };
-    expect(pickGermanVoice([voice])).toBe(voice);
+    const anna = voice("anna", "de-de");
+    expect(pickGermanVoice([anna])).toBe(anna);
   });
 
   it("returns null when no German voice exists", () => {
-    expect(pickGermanVoice([{ lang: "en-US" }, { lang: "es-ES" }])).toBeNull();
+    expect(pickGermanVoice([voice("John", "en-US"), voice("Lucía", "es-ES")])).toBeNull();
   });
 
   it("returns null for an empty list", () => {
