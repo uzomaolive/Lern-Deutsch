@@ -20,7 +20,7 @@ import {
 
 interface ProgressContextValue {
   state: ProgressState;
-  recordExercise: (exerciseKey: string, percent: number) => void;
+  recordExercise: (exerciseKey: string, percent: number, answer?: unknown) => void;
   recordFlashcard: (itemKey: string, correct: boolean) => void;
 }
 
@@ -31,9 +31,9 @@ export function ProgressProvider({ children }: { children: ReactNode }) {
   const [state, setState] = useState<ProgressState>(() => store.load());
 
   const recordExercise = useCallback(
-    (exerciseKey: string, percent: number) => {
+    (exerciseKey: string, percent: number, answer?: unknown) => {
       setState((previous) => {
-        const next = applyExerciseResult(previous, exerciseKey, percent);
+        const next = applyExerciseResult(previous, exerciseKey, percent, answer);
         store.save(next);
         return next;
       });

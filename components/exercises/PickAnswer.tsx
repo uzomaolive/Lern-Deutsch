@@ -16,7 +16,21 @@ interface PickAnswerProps {
   options: string[];
   correctIndex: number;
   explain?: string;
-  onResult: (percent: number) => void;
+  /** Saved answer payload: { index } into the current options array. */
+  savedAnswer?: unknown;
+  onResult: (percent: number, answer?: unknown) => void;
+}
+
+interface PickAnswerSaved {
+  index: number;
+}
+
+function isPickAnswerSaved(value: unknown): value is PickAnswerSaved {
+  return (
+    typeof value === "object" &&
+    value !== null &&
+    (value as PickAnswerSaved).index !== undefined
+  );
 }
 
 export function PickAnswer({
@@ -28,10 +42,18 @@ export function PickAnswer({
   options,
   correctIndex,
   explain,
+  savedAnswer,
   onResult,
 }: PickAnswerProps) {
-  const [selected, setSelected] = useState<number | null>(null);
-  const [feedback, setFeedback] = useState<"idle" | "correct" | "wrong">("idle");
+  const saved = isPickAnswerSaved(savedAnswer) ? savedAnswer : null;
+  const [selected, setSelected] = useState<number | null>(saved?.index ?? null);
+  const [feedback, setFeedback] = useState<"idle" | "correct" | "wrong">(() =>
+    saved === null
+      ? "idle"
+      : saved.index === correctIndex
+        ? "correct"
+        : "wrong",
+  );
 
   const correctText = options[correctIndex];
 
@@ -40,7 +62,7 @@ export function PickAnswer({
     setSelected(index);
     const correct = index === correctIndex;
     setFeedback(correct ? "correct" : "wrong");
-    onResult(correct ? 100 : 0);
+    onResult(correct ? 100 : 0, { index });
   }
 
   function retry() {

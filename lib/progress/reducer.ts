@@ -15,6 +15,7 @@ export function recordExercise(
   state: ProgressState,
   exerciseKey: string,
   percent: number,
+  answer?: unknown,
 ): ProgressState {
   const previous = state.exercises[exerciseKey];
   return stampActivity({
@@ -24,6 +25,7 @@ export function recordExercise(
       [exerciseKey]: {
         best: Math.max(previous?.best ?? 0, percent),
         attempts: (previous?.attempts ?? 0) + 1,
+        ...(answer !== undefined ? { answer } : {}),
       },
     },
   });

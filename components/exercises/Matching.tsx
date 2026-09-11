@@ -7,16 +7,37 @@ import type { MatchingExercise } from "@/content/schema";
 
 interface MatchingProps {
   exercise: MatchingExercise;
-  onResult: (percent: number) => void;
+  /** Saved answer payload: { matched, firstTryErrors } as index lists. */
+  savedAnswer?: unknown;
+  onResult: (percent: number, answer?: unknown) => void;
 }
 
-export function Matching({ exercise, onResult }: MatchingProps) {
+interface MatchingSaved {
+  matched: number[];
+  firstTryErrors: number[];
+}
+
+function isMatchingSaved(value: unknown): value is MatchingSaved {
+  return (
+    typeof value === "object" &&
+    value !== null &&
+    Array.isArray((value as MatchingSaved).matched) &&
+    Array.isArray((value as MatchingSaved).firstTryErrors)
+  );
+}
+
+export function Matching({ exercise, savedAnswer, onResult }: MatchingProps) {
+  const saved = isMatchingSaved(savedAnswer) ? savedAnswer : null;
   const [leftSel, setLeftSel] = useState<number | null>(null);
   const [rightSel, setRightSel] = useState<number | null>(null);
-  const [matched, setMatched] = useState<Set<number>>(new Set());
-  const [firstTryErrors, setFirstTryErrors] = useState<Set<number>>(new Set());
+  const [matched, setMatched] = useState<Set<number>>(
+    () => new Set(saved?.matched ?? []),
+  );
+  const [firstTryErrors, setFirstTryErrors] = useState<Set<number>>(
+    () => new Set(saved?.firstTryErrors ?? []),
+  );
   const [wrongPair, setWrongPair] = useState<[number, number] | null>(null);
-  const [done, setDone] = useState(false);
+  const [done, setDone] = useState(() => saved !== null);
 
   const pairs = exercise.pairs;
   const left = pairs.map(([de]) => de);
@@ -39,10 +60,15 @@ export function Matching({ exercise, onResult }: MatchingProps) {
       setRightSel(null);
       if (nextMatched.size === pairs.length) {
         setDone(true);
-        onResult(percentCorrect(pairs.length - firstTryErrors.size, pairs.length));
+        const errors = new Set(firstTryErrors);
+        onResult(percentCorrect(pairs.length - errors.size, pairs.length), {
+          matched: [...nextMatched],
+          firstTryErrors: [...errors],
+        });
       }
     } else {
-      setFirstTryErrors(new Set(firstTryErrors).add(leftSel));
+      const errors = new Set(firstTryErrors).add(leftSel);
+      setFirstTryErrors(errors);
       setWrongPair([leftSel, index]);
       setLeftSel(null);
       setRightSel(null);

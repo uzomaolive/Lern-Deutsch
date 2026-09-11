@@ -7,6 +7,8 @@
 export interface ExerciseRecord {
   best: number;
   attempts: number;
+  /** Last submitted answer payload, restored on revisit. Undefined until answered. */
+  answer?: unknown;
 }
 
 export interface VocabRecord {
@@ -47,10 +49,14 @@ function parseExercise(value: unknown): ExerciseRecord {
   const record = toRecord(value, () => ({}));
   const best = Number(record.best);
   const attempts = Number(record.attempts);
-  return {
+  const parsed: ExerciseRecord = {
     best: Number.isFinite(best) && best >= 0 ? best : 0,
     attempts: Number.isFinite(attempts) && attempts >= 0 ? attempts : 0,
   };
+  if (record.answer !== undefined) {
+    parsed.answer = record.answer;
+  }
+  return parsed;
 }
 
 function parseVocab(value: unknown): VocabRecord {

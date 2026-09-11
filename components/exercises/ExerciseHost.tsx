@@ -1,6 +1,8 @@
 "use client";
 
+import { useMemo } from "react";
 import type { Exercise } from "@/content/schema";
+import { shuffleOptions } from "@/lib/exercises/shuffle";
 import { PickAnswer } from "./PickAnswer";
 import { FillBlank } from "./FillBlank";
 import { Matching } from "./Matching";
@@ -9,13 +11,31 @@ import { Flashcard } from "./Flashcard";
 
 interface ExerciseHostProps {
   exercise: Exercise;
-  /** Fired once per attempt session with the first-attempt score. */
-  onResult: (percent: number) => void;
+  /** Stable key used to seed option shuffling; undefined keeps authored order. */
+  exerciseKey?: string;
+  /** Saved answer payload from progress state, restored on revisit. */
+  savedAnswer?: unknown;
+  /** Fired once per attempt session with the first-attempt score and answer. */
+  onResult: (percent: number, answer?: unknown) => void;
   /** Flashcard-only: per-card mastery reports. */
   onFlashcardResult?: (itemIndex: number, correct: boolean) => void;
 }
 
-export function ExerciseHost({ exercise, onResult, onFlashcardResult }: ExerciseHostProps) {
+export function ExerciseHost({
+  exercise,
+  exerciseKey,
+  savedAnswer,
+  onResult,
+  onFlashcardResult,
+}: ExerciseHostProps) {
+  const shuffled = useMemo(() => {
+    if (exercise.type !== "multiple-choice" && exercise.type !== "listening") {
+      return null;
+    }
+    if (!exerciseKey) return null;
+    return shuffleOptions(exercise.options, exercise.correctIndex, exerciseKey);
+  }, [exercise, exerciseKey]);
+
   switch (exercise.type) {
     case "multiple-choice":
       return (
@@ -24,9 +44,10 @@ export function ExerciseHost({ exercise, onResult, onFlashcardResult }: Exercise
           instruction={exercise.instruction}
           prompt={exercise.prompt}
           promptAudio={exercise.promptAudio}
-          options={exercise.options}
-          correctIndex={exercise.correctIndex}
+          options={shuffled ? shuffled.options : exercise.options}
+          correctIndex={shuffled ? shuffled.correctIndex : exercise.correctIndex}
           explain={exercise.explain}
+          savedAnswer={savedAnswer}
           onResult={onResult}
         />
       );
@@ -37,18 +58,25 @@ export function ExerciseHost({ exercise, onResult, onFlashcardResult }: Exercise
           instruction={exercise.instruction}
           prompt={exercise.prompt}
           listenOnly
-          options={exercise.options}
-          correctIndex={exercise.correctIndex}
+          options={shuffled ? shuffled.options : exercise.options}
+          correctIndex={shuffled ? shuffled.correctIndex : exercise.correctIndex}
           explain={exercise.explain}
+          savedAnswer={savedAnswer}
           onResult={onResult}
         />
       );
     case "fill-blank":
-      return <FillBlank exercise={exercise} onResult={onResult} />;
+      return (
+        <FillBlank exercise={exercise} savedAnswer={savedAnswer} onResult={onResult} />
+      );
     case "matching":
-      return <Matching exercise={exercise} onResult={onResult} />;
+      return (
+        <Matching exercise={exercise} savedAnswer={savedAnswer} onResult={onResult} />
+      );
     case "word-order":
-      return <WordOrder exercise={exercise} onResult={onResult} />;
+      return (
+        <WordOrder exercise={exercise} savedAnswer={savedAnswer} onResult={onResult} />
+      );
     case "flashcard":
       return (
         <Flashcard

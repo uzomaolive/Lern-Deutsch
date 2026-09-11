@@ -23,6 +23,20 @@ describe("recordExercise", () => {
     expect(state.exercises["a1/k:mc1"]).toEqual({ best: 90, attempts: 3 });
   });
 
+  it("stores the last answer payload on the record", () => {
+    let state = recordExercise(emptyState(), "a1/k:mc1", 0, {
+      type: "pick",
+      index: 1,
+    });
+    expect(state.exercises["a1/k:mc1"]).toEqual({
+      best: 0,
+      attempts: 1,
+      answer: { type: "pick", index: 1 },
+    });
+    state = recordExercise(state, "a1/k:mc1", 100, { type: "pick", index: 2 });
+    expect(state.exercises["a1/k:mc1"].answer).toEqual({ type: "pick", index: 2 });
+  });
+
   it("extends the streak on consecutive days", () => {
     let state: ProgressState = {
       ...emptyState(),

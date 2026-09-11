@@ -2,34 +2,55 @@
 
 import { useEffect, useState } from "react";
 import { FeedbackBanner } from "./feedback";
+import { shuffleWithSeed } from "@/lib/exercises/shuffle";
 import type { WordOrderExercise } from "@/content/schema";
 
 interface WordOrderProps {
   exercise: WordOrderExercise;
-  onResult: (percent: number) => void;
+  /** Saved answer payload: { built } as the learner's chunk order. */
+  savedAnswer?: unknown;
+  onResult: (percent: number, answer?: unknown) => void;
 }
 
-function shuffled<T>(items: readonly T[]): T[] {
-  const result = [...items];
-  for (let i = result.length - 1; i > 0; i--) {
-    const j = Math.floor(Math.random() * (i + 1));
-    [result[i], result[j]] = [result[j], result[i]];
-  }
-  const original = items.join("\u0000");
-  if (result.join("\u0000") === original) {
-    result.push(result.shift() as T);
-  }
-  return result;
+interface WordOrderSaved {
+  built: string[];
 }
 
-export function WordOrder({ exercise, onResult }: WordOrderProps) {
-  const [pool, setPool] = useState<string[]>(() => exercise.chunks);
-  const [built, setBuilt] = useState<string[]>([]);
-  const [feedback, setFeedback] = useState<"idle" | "correct" | "wrong">("idle");
+function isWordOrderSaved(value: unknown): value is WordOrderSaved {
+  return (
+    typeof value === "object" &&
+    value !== null &&
+    Array.isArray((value as WordOrderSaved).built)
+  );
+}
+
+function seedFor(exercise: WordOrderExercise): string {
+  return `word-order:${exercise.id}:${exercise.chunks.join("|")}`;
+}
+
+export function WordOrder({ exercise, savedAnswer, onResult }: WordOrderProps) {
+  const saved = isWordOrderSaved(savedAnswer) ? savedAnswer : null;
+  const savedBuilt = saved ? [...saved.built] : null;
+  const [pool, setPool] = useState<string[]>(() =>
+    savedBuilt
+      ? exercise.chunks.filter((chunk) => !savedBuilt.includes(chunk))
+      : shuffleWithSeed(exercise.chunks, seedFor(exercise)).items,
+  );
+  const [built, setBuilt] = useState<string[]>(() => savedBuilt ?? []);
+  const [feedback, setFeedback] = useState<"idle" | "correct" | "wrong">(() => {
+    if (!savedBuilt) return "idle";
+    const correct =
+      savedBuilt.length === exercise.chunks.length &&
+      savedBuilt.every((chunk, index) => chunk === exercise.chunks[index]);
+    return correct ? "correct" : "wrong";
+  });
 
   useEffect(() => {
-    setPool(shuffled(exercise.chunks));
-  }, [exercise]);
+    if (savedAnswer !== undefined) return;
+    setPool(shuffleWithSeed(exercise.chunks, seedFor(exercise)).items);
+    setBuilt([]);
+    setFeedback("idle");
+  }, [exercise, savedAnswer]);
 
   function addToSentence(chunk: string) {
     if (feedback !== "idle") return;
@@ -46,11 +67,11 @@ export function WordOrder({ exercise, onResult }: WordOrderProps) {
   function check() {
     const correct = built.every((chunk, index) => chunk === exercise.chunks[index]);
     setFeedback(correct ? "correct" : "wrong");
-    onResult(correct ? 100 : 0);
+    onResult(correct ? 100 : 0, { built });
   }
 
   function retry() {
-    setPool(shuffled(exercise.chunks));
+    setPool(shuffleWithSeed(exercise.chunks, seedFor(exercise)).items);
     setBuilt([]);
     setFeedback("idle");
   }

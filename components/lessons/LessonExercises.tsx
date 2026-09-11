@@ -63,7 +63,11 @@ export function LessonExercises({
             </div>
             <ExerciseHost
               exercise={exercise}
-              onResult={(percent) => recordExercise(exerciseKey, percent)}
+              exerciseKey={exerciseKey}
+              savedAnswer={record?.answer}
+              onResult={(percent, answer) =>
+                recordExercise(exerciseKey, percent, answer)
+              }
               onFlashcardResult={(itemIndex, correct) =>
                 recordFlashcard(`${exerciseKey}:${itemIndex}`, correct)
               }

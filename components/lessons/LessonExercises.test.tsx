@@ -53,9 +53,32 @@ describe("LessonExercises with ProgressProvider", () => {
     const saved = JSON.parse(localStorage.getItem(STORAGE_KEY) ?? "{}");
     expect(
       saved.exercises["a1/kennenlernen/hallo-und-guten-tag:mc-gruessen"],
-    ).toEqual({ best: 100, attempts: 1 });
+    ).toEqual({ best: 100, attempts: 1, answer: { index: 1 } });
 
     expect(screen.getByLabelText("3 of 3 stars")).toBeInTheDocument();
+  });
+
+  it("restores the saved answer on remount", async () => {
+    localStorage.setItem(
+      STORAGE_KEY,
+      JSON.stringify({
+        exercises: {
+          "a1/kennenlernen/hallo-und-guten-tag:mc-gruessen": {
+            best: 100,
+            attempts: 1,
+            answer: { index: 1 },
+          },
+        },
+        vocab: {},
+        lastActiveDay: null,
+        streak: 0,
+        seenFlashcards: [],
+      }),
+    );
+    renderLesson();
+    expect(screen.getByText(/Stark|Sehr gut|Richtig|Prima/)).toBeInTheDocument();
+    const morning = screen.getByRole("button", { name: "Guten Morgen!" });
+    expect(morning).toBeDisabled();
   });
 
   it("shows the completion banner and next-lesson link when all exercises are done", async () => {

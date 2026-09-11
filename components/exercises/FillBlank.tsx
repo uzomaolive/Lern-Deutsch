@@ -8,17 +8,37 @@ import type { FillBlankExercise } from "@/content/schema";
 
 interface FillBlankProps {
   exercise: FillBlankExercise;
-  onResult: (percent: number) => void;
+  /** Saved answer payload: { values } in blank order. */
+  savedAnswer?: unknown;
+  onResult: (percent: number, answer?: unknown) => void;
 }
 
-export function FillBlank({ exercise, onResult }: FillBlankProps) {
-  const [values, setValues] = useState<string[]>(
-    () => exercise.blanks.map(() => ""),
+interface FillBlankSaved {
+  values: string[];
+}
+
+function isFillBlankSaved(value: unknown): value is FillBlankSaved {
+  return (
+    typeof value === "object" &&
+    value !== null &&
+    Array.isArray((value as FillBlankSaved).values)
+  );
+}
+
+export function FillBlank({ exercise, savedAnswer, onResult }: FillBlankProps) {
+  const saved = isFillBlankSaved(savedAnswer) ? savedAnswer : null;
+  const [values, setValues] = useState<string[]>(() =>
+    saved ? [...saved.values] : exercise.blanks.map(() => ""),
   );
   const [feedback, setFeedback] = useState<("idle" | "correct" | "wrong")[]>(
-    () => exercise.blanks.map(() => "idle"),
+    () =>
+      saved
+        ? exercise.blanks.map((blank, index) =>
+            checkFillBlank(blank, saved.values[index] ?? "") ? "correct" : "wrong",
+          )
+        : exercise.blanks.map(() => "idle"),
   );
-  const [submitted, setSubmitted] = useState(false);
+  const [submitted, setSubmitted] = useState(() => saved !== null);
 
   const parts = exercise.sentence.split("___");
 
@@ -29,7 +49,7 @@ export function FillBlank({ exercise, onResult }: FillBlankProps) {
     const correct = results.filter(Boolean).length;
     setFeedback(results.map((ok) => (ok ? "correct" : "wrong")));
     setSubmitted(true);
-    onResult(percentCorrect(correct, results.length));
+    onResult(percentCorrect(correct, results.length), { values });
   }
 
   function retry() {

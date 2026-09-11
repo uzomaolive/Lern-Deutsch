@@ -2,6 +2,11 @@ import { render, screen } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import { describe, expect, it, vi } from "vitest";
 import { ExerciseHost } from "./ExerciseHost";
+import { PickAnswer } from "./PickAnswer";
+import { FillBlank } from "./FillBlank";
+import { Matching } from "./Matching";
+import { WordOrder } from "./WordOrder";
+import { shuffleOptions } from "@/lib/exercises/shuffle";
 import type {
   Exercise,
   FillBlankExercise,
@@ -14,6 +19,10 @@ import type {
 function host(exercise: Exercise, onResult = vi.fn()) {
   render(<ExerciseHost exercise={exercise} onResult={onResult} />);
   return onResult;
+}
+
+function expectPickResult(onResult: ReturnType<typeof vi.fn>, percent: number) {
+  expect(onResult).toHaveBeenCalledWith(percent, { index: expect.any(Number) });
 }
 
 const mcExercise: MultipleChoiceExercise = {
@@ -30,14 +39,14 @@ describe("multiple-choice", () => {
   it("scores 100 on the first correct choice", async () => {
     const onResult = host(mcExercise);
     await userEvent.click(screen.getByRole("button", { name: "der Morgen" }));
-    expect(onResult).toHaveBeenCalledWith(100);
+    expectPickResult(onResult, 100);
     expect(screen.getByText(/Stark|Sehr gut|Richtig|Prima/)).toBeInTheDocument();
   });
 
   it("scores 0 on a wrong choice and reveals the correct answer", async () => {
     const onResult = host(mcExercise);
     await userEvent.click(screen.getByRole("button", { name: "der Abend" }));
-    expect(onResult).toHaveBeenCalledWith(0);
+    expectPickResult(onResult, 0);
     expect(screen.getByText(/Die richtige Antwort:/)).toBeInTheDocument();
     expect(
       screen.getByText("der Morgen", { selector: "span" }),
@@ -49,8 +58,31 @@ describe("multiple-choice", () => {
     await userEvent.click(screen.getByRole("button", { name: "der Abend" }));
     await userEvent.click(screen.getByRole("button", { name: "Try again" }));
     await userEvent.click(screen.getByRole("button", { name: "der Morgen" }));
-    expect(onResult).toHaveBeenNthCalledWith(1, 0);
-    expect(onResult).toHaveBeenNthCalledWith(2, 100);
+    expectPickResult(onResult, 0);
+    expectPickResult(onResult, 100);
+  });
+
+  it("shuffles options when an exercise key is provided and tracks the correct one", () => {
+    const exerciseKey = "a1/u/l:mc-gruessen";
+    const shuffled = shuffleOptions(mcExercise.options, mcExercise.correctIndex, exerciseKey);
+    expect(shuffled.options[shuffled.correctIndex]).toBe("der Morgen");
+    expect(shuffled.options).toHaveLength(mcExercise.options.length);
+  });
+
+  it("restores a saved pick in the answered state", () => {
+    render(
+      <PickAnswer
+        title={mcExercise.title}
+        instruction={mcExercise.instruction}
+        prompt={mcExercise.prompt}
+        options={mcExercise.options}
+        correctIndex={mcExercise.correctIndex}
+        savedAnswer={{ index: 1 }}
+        onResult={vi.fn()}
+      />,
+    );
+    expect(screen.getByText(/Stark|Sehr gut|Richtig|Prima/)).toBeInTheDocument();
+    expect(screen.getByRole("button", { name: "der Morgen" })).toBeDisabled();
   });
 });
 
@@ -66,7 +98,7 @@ describe("listening", () => {
       correctIndex: 1,
     });
     await userEvent.click(screen.getByRole("button", { name: "Guten Morgen" }));
-    expect(onResult).toHaveBeenCalledWith(100);
+    expectPickResult(onResult, 100);
   });
 });
 
@@ -89,7 +121,9 @@ describe("fill-blank", () => {
     await userEvent.type(first, "komme");
     await userEvent.type(second, "lerne");
     await userEvent.click(screen.getByRole("button", { name: "Check" }));
-    expect(onResult).toHaveBeenCalledWith(100);
+    expect(onResult).toHaveBeenCalledWith(100, {
+      values: ["komme", "lerne"],
+    });
   });
 
   it("shows the correct answers for wrong blanks", async () => {
@@ -98,7 +132,7 @@ describe("fill-blank", () => {
     await userEvent.type(first, "gehe");
     await userEvent.type(second, "lerne");
     await userEvent.click(screen.getByRole("button", { name: "Check" }));
-    expect(onResult).toHaveBeenCalledWith(50);
+    expect(onResult).toHaveBeenCalledWith(50, { values: ["gehe", "lerne"] });
     expect(screen.getByText(/komme/)).toBeInTheDocument();
   });
 
@@ -112,7 +146,9 @@ describe("fill-blank", () => {
     await userEvent.type(first, "fuer");
     await userEvent.type(second, "dich");
     await userEvent.click(screen.getByRole("button", { name: "Check" }));
-    expect(onResult).toHaveBeenCalledWith(100);
+    expect(onResult).toHaveBeenCalledWith(100, {
+      values: ["fuer", "dich"],
+    });
   });
 });
 
@@ -135,7 +171,10 @@ describe("matching", () => {
       await userEvent.click(screen.getByRole("button", { name: de }));
       await userEvent.click(screen.getByRole("button", { name: en }));
     }
-    expect(onResult).toHaveBeenCalledWith(100);
+    expect(onResult).toHaveBeenCalledWith(100, {
+      matched: [0, 1, 2],
+      firstTryErrors: [],
+    });
   });
 
   it("counts a wrong pairing against the first-try score", async () => {
@@ -149,7 +188,22 @@ describe("matching", () => {
     await userEvent.click(screen.getByRole("button", { name: en2 }));
     await userEvent.click(screen.getByRole("button", { name: de3 }));
     await userEvent.click(screen.getByRole("button", { name: en3 }));
-    expect(onResult).toHaveBeenCalledWith(67);
+    expect(onResult).toHaveBeenCalledWith(67, {
+      matched: [0, 1, 2],
+      firstTryErrors: [0],
+    });
+  });
+
+  it("restores a completed matching in the done state", () => {
+    render(
+      <Matching
+        exercise={matching}
+        savedAnswer={{ matched: [0, 1, 2], firstTryErrors: [] }}
+        onResult={vi.fn()}
+      />,
+    );
+    expect(screen.getByRole("button", { name: "Try again" })).toBeInTheDocument();
+    expect(screen.getByRole("button", { name: "die Familie" })).toBeDisabled();
   });
 });
 
@@ -168,7 +222,9 @@ describe("word-order", () => {
       await userEvent.click(screen.getByRole("button", { name: chunk }));
     }
     await userEvent.click(screen.getByRole("button", { name: "Check" }));
-    expect(onResult).toHaveBeenCalledWith(100);
+    expect(onResult).toHaveBeenCalledWith(100, {
+      built: ["Ich", "lerne", "Deutsch"],
+    });
   });
 
   it("scores 0 for a wrong order and shows the sentence", async () => {
@@ -177,8 +233,22 @@ describe("word-order", () => {
       await userEvent.click(screen.getByRole("button", { name: chunk }));
     }
     await userEvent.click(screen.getByRole("button", { name: "Check" }));
-    expect(onResult).toHaveBeenCalledWith(0);
+    expect(onResult).toHaveBeenCalledWith(0, {
+      built: ["Deutsch", "lerne", "Ich"],
+    });
     expect(screen.getByText("Ich lerne Deutsch")).toBeInTheDocument();
+  });
+
+  it("restores a saved order with feedback", () => {
+    render(
+      <WordOrder
+        exercise={wordOrder}
+        savedAnswer={{ built: ["Ich", "lerne", "Deutsch"] }}
+        onResult={vi.fn()}
+      />,
+    );
+    expect(screen.getByText(/Stark|Sehr gut|Richtig|Prima/)).toBeInTheDocument();
+    expect(screen.getByRole("button", { name: "Try again" })).toBeInTheDocument();
   });
 });
 

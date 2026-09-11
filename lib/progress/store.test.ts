@@ -5,7 +5,11 @@ const SAMPLE_EXERCISE_KEY = "a1/kennenlernen/hallo-und-guten-tag:mc-gruessen";
 
 const SAMPLE: ProgressState = {
   exercises: {
-    [SAMPLE_EXERCISE_KEY]: { best: 100, attempts: 2 },
+    [SAMPLE_EXERCISE_KEY]: {
+      best: 100,
+      attempts: 2,
+      answer: { type: "pick", index: 0 },
+    },
   },
   vocab: {
     "a1/kennenlernen/hallo-und-guten-tag:flashcard-gruesse:0": {
