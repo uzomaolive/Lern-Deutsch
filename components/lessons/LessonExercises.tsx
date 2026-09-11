@@ -64,7 +64,7 @@ export function LessonExercises({
             <ExerciseHost
               exercise={exercise}
               exerciseKey={exerciseKey}
-              savedAnswer={record?.answer}
+              savedAnswer={mounted ? record?.answer : undefined}
               onResult={(percent, answer) =>
                 recordExercise(exerciseKey, percent, answer)
               }

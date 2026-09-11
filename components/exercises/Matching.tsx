@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { percentCorrect } from "@/lib/progress/scoring";
 import { FeedbackBanner } from "./feedback";
 import type { MatchingExercise } from "@/content/schema";
@@ -30,14 +30,17 @@ export function Matching({ exercise, savedAnswer, onResult }: MatchingProps) {
   const saved = isMatchingSaved(savedAnswer) ? savedAnswer : null;
   const [leftSel, setLeftSel] = useState<number | null>(null);
   const [rightSel, setRightSel] = useState<number | null>(null);
-  const [matched, setMatched] = useState<Set<number>>(
-    () => new Set(saved?.matched ?? []),
-  );
-  const [firstTryErrors, setFirstTryErrors] = useState<Set<number>>(
-    () => new Set(saved?.firstTryErrors ?? []),
-  );
+  const [matched, setMatched] = useState<Set<number>>(new Set());
+  const [firstTryErrors, setFirstTryErrors] = useState<Set<number>>(new Set());
   const [wrongPair, setWrongPair] = useState<[number, number] | null>(null);
-  const [done, setDone] = useState(() => saved !== null);
+  const [done, setDone] = useState(false);
+
+  useEffect(() => {
+    if (saved === null) return;
+    setMatched(new Set(saved.matched));
+    setFirstTryErrors(new Set(saved.firstTryErrors));
+    setDone(true);
+  }, [saved]);
 
   const pairs = exercise.pairs;
   const left = pairs.map(([de]) => de);

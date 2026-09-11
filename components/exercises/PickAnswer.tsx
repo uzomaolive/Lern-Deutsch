@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { SpeakButton } from "@/components/ui/SpeakButton";
 import { FeedbackBanner } from "./feedback";
 
@@ -46,14 +46,14 @@ export function PickAnswer({
   onResult,
 }: PickAnswerProps) {
   const saved = isPickAnswerSaved(savedAnswer) ? savedAnswer : null;
-  const [selected, setSelected] = useState<number | null>(saved?.index ?? null);
-  const [feedback, setFeedback] = useState<"idle" | "correct" | "wrong">(() =>
-    saved === null
-      ? "idle"
-      : saved.index === correctIndex
-        ? "correct"
-        : "wrong",
-  );
+  const [selected, setSelected] = useState<number | null>(null);
+  const [feedback, setFeedback] = useState<"idle" | "correct" | "wrong">("idle");
+
+  useEffect(() => {
+    if (saved === null) return;
+    setSelected(saved.index);
+    setFeedback(saved.index === correctIndex ? "correct" : "wrong");
+  }, [saved, correctIndex]);
 
   const correctText = options[correctIndex];
 

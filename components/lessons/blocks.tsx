@@ -49,9 +49,9 @@ export function ContentBlocks({ blocks }: { blocks: ContentBlock[] }) {
                   ) : null}
                   <thead>
                     <tr>
-                      {(block.head ?? []).map((cell) => (
+                      {(block.head ?? []).map((cell, cellIndex) => (
                         <th
-                          key={cell}
+                          key={cellIndex}
                           scope="col"
                           className="border-b border-stone-300 px-3 py-2 font-semibold text-stone-900"
                         >
