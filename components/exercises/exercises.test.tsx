@@ -3,7 +3,6 @@ import userEvent from "@testing-library/user-event";
 import { describe, expect, it, vi } from "vitest";
 import { ExerciseHost } from "./ExerciseHost";
 import { PickAnswer } from "./PickAnswer";
-import { FillBlank } from "./FillBlank";
 import { Matching } from "./Matching";
 import { WordOrder } from "./WordOrder";
 import { shuffleOptions } from "@/lib/exercises/shuffle";

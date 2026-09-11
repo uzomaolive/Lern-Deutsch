@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { FeedbackBanner } from "./feedback";
 import { shuffleWithSeed } from "@/lib/exercises/shuffle";
 import type { WordOrderExercise } from "@/content/schema";
@@ -30,30 +30,20 @@ function seedFor(exercise: WordOrderExercise): string {
 
 export function WordOrder({ exercise, savedAnswer, onResult }: WordOrderProps) {
   const saved = isWordOrderSaved(savedAnswer) ? savedAnswer : null;
+  const savedBuilt = saved ? [...saved.built] : null;
   const [pool, setPool] = useState<string[]>(() =>
-    shuffleWithSeed(exercise.chunks, seedFor(exercise)).items,
+    savedBuilt
+      ? exercise.chunks.filter((chunk) => !savedBuilt.includes(chunk))
+      : shuffleWithSeed(exercise.chunks, seedFor(exercise)).items,
   );
-  const [built, setBuilt] = useState<string[]>([]);
-  const [feedback, setFeedback] = useState<"idle" | "correct" | "wrong">("idle");
-
-  useEffect(() => {
-    setPool(shuffleWithSeed(exercise.chunks, seedFor(exercise)).items);
-    setBuilt([]);
-    setFeedback("idle");
-  }, [exercise]);
-
-  useEffect(() => {
-    if (saved === null) return;
-    const restored = exercise.chunks.filter((chunk) => !saved.built.includes(chunk));
-    setBuilt([...saved.built]);
-    setPool(restored);
-    setFeedback(
-      saved.built.length === exercise.chunks.length &&
-        saved.built.every((chunk, index) => chunk === exercise.chunks[index])
-        ? "correct"
-        : "wrong",
-    );
-  }, [saved, exercise]);
+  const [built, setBuilt] = useState<string[]>(() => savedBuilt ?? []);
+  const [feedback, setFeedback] = useState<"idle" | "correct" | "wrong">(() => {
+    if (!savedBuilt) return "idle";
+    const correct =
+      savedBuilt.length === exercise.chunks.length &&
+      savedBuilt.every((chunk, index) => chunk === exercise.chunks[index]);
+    return correct ? "correct" : "wrong";
+  });
 
   function addToSentence(chunk: string) {
     if (feedback !== "idle") return;

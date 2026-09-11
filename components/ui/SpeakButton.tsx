@@ -1,7 +1,7 @@
 "use client";
 
-import { useEffect, useState } from "react";
 import { canSpeak, speak } from "@/lib/tts/tts";
+import { useMounted } from "@/hooks/useMounted";
 
 interface SpeakButtonProps {
   text: string;
@@ -11,12 +11,8 @@ interface SpeakButtonProps {
 }
 
 export function SpeakButton({ text, label, className }: SpeakButtonProps) {
-  const [available, setAvailable] = useState(false);
-
-  useEffect(() => {
-    setAvailable(canSpeak());
-  }, []);
-
+  const mounted = useMounted();
+  const available = mounted && canSpeak();
   const speakable = available && text.trim().length > 0;
 
   return (

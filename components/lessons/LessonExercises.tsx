@@ -50,6 +50,7 @@ export function LessonExercises({
           exercise.id,
         );
         const record = state.exercises[exerciseKey];
+        const savedAnswer = mounted ? record?.answer : undefined;
         return (
           <div
             key={exercise.id}
@@ -62,9 +63,10 @@ export function LessonExercises({
               ) : null}
             </div>
             <ExerciseHost
+              key={savedAnswer !== undefined ? `answered:${exercise.id}` : `fresh:${exercise.id}`}
               exercise={exercise}
               exerciseKey={exerciseKey}
-              savedAnswer={mounted ? record?.answer : undefined}
+              savedAnswer={savedAnswer}
               onResult={(percent, answer) =>
                 recordExercise(exerciseKey, percent, answer)
               }

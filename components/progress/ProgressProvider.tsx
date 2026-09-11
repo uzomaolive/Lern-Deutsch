@@ -9,7 +9,6 @@ import {
   type ReactNode,
 } from "react";
 import {
-  emptyState,
   LocalStorageProgress,
   type ProgressState,
 } from "@/lib/progress/store";

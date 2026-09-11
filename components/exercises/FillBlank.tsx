@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { checkFillBlank } from "@/lib/progress/answers";
 import { percentCorrect } from "@/lib/progress/scoring";
 import { FeedbackBanner } from "./feedback";
@@ -27,25 +27,18 @@ function isFillBlankSaved(value: unknown): value is FillBlankSaved {
 
 export function FillBlank({ exercise, savedAnswer, onResult }: FillBlankProps) {
   const saved = isFillBlankSaved(savedAnswer) ? savedAnswer : null;
-  const [values, setValues] = useState<string[]>(() => exercise.blanks.map(() => ""));
-  const [feedback, setFeedback] = useState<("idle" | "correct" | "wrong")[]>(
-    () => exercise.blanks.map(() => "idle"),
+  const [values, setValues] = useState<string[]>(() =>
+    saved ? [...saved.values] : exercise.blanks.map(() => ""),
   );
-  const [submitted, setSubmitted] = useState(false);
-
-  useEffect(() => {
-    if (saved === null) return;
-    const restoredValues = exercise.blanks.map(
-      (_, index) => saved.values[index] ?? "",
-    );
-    setValues(restoredValues);
-    setFeedback(
-      exercise.blanks.map((blank, index) =>
-        checkFillBlank(blank, restoredValues[index]) ? "correct" : "wrong",
-      ),
-    );
-    setSubmitted(true);
-  }, [saved, exercise]);
+  const [feedback, setFeedback] = useState<("idle" | "correct" | "wrong")[]>(
+    () =>
+      saved
+        ? exercise.blanks.map((blank, index) =>
+            checkFillBlank(blank, saved.values[index] ?? "") ? "correct" : "wrong",
+          )
+        : exercise.blanks.map(() => "idle"),
+  );
+  const [submitted, setSubmitted] = useState(() => saved !== null);
 
   const parts = exercise.sentence.split("___");
 
