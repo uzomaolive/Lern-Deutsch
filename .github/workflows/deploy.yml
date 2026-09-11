@@ -24,7 +24,8 @@ jobs:
           node-version: 22
           cache: npm
       - run: npm ci
-      - run: npm run lint && npm test && npm run typecheck
+      - run: npm run lint && npm test
+      - run: npx next typegen && npm run typecheck
       - run: npm run build
         env:
           NEXT_PUBLIC_BASE_PATH: /Lern-Deutsch
