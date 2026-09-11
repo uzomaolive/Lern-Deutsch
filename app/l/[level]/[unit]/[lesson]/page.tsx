@@ -58,6 +58,20 @@ export default async function LessonPage({ params }: LessonPageProps) {
       }
     : null;
 
+  const sectionTargets = lesson.sections.map((section, index) => ({
+    id: `section-${index + 1}`,
+    heading: section.heading,
+  }));
+  const trailingTargets = [
+    lesson.vocab.length > 0
+      ? { id: "vocabulary", heading: "Vocabulary" }
+      : null,
+    lesson.exercises.length > 0
+      ? { id: "exercises", heading: "Exercises" }
+      : null,
+  ].filter((target): target is { id: string; heading: string } => target !== null);
+  const allTargets = [...sectionTargets, ...trailingTargets];
+
   return (
     <article className="mx-auto max-w-3xl px-4 py-10">
       <nav aria-label="Breadcrumb" className="text-sm text-stone-500">
@@ -77,19 +91,34 @@ export default async function LessonPage({ params }: LessonPageProps) {
 
       {lesson.sections.length > 0 ? (
         <section className="mt-8 space-y-6">
-          {lesson.sections.map((section) => (
-            <section key={section.heading}>
-              <h2 className="mb-3 text-xl font-semibold text-stone-900">
-                {section.heading}
-              </h2>
-              <ContentBlocks blocks={section.blocks} />
-            </section>
-          ))}
+          {lesson.sections.map((section, sectionIndex) => {
+            const currentTarget = sectionTargets[sectionIndex];
+            const nextTarget = allTargets[sectionIndex + 1];
+            return (
+              <section key={section.heading} id={currentTarget.id}>
+                <h2 className="mb-3 text-xl font-semibold text-stone-900">
+                  {section.heading}
+                </h2>
+                <ContentBlocks blocks={section.blocks} />
+                {nextTarget ? (
+                  <nav aria-label="Next section">
+                    <a
+                      href={`#${nextTarget.id}`}
+                      className="mt-4 inline-flex items-center gap-2 rounded-lg border border-stone-300 bg-white px-4 py-2 text-sm font-medium text-stone-700 hover:border-amber-500 hover:text-amber-700"
+                    >
+                      Next: {nextTarget.heading}
+                      <span aria-hidden="true">↓</span>
+                    </a>
+                  </nav>
+                ) : null}
+              </section>
+            );
+          })}
         </section>
       ) : null}
 
       {lesson.vocab.length > 0 ? (
-        <section className="mt-10">
+        <section className="mt-10" id="vocabulary">
           <h2 className="mb-3 text-xl font-semibold text-stone-900">
             Vocabulary
           </h2>
@@ -98,7 +127,7 @@ export default async function LessonPage({ params }: LessonPageProps) {
       ) : null}
 
       {lesson.exercises.length > 0 ? (
-        <section className="mt-10 space-y-6">
+        <section className="mt-10 space-y-6" id="exercises">
           <h2 className="text-xl font-semibold text-stone-900">Exercises</h2>
           <LessonExercises
             levelId={level.id}
