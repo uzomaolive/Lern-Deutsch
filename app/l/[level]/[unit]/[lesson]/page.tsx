@@ -101,13 +101,20 @@ export default async function LessonPage({ params }: LessonPageProps) {
                 </h2>
                 <ContentBlocks blocks={section.blocks} />
                 {nextTarget ? (
-                  <nav aria-label="Next section">
+                  <nav aria-label="Next section" className="mt-6">
                     <a
                       href={`#${nextTarget.id}`}
-                      className="mt-4 inline-flex items-center gap-2 rounded-lg border border-stone-300 bg-white px-4 py-2 text-sm font-medium text-stone-700 hover:border-amber-500 hover:text-amber-700"
+                      className="flex w-full items-center justify-between gap-3 rounded-lg border border-amber-600 bg-amber-600 px-4 py-3 text-sm font-semibold text-white shadow-sm transition-colors hover:bg-amber-700 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-amber-600"
                     >
-                      Next: {nextTarget.heading}
-                      <span aria-hidden="true">↓</span>
+                      <span>
+                        Next section:{" "}
+                        <span className="font-bold underline underline-offset-2">
+                          {nextTarget.heading}
+                        </span>
+                      </span>
+                      <span aria-hidden="true" className="text-lg leading-none">
+                        ↓
+                      </span>
                     </a>
                   </nav>
                 ) : null}
