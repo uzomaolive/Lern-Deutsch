@@ -146,6 +146,27 @@ export default async function LessonPage({ params }: LessonPageProps) {
           />
         </section>
       ) : null}
+
+      {nextLesson ? (
+        <nav aria-label="Next lesson" className="mt-10">
+          <Link
+            href={nextLesson.href}
+            className="flex w-full items-center justify-between gap-3 rounded-lg border border-stone-300 bg-white px-4 py-3 text-sm transition-colors hover:border-amber-600 hover:bg-amber-50 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-amber-600"
+          >
+            <span>
+              <span className="block text-xs font-medium uppercase tracking-wide text-stone-500">
+                Up next
+              </span>
+              <span className="mt-0.5 block font-semibold text-stone-900">
+                {nextLesson.title}
+              </span>
+            </span>
+            <span aria-hidden="true" className="text-lg leading-none text-amber-700">
+              →
+            </span>
+          </Link>
+        </nav>
+      ) : null}
     </article>
   );
 }
