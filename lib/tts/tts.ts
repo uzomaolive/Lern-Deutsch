@@ -18,16 +18,22 @@ export interface SpeechLike {
 }
 
 /** Voice quality hints, best first. Google's neural voice is the best on
- * Chrome; Anna is the crisp, classic macOS German voice; the newer macOS
- * voices (Flo, Eddy, Reed) can sound muffled through speechSynthesis. */
+ * Chrome. On macOS the modern enhanced voices (Eddy, Flo, Rocko, Reed, Sandy,
+ * Shelley, Grandma, Grandpa) are Siri-quality and much clearer than the
+ * legacy Anna voice, which can sound robotic and muddled. */
 const PREFERRED_VOICE_HINTS = [
   "Google",
+  "Eddy",
+  "Flo",
+  "Rocko",
+  "Reed",
+  "Sandy",
+  "Shelley",
+  "Grandma",
+  "Grandpa",
   "Anna",
   "Katja",
   "Markus",
-  "Flo",
-  "Eddy",
-  "Reed",
   "Vicki",
   "Steffi",
 ];
