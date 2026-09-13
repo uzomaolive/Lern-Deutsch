@@ -2,6 +2,7 @@
 
 import { useMemo, useState } from "react";
 import { SpeakButton } from "@/components/ui/SpeakButton";
+import { shuffleWithSeed } from "@/lib/exercises/shuffle";
 import type { SortRound } from "@/content/games/schema";
 
 interface CategorizedItem {
@@ -11,16 +12,12 @@ interface CategorizedItem {
 }
 
 export function CategorySort({ round }: { round: SortRound }) {
-  const items = useMemo<CategorizedItem[]>(
-    () =>
-      round.categories
-        .flatMap((category) =>
-          category.items.map((text) => ({ text, category: null as string | null, locked: false })),
-        )
-        .map((item) => ({ ...item }))
-        .sort(() => Math.random() - 0.5),
-    [round],
-  );
+  const items = useMemo<CategorizedItem[]>(() => {
+    const flat = round.categories.flatMap((category) =>
+      category.items.map((text) => ({ text, category: null as string | null, locked: false })),
+    );
+    return shuffleWithSeed(flat, `sort:${round.title}`).items;
+  }, [round]);
   const [state, setState] = useState<CategorizedItem[]>(items);
   const [message, setMessage] = useState<string | null>(null);
 

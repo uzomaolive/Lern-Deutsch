@@ -2,6 +2,7 @@
 
 import { useMemo, useState } from "react";
 import { SpeakButton } from "@/components/ui/SpeakButton";
+import { shuffleWithSeed } from "@/lib/exercises/shuffle";
 import type { MemoryRound } from "@/content/games/schema";
 
 interface CardState {
@@ -13,22 +14,13 @@ interface CardState {
   matched: boolean;
 }
 
-function shuffle<T>(items: readonly T[]): T[] {
-  const result = [...items];
-  for (let i = result.length - 1; i > 0; i--) {
-    const j = Math.floor(Math.random() * (i + 1));
-    [result[i], result[j]] = [result[j], result[i]];
-  }
-  return result;
-}
-
 export function MemoryCards({ round }: { round: MemoryRound }) {
   const cards = useMemo<CardState[]>(() => {
     const deck = round.cards.flatMap((card, pairId) => [
       { id: pairId * 2, label: card.de, isGerman: true, pairId, flipped: false, matched: false },
       { id: pairId * 2 + 1, label: card.en, isGerman: false, pairId, flipped: false, matched: false },
     ]);
-    return shuffle(deck);
+    return shuffleWithSeed(deck, `memory:${round.title}`).items;
   }, [round]);
 
   const [deck, setDeck] = useState<CardState[]>(cards);
@@ -124,7 +116,12 @@ export function MemoryCards({ round }: { round: MemoryRound }) {
         <button
           type="button"
           onClick={() => {
-            setDeck(shuffle(cards.map((c) => ({ ...c, flipped: false, matched: false }))));
+            setDeck(
+              shuffleWithSeed(
+                cards.map((c) => ({ ...c, flipped: false, matched: false })),
+                `memory:${round.title}:again`,
+              ).items,
+            );
             setFlipped([]);
             setMoves(0);
             setDone(false);
