@@ -44,6 +44,15 @@ export interface ContentSection {
 export type ContentBlock =
   | { type: "paragraph"; text: string }
   | { type: "example"; de: string; en: string }
+  | {
+      type: "gloss";
+      /** Full German sentence, also spoken. */
+      de: string;
+      /** Smooth English translation of the whole sentence. */
+      en: string;
+      /** Word-by-word breakdown with part of speech and meaning. */
+      words: GlossWord[];
+    }
   | { type: "tip"; text: string }
   | {
       type: "table";
@@ -51,6 +60,15 @@ export type ContentBlock =
       head?: string[];
       rows: string[][];
     };
+
+export interface GlossWord {
+  /** The word exactly as it appears in the sentence. */
+  word: string;
+  /** Part of speech: Nomen, Verb, Adjektiv, Adverb, Pronomen, Artikel, Präposition, Konjunktion, Numerale, Interjektion. */
+  pos: string;
+  /** English meaning of the single word. */
+  en: string;
+}
 
 export interface VocabItem {
   /** Unique within the lesson. */
