@@ -12,6 +12,28 @@ const GERMAN_LANG = "de-DE";
 /** Slightly slow on purpose: learners understand clearer speech better. */
 const LEARNER_RATE = 0.9;
 
+import { ttsHash } from "./hash";
+import { ttsAudioHashes } from "./audio-manifest";
+
+const generatedHashes = new Set(ttsAudioHashes);
+
+/** True when a pre-generated Gemini audio file exists for this text. */
+export function hasGeneratedAudio(text: string): boolean {
+  return generatedHashes.has(ttsHash(text.trim()));
+}
+
+function playGeneratedAudio(text: string): boolean {
+  if (typeof window === "undefined") return false;
+  if (!generatedHashes.has(ttsHash(text))) return false;
+
+  const base = (process.env.NEXT_PUBLIC_BASE_PATH ?? "").replace(/\/$/, "");
+  const audio = new Audio(`${base}/tts/${ttsHash(text)}.mp3`);
+  audio.play().catch(() => {
+    /* fall through to browser voices */
+  });
+  return true;
+}
+
 export interface SpeechLike {
   name: string;
   lang: string;
@@ -65,7 +87,10 @@ export function pickGermanVoice<T extends SpeechLike>(
 }
 
 export function canSpeak(): boolean {
-  return typeof window !== "undefined" && "speechSynthesis" in window;
+  return (
+    (typeof window !== "undefined" && "speechSynthesis" in window) ||
+    generatedHashes.size > 0
+  );
 }
 
 export interface GermanVoice {
@@ -152,8 +177,12 @@ function speakWithVoice(
 
 /** Cancels any in-flight speech and reads the text aloud in German. */
 export function speak(text: string, rate: number = LEARNER_RATE): void {
-  if (!canSpeak() || text.trim().length === 0) return;
+  const trimmed = text.trim();
+  if (trimmed.length === 0) return;
 
+  if (playGeneratedAudio(trimmed)) return;
+
+  if (!canSpeak()) return;
   const synth = window.speechSynthesis;
   const voices = synth.getVoices();
 
