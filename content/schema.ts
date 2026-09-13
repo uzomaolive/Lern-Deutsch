@@ -68,6 +68,12 @@ export interface GlossWord {
   pos: string;
   /** English meaning of the single word. */
   en: string;
+  /**
+   * Richer part-of-speech description in English, shown to learners,
+   * e.g. "Pronoun in the dative case", "Pronoun / impersonal subject",
+   * "Adverb / adjective". Falls back to the German `pos` when absent.
+   */
+  detail?: string;
 }
 
 export interface VocabItem {

@@ -66,18 +66,20 @@ export function ContentBlocks({ blocks }: { blocks: ContentBlock[] }) {
                   {block.en}
                 </figcaption>
                 <div
-                  className="mt-4 flex flex-wrap gap-1.5"
+                  className="mt-4 space-y-1"
                   aria-label="Word-by-word breakdown"
                 >
                   {block.words.map((word, wordIndex) => (
-                    <span
-                      key={wordIndex}
-                      className={`rounded-md border px-2 py-1 text-xs ${posStyles(word.pos)}`}
-                    >
+                    <p key={wordIndex} className="text-sm leading-relaxed text-stone-800">
                       <span className="font-semibold">{word.word}</span>
-                      <span className="ml-1 opacity-70">({word.pos})</span>
-                      <span className="ml-1 opacity-70">{word.en}</span>
-                    </span>
+                      <span className="text-stone-500">: </span>
+                      <span
+                        className={`rounded px-1 py-0.5 text-xs font-medium ${posStyles(word.pos)}`}
+                      >
+                        {word.detail ?? word.pos}
+                      </span>
+                      <span className="text-stone-500"> ({word.en})</span>
+                    </p>
                   ))}
                 </div>
               </figure>

@@ -129,7 +129,7 @@ export const lebensmittel: Lesson = {
           type: "gloss",
           de: "Zum Frühstück esse ich Brot mit Käse und trinke einen Kaffee.",
           en: "For breakfast I eat bread with cheese and drink a coffee.",
-          words: [{"word": "Zum", "pos": "Präposition", "en": "for (zu+dem)"}, {"word": "Frühstück", "pos": "Nomen", "en": "breakfast"}, {"word": "esse", "pos": "Verb", "en": "eat"}, {"word": "ich", "pos": "Pronomen", "en": "I"}, {"word": "Brot", "pos": "Nomen", "en": "bread"}, {"word": "mit", "pos": "Präposition", "en": "with"}, {"word": "Käse", "pos": "Nomen", "en": "cheese"}, {"word": "und", "pos": "Konjunktion", "en": "and"}, {"word": "trinke", "pos": "Verb", "en": "drink"}, {"word": "einen", "pos": "Artikel", "en": "a (acc.)"}, {"word": "Kaffee.", "pos": "Nomen", "en": "coffee"}],
+          words: [{"word": "Zum", "pos": "Präposition", "en": "for (zu+dem)", "detail": "Preposition (contraction of zu + dem)"}, {"word": "Frühstück", "pos": "Nomen", "en": "breakfast", "detail": "Noun"}, {"word": "esse", "pos": "Verb", "en": "eat", "detail": "Verb"}, {"word": "ich", "pos": "Pronomen", "en": "I", "detail": "Pronoun"}, {"word": "Brot", "pos": "Nomen", "en": "bread", "detail": "Noun"}, {"word": "mit", "pos": "Präposition", "en": "with", "detail": "Preposition"}, {"word": "Käse", "pos": "Nomen", "en": "cheese", "detail": "Noun"}, {"word": "und", "pos": "Konjunktion", "en": "and", "detail": "Conjunction"}, {"word": "trinke", "pos": "Verb", "en": "drink", "detail": "Verb"}, {"word": "einen", "pos": "Artikel", "en": "a (acc.)", "detail": "Article (indefinite: a)"}, {"word": "Kaffee", "pos": "Nomen", "en": "coffee", "detail": "Noun"}],
         },
         {
           type: "tip",
@@ -469,7 +469,7 @@ export const imRestaurant: Lesson = {
           type: "gloss",
           de: "Ich möchte einen Kaffee, eine Suppe und ein Bier, bitte.",
           en: "I would like a coffee, a soup, and a beer, please.",
-          words: [{"word": "Ich", "pos": "Pronomen", "en": "I"}, {"word": "möchte", "pos": "Verb", "en": "would like"}, {"word": "einen", "pos": "Artikel", "en": "a (acc.)"}, {"word": "Kaffee,", "pos": "Nomen", "en": "coffee"}, {"word": "eine", "pos": "Artikel", "en": "a (acc.)"}, {"word": "Suppe", "pos": "Nomen", "en": "soup"}, {"word": "und", "pos": "Konjunktion", "en": "and"}, {"word": "ein", "pos": "Artikel", "en": "a (acc.)"}, {"word": "Bier,", "pos": "Nomen", "en": "beer"}, {"word": "bitte.", "pos": "Adverb", "en": "please"}],
+          words: [{"word": "Ich", "pos": "Pronomen", "en": "I", "detail": "Pronoun"}, {"word": "möchte", "pos": "Verb", "en": "would like", "detail": "Verb (modal)"}, {"word": "einen", "pos": "Artikel", "en": "a (acc.)", "detail": "Article (indefinite: a)"}, {"word": "Kaffee", "pos": "Nomen", "en": "coffee", "detail": "Noun"}, {"word": "eine", "pos": "Artikel", "en": "a (acc.)", "detail": "Article (indefinite: a)"}, {"word": "Suppe", "pos": "Nomen", "en": "soup", "detail": "Noun"}, {"word": "und", "pos": "Konjunktion", "en": "and", "detail": "Conjunction"}, {"word": "ein", "pos": "Artikel", "en": "a (acc.)", "detail": "Article (indefinite: a)"}, {"word": "Bier", "pos": "Nomen", "en": "beer", "detail": "Noun"}, {"word": "bitte", "pos": "Adverb", "en": "please", "detail": "Adverb"}],
         },
         {
           type: "tip",

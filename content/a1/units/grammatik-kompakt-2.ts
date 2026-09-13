@@ -94,7 +94,7 @@ const akkusativTief: Lesson = {
           type: "gloss",
           de: "Sie kennt mich. Ich sehe ihn. Wir besuchen euch.",
           en: "She knows me. I see him. We visit you.",
-          words: [{"word": "Sie", "pos": "Pronomen", "en": "she"}, {"word": "kennt", "pos": "Verb", "en": "knows"}, {"word": "mich.", "pos": "Pronomen", "en": "me (acc.)"}, {"word": "Ich", "pos": "Pronomen", "en": "I"}, {"word": "sehe", "pos": "Verb", "en": "see"}, {"word": "ihn.", "pos": "Pronomen", "en": "him (acc.)"}, {"word": "Wir", "pos": "Pronomen", "en": "we"}, {"word": "besuchen", "pos": "Verb", "en": "visit"}, {"word": "euch.", "pos": "Pronomen", "en": "you (acc.)"}],
+          words: [{"word": "Sie", "pos": "Pronomen", "en": "she", "detail": "Pronoun in the accusative case"}, {"word": "kennt", "pos": "Verb", "en": "knows", "detail": "Verb"}, {"word": "mich", "pos": "Pronomen", "en": "me (acc.)", "detail": "Pronoun in the accusative case"}, {"word": "Ich", "pos": "Pronomen", "en": "I", "detail": "Pronoun"}, {"word": "sehe", "pos": "Verb", "en": "see", "detail": "Verb"}, {"word": "ihn", "pos": "Pronomen", "en": "him (acc.)", "detail": "Pronoun in the accusative case"}, {"word": "Wir", "pos": "Pronomen", "en": "we", "detail": "Pronoun"}, {"word": "besuchen", "pos": "Verb", "en": "visit", "detail": "Verb"}, {"word": "euch", "pos": "Pronomen", "en": "you (acc.)", "detail": "Pronoun in the dative case"}],
         },
 
       ],
@@ -265,7 +265,7 @@ const possessivTief: Lesson = {
           type: "gloss",
           de: "Ich sehe meinen Bruder. Ich besuche meine Oma. Wir lieben unser Kind.",
           en: "I see my brother. I visit my grandma. We love our child.",
-          words: [{"word": "Ich", "pos": "Pronomen", "en": "I"}, {"word": "sehe", "pos": "Verb", "en": "see"}, {"word": "meinen", "pos": "Pronomen", "en": "my (acc.)"}, {"word": "Bruder.", "pos": "Nomen", "en": "brother"}, {"word": "Ich", "pos": "Pronomen", "en": "I"}, {"word": "besuche", "pos": "Verb", "en": "visit"}, {"word": "meine", "pos": "Pronomen", "en": "my (acc.)"}, {"word": "Oma.", "pos": "Nomen", "en": "grandma"}, {"word": "Wir", "pos": "Pronomen", "en": "we"}, {"word": "lieben", "pos": "Verb", "en": "love"}, {"word": "unser", "pos": "Pronomen", "en": "our (acc.)"}, {"word": "Kind.", "pos": "Nomen", "en": "child"}],
+          words: [{"word": "Ich", "pos": "Pronomen", "en": "I", "detail": "Pronoun"}, {"word": "sehe", "pos": "Verb", "en": "see", "detail": "Verb"}, {"word": "meinen", "pos": "Pronomen", "en": "my (acc.)", "detail": "Possessive pronoun"}, {"word": "Bruder", "pos": "Nomen", "en": "brother", "detail": "Noun"}, {"word": "Ich", "pos": "Pronomen", "en": "I", "detail": "Pronoun"}, {"word": "besuche", "pos": "Verb", "en": "visit", "detail": "Verb"}, {"word": "meine", "pos": "Pronomen", "en": "my (acc.)", "detail": "Possessive pronoun"}, {"word": "Oma", "pos": "Nomen", "en": "grandma", "detail": "Noun"}, {"word": "Wir", "pos": "Pronomen", "en": "we", "detail": "Pronoun"}, {"word": "lieben", "pos": "Verb", "en": "love", "detail": "Verb"}, {"word": "unser", "pos": "Pronomen", "en": "our (acc.)", "detail": "Possessive pronoun"}, {"word": "Kind", "pos": "Nomen", "en": "child", "detail": "Noun"}],
         },
 
         {
@@ -285,7 +285,7 @@ const possessivTief: Lesson = {
           type: "gloss",
           de: "Er hat einen Bruder. Sein Bruder heißt Paul. Anna hat eine Schwester. Ihre Schwester heißt Mia.",
           en: "He has a brother. His brother is called Paul. Anna has a sister. Her sister is called Mia.",
-          words: [{"word": "Er", "pos": "Pronomen", "en": "he"}, {"word": "hat", "pos": "Verb", "en": "has"}, {"word": "einen", "pos": "Artikel", "en": "a (acc.)"}, {"word": "Bruder.", "pos": "Nomen", "en": "brother"}, {"word": "Sein", "pos": "Pronomen", "en": "his"}, {"word": "Bruder", "pos": "Nomen", "en": "brother"}, {"word": "heißt", "pos": "Verb", "en": "is called"}, {"word": "Paul.", "pos": "Nomen", "en": "Paul"}, {"word": "Anna", "pos": "Nomen", "en": "Anna"}, {"word": "hat", "pos": "Verb", "en": "has"}, {"word": "eine", "pos": "Artikel", "en": "a (acc.)"}, {"word": "Schwester.", "pos": "Nomen", "en": "sister"}, {"word": "Ihre", "pos": "Pronomen", "en": "her"}, {"word": "Schwester", "pos": "Nomen", "en": "sister"}, {"word": "heißt", "pos": "Verb", "en": "is called"}, {"word": "Mia.", "pos": "Nomen", "en": "Mia"}],
+          words: [{"word": "Er", "pos": "Pronomen", "en": "he", "detail": "Pronoun"}, {"word": "hat", "pos": "Verb", "en": "has", "detail": "Verb"}, {"word": "einen", "pos": "Artikel", "en": "a (acc.)", "detail": "Article (indefinite: a)"}, {"word": "Bruder", "pos": "Nomen", "en": "brother", "detail": "Noun"}, {"word": "Sein", "pos": "Pronomen", "en": "his", "detail": "Possessive pronoun"}, {"word": "Bruder", "pos": "Nomen", "en": "brother", "detail": "Noun"}, {"word": "heißt", "pos": "Verb", "en": "is called", "detail": "Verb"}, {"word": "Paul", "pos": "Nomen", "en": "Paul", "detail": "Noun"}, {"word": "Anna", "pos": "Nomen", "en": "Anna", "detail": "Noun"}, {"word": "hat", "pos": "Verb", "en": "has", "detail": "Verb"}, {"word": "eine", "pos": "Artikel", "en": "a (acc.)", "detail": "Article (indefinite: a)"}, {"word": "Schwester", "pos": "Nomen", "en": "sister", "detail": "Noun"}, {"word": "Ihre", "pos": "Pronomen", "en": "her", "detail": "Possessive pronoun"}, {"word": "Schwester", "pos": "Nomen", "en": "sister", "detail": "Noun"}, {"word": "heißt", "pos": "Verb", "en": "is called", "detail": "Verb"}, {"word": "Mia", "pos": "Nomen", "en": "Mia", "detail": "Noun"}],
         },
 
         {
@@ -431,7 +431,7 @@ const negationTief: Lesson = {
           type: "gloss",
           de: "Ich habe keinen Bruder, aber ich habe eine Schwester.",
           en: "I have no brother, but I have a sister.",
-          words: [{"word": "Ich", "pos": "Pronomen", "en": "I"}, {"word": "habe", "pos": "Verb", "en": "have"}, {"word": "keinen", "pos": "Artikel", "en": "no (acc.)"}, {"word": "Bruder,", "pos": "Nomen", "en": "brother"}, {"word": "aber", "pos": "Konjunktion", "en": "but"}, {"word": "ich", "pos": "Pronomen", "en": "I"}, {"word": "habe", "pos": "Verb", "en": "have"}, {"word": "eine", "pos": "Artikel", "en": "a (acc.)"}, {"word": "Schwester.", "pos": "Nomen", "en": "sister"}],
+          words: [{"word": "Ich", "pos": "Pronomen", "en": "I", "detail": "Pronoun"}, {"word": "habe", "pos": "Verb", "en": "have", "detail": "Verb"}, {"word": "keinen", "pos": "Artikel", "en": "no (acc.)", "detail": "Negative article (no)"}, {"word": "Bruder", "pos": "Nomen", "en": "brother", "detail": "Noun"}, {"word": "aber", "pos": "Konjunktion", "en": "but", "detail": "Conjunction"}, {"word": "ich", "pos": "Pronomen", "en": "I", "detail": "Pronoun"}, {"word": "habe", "pos": "Verb", "en": "have", "detail": "Verb"}, {"word": "eine", "pos": "Artikel", "en": "a (acc.)", "detail": "Article (indefinite: a)"}, {"word": "Schwester", "pos": "Nomen", "en": "sister", "detail": "Noun"}],
         },
 
       ],
@@ -447,7 +447,7 @@ const negationTief: Lesson = {
           type: "gloss",
           de: "Ich komme nicht. Ich komme nicht mit. Ich komme nicht gern.",
           en: "I am not coming. I am not coming along. I do not like coming.",
-          words: [{"word": "Ich", "pos": "Pronomen", "en": "I"}, {"word": "komme", "pos": "Verb", "en": "come"}, {"word": "nicht.", "pos": "Adverb", "en": "not"}, {"word": "Ich", "pos": "Pronomen", "en": "I"}, {"word": "komme", "pos": "Verb", "en": "come"}, {"word": "nicht", "pos": "Adverb", "en": "not"}, {"word": "mit.", "pos": "Verb", "en": "(along)"}, {"word": "Ich", "pos": "Pronomen", "en": "I"}, {"word": "komme", "pos": "Verb", "en": "come"}, {"word": "nicht", "pos": "Adverb", "en": "not"}, {"word": "gern.", "pos": "Adverb", "en": "gladly"}],
+          words: [{"word": "Ich", "pos": "Pronomen", "en": "I", "detail": "Pronoun"}, {"word": "komme", "pos": "Verb", "en": "come", "detail": "Verb"}, {"word": "nicht", "pos": "Adverb", "en": "not", "detail": "Adverb"}, {"word": "Ich", "pos": "Pronomen", "en": "I", "detail": "Pronoun"}, {"word": "komme", "pos": "Verb", "en": "come", "detail": "Verb"}, {"word": "nicht", "pos": "Adverb", "en": "not", "detail": "Adverb"}, {"word": "mit", "pos": "Verb", "en": "(along)", "detail": "Verb"}, {"word": "Ich", "pos": "Pronomen", "en": "I", "detail": "Pronoun"}, {"word": "komme", "pos": "Verb", "en": "come", "detail": "Verb"}, {"word": "nicht", "pos": "Adverb", "en": "not", "detail": "Adverb"}, {"word": "gern", "pos": "Adverb", "en": "gladly", "detail": "Adverb / adjective"}],
         },
 
       ],
@@ -488,7 +488,7 @@ const negationTief: Lesson = {
           type: "gloss",
           de: "Sprichst du kein Deutsch? Doch, ein bisschen!",
           en: "You do not speak German? Yes, a little!",
-          words: [{"word": "Sprichst", "pos": "Verb", "en": "speak"}, {"word": "du", "pos": "Pronomen", "en": "you"}, {"word": "kein", "pos": "Artikel", "en": "no"}, {"word": "Deutsch?", "pos": "Nomen", "en": "German"}, {"word": "Doch,", "pos": "Adverb", "en": "yes (contrary)"}, {"word": "ein", "pos": "Artikel", "en": "a"}, {"word": "bisschen!", "pos": "Adverb", "en": "little"}],
+          words: [{"word": "Sprichst", "pos": "Verb", "en": "speak", "detail": "Verb"}, {"word": "du", "pos": "Pronomen", "en": "you", "detail": "Pronoun"}, {"word": "kein", "pos": "Artikel", "en": "no", "detail": "Negative article (no)"}, {"word": "Deutsch", "pos": "Nomen", "en": "German", "detail": "Noun"}, {"word": "Doch", "pos": "Adverb", "en": "yes (contrary)", "detail": "Adverb (yes, against the assumption)"}, {"word": "ein", "pos": "Artikel", "en": "a", "detail": "Article (indefinite: a)"}, {"word": "bisschen", "pos": "Adverb", "en": "little", "detail": "Adverb"}],
         },
 
       ],
@@ -646,7 +646,7 @@ const fragenTief: Lesson = {
           type: "gloss",
           de: "Du lernst Deutsch. -> Lernst du Deutsch? Heute lerne ich Deutsch. Lernst du heute?",
           en: "You learn German. -> Are you learning German? Today I learn German. Are you learning today?",
-          words: [{"word": "Du", "pos": "Pronomen", "en": "you"}, {"word": "lernst", "pos": "Verb", "en": "learn"}, {"word": "Deutsch.", "pos": "Nomen", "en": "German"}, {"word": "Lernst", "pos": "Verb", "en": "learn"}, {"word": "du", "pos": "Pronomen", "en": "you"}, {"word": "Deutsch?", "pos": "Nomen", "en": "German"}, {"word": "Heute", "pos": "Adverb", "en": "today"}, {"word": "lerne", "pos": "Verb", "en": "learn"}, {"word": "ich", "pos": "Pronomen", "en": "I"}, {"word": "Deutsch.", "pos": "Nomen", "en": "German"}, {"word": "Lernst", "pos": "Verb", "en": "learn"}, {"word": "du", "pos": "Pronomen", "en": "you"}, {"word": "heute?", "pos": "Adverb", "en": "today"}],
+          words: [{"word": "Du", "pos": "Pronomen", "en": "you", "detail": "Pronoun"}, {"word": "lernst", "pos": "Verb", "en": "learn", "detail": "Verb"}, {"word": "Deutsch", "pos": "Nomen", "en": "German", "detail": "Noun"}, {"word": "Lernst", "pos": "Verb", "en": "learn", "detail": "Verb"}, {"word": "du", "pos": "Pronomen", "en": "you", "detail": "Pronoun"}, {"word": "Deutsch", "pos": "Nomen", "en": "German", "detail": "Noun"}, {"word": "Heute", "pos": "Adverb", "en": "today", "detail": "Adverb"}, {"word": "lerne", "pos": "Verb", "en": "learn", "detail": "Verb"}, {"word": "ich", "pos": "Pronomen", "en": "I", "detail": "Pronoun"}, {"word": "Deutsch", "pos": "Nomen", "en": "German", "detail": "Noun"}, {"word": "Lernst", "pos": "Verb", "en": "learn", "detail": "Verb"}, {"word": "du", "pos": "Pronomen", "en": "you", "detail": "Pronoun"}, {"word": "heute", "pos": "Adverb", "en": "today", "detail": "Adverb"}],
         },
 
       ],
