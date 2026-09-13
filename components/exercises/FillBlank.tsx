@@ -111,6 +111,8 @@ export function FillBlank({ exercise, savedAnswer, onResult }: FillBlankProps) {
       {submitted ? (
         <FeedbackBanner
           kind={anyWrong ? "wrong" : "correct"}
+          explainCorrect={exercise.explainCorrect}
+          explainWrong={exercise.explainWrong}
           explain={exercise.explain}
         />
       ) : null}

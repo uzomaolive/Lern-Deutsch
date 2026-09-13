@@ -132,7 +132,12 @@ export function Matching({ exercise, savedAnswer, onResult }: MatchingProps) {
       </div>
 
       {done ? (
-        <FeedbackBanner kind={firstTryErrors.size === 0 ? "correct" : "wrong"} />
+        <FeedbackBanner
+          kind={firstTryErrors.size === 0 ? "correct" : "wrong"}
+          explainCorrect={exercise.explainCorrect}
+          explainWrong={exercise.explainWrong}
+          explain={exercise.explain}
+        />
       ) : null}
 
       {done ? (

@@ -46,6 +46,8 @@ export function ExerciseHost({
           promptAudio={exercise.promptAudio}
           options={shuffled ? shuffled.options : exercise.options}
           correctIndex={shuffled ? shuffled.correctIndex : exercise.correctIndex}
+          explainCorrect={exercise.explainCorrect}
+          explainWrong={exercise.explainWrong}
           explain={exercise.explain}
           savedAnswer={savedAnswer}
           onResult={onResult}
@@ -60,6 +62,8 @@ export function ExerciseHost({
           listenOnly
           options={shuffled ? shuffled.options : exercise.options}
           correctIndex={shuffled ? shuffled.correctIndex : exercise.correctIndex}
+          explainCorrect={exercise.explainCorrect}
+          explainWrong={exercise.explainWrong}
           explain={exercise.explain}
           savedAnswer={savedAnswer}
           onResult={onResult}

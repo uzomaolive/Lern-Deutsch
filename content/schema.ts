@@ -97,7 +97,13 @@ interface ExerciseBase {
   id: string;
   title: string;
   instruction: string;
-  /** Short note shown after a wrong answer. */
+  /** Why the correct answer is right; shown after a correct answer.
+   * Falls back to `explain`. */
+  explainCorrect?: string;
+  /** Why the chosen answer was wrong; shown after a wrong answer.
+   * Falls back to `explain`. */
+  explainWrong?: string;
+  /** Short note shown after a wrong answer (legacy fallback for both). */
   explain?: string;
 }
 

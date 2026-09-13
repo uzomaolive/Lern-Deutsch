@@ -2,6 +2,11 @@ interface FeedbackBannerProps {
   kind: "correct" | "wrong";
   /** The correct answer text shown after a miss. */
   correctText?: string;
+  /** Why the correct answer is right (correct state). */
+  explainCorrect?: string;
+  /** Why the wrong answer was wrong (wrong state). */
+  explainWrong?: string;
+  /** Legacy fallback shown in both states when the specific reason is absent. */
   explain?: string;
 }
 
@@ -11,15 +16,31 @@ function pickMessage(messages: string[]): string {
   return messages[Math.floor(Math.random() * messages.length)];
 }
 
-export function FeedbackBanner({ kind, correctText, explain }: FeedbackBannerProps) {
+export function FeedbackBanner({
+  kind,
+  correctText,
+  explainCorrect,
+  explainWrong,
+  explain,
+}: FeedbackBannerProps) {
   if (kind === "correct") {
+    const reason = explainCorrect ?? explain;
     return (
-      <p role="status" className="mt-3 rounded-lg bg-emerald-50 px-4 py-3 text-sm font-medium text-emerald-800">
+      <p
+        role="status"
+        className="mt-3 rounded-lg bg-emerald-50 px-4 py-3 text-sm font-medium text-emerald-800"
+      >
         {pickMessage(CORRECT_MESSAGES)}
+        {reason ? (
+          <span className="mt-1 block font-normal text-emerald-700">
+            Why it is correct: {reason}
+          </span>
+        ) : null}
       </p>
     );
   }
 
+  const reason = explainWrong ?? explain;
   return (
     <div role="status" className="mt-3 rounded-lg bg-rose-50 px-4 py-3 text-sm text-rose-900">
       <p className="font-medium">Fast! Schau noch einmal hin.</p>
@@ -28,7 +49,7 @@ export function FeedbackBanner({ kind, correctText, explain }: FeedbackBannerPro
           Die richtige Antwort: <span className="font-semibold">{correctText}</span>
         </p>
       ) : null}
-      {explain ? <p className="mt-1 text-rose-800/80">{explain}</p> : null}
+      {reason ? <p className="mt-1 text-rose-800/80">Why it is wrong: {reason}</p> : null}
     </div>
   );
 }

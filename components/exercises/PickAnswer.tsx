@@ -15,6 +15,8 @@ interface PickAnswerProps {
   listenOnly?: boolean;
   options: string[];
   correctIndex: number;
+  explainCorrect?: string;
+  explainWrong?: string;
   explain?: string;
   /** Saved answer payload: { index } into the current options array. */
   savedAnswer?: unknown;
@@ -41,6 +43,8 @@ export function PickAnswer({
   listenOnly,
   options,
   correctIndex,
+  explainCorrect,
+  explainWrong,
   explain,
   savedAnswer,
   onResult,
@@ -119,6 +123,8 @@ export function PickAnswer({
         <FeedbackBanner
           kind={feedback}
           correctText={correctText}
+          explainCorrect={explainCorrect}
+          explainWrong={explainWrong}
           explain={explain}
         />
       ) : null}

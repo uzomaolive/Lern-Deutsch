@@ -111,6 +111,8 @@ export function WordOrder({ exercise, savedAnswer, onResult }: WordOrderProps) {
         <FeedbackBanner
           kind={feedback}
           correctText={exercise.chunks.join(" ")}
+          explainCorrect={exercise.explainCorrect}
+          explainWrong={exercise.explainWrong}
           explain={exercise.explain}
         />
       ) : null}
