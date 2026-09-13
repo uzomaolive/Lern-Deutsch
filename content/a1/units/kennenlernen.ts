@@ -63,6 +63,12 @@ export const halloUndGutenTag: Lesson = {
           en: "Informal, formal, and neutral leave-takings.",
         },
         {
+          type: "gloss",
+          de: "Tschüss, bis morgen! Auf Wiedersehen, Herr Schmidt! Schönen Tag noch!",
+          en: "Bye, see you tomorrow! Goodbye, Mr Schmidt! Have a nice day!",
+          words: [{"word": "Tschüss,", "pos": "Interjektion", "en": "bye"}, {"word": "bis", "pos": "Präposition", "en": "until"}, {"word": "morgen!", "pos": "Adverb", "en": "tomorrow"}, {"word": "Auf", "pos": "Präposition", "en": "on"}, {"word": "Wiedersehen,", "pos": "Nomen", "en": "seeing again"}, {"word": "Herr", "pos": "Nomen", "en": "Mr"}, {"word": "Schmidt!", "pos": "Nomen", "en": "Schmidt"}, {"word": "Schönen", "pos": "Adjektiv", "en": "nice"}, {"word": "Tag", "pos": "Nomen", "en": "day"}, {"word": "noch!", "pos": "Adverb", "en": "still (remaining)"}],
+        },
+        {
           type: "tip",
           text: "The bis-family is a gift: Bis bald, bis morgen, bis später, bis Montag. One word, endless plans. Say the day or the time after bis: Bis Dienstag, bis acht.",
         },
@@ -117,6 +123,12 @@ export const halloUndGutenTag: Lesson = {
           type: "example",
           de: "Wie geht es dir? Mir geht es gut, danke! Und dir? Auch gut.",
           en: "The classic small talk exchange.",
+        },
+        {
+          type: "gloss",
+          de: "Wie geht es dir? Mir geht es gut, danke! Und dir? Auch gut.",
+          en: "How are you? I am fine, thanks! And you? Also good.",
+          words: [{"word": "Wie", "pos": "Adverb", "en": "how"}, {"word": "geht", "pos": "Verb", "en": "goes"}, {"word": "es", "pos": "Pronomen", "en": "it"}, {"word": "dir?", "pos": "Pronomen", "en": "to you"}, {"word": "Mir", "pos": "Pronomen", "en": "to me"}, {"word": "geht", "pos": "Verb", "en": "goes"}, {"word": "es", "pos": "Pronomen", "en": "it"}, {"word": "gut,", "pos": "Adverb", "en": "well"}, {"word": "danke!", "pos": "Interjektion", "en": "thanks"}, {"word": "Und", "pos": "Konjunktion", "en": "and"}, {"word": "dir?", "pos": "Pronomen", "en": "to you"}, {"word": "Auch", "pos": "Adverb", "en": "also"}, {"word": "gut.", "pos": "Adverb", "en": "good"}],
         },
         {
           type: "tip",

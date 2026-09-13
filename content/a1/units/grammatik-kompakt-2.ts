@@ -90,11 +90,13 @@ const akkusativTief: Lesson = {
             ["sie / Sie", "sie / Sie"],
           ],
         },
-        {
-          type: "example",
+                {
+          type: "gloss",
           de: "Sie kennt mich. Ich sehe ihn. Wir besuchen euch.",
           en: "She knows me. I see him. We visit you.",
+          words: [{"word": "Sie", "pos": "Pronomen", "en": "she"}, {"word": "kennt", "pos": "Verb", "en": "knows"}, {"word": "mich.", "pos": "Pronomen", "en": "me (acc.)"}, {"word": "Ich", "pos": "Pronomen", "en": "I"}, {"word": "sehe", "pos": "Verb", "en": "see"}, {"word": "ihn.", "pos": "Pronomen", "en": "him (acc.)"}, {"word": "Wir", "pos": "Pronomen", "en": "we"}, {"word": "besuchen", "pos": "Verb", "en": "visit"}, {"word": "euch.", "pos": "Pronomen", "en": "you (acc.)"}],
         },
+
       ],
     },
     {
@@ -259,11 +261,13 @@ const possessivTief: Lesson = {
             ["die Kinder (pl.)", "meine Kinder", "meine Kinder"],
           ],
         },
-        {
-          type: "example",
+                {
+          type: "gloss",
           de: "Ich sehe meinen Bruder. Ich besuche meine Oma. Wir lieben unser Kind.",
           en: "I see my brother. I visit my grandma. We love our child.",
+          words: [{"word": "Ich", "pos": "Pronomen", "en": "I"}, {"word": "sehe", "pos": "Verb", "en": "see"}, {"word": "meinen", "pos": "Pronomen", "en": "my (acc.)"}, {"word": "Bruder.", "pos": "Nomen", "en": "brother"}, {"word": "Ich", "pos": "Pronomen", "en": "I"}, {"word": "besuche", "pos": "Verb", "en": "visit"}, {"word": "meine", "pos": "Pronomen", "en": "my (acc.)"}, {"word": "Oma.", "pos": "Nomen", "en": "grandma"}, {"word": "Wir", "pos": "Pronomen", "en": "we"}, {"word": "lieben", "pos": "Verb", "en": "love"}, {"word": "unser", "pos": "Pronomen", "en": "our (acc.)"}, {"word": "Kind.", "pos": "Nomen", "en": "child"}],
         },
+
         {
           type: "tip",
           text: "Two steps: pick the base by the owner, then add the ending of the noun. Anna -> ihr, Bruder -> masculine -> ihr Bruder. Anna -> ihr, Schwester -> feminine -> ihre Schwester.",
@@ -277,11 +281,13 @@ const possessivTief: Lesson = {
           type: "paragraph",
           text: "The two classic mistakes: confusing sein and ihr, and forgetting the ending. sein belongs to er and es: Er hat einen Bruder. Sein Bruder heißt Paul. ihr belongs to sie (she) and sie (they): Anna hat eine Schwester. Ihre Schwester heißt Mia. The ending must follow the noun: mein Vater but meine Mutter.",
         },
-        {
-          type: "example",
+                {
+          type: "gloss",
           de: "Er hat einen Bruder. Sein Bruder heißt Paul. Anna hat eine Schwester. Ihre Schwester heißt Mia.",
           en: "He has a brother. His brother is called Paul. Anna has a sister. Her sister is called Mia.",
+          words: [{"word": "Er", "pos": "Pronomen", "en": "he"}, {"word": "hat", "pos": "Verb", "en": "has"}, {"word": "einen", "pos": "Artikel", "en": "a (acc.)"}, {"word": "Bruder.", "pos": "Nomen", "en": "brother"}, {"word": "Sein", "pos": "Pronomen", "en": "his"}, {"word": "Bruder", "pos": "Nomen", "en": "brother"}, {"word": "heißt", "pos": "Verb", "en": "is called"}, {"word": "Paul.", "pos": "Nomen", "en": "Paul"}, {"word": "Anna", "pos": "Nomen", "en": "Anna"}, {"word": "hat", "pos": "Verb", "en": "has"}, {"word": "eine", "pos": "Artikel", "en": "a (acc.)"}, {"word": "Schwester.", "pos": "Nomen", "en": "sister"}, {"word": "Ihre", "pos": "Pronomen", "en": "her"}, {"word": "Schwester", "pos": "Nomen", "en": "sister"}, {"word": "heißt", "pos": "Verb", "en": "is called"}, {"word": "Mia.", "pos": "Nomen", "en": "Mia"}],
         },
+
         {
           type: "tip",
           text: "Ask: who owns it? If he owns it, sein. If she owns it, ihr. Then ask: what is the noun? The noun sets the ending.",
@@ -421,11 +427,13 @@ const negationTief: Lesson = {
             ["die Kinder (pl.)", "keine Kinder", "keine Kinder"],
           ],
         },
-        {
-          type: "example",
+                {
+          type: "gloss",
           de: "Ich habe keinen Bruder, aber ich habe eine Schwester.",
           en: "I have no brother, but I have a sister.",
+          words: [{"word": "Ich", "pos": "Pronomen", "en": "I"}, {"word": "habe", "pos": "Verb", "en": "have"}, {"word": "keinen", "pos": "Artikel", "en": "no (acc.)"}, {"word": "Bruder,", "pos": "Nomen", "en": "brother"}, {"word": "aber", "pos": "Konjunktion", "en": "but"}, {"word": "ich", "pos": "Pronomen", "en": "I"}, {"word": "habe", "pos": "Verb", "en": "have"}, {"word": "eine", "pos": "Artikel", "en": "a (acc.)"}, {"word": "Schwester.", "pos": "Nomen", "en": "sister"}],
         },
+
       ],
     },
     {
@@ -435,11 +443,13 @@ const negationTief: Lesson = {
           type: "paragraph",
           text: "nicht sits at the very end when it negates the whole sentence, and directly before the word it negates. Ich koche nicht means I do not cook at all. Ich koche nicht gern means I do not like cooking (nicht before gern). The position tells you what is being denied.",
         },
-        {
-          type: "example",
+                {
+          type: "gloss",
           de: "Ich komme nicht. Ich komme nicht mit. Ich komme nicht gern.",
           en: "I am not coming. I am not coming along. I do not like coming.",
+          words: [{"word": "Ich", "pos": "Pronomen", "en": "I"}, {"word": "komme", "pos": "Verb", "en": "come"}, {"word": "nicht.", "pos": "Adverb", "en": "not"}, {"word": "Ich", "pos": "Pronomen", "en": "I"}, {"word": "komme", "pos": "Verb", "en": "come"}, {"word": "nicht", "pos": "Adverb", "en": "not"}, {"word": "mit.", "pos": "Verb", "en": "(along)"}, {"word": "Ich", "pos": "Pronomen", "en": "I"}, {"word": "komme", "pos": "Verb", "en": "come"}, {"word": "nicht", "pos": "Adverb", "en": "not"}, {"word": "gern.", "pos": "Adverb", "en": "gladly"}],
         },
+
       ],
     },
     {
@@ -474,11 +484,13 @@ const negationTief: Lesson = {
           type: "paragraph",
           text: "When someone asks a negative question and the answer is positive, German says doch, not ja: Hast du kein Auto? Doch! (Yes, I do!). ja would confirm the negative: Hast du kein Auto? Ja. (Right, I have none.) doch is one of the most natural words in spoken German.",
         },
-        {
-          type: "example",
+                {
+          type: "gloss",
           de: "Sprichst du kein Deutsch? Doch, ein bisschen!",
           en: "You do not speak German? Yes, a little!",
+          words: [{"word": "Sprichst", "pos": "Verb", "en": "speak"}, {"word": "du", "pos": "Pronomen", "en": "you"}, {"word": "kein", "pos": "Artikel", "en": "no"}, {"word": "Deutsch?", "pos": "Nomen", "en": "German"}, {"word": "Doch,", "pos": "Adverb", "en": "yes (contrary)"}, {"word": "ein", "pos": "Artikel", "en": "a"}, {"word": "bisschen!", "pos": "Adverb", "en": "little"}],
         },
+
       ],
     },
   ],
@@ -630,11 +642,13 @@ const fragenTief: Lesson = {
           type: "paragraph",
           text: "A yes/no question is made by swapping verb and subject: Du lernst Deutsch becomes Lernst du Deutsch?. When a sentence starts with something other than the subject (a time, a place), the subject jumps behind the verb: this is the inversion. Heute lerne ich Deutsch. The verb stays second in both.",
         },
-        {
-          type: "example",
+                {
+          type: "gloss",
           de: "Du lernst Deutsch. -> Lernst du Deutsch? Heute lerne ich Deutsch. Lernst du heute?",
           en: "You learn German. -> Are you learning German? Today I learn German. Are you learning today?",
+          words: [{"word": "Du", "pos": "Pronomen", "en": "you"}, {"word": "lernst", "pos": "Verb", "en": "learn"}, {"word": "Deutsch.", "pos": "Nomen", "en": "German"}, {"word": "Lernst", "pos": "Verb", "en": "learn"}, {"word": "du", "pos": "Pronomen", "en": "you"}, {"word": "Deutsch?", "pos": "Nomen", "en": "German"}, {"word": "Heute", "pos": "Adverb", "en": "today"}, {"word": "lerne", "pos": "Verb", "en": "learn"}, {"word": "ich", "pos": "Pronomen", "en": "I"}, {"word": "Deutsch.", "pos": "Nomen", "en": "German"}, {"word": "Lernst", "pos": "Verb", "en": "learn"}, {"word": "du", "pos": "Pronomen", "en": "you"}, {"word": "heute?", "pos": "Adverb", "en": "today"}],
         },
+
       ],
     },
     {

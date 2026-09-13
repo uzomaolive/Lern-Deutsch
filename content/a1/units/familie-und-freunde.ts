@@ -120,6 +120,12 @@ export const meineFamilie: Lesson = {
           en: "The family with haben in all forms.",
         },
         {
+          type: "gloss",
+          de: "Ich habe einen Bruder und eine Schwester. Er hat zwei Söhne. Sie hat eine Tochter. Wir haben keine Kinder.",
+          en: "I have a brother and a sister. He has two sons. She has one daughter. We have no children.",
+          words: [{"word": "Ich", "pos": "Pronomen", "en": "I"}, {"word": "habe", "pos": "Verb", "en": "have"}, {"word": "einen", "pos": "Artikel", "en": "a (acc.)"}, {"word": "Bruder", "pos": "Nomen", "en": "brother"}, {"word": "und", "pos": "Konjunktion", "en": "and"}, {"word": "eine", "pos": "Artikel", "en": "a (acc.)"}, {"word": "Schwester.", "pos": "Nomen", "en": "sister"}, {"word": "Er", "pos": "Pronomen", "en": "he"}, {"word": "hat", "pos": "Verb", "en": "has"}, {"word": "zwei", "pos": "Numerale", "en": "two"}, {"word": "Söhne.", "pos": "Nomen", "en": "sons"}, {"word": "Sie", "pos": "Pronomen", "en": "she"}, {"word": "hat", "pos": "Verb", "en": "has"}, {"word": "eine", "pos": "Artikel", "en": "a (acc.)"}, {"word": "Tochter.", "pos": "Nomen", "en": "daughter"}, {"word": "Wir", "pos": "Pronomen", "en": "we"}, {"word": "haben", "pos": "Verb", "en": "have"}, {"word": "keine", "pos": "Artikel", "en": "no"}, {"word": "Kinder.", "pos": "Nomen", "en": "children"}],
+        },
+        {
           type: "tip",
           text: "The question for siblings: Hast du Geschwister? The answer: Ja, einen Bruder und eine Schwester, or Nein, ich habe keine Geschwister.",
         },
@@ -475,6 +481,12 @@ export const possessivartikel: Lesson = {
           type: "example",
           de: "Mein Vater ist Lehrer. Meine Mutter ist Ärztin. Mein Kind ist klein. Meine Kinder spielen.",
           en: "All four nominative forms.",
+        },
+        {
+          type: "gloss",
+          de: "Mein Vater ist Lehrer. Meine Mutter ist Ärztin. Mein Kind ist klein. Meine Kinder spielen.",
+          en: "My father is a teacher. My mother is a doctor. My child is small. My children play.",
+          words: [{"word": "Mein", "pos": "Pronomen", "en": "my"}, {"word": "Vater", "pos": "Nomen", "en": "father"}, {"word": "ist", "pos": "Verb", "en": "is"}, {"word": "Lehrer.", "pos": "Nomen", "en": "teacher"}, {"word": "Meine", "pos": "Pronomen", "en": "my"}, {"word": "Mutter", "pos": "Nomen", "en": "mother"}, {"word": "ist", "pos": "Verb", "en": "is"}, {"word": "Ärztin.", "pos": "Nomen", "en": "doctor"}, {"word": "Mein", "pos": "Pronomen", "en": "my"}, {"word": "Kind", "pos": "Nomen", "en": "child"}, {"word": "ist", "pos": "Verb", "en": "is"}, {"word": "klein.", "pos": "Adjektiv", "en": "small"}, {"word": "Meine", "pos": "Pronomen", "en": "my"}, {"word": "Kinder", "pos": "Nomen", "en": "children"}, {"word": "spielen.", "pos": "Verb", "en": "play"}],
         },
         {
           type: "tip",

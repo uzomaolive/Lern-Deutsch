@@ -126,6 +126,12 @@ export const lebensmittel: Lesson = {
           en: "Meals in two sentences.",
         },
         {
+          type: "gloss",
+          de: "Zum Frühstück esse ich Brot mit Käse und trinke einen Kaffee.",
+          en: "For breakfast I eat bread with cheese and drink a coffee.",
+          words: [{"word": "Zum", "pos": "Präposition", "en": "for (zu+dem)"}, {"word": "Frühstück", "pos": "Nomen", "en": "breakfast"}, {"word": "esse", "pos": "Verb", "en": "eat"}, {"word": "ich", "pos": "Pronomen", "en": "I"}, {"word": "Brot", "pos": "Nomen", "en": "bread"}, {"word": "mit", "pos": "Präposition", "en": "with"}, {"word": "Käse", "pos": "Nomen", "en": "cheese"}, {"word": "und", "pos": "Konjunktion", "en": "and"}, {"word": "trinke", "pos": "Verb", "en": "drink"}, {"word": "einen", "pos": "Artikel", "en": "a (acc.)"}, {"word": "Kaffee.", "pos": "Nomen", "en": "coffee"}],
+        },
+        {
           type: "tip",
           text: "The meal pattern: zum Frühstück/Mittagessen/Abendessen + there is (es gibt). And remember: Ich habe Hunger und Durst, not 'ich bin hungrig und durstig' in everyday speech.",
         },
@@ -458,6 +464,12 @@ export const imRestaurant: Lesson = {
           type: "example",
           de: "Ich möchte einen Kaffee, eine Suppe und ein Bier, bitte.",
           en: "All three genders in one order.",
+        },
+        {
+          type: "gloss",
+          de: "Ich möchte einen Kaffee, eine Suppe und ein Bier, bitte.",
+          en: "I would like a coffee, a soup, and a beer, please.",
+          words: [{"word": "Ich", "pos": "Pronomen", "en": "I"}, {"word": "möchte", "pos": "Verb", "en": "would like"}, {"word": "einen", "pos": "Artikel", "en": "a (acc.)"}, {"word": "Kaffee,", "pos": "Nomen", "en": "coffee"}, {"word": "eine", "pos": "Artikel", "en": "a (acc.)"}, {"word": "Suppe", "pos": "Nomen", "en": "soup"}, {"word": "und", "pos": "Konjunktion", "en": "and"}, {"word": "ein", "pos": "Artikel", "en": "a (acc.)"}, {"word": "Bier,", "pos": "Nomen", "en": "beer"}, {"word": "bitte.", "pos": "Adverb", "en": "please"}],
         },
         {
           type: "tip",

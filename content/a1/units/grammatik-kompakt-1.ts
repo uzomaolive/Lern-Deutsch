@@ -811,11 +811,13 @@ const nomenTief: Lesson = {
             ["+ -s", "das Auto", "die Autos"],
           ],
         },
-        {
-          type: "example",
+                {
+          type: "gloss",
           de: "Ein Tisch, zwei Tische. Eine Frau, zwei Frauen. Ein Kind, zwei Kinder. Ein Auto, zwei Autos.",
           en: "One table, two tables. One woman, two women. One child, two children. One car, two cars.",
+          words: [{"word": "Ein", "pos": "Artikel", "en": "a"}, {"word": "Tisch,", "pos": "Nomen", "en": "table"}, {"word": "zwei", "pos": "Numerale", "en": "two"}, {"word": "Tische.", "pos": "Nomen", "en": "tables"}, {"word": "Eine", "pos": "Artikel", "en": "a"}, {"word": "Frau,", "pos": "Nomen", "en": "woman"}, {"word": "zwei", "pos": "Numerale", "en": "two"}, {"word": "Frauen.", "pos": "Nomen", "en": "women"}, {"word": "Ein", "pos": "Artikel", "en": "a"}, {"word": "Kind,", "pos": "Nomen", "en": "child"}, {"word": "zwei", "pos": "Numerale", "en": "two"}, {"word": "Kinder.", "pos": "Nomen", "en": "children"}, {"word": "Ein", "pos": "Artikel", "en": "a"}, {"word": "Auto,", "pos": "Nomen", "en": "car"}, {"word": "zwei", "pos": "Numerale", "en": "two"}, {"word": "Autos.", "pos": "Nomen", "en": "cars"}],
         },
+
       ],
     },
     {
@@ -833,6 +835,12 @@ const nomenTief: Lesson = {
         {
           type: "tip",
           text: "Read compounds from back to front: der Kühlschrank is a Schrank (cupboard) that is kühl (cool). The last word is always the main word.",
+        },
+        {
+          type: "gloss",
+          de: "Ich trinke einen Kaffee mit Milch.",
+          en: "I drink a coffee with milk. Kaffee and Milch are nouns.",
+          words: [{"word": "Ich", "pos": "Pronomen", "en": "I"}, {"word": "trinke", "pos": "Verb", "en": "drink"}, {"word": "einen", "pos": "Artikel", "en": "a"}, {"word": "Kaffee", "pos": "Nomen", "en": "coffee"}, {"word": "mit", "pos": "Präposition", "en": "with"}, {"word": "Milch.", "pos": "Nomen", "en": "milk"}],
         },
       ],
     },
@@ -980,11 +988,13 @@ const verbenTief: Lesson = {
             ["sie / Sie", "sind", "haben"],
           ],
         },
-        {
-          type: "example",
+                {
+          type: "gloss",
           de: "Ich bin Anna. Du bist müde. Er ist mein Bruder. Wir sind aus Berlin.",
           en: "I am Anna. You are tired. He is my brother. We are from Berlin.",
+          words: [{"word": "Ich", "pos": "Pronomen", "en": "I"}, {"word": "bin", "pos": "Verb", "en": "am"}, {"word": "Anna.", "pos": "Nomen", "en": "Anna"}, {"word": "Du", "pos": "Pronomen", "en": "you"}, {"word": "bist", "pos": "Verb", "en": "are"}, {"word": "müde.", "pos": "Adjektiv", "en": "tired"}, {"word": "Er", "pos": "Pronomen", "en": "he"}, {"word": "ist", "pos": "Verb", "en": "is"}, {"word": "mein", "pos": "Pronomen", "en": "my"}, {"word": "Bruder.", "pos": "Nomen", "en": "brother"}, {"word": "Wir", "pos": "Pronomen", "en": "we"}, {"word": "sind", "pos": "Verb", "en": "are"}, {"word": "aus", "pos": "Präposition", "en": "from"}, {"word": "Berlin.", "pos": "Nomen", "en": "Berlin"}],
         },
+
         {
           type: "tip",
           text: "Chant them aloud: bin, bist, ist, sind, seid, sind. Then: habe, hast, hat, haben, habt, haben. Five minutes of chanting beats an hour of reading.",
@@ -1024,11 +1034,13 @@ const verbenTief: Lesson = {
           type: "paragraph",
           text: "Modal verbs change the mood of the sentence: can, would like to, want to, must. They are always accompanied by a second verb in the infinitive, which waits at the very end of the sentence. The modal itself takes the second position, exactly like every other verb.",
         },
-        {
-          type: "example",
+                {
+          type: "gloss",
           de: "Ich kann gut schwimmen. Ich möchte einen Kaffee trinken. Du musst um acht Uhr kommen.",
           en: "I can swim well. I would like to drink a coffee. You must come at eight.",
+          words: [{"word": "Ich", "pos": "Pronomen", "en": "I"}, {"word": "kann", "pos": "Verb", "en": "can"}, {"word": "gut", "pos": "Adverb", "en": "well"}, {"word": "schwimmen.", "pos": "Verb", "en": "swim"}, {"word": "Ich", "pos": "Pronomen", "en": "I"}, {"word": "möchte", "pos": "Verb", "en": "would like"}, {"word": "einen", "pos": "Artikel", "en": "a"}, {"word": "Kaffee", "pos": "Nomen", "en": "coffee"}, {"word": "trinken.", "pos": "Verb", "en": "drink"}, {"word": "Du", "pos": "Pronomen", "en": "you"}, {"word": "musst", "pos": "Verb", "en": "must"}, {"word": "um", "pos": "Präposition", "en": "at"}, {"word": "acht", "pos": "Numerale", "en": "eight"}, {"word": "Uhr", "pos": "Nomen", "en": "o'clock"}, {"word": "kommen.", "pos": "Verb", "en": "come"}],
         },
+
         {
           type: "table",
           caption: "Present tense of the modals",
@@ -1051,11 +1063,13 @@ const verbenTief: Lesson = {
           type: "paragraph",
           text: "Separable verbs are verbs with a movable prefix: aufstehen (to get up) is auf + stehen. In a main clause, the prefix jumps to the end: Ich stehe um sieben Uhr auf. With modal verbs the verb stays together: Ich muss um sieben Uhr aufstehen. In the Perfekt, the ge- of the participle slips between prefix and stem: aufgestanden.",
         },
-        {
-          type: "example",
+                {
+          type: "gloss",
           de: "Ich stehe um sieben auf. Ich habe gestern lange geschlafen. Wir sind nach Berlin gefahren.",
           en: "I get up at seven. I slept long yesterday. We drove to Berlin.",
+          words: [{"word": "Ich", "pos": "Pronomen", "en": "I"}, {"word": "stehe", "pos": "Verb", "en": "get up"}, {"word": "um", "pos": "Präposition", "en": "at"}, {"word": "sieben", "pos": "Numerale", "en": "seven"}, {"word": "auf.", "pos": "Verb", "en": "(up)"}, {"word": "Ich", "pos": "Pronomen", "en": "I"}, {"word": "habe", "pos": "Verb", "en": "have"}, {"word": "gestern", "pos": "Adverb", "en": "yesterday"}, {"word": "lange", "pos": "Adverb", "en": "long"}, {"word": "geschlafen.", "pos": "Verb", "en": "slept"}, {"word": "Wir", "pos": "Pronomen", "en": "we"}, {"word": "sind", "pos": "Verb", "en": "are"}, {"word": "nach", "pos": "Präposition", "en": "to"}, {"word": "Berlin", "pos": "Nomen", "en": "Berlin"}, {"word": "gefahren.", "pos": "Verb", "en": "driven"}],
         },
+
         {
           type: "tip",
           text: "The Perfekt is the spoken past: haben or sein in the present, participle at the end. Movement and change use sein (gefahren), everything else uses haben (geschlafen).",
@@ -1189,11 +1203,13 @@ const pronomenTief: Lesson = {
           type: "paragraph",
           text: "German pronouns follow the gender of the noun, not the real person. Der Tisch becomes er, die Lampe becomes sie, das Buch becomes es. This is why learning the article is so important: without the article, you cannot choose the pronoun.",
         },
-        {
-          type: "example",
+                {
+          type: "gloss",
           de: "Das ist mein Bruder. Er heißt Paul. Das ist meine Oma. Sie ist 80. Das ist das Buch. Es ist neu.",
           en: "This is my brother. He is called Paul. This is my grandma. She is 80. This is the book. It is new.",
+          words: [{"word": "Das", "pos": "Pronomen", "en": "this"}, {"word": "ist", "pos": "Verb", "en": "is"}, {"word": "mein", "pos": "Pronomen", "en": "my"}, {"word": "Bruder.", "pos": "Nomen", "en": "brother"}, {"word": "Er", "pos": "Pronomen", "en": "he"}, {"word": "heißt", "pos": "Verb", "en": "is called"}, {"word": "Paul.", "pos": "Nomen", "en": "Paul"}, {"word": "Das", "pos": "Pronomen", "en": "this"}, {"word": "ist", "pos": "Verb", "en": "is"}, {"word": "meine", "pos": "Pronomen", "en": "my"}, {"word": "Oma.", "pos": "Nomen", "en": "grandma"}, {"word": "Sie", "pos": "Pronomen", "en": "she"}, {"word": "ist", "pos": "Verb", "en": "is"}, {"word": "80.", "pos": "Numerale", "en": "80"}, {"word": "Das", "pos": "Pronomen", "en": "this"}, {"word": "ist", "pos": "Verb", "en": "is"}, {"word": "das", "pos": "Artikel", "en": "the"}, {"word": "Buch.", "pos": "Nomen", "en": "book"}, {"word": "Es", "pos": "Pronomen", "en": "it"}, {"word": "ist", "pos": "Verb", "en": "is"}, {"word": "neu.", "pos": "Adjektiv", "en": "new"}],
         },
+
         {
           type: "tip",
           text: "When you see er or sie, ask: which noun does it replace? The gender of the noun decides everything.",
@@ -1207,11 +1223,13 @@ const pronomenTief: Lesson = {
           type: "paragraph",
           text: "Two pronouns have no English counterpart. man means 'people in general' or 'one': Man spricht Deutsch (German is spoken). It takes the same verb form as er. es is the weather and formality pronoun: Es regnet (it rains), Es ist kalt (it is cold), Es gibt einen Park (there is a park). It is also the placeholder subject: Es ist wichtig, Deutsch zu lernen (it is important to learn German).",
         },
-        {
-          type: "example",
+                {
+          type: "gloss",
           de: "Man darf hier nicht rauchen. Es regnet. Es gibt viele Geschäfte.",
           en: "You (people) may not smoke here. It is raining. There are many shops.",
+          words: [{"word": "Man", "pos": "Pronomen", "en": "one, people"}, {"word": "darf", "pos": "Verb", "en": "may"}, {"word": "hier", "pos": "Adverb", "en": "here"}, {"word": "nicht", "pos": "Adverb", "en": "not"}, {"word": "rauchen.", "pos": "Verb", "en": "smoke"}, {"word": "Es", "pos": "Pronomen", "en": "it"}, {"word": "regnet.", "pos": "Verb", "en": "rains"}, {"word": "Es", "pos": "Pronomen", "en": "it"}, {"word": "gibt", "pos": "Verb", "en": "gives, there are"}, {"word": "viele", "pos": "Adjektiv", "en": "many"}, {"word": "Geschäfte.", "pos": "Nomen", "en": "shops"}],
         },
+
         {
           type: "tip",
           text: "Man is not a man! It is 'people in general'. Es gibt always means there is or there are.",
@@ -1352,11 +1370,13 @@ const artikelTief: Lesson = {
             ["Dative", "einem Mann", "einem Kind", "einer Frau", "keinen Kindern"],
           ],
         },
-        {
-          type: "example",
+                {
+          type: "gloss",
           de: "Ich habe einen Termin. Ich habe kein Auto.",
           en: "I have an appointment. I have no car.",
+          words: [{"word": "Ich", "pos": "Pronomen", "en": "I"}, {"word": "habe", "pos": "Verb", "en": "have"}, {"word": "einen", "pos": "Artikel", "en": "a (acc.)"}, {"word": "Termin.", "pos": "Nomen", "en": "appointment"}, {"word": "Ich", "pos": "Pronomen", "en": "I"}, {"word": "habe", "pos": "Verb", "en": "have"}, {"word": "kein", "pos": "Artikel", "en": "no"}, {"word": "Auto.", "pos": "Nomen", "en": "car"}],
         },
+
       ],
     },
     {
@@ -1512,11 +1532,13 @@ const faelleTief: Lesson = {
           type: "paragraph",
           text: "The nominative is the base form, the one in the dictionary: der Mann, die Frau, das Kind. It is the subject, the person or thing the sentence is about, the one doing the verb. The nominative answers wer?.",
         },
-        {
-          type: "example",
+                {
+          type: "gloss",
           de: "Der Mann schläft. Die Frau arbeitet. Das Kind spielt.",
           en: "The man sleeps. The woman works. The child plays.",
+          words: [{"word": "Der", "pos": "Artikel", "en": "the"}, {"word": "Mann", "pos": "Nomen", "en": "man"}, {"word": "schläft.", "pos": "Verb", "en": "sleeps"}, {"word": "Die", "pos": "Artikel", "en": "the"}, {"word": "Frau", "pos": "Nomen", "en": "woman"}, {"word": "arbeitet.", "pos": "Verb", "en": "works"}, {"word": "Das", "pos": "Artikel", "en": "the"}, {"word": "Kind", "pos": "Nomen", "en": "child"}, {"word": "spielt.", "pos": "Verb", "en": "plays"}],
         },
+
       ],
     },
     {
@@ -1526,11 +1548,13 @@ const faelleTief: Lesson = {
           type: "paragraph",
           text: "The accusative is the direct object: the person or thing the action happens to. Verbs like haben, sehen, kaufen, essen, and brauchen always take the accusative. Only the masculine changes visibly: der becomes den, ein becomes einen.",
         },
-        {
-          type: "example",
+                {
+          type: "gloss",
           de: "Ich sehe den Mann. Ich kaufe einen Apfel. Sie hat einen Bruder.",
           en: "I see the man. I buy an apple. She has a brother.",
+          words: [{"word": "Ich", "pos": "Pronomen", "en": "I"}, {"word": "sehe", "pos": "Verb", "en": "see"}, {"word": "den", "pos": "Artikel", "en": "the (acc.)"}, {"word": "Mann.", "pos": "Nomen", "en": "man"}, {"word": "Ich", "pos": "Pronomen", "en": "I"}, {"word": "kaufe", "pos": "Verb", "en": "buy"}, {"word": "einen", "pos": "Artikel", "en": "a (acc.)"}, {"word": "Apfel.", "pos": "Nomen", "en": "apple"}, {"word": "Sie", "pos": "Pronomen", "en": "she"}, {"word": "hat", "pos": "Verb", "en": "has"}, {"word": "einen", "pos": "Artikel", "en": "a (acc.)"}, {"word": "Bruder.", "pos": "Nomen", "en": "brother"}],
         },
+
         {
           type: "tip",
           text: "The accusative is the easiest case: only masculine nouns change, and they change exactly the same way every time. Den and einen are the whole rule.",
@@ -1544,11 +1568,13 @@ const faelleTief: Lesson = {
           type: "paragraph",
           text: "The dative is the receiver: the person who gets something, benefits, or is helped. It answers wem?. The articles change more visibly: dem, der, dem, and the plural adds -n (den Kindern). It also appears after the fixed prepositions mit, nach, aus, zu, von, bei and with verbs like helfen, schmecken, gefallen, gehören.",
         },
-        {
-          type: "example",
+                {
+          type: "gloss",
           de: "Ich gebe dem Kind einen Apfel. Das schmeckt mir. Ich fahre mit dem Zug.",
           en: "I give the child an apple. That tastes good to me. I travel by train.",
+          words: [{"word": "Ich", "pos": "Pronomen", "en": "I"}, {"word": "gebe", "pos": "Verb", "en": "give"}, {"word": "dem", "pos": "Artikel", "en": "the (dat.)"}, {"word": "Kind", "pos": "Nomen", "en": "child"}, {"word": "einen", "pos": "Artikel", "en": "a (acc.)"}, {"word": "Apfel.", "pos": "Nomen", "en": "apple"}, {"word": "Das", "pos": "Pronomen", "en": "that"}, {"word": "schmeckt", "pos": "Verb", "en": "tastes"}, {"word": "mir.", "pos": "Pronomen", "en": "to me"}, {"word": "Ich", "pos": "Pronomen", "en": "I"}, {"word": "fahre", "pos": "Verb", "en": "travel"}, {"word": "mit", "pos": "Präposition", "en": "by"}, {"word": "dem", "pos": "Artikel", "en": "the (dat.)"}, {"word": "Zug.", "pos": "Nomen", "en": "train"}],
         },
+
         {
           type: "tip",
           text: "The dative is the case of giving: wem? Ask it after every giving verb and every mit/zu/bei phrase and the right case follows.",
@@ -1657,11 +1683,13 @@ export const praepositionenTief: Lesson = {
           type: "paragraph",
           text: "The beginner's secret: prepositions are like plugs that need the right socket. Each German preposition decides which case follows it: some force the dative (mit dem Auto), some force the accusative (für dich), some switch between the two depending on the meaning (in der Stadt, in die Stadt). You learn the preposition, the case, and the sentence together, and the whole system stops being scary.",
         },
-        {
-          type: "example",
+                {
+          type: "gloss",
           de: "Ich fahre mit dem Auto zu meiner Oma. Das Geschenk ist für dich. Wir gehen in die Stadt.",
           en: "Prepositions in their natural habitat.",
+          words: [{"word": "Ich", "pos": "Pronomen", "en": "I"}, {"word": "fahre", "pos": "Verb", "en": "drive"}, {"word": "mit", "pos": "Präposition", "en": "with"}, {"word": "dem", "pos": "Artikel", "en": "the (dat.)"}, {"word": "Auto", "pos": "Nomen", "en": "car"}, {"word": "zu", "pos": "Präposition", "en": "to"}, {"word": "meiner", "pos": "Pronomen", "en": "my (dat.)"}, {"word": "Oma.", "pos": "Nomen", "en": "grandma"}, {"word": "Das", "pos": "Artikel", "en": "the"}, {"word": "Geschenk", "pos": "Nomen", "en": "gift"}, {"word": "ist", "pos": "Verb", "en": "is"}, {"word": "für", "pos": "Präposition", "en": "for"}, {"word": "dich.", "pos": "Pronomen", "en": "you (acc.)"}, {"word": "Wir", "pos": "Pronomen", "en": "we"}, {"word": "gehen", "pos": "Verb", "en": "go"}, {"word": "in", "pos": "Präposition", "en": "into"}, {"word": "die", "pos": "Artikel", "en": "the (acc.)"}, {"word": "Stadt.", "pos": "Nomen", "en": "city"}],
         },
+
         {
           type: "tip",
           text: "Spot the preposition: it is usually a short word before a noun or pronoun. In German, never learn a preposition alone. Learn it with its case: mit + Dativ, für + Akkusativ, in + Dativ/Akkusativ.",
@@ -1706,11 +1734,13 @@ export const praepositionenTief: Lesson = {
             ["plural", "den", "mit den Autos"],
           ],
         },
-        {
-          type: "example",
+                {
+          type: "gloss",
           de: "Ich fahre mit dem Auto zu meiner Oma. Seit dem Montag lerne ich Deutsch. Das Buch ist von meinem Vater.",
           en: "Three dative prepositions in action.",
+          words: [{"word": "Ich", "pos": "Pronomen", "en": "I"}, {"word": "fahre", "pos": "Verb", "en": "drive"}, {"word": "mit", "pos": "Präposition", "en": "with"}, {"word": "dem", "pos": "Artikel", "en": "the (dat.)"}, {"word": "Auto", "pos": "Nomen", "en": "car"}, {"word": "zu", "pos": "Präposition", "en": "to"}, {"word": "meiner", "pos": "Pronomen", "en": "my (dat.)"}, {"word": "Oma.", "pos": "Nomen", "en": "grandma"}, {"word": "Seit", "pos": "Präposition", "en": "since"}, {"word": "dem", "pos": "Artikel", "en": "the (dat.)"}, {"word": "Montag", "pos": "Nomen", "en": "Monday"}, {"word": "lerne", "pos": "Verb", "en": "learn"}, {"word": "ich", "pos": "Pronomen", "en": "I"}, {"word": "Deutsch.", "pos": "Nomen", "en": "German"}, {"word": "Das", "pos": "Artikel", "en": "the"}, {"word": "Buch", "pos": "Nomen", "en": "book"}, {"word": "ist", "pos": "Verb", "en": "is"}, {"word": "von", "pos": "Präposition", "en": "from"}, {"word": "meinem", "pos": "Pronomen", "en": "my (dat.)"}, {"word": "Vater.", "pos": "Nomen", "en": "father"}],
         },
+
         {
           type: "tip",
           text: "The memory trick: aus, bei, mit, nach, seit, von, zu, außer, gegenüber. The two most used are mit and von. Learn the sentence: Ich fahre mit dem Auto (mit + dative).",
@@ -1751,11 +1781,13 @@ export const praepositionenTief: Lesson = {
             ["plural", "die", "für die Kinder"],
           ],
         },
-        {
-          type: "example",
+                {
+          type: "gloss",
           de: "Das Geschenk ist für dich. Wir gehen durch den Park. Er kommt ohne seine Schwester. Das Café ist um die Ecke.",
           en: "The accusative prepositions in action.",
+          words: [{"word": "Das", "pos": "Artikel", "en": "the"}, {"word": "Geschenk", "pos": "Nomen", "en": "gift"}, {"word": "ist", "pos": "Verb", "en": "is"}, {"word": "für", "pos": "Präposition", "en": "for"}, {"word": "dich.", "pos": "Pronomen", "en": "you (acc.)"}, {"word": "Wir", "pos": "Pronomen", "en": "we"}, {"word": "gehen", "pos": "Verb", "en": "go"}, {"word": "durch", "pos": "Präposition", "en": "through"}, {"word": "den", "pos": "Artikel", "en": "the (acc.)"}, {"word": "Park.", "pos": "Nomen", "en": "park"}, {"word": "Er", "pos": "Pronomen", "en": "he"}, {"word": "kommt", "pos": "Verb", "en": "comes"}, {"word": "ohne", "pos": "Präposition", "en": "without"}, {"word": "seine", "pos": "Pronomen", "en": "his (acc.)"}, {"word": "Schwester.", "pos": "Nomen", "en": "sister"}, {"word": "Das", "pos": "Artikel", "en": "the"}, {"word": "Café", "pos": "Nomen", "en": "café"}, {"word": "ist", "pos": "Verb", "en": "is"}, {"word": "um", "pos": "Präposition", "en": "around"}, {"word": "die", "pos": "Artikel", "en": "the (acc.)"}, {"word": "Ecke.", "pos": "Nomen", "en": "corner"}],
         },
+
         {
           type: "tip",
           text: "The memory trick: durch, für, gegen, ohne, um. The accusative is easy: only the masculine changes (den). für dich is the sentence you will say a hundred times.",
@@ -1789,11 +1821,13 @@ export const praepositionenTief: Lesson = {
           type: "paragraph",
           text: "The question decides the case. Wo ist die Lampe? (Where is the lamp?) asks for a position: Sie ist auf dem Tisch (dative). Wohin legst du die Lampe? (Where are you putting the lamp?) asks for a direction: Ich lege sie auf den Tisch (accusative). Position stays, direction moves.",
         },
-        {
-          type: "example",
+                {
+          type: "gloss",
           de: "Wo ist der Schlüssel? Er ist auf dem Tisch. Wohin legst du den Schlüssel? Ich lege ihn auf den Tisch.",
           en: "The pair test: position then direction.",
+          words: [{"word": "Wo", "pos": "Adverb", "en": "where"}, {"word": "ist", "pos": "Verb", "en": "is"}, {"word": "der", "pos": "Artikel", "en": "the"}, {"word": "Schlüssel?", "pos": "Nomen", "en": "key"}, {"word": "Er", "pos": "Pronomen", "en": "it"}, {"word": "ist", "pos": "Verb", "en": "is"}, {"word": "auf", "pos": "Präposition", "en": "on"}, {"word": "dem", "pos": "Artikel", "en": "the (dat.)"}, {"word": "Tisch.", "pos": "Nomen", "en": "table"}, {"word": "Wohin", "pos": "Adverb", "en": "where to"}, {"word": "legst", "pos": "Verb", "en": "lay"}, {"word": "du", "pos": "Pronomen", "en": "you"}, {"word": "den", "pos": "Artikel", "en": "the (acc.)"}, {"word": "Schlüssel?", "pos": "Nomen", "en": "key"}, {"word": "Ich", "pos": "Pronomen", "en": "I"}, {"word": "lege", "pos": "Verb", "en": "lay"}, {"word": "ihn", "pos": "Pronomen", "en": "it (acc.)"}, {"word": "auf", "pos": "Präposition", "en": "onto"}, {"word": "den", "pos": "Artikel", "en": "the (acc.)"}, {"word": "Tisch.", "pos": "Nomen", "en": "table"}],
         },
+
         {
           type: "tip",
           text: "The pair test: Wo? means the thing is already there, take the dative. Wohin? means the thing is going there, take the accusative. Ask the question first, then the case answers itself.",
@@ -1825,11 +1859,13 @@ export const praepositionenTief: Lesson = {
           type: "paragraph",
           text: "The three most tested: um for the clock, am for days and dates, im for months and seasons. The pair: vor (ago, in the past) against in (in, in the future). Vor einer Stunde war ich hier. In einer Stunde bin ich wieder da.",
         },
-        {
-          type: "example",
+                {
+          type: "gloss",
           de: "Ich stehe um 7 Uhr auf, arbeite am Montag und fahre im Sommer in Urlaub. In zwei Wochen bin ich zurück.",
           en: "The time prepositions in a day.",
+          words: [{"word": "Ich", "pos": "Pronomen", "en": "I"}, {"word": "stehe", "pos": "Verb", "en": "get up"}, {"word": "um", "pos": "Präposition", "en": "at"}, {"word": "7", "pos": "Numerale", "en": "7"}, {"word": "Uhr", "pos": "Nomen", "en": "o'clock"}, {"word": "auf,", "pos": "Verb", "en": "(up)"}, {"word": "arbeite", "pos": "Verb", "en": "work"}, {"word": "am", "pos": "Präposition", "en": "on (an+dem)"}, {"word": "Montag", "pos": "Nomen", "en": "Monday"}, {"word": "und", "pos": "Konjunktion", "en": "and"}, {"word": "fahre", "pos": "Verb", "en": "travel"}, {"word": "im", "pos": "Präposition", "en": "in (in+dem)"}, {"word": "Sommer", "pos": "Nomen", "en": "summer"}, {"word": "in", "pos": "Präposition", "en": "on"}, {"word": "Urlaub.", "pos": "Nomen", "en": "holiday"}, {"word": "In", "pos": "Präposition", "en": "in"}, {"word": "zwei", "pos": "Numerale", "en": "two"}, {"word": "Wochen", "pos": "Nomen", "en": "weeks"}, {"word": "bin", "pos": "Verb", "en": "am"}, {"word": "ich", "pos": "Pronomen", "en": "I"}, {"word": "zurück.", "pos": "Adverb", "en": "back"}],
         },
+
         {
           type: "tip",
           text: "The time test: Wann? um + clock, am + day, im + month/season. One unit, one preposition. vor is the past, in is the future, seit is the starting point.",
@@ -1858,11 +1894,13 @@ export const praepositionenTief: Lesson = {
             ["bei + dem", "beim", "beim Arzt"],
           ],
         },
-        {
-          type: "example",
+                {
+          type: "gloss",
           de: "Ich bin am Montag im Büro, dann gehe ich ins Kino und danach zum Bahnhof. Der Arzt sagt: Bleiben Sie beim Essen nicht zu schnell.",
           en: "The contractions in one story.",
+          words: [{"word": "Ich", "pos": "Pronomen", "en": "I"}, {"word": "bin", "pos": "Verb", "en": "am"}, {"word": "am", "pos": "Präposition", "en": "on (an+dem)"}, {"word": "Montag", "pos": "Nomen", "en": "Monday"}, {"word": "im", "pos": "Präposition", "en": "in (in+dem)"}, {"word": "Büro,", "pos": "Nomen", "en": "office"}, {"word": "dann", "pos": "Adverb", "en": "then"}, {"word": "gehe", "pos": "Verb", "en": "go"}, {"word": "ich", "pos": "Pronomen", "en": "I"}, {"word": "ins", "pos": "Präposition", "en": "to (in+das)"}, {"word": "Kino", "pos": "Nomen", "en": "cinema"}, {"word": "und", "pos": "Konjunktion", "en": "and"}, {"word": "danach", "pos": "Adverb", "en": "after that"}, {"word": "zum", "pos": "Präposition", "en": "to (zu+dem)"}, {"word": "Bahnhof.", "pos": "Nomen", "en": "station"}, {"word": "Der", "pos": "Artikel", "en": "the"}, {"word": "Arzt", "pos": "Nomen", "en": "doctor"}, {"word": "sagt:", "pos": "Verb", "en": "says"}, {"word": "Bleiben", "pos": "Verb", "en": "stay"}, {"word": "Sie", "pos": "Pronomen", "en": "you (formal)"}, {"word": "beim", "pos": "Präposition", "en": "while (bei+dem)"}, {"word": "Essen", "pos": "Nomen", "en": "eating"}, {"word": "nicht", "pos": "Adverb", "en": "not"}, {"word": "zu", "pos": "Adverb", "en": "too"}, {"word": "schnell.", "pos": "Adjektiv", "en": "fast"}],
         },
+
         {
           type: "tip",
           text: "The contraction rule: the two words merge when they sound natural together. im for position, ins for direction, zum for masculine targets, zur for feminine targets, beim for people.",
