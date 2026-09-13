@@ -151,8 +151,8 @@ export function Sidebar({ levels, currentKey }: SidebarProps) {
         ) : null}
       </div>
 
-      <aside className="hidden lg:block">
-        <div className="sticky top-4 max-h-[calc(100vh-2rem)] overflow-y-auto pr-2">
+      <aside className="hidden h-full lg:block">
+        <div className="h-full overflow-y-auto pr-2">
           {tree}
         </div>
       </aside>
