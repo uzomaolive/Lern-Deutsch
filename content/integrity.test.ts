@@ -1,5 +1,6 @@
 import { describe, expect, it } from "vitest";
 import { levels, repository } from "./index";
+import { games } from "./games";
 import type { Exercise, Lesson, Unit } from "./schema";
 
 const SLUG = /^[a-z0-9]+(-[a-z0-9]+)*$/;
@@ -188,6 +189,40 @@ describe("curriculum integrity", () => {
           exercises.some((exercise) => exercise.type === type),
           `${level.id} missing exercise type ${type}`,
         ).toBe(true);
+      }
+    }
+  });
+});
+describe("games integrity", () => {
+
+  it("has unique game ids and titles", () => {
+    const ids = games.map((game) => game.id);
+    expect(new Set(ids).size).toBe(ids.length);
+    expect(games.length).toBeGreaterThanOrEqual(15);
+  });
+
+  it("gives every game at least one level with rounds", () => {
+    for (const game of games) {
+      expect(game.levels.length, game.id).toBeGreaterThan(0);
+      for (const level of game.levels) {
+        expect(level.rounds.length, `${game.id}:${level.id}`).toBeGreaterThan(0);
+      }
+    }
+  });
+
+  it("keeps round ids unique within a level and exercises well-formed", () => {
+    for (const game of games) {
+      for (const level of game.levels) {
+        for (const round of level.rounds) {
+          if (round.kind !== "exercise") continue;
+          const ex = round.exercise;
+          expect(ex.id.length, game.id).toBeGreaterThan(0);
+          if (ex.type === "multiple-choice" || ex.type === "listening") {
+            expect(new Set(ex.options).size).toBe(ex.options.length);
+            expect(ex.correctIndex).toBeGreaterThanOrEqual(0);
+            expect(ex.correctIndex).toBeLessThan(ex.options.length);
+          }
+        }
       }
     }
   });

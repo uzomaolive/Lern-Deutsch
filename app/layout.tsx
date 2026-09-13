@@ -42,6 +42,12 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
             <nav aria-label="Main" className="flex items-center gap-4">
               <VoicePicker />
               <Link
+                href="/games"
+                className="text-sm text-stone-600 hover:text-stone-900"
+              >
+                Games
+              </Link>
+              <Link
                 href="/"
                 className="text-sm text-stone-600 hover:text-stone-900"
               >
