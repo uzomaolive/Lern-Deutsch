@@ -4,7 +4,9 @@ import { notFound } from "next/navigation";
 import { ContentBlocks } from "@/components/lessons/blocks";
 import { VocabTable } from "@/components/lessons/VocabTable";
 import { LessonExercises } from "@/components/lessons/LessonExercises";
+import { Sidebar } from "@/components/syllabus/Sidebar";
 import { repository } from "@/content";
+import type { LevelId } from "@/content/schema";
 
 interface LessonPageProps {
   params: Promise<{ level: string; unit: string; lesson: string }>;
@@ -72,8 +74,31 @@ export default async function LessonPage({ params }: LessonPageProps) {
   ].filter((target): target is { id: string; heading: string } => target !== null);
   const allTargets = [...sectionTargets, ...trailingTargets];
 
+  const currentLessonKey = repository.lessonKey(level.id, unit.id, lesson.id);
+
+  const sidebarLevels = (["a1", "a2"] as LevelId[])
+    .map((candidateLevelId) => repository.getLevel(candidateLevelId))
+    .filter((candidateLevel): candidateLevel is NonNullable<typeof candidateLevel> => candidateLevel !== undefined)
+    .map((candidateLevel) => ({
+      id: candidateLevel.id,
+      title: candidateLevel.title,
+      units: candidateLevel.units.map((candidateUnit) => ({
+        id: candidateUnit.id,
+        title: candidateUnit.title,
+        lessons: candidateUnit.lessons.map((candidateLesson) => ({
+          id: candidateLesson.id,
+          title: candidateLesson.title,
+          status: candidateLesson.status,
+        })),
+      })),
+    }));
+
   return (
-    <article className="mx-auto max-w-3xl px-4 py-10">
+    <div className="mx-auto flex max-w-6xl gap-8 px-4 py-10">
+      <div className="lg:w-56 lg:shrink-0">
+        <Sidebar levels={sidebarLevels} currentKey={currentLessonKey} />
+      </div>
+      <article className="min-w-0 flex-1 max-w-3xl">
       <nav aria-label="Breadcrumb" className="text-sm text-stone-500">
         <Link href="/" className="hover:text-amber-700">
           Course
@@ -167,6 +192,7 @@ export default async function LessonPage({ params }: LessonPageProps) {
           </Link>
         </nav>
       ) : null}
-    </article>
+      </article>
+    </div>
   );
 }
