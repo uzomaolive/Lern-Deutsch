@@ -1,15 +1,17 @@
 #!/usr/bin/env python3
-"""Generates natural German audio for every spoken string using Microsoft Edge
-TTS (free, no API key). Reads scripts/tts-strings.json, writes:
+"""Concurrent natural German audio generation using Microsoft Edge TTS.
+
+Reads scripts/tts-strings.json and synthesizes every string for each voice in
+VOICES using a worker pool (much faster than serial). Writes:
   public/tts/<voice>/<hash>.mp3
-  lib/tts/audio-manifest.ts  (hash lists per voice)
+  lib/tts/audio-manifest.ts
 
 Usage:
-  python3 scripts/generate-tts-edge.py
+  python3 scripts/generate-tts-edge.py            # all strings, all voices
+  python3 scripts/generate-tts-edge.py 100        # first 100 strings per voice
 """
 
 import asyncio
-import hashlib
 import json
 import os
 import sys
@@ -20,13 +22,13 @@ STRINGS_FILE = ROOT / "scripts" / "tts-strings.json"
 OUT_DIR = ROOT / "public" / "tts"
 MANIFEST = ROOT / "lib" / "tts" / "audio-manifest.ts"
 
-# Voices exposed in the voice picker as "Edge" options.
 VOICES = {
     "Seraphina": "de-DE-SeraphinaMultilingualNeural",
     "Florian": "de-DE-FlorianMultilingualNeural",
 }
 
 RATE = os.environ.get("EDGE_TTS_RATE", "+0%")
+CONCURRENCY = int(os.environ.get("EDGE_TTS_CONCURRENCY", "20"))
 
 
 def tts_hash(text: str) -> str:
@@ -38,7 +40,7 @@ def tts_hash(text: str) -> str:
     return f"{hash_value:08x}"
 
 
-async def synthesize_one(voice_key: str, voice_name: str, text: str) -> bytes:
+async def synthesize_one(voice_name: str, text: str) -> bytes:
     import edge_tts
 
     communicate = edge_tts.Communicate(text, voice_name, rate=RATE)
@@ -49,74 +51,79 @@ async def synthesize_one(voice_key: str, voice_name: str, text: str) -> bytes:
     return bytes(output)
 
 
+async def worker(
+    semaphore: asyncio.Semaphore,
+    voice_name: str,
+    text: str,
+    target: Path,
+) -> bool:
+    async with semaphore:
+        try:
+            if target.exists():
+                return True
+            audio = await synthesize_one(voice_name, text)
+            target.write_bytes(audio)
+            return True
+        except Exception:  # noqa: BLE001
+            return False
+
+
+async def generate_voice(voice_key: str, voice_name: str, strings: list[str]) -> list[str]:
+    voice_dir = OUT_DIR / voice_key
+    voice_dir.mkdir(parents=True, exist_ok=True)
+
+    semaphore = asyncio.Semaphore(CONCURRENCY)
+    done = skipped = failed = 0
+    hashes: list[str] = []
+
+    tasks = []
+    for text in strings:
+        h = tts_hash(text)
+        target = voice_dir / f"{h}.mp3"
+        hashes.append(h)
+        if target.exists():
+            skipped += 1
+            continue
+        tasks.append(worker(semaphore, voice_name, text, target))
+
+    results = await asyncio.gather(*tasks)
+    done = sum(1 for ok in results if ok)
+    failed = len(tasks) - done
+    print(f"  [{voice_key}] done: {done} generated, {skipped} skipped, {failed} failed")
+    return hashes
+
+
 async def main() -> None:
-    import edge_tts  # noqa: F401 (verify importable)
+    import edge_tts  # noqa: F401
+
+    limit = None
+    if len(sys.argv) > 1:
+        limit = int(sys.argv[1])
 
     strings = json.loads(STRINGS_FILE.read_text(encoding="utf-8"))
-    print(f"Generating {len(strings)} strings for {list(VOICES)}")
+    if limit:
+        strings = strings[:limit]
+    print(f"Generating {len(strings)} strings for {list(VOICES)} (concurrency {CONCURRENCY})")
 
-    manifest: dict[str, list[str]] = {}
-    for voice_key in VOICES:
-        manifest[voice_key] = []
-
+    edge_hashes: dict[str, list[str]] = {}
     for voice_key, voice_name in VOICES.items():
-        voice_dir = OUT_DIR / voice_key
-        voice_dir.mkdir(parents=True, exist_ok=True)
-        done = 0
-        skipped = 0
-        failed = 0
-        for text in strings:
-            h = tts_hash(text)
-            target = voice_dir / f"{h}.mp3"
-            if target.exists():
-                skipped += 1
-                manifest[voice_key].append(h)
-                continue
-            try:
-                audio = await synthesize_one(voice_key, voice_name, text)
-                target.write_bytes(audio)
-                manifest[voice_key].append(h)
-                done += 1
-            except Exception as exc:  # noqa: BLE001
-                failed += 1
-                print(f"  FAILED ({voice_key}): {text!r} -> {exc}")
-            if done % 100 == 0 and done > 0:
-                print(f"  [{voice_key}] {done} generated, {skipped} skipped, {failed} failed")
-        print(f"  [{voice_key}] done: {done} generated, {skipped} skipped, {failed} failed")
+        edge_hashes[voice_key] = await generate_voice(voice_key, voice_name, strings)
 
-    # Build the full manifest: Gemini (existing .wav files) + Edge voices.
     gemini_file = ROOT / "scripts" / "gemini-hashes.json"
     gemini_hashes = (
         json.loads(gemini_file.read_text(encoding="utf-8")) if gemini_file.exists() else []
     )
+
     voices_manifest = [
-        {
-            "id": "Gemini",
-            "label": "Gemini (natural)",
-            "ext": "wav",
-            "hashes": sorted(gemini_hashes),
-        },
-        {
-            "id": "Seraphina",
-            "label": "Seraphina (Edge)",
-            "ext": "mp3",
-            "hashes": sorted(manifest["Seraphina"]),
-        },
-        {
-            "id": "Florian",
-            "label": "Florian (Edge)",
-            "ext": "mp3",
-            "hashes": sorted(manifest["Florian"]),
-        },
+        {"id": "Gemini", "label": "Gemini (natural)", "ext": "wav", "hashes": sorted(gemini_hashes)},
+        {"id": "Seraphina", "label": "Seraphina (Edge)", "ext": "mp3", "hashes": sorted(edge_hashes["Seraphina"])},
+        {"id": "Florian", "label": "Florian (Edge)", "ext": "mp3", "hashes": sorted(edge_hashes["Florian"])},
     ]
 
     manifest_ts = (
         "/** @generated by scripts/generate-tts-edge.py — do not edit. */\n"
         "export interface TtsVoiceManifest {\n"
-        "  id: string;\n"
-        "  label: string;\n"
-        "  ext: \"wav\" | \"mp3\";\n"
-        "  hashes: string[];\n"
+        '  id: string;\n  label: string;\n  ext: "wav" | "mp3";\n  hashes: string[];\n'
         "}\n\n"
         "export const ttsAudioVoices: TtsVoiceManifest[] = "
         + json.dumps(voices_manifest, indent=2)

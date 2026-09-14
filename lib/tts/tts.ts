@@ -129,10 +129,21 @@ export function pickGermanVoice<T extends SpeechLike>(
 }
 
 export function canSpeak(): boolean {
-  return (
-    (typeof window !== "undefined" && "speechSynthesis" in window) ||
-    ttsAudioVoices.some((voice) => voice.hashes.length > 0)
-  );
+  return typeof window !== "undefined" && "speechSynthesis" in window;
+}
+
+/** True when this text can be spoken at all: either a generated clip exists
+ * for it, or the browser has speech synthesis. */
+export function canPlayAudio(text: string, voiceId?: string): boolean {
+  const hash = ttsHash(text.trim());
+  if (voiceId) {
+    const voice = generatedVoices.get(voiceId);
+    if (voice?.hashes.has(hash)) return true;
+  }
+  for (const voice of ttsAudioVoices) {
+    if (voice.hashes.includes(hash)) return true;
+  }
+  return canSpeak();
 }
 
 export interface GermanVoice {

@@ -1,6 +1,6 @@
 "use client";
 
-import { canSpeak, speak } from "@/lib/tts/tts";
+import { canPlayAudio, speak } from "@/lib/tts/tts";
 import { useMounted } from "@/hooks/useMounted";
 
 interface SpeakButtonProps {
@@ -12,7 +12,7 @@ interface SpeakButtonProps {
 
 export function SpeakButton({ text, label, className }: SpeakButtonProps) {
   const mounted = useMounted();
-  const available = mounted && canSpeak();
+  const available = mounted && canPlayAudio(text);
   const speakable = available && text.trim().length > 0;
 
   return (
