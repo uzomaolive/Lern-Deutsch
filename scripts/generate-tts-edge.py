@@ -2,7 +2,7 @@
 """Concurrent natural German audio generation using Microsoft Edge TTS.
 
 Reads scripts/tts-strings.json and synthesizes every string for each voice in
-VOICES using a worker pool (much faster than serial). Writes:
+VOICES using a worker pool. Writes:
   public/tts/<voice>/<hash>.mp3
   lib/tts/audio-manifest.ts
 
@@ -22,7 +22,12 @@ STRINGS_FILE = ROOT / "scripts" / "tts-strings.json"
 OUT_DIR = ROOT / "public" / "tts"
 MANIFEST = ROOT / "lib" / "tts" / "audio-manifest.ts"
 
+# The six site voices, in auto-play order.
 VOICES = {
+    "Katja": "de-DE-KatjaNeural",
+    "Conrad": "de-DE-ConradNeural",
+    "Killian": "de-DE-KillianNeural",
+    "Amala": "de-DE-AmalaNeural",
     "Seraphina": "de-DE-SeraphinaMultilingualNeural",
     "Florian": "de-DE-FlorianMultilingualNeural",
 }
@@ -73,7 +78,7 @@ async def generate_voice(voice_key: str, voice_name: str, strings: list[str]) ->
     voice_dir.mkdir(parents=True, exist_ok=True)
 
     semaphore = asyncio.Semaphore(CONCURRENCY)
-    done = skipped = failed = 0
+    skipped = 0
     hashes: list[str] = []
 
     tasks = []
@@ -109,15 +114,14 @@ async def main() -> None:
     for voice_key, voice_name in VOICES.items():
         edge_hashes[voice_key] = await generate_voice(voice_key, voice_name, strings)
 
-    gemini_file = ROOT / "scripts" / "gemini-hashes.json"
-    gemini_hashes = (
-        json.loads(gemini_file.read_text(encoding="utf-8")) if gemini_file.exists() else []
-    )
-
     voices_manifest = [
-        {"id": "Gemini", "label": "Gemini (natural)", "ext": "wav", "hashes": sorted(gemini_hashes)},
-        {"id": "Seraphina", "label": "Seraphina (Edge)", "ext": "mp3", "hashes": sorted(edge_hashes["Seraphina"])},
-        {"id": "Florian", "label": "Florian (Edge)", "ext": "mp3", "hashes": sorted(edge_hashes["Florian"])},
+        {
+            "id": voice_key,
+            "label": f"{voice_key} (Edge)",
+            "ext": "mp3",
+            "hashes": sorted(edge_hashes[voice_key]),
+        }
+        for voice_key in VOICES
     ]
 
     manifest_ts = (

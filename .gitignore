@@ -27,6 +27,3 @@ yarn-error.log*
 *.tsbuildinfo
 next-env.d.ts
 
-# generated TTS audio (large; added to the repo explicitly after full generation)
-/public/tts/Seraphina/*.mp3
-/public/tts/Florian/*.mp3

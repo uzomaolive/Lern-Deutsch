@@ -23,7 +23,7 @@ const generatedVoices = new Map(
   ]),
 );
 
-/** Preference value for a generated voice, e.g. "generated:Gemini". */
+/** Preference value for a generated voice, e.g. "generated:Katja". */
 export const GENERATED_PREFIX = "generated:";
 
 /** Generated voices that have at least one clip, for the picker. */
