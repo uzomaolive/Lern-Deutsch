@@ -43,13 +43,21 @@ export function hasGeneratedAudio(text: string, voiceId: string): boolean {
 const AUTO_GENERATED_ORDER = ttsAudioVoices.map((voice) => voice.id);
 
 function playFile(voiceId: string, hash: string): boolean {
+  if (typeof Audio === "undefined") return false;
   const voice = generatedVoices.get(voiceId);
   if (!voice) return false;
   const base = (process.env.NEXT_PUBLIC_BASE_PATH ?? "").replace(/\/$/, "");
   const audio = new Audio(`${base}/tts/${voiceId}/${hash}.${voice.ext}`);
-  audio.play().catch(() => {
+  try {
+    const result = audio.play();
+    if (result && typeof result.catch === "function") {
+      result.catch(() => {
+        /* fall through to browser voices */
+      });
+    }
+  } catch {
     /* fall through to browser voices */
-  });
+  }
   return true;
 }
 
