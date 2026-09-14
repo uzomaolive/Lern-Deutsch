@@ -13,25 +13,67 @@ const GERMAN_LANG = "de-DE";
 const LEARNER_RATE = 0.9;
 
 import { ttsHash } from "./hash";
-import { ttsAudioHashes } from "./audio-manifest";
+import { ttsAudioVoices } from "./audio-manifest";
 
-const generatedHashes = new Set(ttsAudioHashes);
+/** voiceId -> { ext, hashes } for generated (recorded) audio. */
+const generatedVoices = new Map(
+  ttsAudioVoices.map((voice) => [
+    voice.id,
+    { ext: voice.ext, hashes: new Set(voice.hashes) },
+  ]),
+);
 
-/** True when a pre-generated Gemini audio file exists for this text. */
-export function hasGeneratedAudio(text: string): boolean {
-  return generatedHashes.has(ttsHash(text.trim()));
+/** Preference value for a generated voice, e.g. "generated:Gemini". */
+export const GENERATED_PREFIX = "generated:";
+
+/** Generated voices that have at least one clip, for the picker. */
+export function getGeneratedVoices(): { id: string; label: string }[] {
+  return ttsAudioVoices
+    .filter((voice) => voice.hashes.length > 0)
+    .map((voice) => ({ id: voice.id, label: voice.label }));
 }
 
-function playGeneratedAudio(text: string): boolean {
-  if (typeof window === "undefined") return false;
-  if (!generatedHashes.has(ttsHash(text))) return false;
+/** True when a pre-generated audio file exists for this text and voice. */
+export function hasGeneratedAudio(text: string, voiceId: string): boolean {
+  const voice = generatedVoices.get(voiceId);
+  return voice ? voice.hashes.has(ttsHash(text.trim())) : false;
+}
 
+/** Order in which generated voices are tried in auto mode. */
+const AUTO_GENERATED_ORDER = ttsAudioVoices.map((voice) => voice.id);
+
+function playFile(voiceId: string, hash: string): boolean {
+  const voice = generatedVoices.get(voiceId);
+  if (!voice) return false;
   const base = (process.env.NEXT_PUBLIC_BASE_PATH ?? "").replace(/\/$/, "");
-  const audio = new Audio(`${base}/tts/${ttsHash(text)}.mp3`);
+  const audio = new Audio(`${base}/tts/${voiceId}/${hash}.${voice.ext}`);
   audio.play().catch(() => {
     /* fall through to browser voices */
   });
   return true;
+}
+
+function playGeneratedAudio(text: string, preference: string | null): boolean {
+  if (typeof window === "undefined") return false;
+  const hash = ttsHash(text);
+
+  // Explicit generated-voice preference.
+  if (preference && preference.startsWith(GENERATED_PREFIX)) {
+    const voiceId = preference.slice(GENERATED_PREFIX.length);
+    const voice = generatedVoices.get(voiceId);
+    if (voice?.hashes.has(hash)) return playFile(voiceId, hash);
+    return false;
+  }
+
+  // Auto mode: first generated voice that has this clip.
+  if (!preference) {
+    for (const voiceId of AUTO_GENERATED_ORDER) {
+      const voice = generatedVoices.get(voiceId);
+      if (voice?.hashes.has(hash)) return playFile(voiceId, hash);
+    }
+  }
+
+  return false;
 }
 
 export interface SpeechLike {
@@ -89,7 +131,7 @@ export function pickGermanVoice<T extends SpeechLike>(
 export function canSpeak(): boolean {
   return (
     (typeof window !== "undefined" && "speechSynthesis" in window) ||
-    generatedHashes.size > 0
+    ttsAudioVoices.some((voice) => voice.hashes.length > 0)
   );
 }
 
@@ -149,7 +191,7 @@ function pickVoice(
   voices: SpeechSynthesisVoice[],
 ): SpeechSynthesisVoice | null {
   const preferred = preferredVoiceUri();
-  if (preferred) {
+  if (preferred && !preferred.startsWith(GENERATED_PREFIX)) {
     const match = voices.find(
       (voice) =>
         voice.voiceURI === preferred &&
@@ -180,7 +222,7 @@ export function speak(text: string, rate: number = LEARNER_RATE): void {
   const trimmed = text.trim();
   if (trimmed.length === 0) return;
 
-  if (playGeneratedAudio(trimmed)) return;
+  if (playGeneratedAudio(trimmed, preferredVoiceUri())) return;
 
   if (!canSpeak()) return;
   const synth = window.speechSynthesis;
