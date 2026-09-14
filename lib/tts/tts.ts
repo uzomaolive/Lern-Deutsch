@@ -26,6 +26,9 @@ const generatedVoices = new Map(
 /** Preference value for a generated voice, e.g. "generated:Katja". */
 export const GENERATED_PREFIX = "generated:";
 
+/** Preference value for a device (browser) voice, e.g. "device:Anna". */
+export const DEVICE_PREFIX = "device:";
+
 /** Generated voices that have at least one clip, for the picker. */
 export function getGeneratedVoices(): { id: string; label: string }[] {
   return ttsAudioVoices
@@ -65,22 +68,29 @@ function playGeneratedAudio(text: string, preference: string | null): boolean {
   if (typeof window === "undefined") return false;
   const hash = ttsHash(text);
 
-  // Explicit generated-voice preference.
-  if (preference && preference.startsWith(GENERATED_PREFIX)) {
-    const voiceId = preference.slice(GENERATED_PREFIX.length);
-    const voice = generatedVoices.get(voiceId);
-    if (voice?.hashes.has(hash)) return playFile(voiceId, hash);
-    return false;
-  }
+  // An explicit device-voice choice: browser TTS handles it (see pickVoice).
+  if (preference?.startsWith(DEVICE_PREFIX)) return false;
 
-  // Auto mode: first generated voice that has this clip.
-  if (!preference) {
+  // Auto mode: no preference, or a stale preference that no longer maps to a
+  // generated voice (legacy raw device URIs, removed voices like Gemini).
+  if (!preference || !preference.startsWith(GENERATED_PREFIX)) {
     for (const voiceId of AUTO_GENERATED_ORDER) {
       const voice = generatedVoices.get(voiceId);
       if (voice?.hashes.has(hash)) return playFile(voiceId, hash);
     }
+    return false;
   }
 
+  // Explicit generated-voice preference.
+  const voiceId = preference.slice(GENERATED_PREFIX.length);
+  const voice = generatedVoices.get(voiceId);
+  if (voice?.hashes.has(hash)) return playFile(voiceId, hash);
+
+  // Stale preference for a removed voice (e.g. Gemini): auto mode.
+  for (const fallbackId of AUTO_GENERATED_ORDER) {
+    const fallback = generatedVoices.get(fallbackId);
+    if (fallback?.hashes.has(hash)) return playFile(fallbackId, hash);
+  }
   return false;
 }
 
@@ -210,10 +220,11 @@ function pickVoice(
   voices: SpeechSynthesisVoice[],
 ): SpeechSynthesisVoice | null {
   const preferred = preferredVoiceUri();
-  if (preferred && !preferred.startsWith(GENERATED_PREFIX)) {
+  if (preferred?.startsWith(DEVICE_PREFIX)) {
+    const uri = preferred.slice(DEVICE_PREFIX.length);
     const match = voices.find(
       (voice) =>
-        voice.voiceURI === preferred &&
+        voice.voiceURI === uri &&
         voice.lang.toLowerCase().startsWith("de"),
     );
     if (match) return match;
