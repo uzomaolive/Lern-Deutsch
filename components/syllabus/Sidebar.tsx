@@ -138,11 +138,11 @@ export function Sidebar({ levels, currentKey }: SidebarProps) {
         <button
           type="button"
           aria-expanded={open}
+          aria-label={open ? "Close course topics" : "Browse course topics"}
           onClick={() => setOpen(!open)}
-          className="inline-flex items-center gap-2 rounded-lg border border-stone-300 bg-white px-3 py-2 text-sm font-medium text-stone-700 transition-colors hover:border-amber-500 hover:text-amber-700 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-amber-600"
+          className="inline-flex h-9 w-9 items-center justify-center rounded-lg border border-stone-300 bg-white text-stone-700 transition-colors hover:border-amber-500 hover:text-amber-700 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-amber-600"
         >
-          <span aria-hidden="true">☰</span>
-          {open ? "Close topics" : "Topics"}
+          <span aria-hidden="true" className="text-base leading-none">☰</span>
         </button>
         {open ? (
           <div className="mt-3 max-h-[70vh] overflow-y-auto rounded-xl border border-stone-200 bg-white p-4">
