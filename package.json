@@ -9,7 +9,11 @@
     "lint": "eslint",
     "test": "vitest run",
     "test:watch": "vitest",
-    "typecheck": "tsc --noEmit"
+    "typecheck": "tsc --noEmit",
+    "collect:tts": "npx tsx scripts/collect-tts-strings.ts",
+    "generate:edge": "python3 scripts/generate-tts-edge.py",
+    "generate:gemini": "python3 scripts/generate-tts-gemini.py",
+    "generate:tts": "npm run collect:tts && npm run generate:edge && npm run generate:gemini"
   },
   "dependencies": {
     "msedge-tts": "^2.0.7",
