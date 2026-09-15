@@ -75,7 +75,7 @@ export function Flashcard({ exercise, onResult, onFlashcardResult }: FlashcardPr
       <div className="mt-4 rounded-lg border border-stone-200 bg-white p-6 text-center">
         <div className="flex items-center justify-center gap-2">
           <p className="text-2xl font-semibold text-stone-900">{item.front}</p>
-          {item.frontAudio ? <SpeakButton text={item.front} /> : null}
+          {item.frontAudio ? <SpeakButton text={item.frontAudioText ?? item.front} /> : null}
         </div>
         {revealed ? (
           <p className="mt-4 text-lg text-stone-700">{item.back}</p>

@@ -145,6 +145,14 @@ export interface FlashcardItem {
   back: string;
   /** Speak the front via TTS when true. */
   frontAudio?: boolean;
+  /**
+   * Override what the TTS speaks when `frontAudio` is true.
+   * Use when `front` is a display-only label (e.g. "ch (a, o, u)") that
+   * would be mispronounced in isolation. Set this to a natural German word
+   * containing the target sound (e.g. "noch") so the TTS has phonetic
+   * context. The card still displays `front`; only the spoken audio changes.
+   */
+  frontAudioText?: string;
 }
 
 export interface FlashcardExercise extends ExerciseBase {
