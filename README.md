@@ -14,6 +14,37 @@ npm test           Run Vitest once
 npm run test:watch Vitest watch mode
 ```
 
+## Audio generation
+
+The app ships pre-generated audio files in `public/tts/`. Run these scripts whenever curriculum content changes or when you want to add the Gemini AI voice.
+
+**Collect strings** (required before any generation):
+```bash
+npm run collect:tts
+```
+
+**Generate all audio** (Edge + Gemini, requires `GOOGLE_API_KEY`):
+```bash
+cp .env.example .env.local   # fill in GOOGLE_API_KEY
+source .env.local             # or export GOOGLE_API_KEY=...
+npm run generate:tts
+```
+
+**Generate only the Gemini AI voice** (requires `GOOGLE_API_KEY`):
+```bash
+export GOOGLE_API_KEY=your_key_here
+python3 scripts/generate-tts-gemini.py
+# or for a quick smoke test: python3 scripts/generate-tts-gemini.py 20
+```
+
+**Generate only the Edge voices** (no API key required):
+```bash
+pip install edge-tts
+python3 scripts/generate-tts-edge.py
+```
+
+The Gemini voice appears in the voice picker as "Kore (Gemini AI)". Change the voice via the `TTS_VOICE` environment variable; see `.env.example` for all options.
+
 ## Structure
 
 - `app/` Next.js App Router routes. `/` is the course map; `/l/[level]/[unit]/[lesson]` are lesson pages.

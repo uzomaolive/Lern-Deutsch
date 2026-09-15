@@ -94,7 +94,7 @@ export default async function LessonPage({ params }: LessonPageProps) {
     }));
 
   return (
-    <div className="mx-auto flex max-w-6xl items-stretch gap-8 px-4 py-10">
+    <div className="mx-auto flex flex-col lg:flex-row max-w-6xl items-stretch gap-3 lg:gap-8 px-4 py-10">
       <div className="lg:w-56 lg:shrink-0">
         <Sidebar levels={sidebarLevels} currentKey={currentLessonKey} />
       </div>

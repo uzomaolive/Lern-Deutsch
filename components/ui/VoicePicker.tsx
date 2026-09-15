@@ -14,7 +14,10 @@ import {
 } from "@/lib/tts/tts";
 import { useMounted } from "@/hooks/useMounted";
 
-const TEST_PHRASE = "Hallo, ich bin deine deutsche Stimme.";
+// Must be a string present in the pre-generated audio set so every
+// "Natural voice" option plays its own distinct MP3 when selected.
+// Verified to exist in all six Edge TTS voice directories.
+const TEST_PHRASE = "Wie geht es Ihnen?";
 
 export function VoicePicker() {
   const generated = getGeneratedVoices();

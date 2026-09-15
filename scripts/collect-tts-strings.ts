@@ -38,7 +38,9 @@ function spokenStrings(): string[] {
           if (exercise.type === "listening") add(exercise.prompt);
           else if (exercise.type === "flashcard") {
             for (const item of exercise.items) {
-              if (item.frontAudio) add(item.front);
+              // frontAudioText overrides front for TTS when front is a
+              // display-only label that would be mispronounced in isolation.
+              if (item.frontAudio) add(item.frontAudioText ?? item.front);
             }
           }
         }
@@ -54,7 +56,7 @@ function spokenStrings(): string[] {
           if (exercise.type === "listening") add(exercise.prompt);
           else if (exercise.type === "flashcard") {
             for (const item of exercise.items) {
-              if (item.frontAudio) add(item.front);
+              if (item.frontAudio) add(item.frontAudioText ?? item.front);
             }
           }
         } else if (round.kind === "memory") {
