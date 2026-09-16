@@ -69,7 +69,7 @@ export const geschichteArbeit: Lesson = {
       "Julia hilft Anna und die Gäste sind nett."),
     frage(4, "Was vergisst Anna einmal?",
       ["Den Zucker", "Den Kaffee", "Die Kasse"], 0,
-      "Einmal vergisst sie den Zucker und einmal den falschen Kuchen."),
+      "Einmal vergisst sie den Zucker, einmal bringt sie den falschen Kuchen."),
     frage(5, "Was sagt der Chef am Abend?",
       ["Gute Arbeit für den ersten Tag", "Sie müssen morgen frei bleiben", "Der Kaffee ist zu stark"], 0,
       "Der Chef lobt Anna: Gute Arbeit für den ersten Tag."),

@@ -10,7 +10,7 @@ export const geschichteMarkt: Lesson = {
   id: "geschichte-02-auf-dem-markt",
   title: "Auf dem Markt",
   summary:
-    "Tom geht mit seiner Mutter auf den Wochenmarkt. Es gibt frisches Obst, Gemüse und Blumen. Tom hilft seiner Mutter tragen.",
+    "Tom geht mit seiner Mutter auf den Wochenmarkt. Es gibt frisches Obst, Gemüse und Blumen. Tom hilft seiner Mutter, die Taschen zu tragen.",
   status: "ready",
   sections: [
     {

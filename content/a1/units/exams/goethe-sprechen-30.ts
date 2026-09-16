@@ -4,7 +4,6 @@ import {
   zuordnen,
   schreibWahl,
   listen,
-  listenRF,
   karten,
 } from "./factories";
 
@@ -126,7 +125,7 @@ export const goetheSprechen30: Lesson = {
     bauen(6, "Sagen Sie, was Sie beruflich machen.", ["Ich", "arbeite", "als", "Kellnerin", "in", "einem", "Café."], "Ich arbeite als ..."),
     bauen(7, "Sagen Sie, wie alt Sie sind.", ["Ich", "bin", "28", "Jahre", "alt."], "Ich bin ... Jahre alt."),
     bauen(8, "Sagen Sie, was Ihre Familie macht.", ["Meine", "Familie", "lebt", "in", "Polen.", "Die", "Eltern", "sind", "Lehrer."], "Meine Familie ..."),
-    bauen(9, "Buchstabieren Sie Ihren Namen.", ["W-E-B-E-R", ",", "das", "ist", "mein", "Familienname."], "Beim Buchstabieren: W-E-B-E-R."),
+    bauen(9, "Buchstabieren Sie Ihren Namen.", ["W-E-B-E-R,", "das", "ist", "mein", "Familienname."], "Beim Buchstabieren: W-E-B-E-R."),
     bauen(10, "Sagen Sie Ihre Telefonnummer.", ["Meine", "Telefonnummer", "ist", "0176", "552091."], "Meine Telefonnummer ist ..."),
 
     // ---------- Teil 2: Fragen und antworten (11-18) ----------
@@ -200,8 +199,8 @@ export const goetheSprechen30: Lesson = {
       ["Entschuldigung, können Sie mir bitte helfen?", "Ich heiße Anna.", "Das Wetter ist heute schön."], 0,
       "Eine Bitte beginnt höflich: Entschuldigung, können Sie ...?"),
     schreibWahl(20, "Sie möchten im Restaurant zahlen.", "Was sagen Sie?",
-      ["Herr Ober, bitte zahlen!", "Guten Appetit!", "Es tut mir leid."], 0,
-      "Beim Zahlen: Herr Ober, bitte zahlen!"),
+      ["Entschuldigung, wir möchten bitte zahlen.", "Guten Appetit!", "Es tut mir leid."], 0,
+      "Beim Zahlen: Entschuldigung, wir möchten bitte zahlen."),
     schreibWahl(21, "Sie möchten ein Zimmer buchen.", "Was sagen Sie?",
       ["Ich möchte gern ein Zimmer buchen.", "Ich heiße Anna.", "Ich habe Hunger."], 0,
       "Eine Bitte: Ich möchte gern ..."),
