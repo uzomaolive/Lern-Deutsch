@@ -294,7 +294,7 @@ describe("writing", () => {
   };
 
   it("requires text before revealing the model answer", async () => {
-    const onResult = host(writing);
+    host(writing);
     const finish = screen.getByRole("button", { name: "Fertig, Musterlösung zeigen" });
     expect(finish).toBeDisabled();
     await userEvent.type(
