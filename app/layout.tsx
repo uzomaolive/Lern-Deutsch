@@ -3,6 +3,7 @@ import { Geist, Geist_Mono } from "next/font/google";
 import Link from "next/link";
 import { ProgressProvider } from "@/components/progress/ProgressProvider";
 import { VoicePicker } from "@/components/ui/VoicePicker";
+import { BackToTop } from "@/components/ui/BackToTop";
 import "./globals.css";
 
 const geistSans = Geist({
@@ -65,6 +66,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
             interactive.
           </div>
         </footer>
+        <BackToTop />
       </body>
     </html>
   );
