@@ -59,6 +59,12 @@ export type ContentBlock =
       caption?: string;
       head?: string[];
       rows: string[][];
+      /**
+       * Optional per-row text to speak, aligned with `rows`. When present,
+       * the row shows a speaker button that reads this text aloud, e.g.
+       * the German letter name in the alphabet table.
+       */
+      rowSpeak?: (string | undefined)[];
     };
 
 export interface GlossWord {

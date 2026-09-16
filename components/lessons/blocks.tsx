@@ -116,15 +116,26 @@ export function ContentBlocks({ blocks }: { blocks: ContentBlock[] }) {
                     </tr>
                   </thead>
                   <tbody>
-                    {block.rows.map((row, rowIndex) => (
-                      <tr key={rowIndex} className="odd:bg-white even:bg-stone-50">
-                        {row.map((cell, cellIndex) => (
-                          <td key={cellIndex} className="border-b border-stone-200 px-3 py-2 text-stone-700">
-                            {cell}
-                          </td>
-                        ))}
-                      </tr>
-                    ))}
+                    {block.rows.map((row, rowIndex) => {
+                      const speakText = block.rowSpeak?.[rowIndex];
+                      return (
+                        <tr key={rowIndex} className="odd:bg-white even:bg-stone-50">
+                          {row.map((cell, cellIndex) => (
+                            <td
+                              key={cellIndex}
+                              className="border-b border-stone-200 px-3 py-2 text-stone-700"
+                            >
+                              <span className="inline-flex items-center gap-2">
+                                {cellIndex === 0 && speakText ? (
+                                  <SpeakButton text={speakText} />
+                                ) : null}
+                                {cell}
+                              </span>
+                            </td>
+                          ))}
+                        </tr>
+                      );
+                    })}
                   </tbody>
                 </table>
               </div>
