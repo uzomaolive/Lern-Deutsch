@@ -12,6 +12,7 @@ import { freizeitUndReisen } from "./units/freizeit-und-reisen";
 import { grammatikKompakt1 } from "./units/grammatik-kompakt-1";
 import { grammatikKompakt2 } from "./units/grammatik-kompakt-2";
 import { examPrep } from "./units/exam-prep";
+import { kurzgeschichten } from "./units/kurzgeschichten";
 import { wortschatz } from "./units/wortschatz";
 
 export const a1: Level = {
@@ -34,6 +35,7 @@ export const a1: Level = {
     grammatikKompakt1,
     grammatikKompakt2,
     examPrep,
+    kurzgeschichten,
     wortschatz,
   ],
 };
