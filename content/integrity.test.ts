@@ -23,7 +23,7 @@ describe("curriculum integrity", () => {
   });
 
   it("has the thematic units per level from the spec inventory", () => {
-    expect(levels.find((l) => l.id === "a1")?.units.length).toBe(14);
+    expect(levels.find((l) => l.id === "a1")?.units.length).toBe(15);
     expect(levels.find((l) => l.id === "a2")?.units.length).toBe(10);
   });
 
