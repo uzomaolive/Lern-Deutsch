@@ -168,13 +168,31 @@ export interface ListeningExercise extends ExerciseBase {
   correctIndex: number;
 }
 
+/**
+ * Free writing practice. The learner writes a German text in a textarea,
+ * then reveals a model answer and compares. Writing cannot be auto-graded,
+ * so the exercise completes when the learner finishes and checks their work.
+ */
+export interface WritingExercise extends ExerciseBase {
+  type: "writing";
+  /** The German task, e.g. "Schreiben Sie eine E-Mail an das Hotel." */
+  prompt: string;
+  /** Content points the text must cover, shown as a checklist. */
+  points: string[];
+  /** Model answer in German, revealed after the learner finishes writing. */
+  modelAnswer: string;
+  /** Optional length guidance, e.g. "circa 30 Wörter". */
+  wordCount?: string;
+}
+
 export type Exercise =
   | MultipleChoiceExercise
   | FillBlankExercise
   | MatchingExercise
   | WordOrderExercise
   | FlashcardExercise
-  | ListeningExercise;
+  | ListeningExercise
+  | WritingExercise;
 
 /** Global lesson key: "a1/kennenlernen/hallo". */
 export type LessonKey = string;

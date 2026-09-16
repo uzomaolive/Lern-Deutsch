@@ -13,6 +13,7 @@ import type {
   MatchingExercise,
   MultipleChoiceExercise,
   WordOrderExercise,
+  WritingExercise,
 } from "@/content/schema";
 
 function host(exercise: Exercise, onResult = vi.fn()) {
@@ -278,5 +279,72 @@ describe("flashcard", () => {
       }
     }
     expect(onResult).toHaveBeenCalledWith(67);
+  });
+});
+describe("writing", () => {
+  const writing: WritingExercise = {
+    id: "w1",
+    type: "writing",
+    title: "Write about yourself",
+    instruction: "Write a German text.",
+    prompt: "Schreiben Sie über sich selbst.",
+    points: ["Name", "Wohnort"],
+    modelAnswer: "Ich heiße Anna und wohne in Berlin.",
+    wordCount: "circa 30 Wörter",
+  };
+
+  it("requires text before revealing the model answer", async () => {
+    const onResult = host(writing);
+    const finish = screen.getByRole("button", { name: "Fertig, Musterlösung zeigen" });
+    expect(finish).toBeDisabled();
+    await userEvent.type(
+      screen.getByRole("textbox", { name: "Ihr Text auf Deutsch" }),
+      "Ich heiße Anna.",
+    );
+    expect(finish).toBeEnabled();
+  });
+
+  it("reveals the model answer and scores 100 on finish", async () => {
+    const onResult = host(writing);
+    await userEvent.type(
+      screen.getByRole("textbox", { name: "Ihr Text auf Deutsch" }),
+      "Ich heiße Anna und wohne in Berlin.",
+    );
+    await userEvent.click(
+      screen.getByRole("button", { name: "Fertig, Musterlösung zeigen" }),
+    );
+    expect(screen.getByText("Musterlösung")).toBeInTheDocument();
+    const model = screen
+      .getByText("Musterlösung")
+      .closest("div") as HTMLElement;
+    expect(model).toHaveTextContent(writing.modelAnswer);
+    expect(onResult).toHaveBeenCalledWith(100, {
+      text: "Ich heiße Anna und wohne in Berlin.",
+      finished: true,
+    });
+  });
+
+  it("counts words in the draft", async () => {
+    host(writing);
+    await userEvent.type(
+      screen.getByRole("textbox", { name: "Ihr Text auf Deutsch" }),
+      "Ich heiße Anna und wohne in Berlin.",
+    );
+    expect(screen.getByText("7 Wörter")).toBeInTheDocument();
+  });
+
+  it("restores a saved draft and finished state", () => {
+    render(
+      <ExerciseHost
+        exercise={writing}
+        savedAnswer={{ text: "Mein Entwurf.", finished: true }}
+        onResult={vi.fn()}
+      />,
+    );
+    const textbox = screen.getByRole("textbox", {
+      name: "Ihr Text auf Deutsch",
+    }) as HTMLTextAreaElement;
+    expect(textbox.value).toBe("Mein Entwurf.");
+    expect(screen.getByText("Musterlösung")).toBeInTheDocument();
   });
 });
