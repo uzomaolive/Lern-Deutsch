@@ -177,3 +177,90 @@ export function sprechenChoose(
     explain,
   };
 }
+
+/** Sentence building drill, e.g. for letter and message sentences. */
+export function bauen(
+  n: number,
+  instruction: string,
+  chunks: string[],
+  explain: string,
+): Exercise {
+  return {
+    id: `b${String(n).padStart(2, "0")}`,
+    type: "word-order",
+    title: `Sätze bauen ${n}`,
+    instruction,
+    chunks,
+    explain,
+  };
+}
+
+/** Pairing drill, e.g. formal and informal letter phrases. */
+export function zuordnen(
+  n: number,
+  instruction: string,
+  pairs: [string, string][],
+): Exercise {
+  return {
+    id: `z${String(n).padStart(2, "0")}`,
+    type: "matching",
+    title: `Zuordnen ${n}`,
+    instruction,
+    pairs,
+  };
+}
+
+/** Phrase choice for a writing situation. */
+export function schreibWahl(
+  n: number,
+  instruction: string,
+  prompt: string,
+  options: [string, string, string],
+  correct: number,
+  explain: string,
+): Exercise {
+  return {
+    id: `s${String(n).padStart(2, "0")}`,
+    type: "multiple-choice",
+    title: `Wortwahl ${n}`,
+    instruction,
+    prompt,
+    options: [...options],
+    correctIndex: correct,
+    explain,
+  };
+}
+
+/** Free writing task with a checklist and a model answer. */
+export function schreibFrei(
+  n: number,
+  prompt: string,
+  points: string[],
+  modelAnswer: string,
+  wordCount = "circa 30 Wörter",
+  explain?: string,
+): Exercise {
+  return {
+    id: `w${String(n).padStart(2, "0")}`,
+    type: "writing",
+    title: `Freies Schreiben ${n}`,
+    instruction:
+      "Schreiben Sie auf Deutsch. Prüfen Sie danach die Punkte und vergleichen Sie mit der Musterlösung.",
+    prompt,
+    points,
+    modelAnswer,
+    wordCount,
+    explain,
+  };
+}
+
+/** Vocabulary cards for writing lessons. */
+export function karten(n: number, items: { front: string; back: string }[]): Exercise {
+  return {
+    id: `f${String(n).padStart(2, "0")}`,
+    type: "flashcard",
+    title: "Karteikarten",
+    instruction: "Sagen Sie das Wort laut, dann drehen Sie die Karte um.",
+    items: items.map((item) => ({ ...item, frontAudio: true })),
+  };
+}

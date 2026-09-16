@@ -140,6 +140,15 @@ describe("curriculum integrity", () => {
             expect(item.back.trim().length).toBeGreaterThan(0);
           }
         }
+
+        if (exercise.type === "writing") {
+          expect(exercise.prompt.trim().length, exercise.id).toBeGreaterThan(0);
+          expect(exercise.modelAnswer.trim().length, exercise.id).toBeGreaterThan(0);
+          expect(exercise.points.length, exercise.id).toBeGreaterThan(0);
+          for (const point of exercise.points) {
+            expect(point.trim().length).toBeGreaterThan(0);
+          }
+        }
       }
     }
   });
@@ -177,6 +186,7 @@ describe("curriculum integrity", () => {
       "word-order",
       "flashcard",
       "listening",
+      "writing",
     ] as const;
     for (const level of levels) {
       const exercises = level.units

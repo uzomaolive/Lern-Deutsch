@@ -10,6 +10,8 @@ import { goetheExam07 } from "./exams/goethe-exam-07";
 import { goetheExam08 } from "./exams/goethe-exam-08";
 import { goetheExam09 } from "./exams/goethe-exam-09";
 import { goetheExam10 } from "./exams/goethe-exam-10";
+import { goetheSchreiben30 } from "./exams/goethe-schreiben-30";
+import { goetheFreiesSchreiben } from "./exams/goethe-freies-schreiben";
 
 export const examPrep: Unit = {
   id: "exam-prep",
@@ -26,6 +28,8 @@ export const examPrep: Unit = {
     goetheExam08,
     goetheExam09,
     goetheExam10,
+    goetheSchreiben30,
+    goetheFreiesSchreiben,
     goetheHoeren,
   ],
 };

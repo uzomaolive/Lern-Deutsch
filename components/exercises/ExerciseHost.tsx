@@ -8,6 +8,7 @@ import { FillBlank } from "./FillBlank";
 import { Matching } from "./Matching";
 import { WordOrder } from "./WordOrder";
 import { Flashcard } from "./Flashcard";
+import { Writing } from "./Writing";
 
 interface ExerciseHostProps {
   exercise: Exercise;
@@ -88,6 +89,10 @@ export function ExerciseHost({
           onResult={onResult}
           onFlashcardResult={onFlashcardResult}
         />
+      );
+    case "writing":
+      return (
+        <Writing exercise={exercise} savedAnswer={savedAnswer} onResult={onResult} />
       );
   }
 }
