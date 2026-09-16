@@ -153,6 +153,21 @@ describe("curriculum integrity", () => {
     }
   });
 
+  it("keeps table rowSpeak aligned with table rows", () => {
+    for (const lesson of allLessons()) {
+      for (const section of lesson.sections) {
+        for (const block of section.blocks) {
+          if (block.type === "table" && block.rowSpeak) {
+            expect(block.rowSpeak.length, lesson.id).toBe(block.rows.length);
+            for (const text of block.rowSpeak) {
+              if (text !== undefined) expect(text.trim().length).toBeGreaterThan(0);
+            }
+          }
+        }
+      }
+    }
+  });
+
   it("resolves every lesson through the repository chain", () => {
     for (const level of levels) {
       for (const unit of level.units) {

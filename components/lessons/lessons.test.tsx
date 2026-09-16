@@ -26,6 +26,19 @@ describe("ContentBlocks", () => {
     expect(screen.getByRole("columnheader", { name: "ich" })).toBeInTheDocument();
     expect(screen.getByRole("cell", { name: "bin" })).toBeInTheDocument();
   });
+
+  it("renders a speaker button per row when rowSpeak is set", () => {
+    const blocks: ContentBlock[] = [
+      {
+        type: "table",
+        head: ["Letter", "Name"],
+        rows: [["A a", "ah"]],
+        rowSpeak: ["ah"],
+      },
+    ];
+    render(<ContentBlocks blocks={blocks} />);
+    expect(screen.getByRole("button", { name: "Hear ah" })).toBeInTheDocument();
+  });
 });
 
 describe("VocabTable", () => {
