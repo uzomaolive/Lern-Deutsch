@@ -64,12 +64,51 @@ export interface RushRound {
   questions: RushQuestion[];
 }
 
+export interface WordleRound {
+  kind: "wordle";
+  title: string;
+  instruction: string;
+  /** Candidate 5-letter German words; one is picked per play. */
+  words: string[];
+  /** Number of words to play in this round. Default 1. */
+  plays?: number;
+}
+
+export interface ScrambleItem {
+  de: string;
+  en: string;
+  /** Seconds allowed for this word. Default 30. */
+  timeLimit?: number;
+  /** Speak the German word via TTS. */
+  audio?: boolean;
+}
+
+export interface ScrambleRound {
+  kind: "scramble";
+  title: string;
+  instruction: string;
+  items: ScrambleItem[];
+}
+
+export interface GridMatchRound {
+  kind: "grid-match";
+  title: string;
+  instruction: string;
+  /** German-English pairs shuffled into one grid. */
+  pairs: [string, string][];
+  /** Seconds allowed to clear the grid. Default 45. */
+  timeLimit?: number;
+}
+
 export type GameRound =
   | { kind: "exercise"; exercise: Exercise }
   | MemoryRound
   | SortRound
   | RepeatRound
-  | RushRound;
+  | RushRound
+  | WordleRound
+  | ScrambleRound
+  | GridMatchRound;
 
 export interface GameLevel {
   id: string;
@@ -83,5 +122,7 @@ export interface Game {
   emoji: string;
   description: string;
   category: GameCategory;
+  /** Level badges shown on the games index, e.g. ["A1", "A2"]. */
+  tags?: string[];
   levels: GameLevel[];
 }

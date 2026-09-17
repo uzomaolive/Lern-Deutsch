@@ -1,4 +1,7 @@
 import type { Game } from "./schema";
+import { wordleGame } from "./wordle";
+import { scrambleGame } from "./scramble";
+import { gridMatchGame } from "./grid-match";
 
 export const games: Game[] = [
   {
@@ -4999,4 +5002,7 @@ export const games: Game[] = [
       },
     ],
   },
+  wordleGame,
+  scrambleGame,
+  gridMatchGame,
 ];

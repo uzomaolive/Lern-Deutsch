@@ -5,6 +5,9 @@ import { MemoryCards } from "./MemoryCards";
 import { CategorySort } from "./CategorySort";
 import { RepeatAfterMe } from "./RepeatAfterMe";
 import { TimeWordRush } from "./TimeWordRush";
+import { WordleGame } from "./WordleGame";
+import { ScrambleGame } from "./ScrambleGame";
+import { WordMatchGrid } from "./WordMatchGrid";
 import type { GameRound } from "@/content/games/schema";
 
 interface GameRoundViewProps {
@@ -24,6 +27,15 @@ export function GameRoundView({ round, roundIndex }: GameRoundViewProps) {
   }
   if (round.kind === "rush") {
     return <TimeWordRush round={round} />;
+  }
+  if (round.kind === "wordle") {
+    return <WordleGame round={round} seed={`wordle:${roundIndex}`} />;
+  }
+  if (round.kind === "scramble") {
+    return <ScrambleGame round={round} seed={`scramble:${roundIndex}`} />;
+  }
+  if (round.kind === "grid-match") {
+    return <WordMatchGrid round={round} seed={`grid:${roundIndex}`} />;
   }
   return (
     <ExerciseHost
