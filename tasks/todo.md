@@ -1,45 +1,44 @@
 # Games Section Overhaul — Task List
 
-Plan: `tasks/plan.md`
+Plan: `tasks/plan.md`. Catalog: the user's full list (34 games across 4
+categories). All phases complete.
 
-## Phase 1: Games index redesign + flagship games
-- [x] Task 1: Redesign games index (`app/games/page.tsx`) — featured banner, category sections, level badges, card CTAs
-- [x] Task 2: German Wordle — `wordle` round kind, 5-letter word data, component with keyboard + 6 tries
-- [x] Task 3: 9 Words — `scramble` round kind, letter tiles, 30s timer per word
-- [x] Task 4: Word Match Grid — `gridMatch` round kind, tap-match tiles, timer, faster rounds
+## Coverage map
 
-## Checkpoint: Phase 1
-- [x] Typecheck clean, tests pass (151), build clean, all 3 game pages render
+**Noun & Article (11):** Artikel Drop ✅, Der Die Das Rules ✅, Time
+Expressions ✅, Dativ Prepositions ✅, Guess the Word from Image ✅, True or
+False (Nouns) ✅, Noun Plurals ✅, English Nouns to German ✅, Guess the Word
+MC ✅, Guess the Word (typing) ✅, Guess the Artikel ✅ (existing
+article-challenge)
 
-## Phase 2: Verb games (typing)
-- [ ] Task 5: Verb Conjugation Present (typing ich/du/er/ihr) + MC variant
-- [ ] Task 6: Verb Conjugation Full Table (6 persons at once)
-- [ ] Task 7: English Verbs to German / German Verbs to English (typing)
-- [ ] Task 8: Upgrade choose-the-response into "Guess the Verb MC" if needed
-- [ ] Task 9: Partizip II practice (typing + haben/sein)
-- [ ] Task 10: Present to Perfekt (type Perfekt sentences)
+**Verb (8):** Present to Perfekt ✅, Partizip II ✅, Conjugation Full Table ✅,
+English Verbs to German ✅, Guess the Verb MC ✅, German Verbs to English ✅,
+Conjugation MC ✅, Conjugation (present) ✅
 
-## Checkpoint: Phase 2
-- [ ] Verb typing flows work, audio plays, answers scored
+**Number (7):** Number Drop ✅, Math in German ✅, Number Tap ✅, Time Short
+Form ✅, German Time (analog clock) ✅, Words to Numbers ✅, Numbers to Words ✅
 
-## Phase 3: Word games
-- [ ] Task 11: Buchstabensalat (unscramble)
-- [ ] Task 12: Word Guessing (hangman)
-- [ ] Task 13: German to English Sentence (typing translation)
-- [ ] Task 14: Guess the Movie (MC)
+**Vocabulary & Sentence (8):** 9 Words ✅, German Wordle ✅, Word Match Grid ✅,
+German to English Sentence ✅, Sentence Order ✅ (existing sentence-scrabble),
+Buchstabensalat ✅, Word Matching ✅ (existing match-words), Word Guessing ✅
 
-## Checkpoint: Phase 3
+## Implementation notes
 
-## Phase 4: Number games
-- [ ] Task 15: Words to Numbers / Numbers to Words
-- [ ] Task 16: Number Tap (keypad)
-- [ ] Task 17: Math in German
-- [ ] Task 18: Number Drop (arcade)
-- [ ] Task 19: Time Short Form / German Time (analog clock)
+- New round kinds (additive to `content/games/schema.ts`): `typing`, `drop`,
+  `hangman`, `wordsearch`, `time`, `keypad`; each with a dedicated component.
+- Pure logic extracted and tested: Wordle grading (`WordleGame.test.tsx`),
+  German number words (`lib/german/numbers.ts`), word-search grid generation
+  (`lib/games/wordsearch.ts`).
+- Reusable `AnswerInput` typing component (umlaut-tolerant via
+  `normalizeAnswer`); `Clock` SVG for the time game; `DropGame` arcade shared
+  by Artikel Drop and Number Drop.
+- Games index redesigned (featured banner, category sections, level chips).
+- TTS: collector extended for typing/scramble audio; 503 new clips per voice
+  generated; manifest now tracks 40,704 clips.
+- Build: 166 static pages, clean. Tests: 162 pass.
 
-## Checkpoint: Phase 4
-- [ ] Full catalog live; collect + generate TTS for new content
+## Verification
 
-## Phase 5: Polish
-- [ ] Task 20: Level badges, scoring, replay flow on all new games
-- [ ] Task 21: Final verification, README, PR
+- [x] Typecheck clean
+- [x] npm test — 162/162 pass
+- [x] npm run build — clean, all 47 game pages exported

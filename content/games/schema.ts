@@ -100,6 +100,85 @@ export interface GridMatchRound {
   timeLimit?: number;
 }
 
+export interface TypingItem {
+  /** What the learner sees (German word, sentence, or prompt). */
+  prompt: string;
+  /** Accepted answers (umlaut transliterations count as equal). */
+  accept: string[];
+  hint?: string;
+  /** Speak the prompt via TTS. */
+  audio?: boolean;
+}
+
+export interface TypingRound {
+  kind: "typing";
+  title: string;
+  instruction: string;
+  items: TypingItem[];
+}
+
+export interface DropGate {
+  id: string;
+  label: string;
+}
+
+export interface DropItem {
+  /** The falling word or symbol. */
+  text: string;
+  /** Which gate it belongs to. */
+  gateId: string;
+  audio?: boolean;
+}
+
+export interface DropRound {
+  kind: "drop";
+  title: string;
+  instruction: string;
+  gates: DropGate[];
+  items: DropItem[];
+  /** Base fall duration in ms; each item falls faster. Default 4000. */
+  fallMs?: number;
+}
+
+export interface HangmanRound {
+  kind: "hangman";
+  title: string;
+  instruction: string;
+  words: { word: string; hint?: string }[];
+  /** Wrong guesses before losing. Default 6. */
+  lives?: number;
+}
+
+export interface WordSearchRound {
+  kind: "wordsearch";
+  title: string;
+  instruction: string;
+  /** Words hidden in the letter grid; all must be found. */
+  words: string[];
+}
+
+export interface TimeRoundItem {
+  /** Minutes since midnight, e.g. 14*60+30. */
+  minutes: number;
+  accept: string[];
+  hint?: string;
+}
+
+export interface TimeRound {
+  kind: "time";
+  title: string;
+  instruction: string;
+  items: TimeRoundItem[];
+}
+
+export interface KeypadRound {
+  kind: "keypad";
+  title: string;
+  instruction: string;
+  /** German number word shown; learner taps the digits. */
+  items: { word: string; target: number }[];
+}
+
 export type GameRound =
   | { kind: "exercise"; exercise: Exercise }
   | MemoryRound
@@ -108,7 +187,13 @@ export type GameRound =
   | RushRound
   | WordleRound
   | ScrambleRound
-  | GridMatchRound;
+  | GridMatchRound
+  | TypingRound
+  | DropRound
+  | HangmanRound
+  | WordSearchRound
+  | TimeRound
+  | KeypadRound;
 
 export interface GameLevel {
   id: string;

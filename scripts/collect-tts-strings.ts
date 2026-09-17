@@ -70,6 +70,14 @@ function spokenStrings(): string[] {
           }
         } else if (round.kind === "repeat") {
           for (const phrase of round.phrases) add(phrase);
+        } else if (round.kind === "typing") {
+          for (const item of round.items) {
+            if (item.audio) add(item.prompt);
+          }
+        } else if (round.kind === "scramble") {
+          for (const item of round.items) {
+            if (item.audio) add(item.de);
+          }
         }
       }
     }

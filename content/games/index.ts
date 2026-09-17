@@ -2,6 +2,10 @@ import type { Game } from "./schema";
 import { wordleGame } from "./wordle";
 import { scrambleGame } from "./scramble";
 import { gridMatchGame } from "./grid-match";
+import { nounGames } from "./noun-games";
+import { verbGames } from "./verb-games";
+import { numberGames } from "./number-games";
+import { vocabSentenceGames } from "./vocab-games";
 
 export const games: Game[] = [
   {
@@ -5005,4 +5009,8 @@ export const games: Game[] = [
   wordleGame,
   scrambleGame,
   gridMatchGame,
+  ...nounGames,
+  ...verbGames,
+  ...numberGames,
+  ...vocabSentenceGames,
 ];
