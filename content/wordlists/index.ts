@@ -1,0 +1,1063 @@
+/**
+ * Word lists hub: curated topic lists plus Goethe A1 lists aggregated from
+ * the official Wortliste lessons. Every German word carries its article
+ * (nouns), plural where it exists, and part of speech.
+ */
+
+import { levels } from "../index";
+import { germanNumberWord } from "../../lib/german/numbers";
+import { TOPIC_EXTRAS } from "./topic-extras";
+
+export interface WordListEntry {
+  de: string;
+  en: string;
+  part?: string;
+  plural?: string;
+}
+
+export interface WordList {
+  id: string;
+  title: string;
+  emoji: string;
+  description: string;
+  category: "essential" | "goethe" | "topic";
+  words: WordListEntry[];
+}
+
+function entry(
+  de: string,
+  en: string,
+  part?: string,
+  plural?: string,
+): WordListEntry {
+  return { de, en, part, plural };
+}
+
+const E = entry;
+
+export const wordLists: WordList[] = [
+  {
+    id: "top-50-nouns",
+    title: "Most Common 50 German Nouns",
+    emoji: "🏆",
+    description: "The nouns you meet in your first weeks of German, with articles and plurals.",
+    category: "essential",
+    words: [
+      E("der Mann", "the man", "noun m.", "die Männer"),
+      E("die Frau", "the woman", "noun f.", "die Frauen"),
+      E("das Kind", "the child", "noun n.", "die Kinder"),
+      E("der Freund", "the friend", "noun m.", "die Freunde"),
+      E("die Freundin", "the friend (f.)", "noun f.", "die Freundinnen"),
+      E("die Familie", "the family", "noun f.", "die Familien"),
+      E("der Vater", "the father", "noun m.", "die Väter"),
+      E("die Mutter", "the mother", "noun f.", "die Mütter"),
+      E("der Bruder", "the brother", "noun m.", "die Brüder"),
+      E("die Schwester", "the sister", "noun f.", "die Schwestern"),
+      E("der Name", "the name", "noun m.", "die Namen"),
+      E("das Haus", "the house", "noun n.", "die Häuser"),
+      E("die Wohnung", "the apartment", "noun f.", "die Wohnungen"),
+      E("das Zimmer", "the room", "noun n.", "die Zimmer"),
+      E("der Tisch", "the table", "noun m.", "die Tische"),
+      E("der Stuhl", "the chair", "noun m.", "die Stühle"),
+      E("das Bett", "the bed", "noun n.", "die Betten"),
+      E("die Küche", "the kitchen", "noun f.", "die Küchen"),
+      E("das Essen", "the food", "noun n."),
+      E("das Wasser", "the water", "noun n."),
+      E("das Brot", "the bread", "noun n."),
+      E("die Milch", "the milk", "noun f."),
+      E("der Kaffee", "the coffee", "noun m."),
+      E("die Schule", "the school", "noun f.", "die Schulen"),
+      E("der Lehrer", "the teacher", "noun m.", "die Lehrer"),
+      E("das Buch", "the book", "noun n.", "die Bücher"),
+      E("die Zeitung", "the newspaper", "noun f.", "die Zeitungen"),
+      E("die Stadt", "the city", "noun f.", "die Städte"),
+      E("die Straße", "the street", "noun f.", "die Straßen"),
+      E("der Bahnhof", "the train station", "noun m.", "die Bahnhöfe"),
+      E("der Zug", "the train", "noun m.", "die Züge"),
+      E("das Auto", "the car", "noun n.", "die Autos"),
+      E("der Bus", "the bus", "noun m.", "die Busse"),
+      E("das Geld", "the money", "noun n."),
+      E("der Preis", "the price", "noun m.", "die Preise"),
+      E("die Arbeit", "the work", "noun f.", "die Arbeiten"),
+      E("der Beruf", "the profession", "noun m.", "die Berufe"),
+      E("das Büro", "the office", "noun n.", "die Büros"),
+      E("der Computer", "the computer", "noun m.", "die Computer"),
+      E("das Telefon", "the telephone", "noun n.", "die Telefone"),
+      E("der Arzt", "the doctor", "noun m.", "die Ärzte"),
+      E("das Krankenhaus", "the hospital", "noun n.", "die Krankenhäuser"),
+      E("das Wetter", "the weather", "noun n."),
+      E("die Sonne", "the sun", "noun f."),
+      E("der Regen", "the rain", "noun m."),
+      E("der Tag", "the day", "noun m.", "die Tage"),
+      E("die Woche", "the week", "noun f.", "die Wochen"),
+      E("das Wochenende", "the weekend", "noun n.", "die Wochenenden"),
+      E("das Jahr", "the year", "noun n.", "die Jahre"),
+      E("die Uhr", "the clock", "noun f.", "die Uhren"),
+      E("die Zeit", "the time", "noun f."),
+    ],
+  },
+  {
+    id: "top-50-verbs",
+    title: "Most Common 50 German Verbs",
+    emoji: "⚡",
+    description: "The verbs you need for everyday conversations, in the infinitive.",
+    category: "essential",
+    words: [
+      E("sein", "to be", "verb"),
+      E("haben", "to have", "verb"),
+      E("werden", "to become", "verb"),
+      E("gehen", "to go", "verb"),
+      E("kommen", "to come", "verb"),
+      E("machen", "to make, to do", "verb"),
+      E("sagen", "to say", "verb"),
+      E("sehen", "to see", "verb"),
+      E("essen", "to eat", "verb"),
+      E("trinken", "to drink", "verb"),
+      E("schlafen", "to sleep", "verb"),
+      E("kaufen", "to buy", "verb"),
+      E("wohnen", "to live", "verb"),
+      E("lernen", "to learn", "verb"),
+      E("arbeiten", "to work", "verb"),
+      E("spielen", "to play", "verb"),
+      E("lesen", "to read", "verb"),
+      E("schreiben", "to write", "verb"),
+      E("sprechen", "to speak", "verb"),
+      E("verstehen", "to understand", "verb"),
+      E("fahren", "to drive, to ride", "verb"),
+      E("fliegen", "to fly", "verb"),
+      E("laufen", "to run, to walk", "verb"),
+      E("helfen", "to help", "verb"),
+      E("nehmen", "to take", "verb"),
+      E("geben", "to give", "verb"),
+      E("warten", "to wait", "verb"),
+      E("kochen", "to cook", "verb"),
+      E("singen", "to sing", "verb"),
+      E("tanzen", "to dance", "verb"),
+      E("hören", "to hear, to listen", "verb"),
+      E("bleiben", "to stay", "verb"),
+      E("treffen", "to meet", "verb"),
+      E("finden", "to find", "verb"),
+      E("brauchen", "to need", "verb"),
+      E("fragen", "to ask", "verb"),
+      E("antworten", "to answer", "verb"),
+      E("öffnen", "to open", "verb"),
+      E("schließen", "to close", "verb"),
+      E("bezahlen", "to pay", "verb"),
+      E("kosten", "to cost", "verb"),
+      E("bestellen", "to order", "verb"),
+      E("anrufen", "to call", "verb"),
+      E("telefonieren", "to make a phone call", "verb"),
+      E("mitkommen", "to come along", "verb"),
+      E("anfangen", "to begin", "verb"),
+      E("aufstehen", "to get up", "verb"),
+      E("einkaufen", "to shop", "verb"),
+      E("möchten", "would like", "verb"),
+      E("können", "can, to be able to", "verb"),
+    ],
+  },
+  {
+    id: "days-and-months",
+    title: "Days and Months",
+    emoji: "📅",
+    description: "All seven days, twelve months and the seasons — every one masculine.",
+    category: "essential",
+    words: [
+      E("der Montag", "Monday", "noun m."),
+      E("der Dienstag", "Tuesday", "noun m."),
+      E("der Mittwoch", "Wednesday", "noun m."),
+      E("der Donnerstag", "Thursday", "noun m."),
+      E("der Freitag", "Friday", "noun m."),
+      E("der Samstag", "Saturday", "noun m."),
+      E("der Sonntag", "Sunday", "noun m."),
+      E("der Tag", "the day", "noun m.", "die Tage"),
+      E("die Woche", "the week", "noun f.", "die Wochen"),
+      E("das Wochenende", "the weekend", "noun n.", "die Wochenenden"),
+      E("der Januar", "January", "noun m."),
+      E("der Februar", "February", "noun m."),
+      E("der März", "March", "noun m."),
+      E("der April", "April", "noun m."),
+      E("der Mai", "May", "noun m."),
+      E("der Juni", "June", "noun m."),
+      E("der Juli", "July", "noun m."),
+      E("der August", "August", "noun m."),
+      E("der September", "September", "noun m."),
+      E("der Oktober", "October", "noun m."),
+      E("der November", "November", "noun m."),
+      E("der Dezember", "December", "noun m."),
+      E("der Monat", "the month", "noun m.", "die Monate"),
+      E("das Jahr", "the year", "noun n.", "die Jahre"),
+      E("der Frühling", "spring", "noun m."),
+      E("der Sommer", "summer", "noun m."),
+      E("der Herbst", "autumn", "noun m."),
+      E("der Winter", "winter", "noun m."),
+    ],
+  },
+  {
+    id: "numbers-0-100",
+    title: "Numbers 0–100",
+    emoji: "🔢",
+    description: "The building blocks of every German number: 0–20, the tens, and the tricks.",
+    category: "essential",
+    words: [
+      E("null", "zero", "number"),
+      E("eins", "one", "number"),
+      E("zwei", "two", "number"),
+      E("drei", "three", "number"),
+      E("vier", "four", "number"),
+      E("fünf", "five", "number"),
+      E("sechs", "six", "number"),
+      E("sieben", "seven", "number"),
+      E("acht", "eight", "number"),
+      E("neun", "nine", "number"),
+      E("zehn", "ten", "number"),
+      E("elf", "eleven", "number"),
+      E("zwölf", "twelve", "number"),
+      E("dreizehn", "thirteen", "number"),
+      E("vierzehn", "fourteen", "number"),
+      E("fünfzehn", "fifteen", "number"),
+      E("sechzehn", "sixteen", "number"),
+      E("siebzehn", "seventeen", "number"),
+      E("achtzehn", "eighteen", "number"),
+      E("neunzehn", "nineteen", "number"),
+      E("zwanzig", "twenty", "number"),
+      E("dreißig", "thirty", "number"),
+      E("vierzig", "forty", "number"),
+      E("fünfzig", "fifty", "number"),
+      E("sechzig", "sixty", "number"),
+      E("siebzig", "seventy", "number"),
+      E("achtzig", "eighty", "number"),
+      E("neunzig", "ninety", "number"),
+      E("hundert", "hundred", "number"),
+      E("einundzwanzig", "twenty-one", "number"),
+      E("zweiundzwanzig", "twenty-two", "number"),
+      E("vierundzwanzig", "twenty-four", "number"),
+      E("neunundneunzig", "ninety-nine", "number"),
+    ],
+  },
+  {
+    id: "colors",
+    title: "Colors",
+    emoji: "🎨",
+    description: "The colors you need to describe everything around you.",
+    category: "essential",
+    words: [
+      E("rot", "red", "adjective"),
+      E("blau", "blue", "adjective"),
+      E("grün", "green", "adjective"),
+      E("gelb", "yellow", "adjective"),
+      E("schwarz", "black", "adjective"),
+      E("weiß", "white", "adjective"),
+      E("grau", "grey", "adjective"),
+      E("braun", "brown", "adjective"),
+      E("orange", "orange", "adjective"),
+      E("rosa", "pink", "adjective"),
+      E("lila", "purple", "adjective"),
+      E("hell", "light", "adjective"),
+      E("dunkel", "dark", "adjective"),
+    ],
+  },
+  {
+    id: "goethe-a1-nouns",
+    title: "Goethe A1 Nouns",
+    emoji: "📘",
+    description: "Every noun from the official Goethe A1 Wortliste, in alphabetical order.",
+    category: "goethe",
+    words: [],
+  },
+  {
+    id: "goethe-a1-verbs",
+    title: "Goethe A1 Verbs",
+    emoji: "📘",
+    description: "Every verb from the official Goethe A1 Wortliste.",
+    category: "goethe",
+    words: [],
+  },
+  {
+    id: "goethe-a1-adjectives",
+    title: "Goethe A1 Adjectives",
+    emoji: "📘",
+    description: "Every adjective and adverb from the official Goethe A1 Wortliste.",
+    category: "goethe",
+    words: [],
+  },
+  {
+    id: "people",
+    title: "Personal Information & People",
+    emoji: "👤",
+    description: "Names, family, friends and the questions you ask when you meet someone.",
+    category: "topic",
+    words: [
+      E("der Name", "the name", "noun m.", "die Namen"),
+      E("die Adresse", "the address", "noun f.", "die Adressen"),
+      E("die Telefonnummer", "the phone number", "noun f.", "die Telefonnummern"),
+      E("die Familie", "the family", "noun f.", "die Familien"),
+      E("der Vater", "the father", "noun m.", "die Väter"),
+      E("die Mutter", "the mother", "noun f.", "die Mütter"),
+      E("der Bruder", "the brother", "noun m.", "die Brüder"),
+      E("die Schwester", "the sister", "noun f.", "die Schwestern"),
+      E("der Sohn", "the son", "noun m.", "die Söhne"),
+      E("die Tochter", "the daughter", "noun f.", "die Töchter"),
+      E("das Kind", "the child", "noun n.", "die Kinder"),
+      E("der Freund", "the friend (m.)", "noun m.", "die Freunde"),
+      E("die Freundin", "the friend (f.)", "noun f.", "die Freundinnen"),
+      E("der Nachbar", "the neighbor", "noun m.", "die Nachbarn"),
+      E("der Kollege", "the colleague", "noun m.", "die Kollegen"),
+      E("der Mann", "the man / husband", "noun m.", "die Männer"),
+      E("die Frau", "the woman / wife", "noun f.", "die Frauen"),
+      E("das Land", "the country", "noun n.", "die Länder"),
+      E("die Sprache", "the language", "noun f.", "die Sprachen"),
+      E("der Beruf", "the profession", "noun m.", "die Berufe"),
+      E("das Alter", "the age", "noun n."),
+      E("der Geburtstag", "the birthday", "noun m.", "die Geburtstage"),
+    ],
+  },
+  {
+    id: "home",
+    title: "Home & Living",
+    emoji: "🏠",
+    description: "Rooms, furniture and everything inside a German home.",
+    category: "topic",
+    words: [
+      E("das Haus", "the house", "noun n.", "die Häuser"),
+      E("die Wohnung", "the apartment", "noun f.", "die Wohnungen"),
+      E("das Zimmer", "the room", "noun n.", "die Zimmer"),
+      E("die Küche", "the kitchen", "noun f.", "die Küchen"),
+      E("das Bad", "the bathroom", "noun n.", "die Bäder"),
+      E("das Schlafzimmer", "the bedroom", "noun n.", "die Schlafzimmer"),
+      E("das Wohnzimmer", "the living room", "noun n.", "die Wohnzimmer"),
+      E("das Bett", "the bed", "noun n.", "die Betten"),
+      E("der Tisch", "the table", "noun m.", "die Tische"),
+      E("der Stuhl", "the chair", "noun m.", "die Stühle"),
+      E("der Schrank", "the cupboard", "noun m.", "die Schränke"),
+      E("die Lampe", "the lamp", "noun f.", "die Lampen"),
+      E("das Fenster", "the window", "noun n.", "die Fenster"),
+      E("die Tür", "the door", "noun f.", "die Türen"),
+      E("der Garten", "the garden", "noun m.", "die Gärten"),
+      E("der Balkon", "the balcony", "noun m.", "die Balkone"),
+      E("der Kühlschrank", "the fridge", "noun m.", "die Kühlschränke"),
+      E("die Waschmaschine", "the washing machine", "noun f.", "die Waschmaschinen"),
+      E("der Herd", "the stove", "noun m.", "die Herde"),
+      E("die Wand", "the wall", "noun f.", "die Wände"),
+      E("der Boden", "the floor", "noun m.", "die Böden"),
+      E("die Treppe", "the stairs", "noun f.", "die Treppen"),
+      E("der Schlüssel", "the key", "noun m.", "die Schlüssel"),
+    ],
+  },
+  {
+    id: "animals",
+    title: "Animals",
+    emoji: "🐾",
+    description: "Pets and farm animals with their German articles.",
+    category: "topic",
+    words: [
+      E("der Hund", "the dog", "noun m.", "die Hunde"),
+      E("die Katze", "the cat", "noun f.", "die Katzen"),
+      E("das Pferd", "the horse", "noun n.", "die Pferde"),
+      E("die Kuh", "the cow", "noun f.", "die Kühe"),
+      E("das Schwein", "the pig", "noun n.", "die Schweine"),
+      E("das Schaf", "the sheep", "noun n.", "die Schafe"),
+      E("das Huhn", "the chicken", "noun n.", "die Hühner"),
+      E("der Hahn", "the rooster", "noun m.", "die Hähne"),
+      E("der Vogel", "the bird", "noun m.", "die Vögel"),
+      E("der Fisch", "the fish", "noun m.", "die Fische"),
+      E("die Maus", "the mouse", "noun f.", "die Mäuse"),
+      E("der Löwe", "the lion", "noun m.", "die Löwen"),
+      E("der Bär", "the bear", "noun m.", "die Bären"),
+      E("der Elefant", "the elephant", "noun m.", "die Elefanten"),
+      E("die Ente", "the duck", "noun f.", "die Enten"),
+      E("das Haustier", "the pet", "noun n.", "die Haustiere"),
+    ],
+  },
+  {
+    id: "nature",
+    title: "Nature",
+    emoji: "🌿",
+    description: "Weather, landscape and the natural world around you.",
+    category: "topic",
+    words: [
+      E("das Wetter", "the weather", "noun n."),
+      E("die Sonne", "the sun", "noun f."),
+      E("der Mond", "the moon", "noun m."),
+      E("der Stern", "the star", "noun m.", "die Sterne"),
+      E("der Himmel", "the sky", "noun m."),
+      E("der Regen", "the rain", "noun m."),
+      E("der Schnee", "the snow", "noun m."),
+      E("der Wind", "the wind", "noun m."),
+      E("das Gewitter", "the thunderstorm", "noun n.", "die Gewitter"),
+      E("das Meer", "the sea", "noun n.", "die Meere"),
+      E("der Berg", "the mountain", "noun m.", "die Berge"),
+      E("der Wald", "the forest", "noun m.", "die Wälder"),
+      E("der Fluss", "the river", "noun m.", "die Flüsse"),
+      E("der See", "the lake", "noun m.", "die Seen"),
+      E("die Blume", "the flower", "noun f.", "die Blumen"),
+      E("der Baum", "the tree", "noun m.", "die Bäume"),
+      E("das Gras", "the grass", "noun n."),
+      E("die Natur", "the nature", "noun f."),
+      E("es regnet", "it is raining", "phrase"),
+      E("es schneit", "it is snowing", "phrase"),
+      E("die Wolke", "the cloud", "noun f.", "die Wolken"),
+    ],
+  },
+  {
+    id: "food-drink",
+    title: "Food & Drink",
+    emoji: "🍎",
+    description: "What you eat and drink: groceries with their articles.",
+    category: "topic",
+    words: [
+      E("das Brot", "the bread", "noun n."),
+      E("das Brötchen", "the roll", "noun n.", "die Brötchen"),
+      E("die Milch", "the milk", "noun f."),
+      E("der Käse", "the cheese", "noun m."),
+      E("das Ei", "the egg", "noun n.", "die Eier"),
+      E("der Apfel", "the apple", "noun m.", "die Äpfel"),
+      E("die Banane", "the banana", "noun f.", "die Bananen"),
+      E("die Orange", "the orange", "noun f.", "die Orangen"),
+      E("die Traube", "the grape", "noun f.", "die Trauben"),
+      E("der Kaffee", "the coffee", "noun m."),
+      E("der Tee", "the tea", "noun m."),
+      E("das Wasser", "the water", "noun n."),
+      E("das Bier", "the beer", "noun n."),
+      E("der Saft", "the juice", "noun m.", "die Säfte"),
+      E("der Zucker", "the sugar", "noun m."),
+      E("das Salz", "the salt", "noun n."),
+      E("der Kuchen", "the cake", "noun m.", "die Kuchen"),
+      E("das Obst", "the fruit", "noun n."),
+      E("das Gemüse", "the vegetables", "noun n."),
+      E("das Fleisch", "the meat", "noun n."),
+      E("die Kartoffel", "the potato", "noun f.", "die Kartoffeln"),
+      E("die Tomate", "the tomato", "noun f.", "die Tomaten"),
+      E("der Reis", "the rice", "noun m."),
+      E("das Eis", "the ice cream", "noun n."),
+    ],
+  },
+  {
+    id: "restaurant",
+    title: "Restaurant & Café",
+    emoji: "☕",
+    description: "Ordering food and drinks: the words you need at the table.",
+    category: "topic",
+    words: [
+      E("das Restaurant", "the restaurant", "noun n.", "die Restaurants"),
+      E("das Café", "the café", "noun n.", "die Cafés"),
+      E("der Kellner", "the waiter", "noun m.", "die Kellner"),
+      E("die Kellnerin", "the waitress", "noun f.", "die Kellnerinnen"),
+      E("die Speisekarte", "the menu", "noun f.", "die Speisekarten"),
+      E("die Rechnung", "the bill", "noun f.", "die Rechnungen"),
+      E("die Suppe", "the soup", "noun f.", "die Suppen"),
+      E("der Salat", "the salad", "noun m.", "die Salate"),
+      E("das Frühstück", "the breakfast", "noun n."),
+      E("das Mittagessen", "the lunch", "noun n."),
+      E("das Abendessen", "the dinner", "noun n."),
+      E("der Hunger", "the hunger", "noun m."),
+      E("der Durst", "the thirst", "noun m."),
+      E("der Geschmack", "the taste", "noun m."),
+      E("bestellen", "to order", "verb"),
+      E("bezahlen", "to pay", "verb"),
+      E("schmecken", "to taste", "verb"),
+      E("trinken", "to drink", "verb"),
+      E("essen", "to eat", "verb"),
+      E("der Tisch", "the table", "noun m.", "die Tische"),
+      E("die Tasse", "the cup", "noun f.", "die Tassen"),
+      E("das Glas", "the glass", "noun n.", "die Gläser"),
+      E("die Gabel", "the fork", "noun f.", "die Gabeln"),
+      E("das Messer", "the knife", "noun n.", "die Messer"),
+    ],
+  },
+  {
+    id: "travel-transport",
+    title: "Travel & Transport",
+    emoji: "🚆",
+    description: "Getting around: trains, planes, cars and the words at the station.",
+    category: "topic",
+    words: [
+      E("der Bahnhof", "the train station", "noun m.", "die Bahnhöfe"),
+      E("der Zug", "the train", "noun m.", "die Züge"),
+      E("das Flugzeug", "the airplane", "noun n.", "die Flugzeuge"),
+      E("der Flughafen", "the airport", "noun m.", "die Flughäfen"),
+      E("das Auto", "the car", "noun n.", "die Autos"),
+      E("der Bus", "the bus", "noun m.", "die Busse"),
+      E("das Taxi", "the taxi", "noun n.", "die Taxis"),
+      E("das Fahrrad", "the bicycle", "noun n.", "die Fahrräder"),
+      E("die Fahrkarte", "the ticket", "noun f.", "die Fahrkarten"),
+      E("das Gepäck", "the luggage", "noun n."),
+      E("die Reise", "the journey", "noun f.", "die Reisen"),
+      E("der Urlaub", "the vacation", "noun m."),
+      E("das Hotel", "the hotel", "noun n.", "die Hotels"),
+      E("die Straße", "the street", "noun f.", "die Straßen"),
+      E("die Ampel", "the traffic light", "noun f.", "die Ampeln"),
+      E("die Haltestelle", "the stop", "noun f.", "die Haltestellen"),
+      E("der Fahrer", "the driver", "noun m.", "die Fahrer"),
+      E("fahren", "to drive, to ride", "verb"),
+      E("fliegen", "to fly", "verb"),
+      E("ankommen", "to arrive", "verb"),
+      E("abfahren", "to depart", "verb"),
+      E("einsteigen", "to get on", "verb"),
+      E("aussteigen", "to get off", "verb"),
+      E("buchen", "to book", "verb"),
+    ],
+  },
+  {
+    id: "shopping",
+    title: "Shopping & Services",
+    emoji: "🛒",
+    description: "Prices, shops and paying: shopping vocabulary that actually works.",
+    category: "topic",
+    words: [
+      E("das Geschäft", "the shop", "noun n.", "die Geschäfte"),
+      E("der Supermarkt", "the supermarket", "noun m.", "die Supermärkte"),
+      E("der Markt", "the market", "noun m.", "die Märkte"),
+      E("die Kasse", "the checkout", "noun f.", "die Kassen"),
+      E("der Preis", "the price", "noun m.", "die Preise"),
+      E("das Geld", "the money", "noun n."),
+      E("der Euro", "the euro", "noun m.", "die Euros"),
+      E("der Cent", "the cent", "noun m.", "die Cents"),
+      E("der Einkauf", "the shopping", "noun m.", "die Einkäufe"),
+      E("die Einkaufstasche", "the shopping bag", "noun f.", "die Einkaufstaschen"),
+      E("der Korb", "the basket", "noun m.", "die Körbe"),
+      E("das Angebot", "the offer", "noun n.", "die Angebote"),
+      E("die Größe", "the size", "noun f.", "die Größen"),
+      E("kaufen", "to buy", "verb"),
+      E("verkaufen", "to sell", "verb"),
+      E("bezahlen", "to pay", "verb"),
+      E("kosten", "to cost", "verb"),
+      E("einkaufen", "to shop", "verb"),
+      E("zurückgeben", "to return", "verb"),
+      E("der Verkäufer", "the shop assistant", "noun m.", "die Verkäufer"),
+      E("die Kleidung", "the clothes", "noun f."),
+      E("die Post", "the post office", "noun f."),
+      E("die Bank", "the bank", "noun f.", "die Banken"),
+    ],
+  },
+  {
+    id: "work-education",
+    title: "Work & Education",
+    emoji: "💼",
+    description: "Offices, appointments and school: professional vocabulary.",
+    category: "topic",
+    words: [
+      E("die Arbeit", "the work", "noun f.", "die Arbeiten"),
+      E("der Beruf", "the profession", "noun m.", "die Berufe"),
+      E("das Büro", "the office", "noun n.", "die Büros"),
+      E("die Firma", "the company", "noun f.", "die Firmen"),
+      E("der Termin", "the appointment", "noun m.", "die Termine"),
+      E("das Meeting", "the meeting", "noun n.", "die Meetings"),
+      E("der Chef", "the boss", "noun m.", "die Chefs"),
+      E("der Computer", "the computer", "noun m.", "die Computer"),
+      E("die E-Mail", "the email", "noun f.", "die E-Mails"),
+      E("das Telefon", "the telephone", "noun n.", "die Telefone"),
+      E("der Brief", "the letter", "noun m.", "die Briefe"),
+      E("der Mitarbeiter", "the employee", "noun m.", "die Mitarbeiter"),
+      E("die Schule", "the school", "noun f.", "die Schulen"),
+      E("der Schüler", "the pupil", "noun m.", "die Schüler"),
+      E("der Student", "the student", "noun m.", "die Studenten"),
+      E("der Unterricht", "the lesson", "noun m."),
+      E("die Hausaufgaben", "the homework", "noun f. pl."),
+      E("arbeiten", "to work", "verb"),
+      E("lernen", "to learn", "verb"),
+      E("studieren", "to study", "verb"),
+      E("telefonieren", "to make a phone call", "verb"),
+      E("schreiben", "to write", "verb"),
+    ],
+  },
+  {
+    id: "health-body",
+    title: "Health & Body",
+    emoji: "🩺",
+    description: "The body, the doctor's visit and how you feel.",
+    category: "topic",
+    words: [
+      E("der Körper", "the body", "noun m.", "die Körper"),
+      E("der Kopf", "the head", "noun m.", "die Köpfe"),
+      E("das Gesicht", "the face", "noun n.", "die Gesichter"),
+      E("das Auge", "the eye", "noun n.", "die Augen"),
+      E("das Ohr", "the ear", "noun n.", "die Ohren"),
+      E("die Nase", "the nose", "noun f.", "die Nasen"),
+      E("der Mund", "the mouth", "noun m."),
+      E("der Arm", "the arm", "noun m.", "die Arme"),
+      E("die Hand", "the hand", "noun f.", "die Hände"),
+      E("das Bein", "the leg", "noun n.", "die Beine"),
+      E("der Fuß", "the foot", "noun m.", "die Füße"),
+      E("der Rücken", "the back", "noun m.", "die Rücken"),
+      E("das Herz", "the heart", "noun n.", "die Herzen"),
+      E("der Arzt", "the doctor (m.)", "noun m.", "die Ärzte"),
+      E("die Ärztin", "the doctor (f.)", "noun f.", "die Ärztinnen"),
+      E("das Krankenhaus", "the hospital", "noun n.", "die Krankenhäuser"),
+      E("die Apotheke", "the pharmacy", "noun f.", "die Apotheken"),
+      E("die Medizin", "the medicine", "noun f."),
+      E("der Schmerz", "the pain", "noun m.", "die Schmerzen"),
+      E("die Gesundheit", "the health", "noun f."),
+      E("krank", "sick", "adjective"),
+      E("müde", "tired", "adjective"),
+      E("gesund", "healthy", "adjective"),
+    ],
+  },
+  {
+    id: "clothes",
+    title: "Clothes & Appearance",
+    emoji: "👕",
+    description: "What you wear, from jackets to shoes.",
+    category: "topic",
+    words: [
+      E("die Kleidung", "the clothes", "noun f."),
+      E("das Hemd", "the shirt", "noun n.", "die Hemden"),
+      E("die Hose", "the trousers", "noun f.", "die Hosen"),
+      E("das Kleid", "the dress", "noun n.", "die Kleider"),
+      E("die Jacke", "the jacket", "noun f.", "die Jacken"),
+      E("der Mantel", "the coat", "noun m.", "die Mäntel"),
+      E("der Pullover", "the sweater", "noun m.", "die Pullover"),
+      E("der Schuh", "the shoe", "noun m.", "die Schuhe"),
+      E("die Socke", "the sock", "noun f.", "die Socken"),
+      E("der Hut", "the hat", "noun m.", "die Hüte"),
+      E("die Mütze", "the cap", "noun f.", "die Mützen"),
+      E("die Brille", "the glasses", "noun f.", "die Brillen"),
+      E("die Tasche", "the bag", "noun f.", "die Taschen"),
+      E("der Gürtel", "the belt", "noun m.", "die Gürtel"),
+      E("die Größe", "the size", "noun f.", "die Größen"),
+      E("die Farbe", "the color", "noun f.", "die Farben"),
+      E("tragen", "to wear", "verb"),
+      E("anziehen", "to put on", "verb"),
+      E("ausziehen", "to take off", "verb"),
+      E("passen", "to fit", "verb"),
+    ],
+  },
+  {
+    id: "city",
+    title: "City & Society",
+    emoji: "🏙️",
+    description: "Getting around town: buildings, directions and places.",
+    category: "topic",
+    words: [
+      E("die Stadt", "the city", "noun f.", "die Städte"),
+      E("das Zentrum", "the center", "noun n.", "die Zentren"),
+      E("die Straße", "the street", "noun f.", "die Straßen"),
+      E("der Platz", "the square", "noun m.", "die Plätze"),
+      E("die Kirche", "the church", "noun f.", "die Kirchen"),
+      E("das Museum", "the museum", "noun n.", "die Museen"),
+      E("das Kino", "the cinema", "noun n.", "die Kinos"),
+      E("das Rathaus", "the town hall", "noun n.", "die Rathäuser"),
+      E("das Hotel", "the hotel", "noun n.", "die Hotels"),
+      E("das Restaurant", "the restaurant", "noun n.", "die Restaurants"),
+      E("der Park", "the park", "noun m.", "die Parks"),
+      E("die Ampel", "the traffic light", "noun f.", "die Ampeln"),
+      E("die Brücke", "the bridge", "noun f.", "die Brücken"),
+      E("das Haus", "the house", "noun n.", "die Häuser"),
+      E("die Post", "the post office", "noun f."),
+      E("die Bank", "the bank", "noun f.", "die Banken"),
+      E("links", "left", "adverb"),
+      E("rechts", "right", "adverb"),
+      E("geradeaus", "straight ahead", "adverb"),
+      E("die Richtung", "the direction", "noun f.", "die Richtungen"),
+      E("die U-Bahn", "the subway", "noun f.", "die U-Bahnen"),
+      E("die Polizei", "the police", "noun f."),
+    ],
+  },
+  {
+    id: "culture",
+    title: "Culture & Entertainment",
+    emoji: "🎬",
+    description: "Music, film, media and how you spend your free time.",
+    category: "topic",
+    words: [
+      E("die Musik", "the music", "noun f."),
+      E("der Film", "the film", "noun m.", "die Filme"),
+      E("das Kino", "the cinema", "noun n.", "die Kinos"),
+      E("das Fernsehen", "the television", "noun n."),
+      E("das Radio", "the radio", "noun n.", "die Radios"),
+      E("das Buch", "the book", "noun n.", "die Bücher"),
+      E("die Zeitung", "the newspaper", "noun f.", "die Zeitungen"),
+      E("die Zeitschrift", "the magazine", "noun f.", "die Zeitschriften"),
+      E("das Konzert", "the concert", "noun n.", "die Konzerte"),
+      E("das Theater", "the theater", "noun n.", "die Theater"),
+      E("die Party", "the party", "noun f.", "die Partys"),
+      E("das Fest", "the festival", "noun n.", "die Feste"),
+      E("das Spiel", "the game", "noun n.", "die Spiele"),
+      E("der Sport", "the sport", "noun m."),
+      E("der Fußball", "the football", "noun m."),
+      E("lesen", "to read", "verb"),
+      E("sehen", "to watch", "verb"),
+      E("hören", "to listen", "verb"),
+      E("spielen", "to play", "verb"),
+      E("tanzen", "to dance", "verb"),
+      E("singen", "to sing", "verb"),
+      E("die Freizeit", "the free time", "noun f."),
+    ],
+  },
+];
+
+function lessonVocab(lessonId: string) {
+  for (const level of levels) {
+    for (const unit of level.units) {
+      for (const lesson of unit.lessons) {
+        if (lesson.id === lessonId) return lesson.vocab;
+      }
+    }
+  }
+  return [];
+}
+
+const WORTLISTE_LESSONS = [
+  "wortschatz-a-d",
+  "wortschatz-e-i",
+  "wortschatz-j-m",
+  "wortschatz-n-r",
+  "wortschatz-s-z",
+];
+
+const goetheVocab = WORTLISTE_LESSONS.flatMap(lessonVocab);
+
+/** Fill the empty Goethe list placeholders with aggregated Wortliste vocab. */
+function isNoun(item: { de: string; part?: string }): boolean {
+  return /^noun/i.test(item.part ?? "") || /^der |^die |^das /.test(item.de);
+}
+
+function isVerb(item: { de: string; part?: string }): boolean {
+  return /^verb/i.test(item.part ?? "");
+}
+
+function isAdjective(item: { de: string; part?: string }): boolean {
+  return /^adj/i.test(item.part ?? "");
+}
+
+for (const list of wordLists) {
+  if (list.id === "goethe-a1-nouns") {
+    list.words = goetheVocab
+      .filter(isNoun)
+      .filter((item) => item.en.length > 0)
+      .map((item) => ({
+        de: item.de,
+        en: item.en,
+        part: item.part,
+        plural: item.plural,
+      }));
+  }
+  if (list.id === "goethe-a1-verbs") {
+    list.words = goetheVocab
+      .filter(isVerb)
+      .map((item) => ({ de: item.de, en: item.en, part: item.part }));
+  }
+  if (list.id === "goethe-a1-adjectives") {
+    list.words = goetheVocab
+      .filter(isAdjective)
+      .map((item) => ({ de: item.de, en: item.en, part: item.part }));
+  }
+}
+
+// ---------------------------------------------------------------------------
+// Depth expansion: every essential and topic list grows to 150+ entries.
+// ---------------------------------------------------------------------------
+
+const COLOR_WORDS: WordListEntry[] = [
+  E("rot", "red", "adjective"),
+  E("blau", "blue", "adjective"),
+  E("grün", "green", "adjective"),
+  E("gelb", "yellow", "adjective"),
+  E("schwarz", "black", "adjective"),
+  E("weiß", "white", "adjective"),
+  E("grau", "grey", "adjective"),
+  E("braun", "brown", "adjective"),
+  E("orange", "orange", "adjective"),
+  E("rosa", "pink", "adjective"),
+  E("lila", "purple", "adjective"),
+  E("hell", "light", "adjective"),
+  E("dunkel", "dark", "adjective"),
+  E("hellblau", "light blue", "adjective"),
+  E("dunkelblau", "dark blue", "adjective"),
+  E("himmelblau", "sky blue", "adjective"),
+  E("königsblau", "royal blue", "adjective"),
+  E("kobaltblau", "cobalt blue", "adjective"),
+  E("stahlblau", "steel blue", "adjective"),
+  E("eisblau", "ice blue", "adjective"),
+  E("petrol", "petrol blue", "adjective"),
+  E("taubenblau", "dove grey-blue", "adjective"),
+  E("navyblau", "navy blue", "adjective"),
+  E("hellgrün", "light green", "adjective"),
+  E("dunkelgrün", "dark green", "adjective"),
+  E("grasgrün", "grass green", "adjective"),
+  E("waldgrün", "forest green", "adjective"),
+  E("moosgrün", "moss green", "adjective"),
+  E("olivgrün", "olive green", "adjective"),
+  E("smaragdgrün", "emerald green", "adjective"),
+  E("apfelgrün", "apple green", "adjective"),
+  E("flaschengrün", "bottle green", "adjective"),
+  E("jadegrün", "jade green", "adjective"),
+  E("limettengrün", "lime green", "adjective"),
+  E("meergrün", "sea green", "adjective"),
+  E("tannengrün", "pine green", "adjective"),
+  E("hellrot", "light red", "adjective"),
+  E("dunkelrot", "dark red", "adjective"),
+  E("feuerrot", "fire red", "adjective"),
+  E("kirschrot", "cherry red", "adjective"),
+  E("weinrot", "wine red", "adjective"),
+  E("bordeaux", "burgundy", "adjective"),
+  E("ziegelrot", "brick red", "adjective"),
+  E("himbeerrot", "raspberry red", "adjective"),
+  E("karminrot", "carmine red", "adjective"),
+  E("granatrot", "garnet red", "adjective"),
+  E("orangerot", "orange-red", "adjective"),
+  E("rosarot", "pink-red", "adjective"),
+  E("sonnengelb", "sunny yellow", "adjective"),
+  E("zitronengelb", "lemon yellow", "adjective"),
+  E("senfgelb", "mustard yellow", "adjective"),
+  E("goldgelb", "golden yellow", "adjective"),
+  E("sandgelb", "sand yellow", "adjective"),
+  E("cremegelb", "cream yellow", "adjective"),
+  E("hellbraun", "light brown", "adjective"),
+  E("dunkelbraun", "dark brown", "adjective"),
+  E("kastanienbraun", "chestnut brown", "adjective"),
+  E("schokobraun", "chocolate brown", "adjective"),
+  E("haselnussbraun", "hazel brown", "adjective"),
+  E("karamell", "caramel", "adjective"),
+  E("hellgrau", "light grey", "adjective"),
+  E("dunkelgrau", "dark grey", "adjective"),
+  E("silbergrau", "silver grey", "adjective"),
+  E("mausgrau", "mouse grey", "adjective"),
+  E("schiefergrau", "slate grey", "adjective"),
+  E("rabenschwarz", "raven black", "adjective"),
+  E("kohlschwarz", "coal black", "adjective"),
+  E("schneeweiß", "snow white", "adjective"),
+  E("cremeweiß", "cream white", "adjective"),
+  E("perlweiß", "pearl white", "adjective"),
+  E("elfenbein", "ivory", "adjective"),
+  E("beige", "beige", "adjective"),
+  E("sand", "sand", "adjective"),
+  E("khaki", "khaki", "adjective"),
+  E("camel", "camel", "adjective"),
+  E("türkis", "turquoise", "adjective"),
+  E("mintgrün", "mint green", "adjective"),
+  E("pistazie", "pistachio", "adjective"),
+  E("lachs", "salmon", "adjective"),
+  E("koralle", "coral", "adjective"),
+  E("pfirsich", "peach", "adjective"),
+  E("aprikot", "apricot", "adjective"),
+  E("flieder", "lilac", "adjective"),
+  E("lavendel", "lavender", "adjective"),
+  E("violett", "violet", "adjective"),
+  E("aubergine", "aubergine", "adjective"),
+  E("pflaumenblau", "plum", "adjective"),
+  E("dunkelviolett", "dark violet", "adjective"),
+  E("magenta", "magenta", "adjective"),
+  E("purpur", "purple", "adjective"),
+  E("pink", "pink", "adjective"),
+  E("gold", "gold", "adjective"),
+  E("silber", "silver", "adjective"),
+  E("bronze", "bronze", "adjective"),
+  E("kupfer", "copper", "adjective"),
+  E("bunt", "colorful", "adjective"),
+  E("farbig", "colored", "adjective"),
+  E("einfarbig", "plain, one-color", "adjective"),
+  E("mehrfarbig", "multi-colored", "adjective"),
+  E("gestreift", "striped", "adjective"),
+  E("gepunktet", "dotted", "adjective"),
+  E("kariert", "checked", "adjective"),
+  E("glänzend", "shiny", "adjective"),
+  E("matt", "matte", "adjective"),
+  E("durchsichtig", "transparent", "adjective"),
+  E("leuchtend", "bright, glowing", "adjective"),
+  E("blass", "pale", "adjective"),
+  E("die Farbe", "the color", "noun f.", "die Farben"),
+  E("der Farbton", "the shade", "noun m.", "die Farbtöne"),
+  E("der Regenbogen", "the rainbow", "noun m.", "die Regenbogen"),
+  E("färben", "to dye, to color", "verb"),
+];
+
+const DAYS_MONTHS_EXTRA: WordListEntry[] = [
+  E("der Feiertag", "the public holiday", "noun m.", "die Feiertage"),
+  E("der Werktag", "the working day", "noun m.", "die Werktage"),
+  E("der Arbeitstag", "the workday", "noun m.", "die Arbeitstage"),
+  E("der Geburtstag", "the birthday", "noun m.", "die Geburtstage"),
+  E("der Namenstag", "the name day", "noun m.", "die Namenstage"),
+  E("der Muttertag", "Mother's Day", "noun m."),
+  E("der Vatertag", "Father's Day", "noun m."),
+  E("der Valentinstag", "Valentine's Day", "noun m."),
+  E("die Silvesternacht", "New Year's Eve", "noun f.", "die Silvesternächte"),
+  E("das Neujahr", "New Year", "noun n."),
+  E("das Weihnachten", "Christmas", "noun n."),
+  E("das Ostern", "Easter", "noun n."),
+  E("der Montagmorgen", "Monday morning", "noun m."),
+  E("der Montagabend", "Monday evening", "noun m."),
+  E("der Dienstagmorgen", "Tuesday morning", "noun m."),
+  E("der Mittwochnachmittag", "Wednesday afternoon", "noun m."),
+  E("der Donnerstagabend", "Thursday evening", "noun m."),
+  E("der Freitagabend", "Friday evening", "noun m."),
+  E("der Samstagnachmittag", "Saturday afternoon", "noun m."),
+  E("der Sonntagmorgen", "Sunday morning", "noun m."),
+  E("das Datum", "the date", "noun n.", "die Daten"),
+  E("der Kalender", "the calendar", "noun m.", "die Kalender"),
+  E("die Jahreszeit", "the season", "noun f.", "die Jahreszeiten"),
+  E("die Jahreszahl", "the year number", "noun f.", "die Jahreszahlen"),
+  E("das Jahrzehnt", "the decade", "noun n.", "die Jahrzehnte"),
+  E("das Jahrhundert", "the century", "noun n.", "die Jahrhunderte"),
+  E("die Stunde", "the hour", "noun f.", "die Stunden"),
+  E("die Minute", "the minute", "noun f.", "die Minuten"),
+  E("die Sekunde", "the second", "noun f.", "die Sekunden"),
+  E("die Uhrzeit", "the time of day", "noun f.", "die Uhrzeiten"),
+  E("die Mittagszeit", "lunchtime", "noun f."),
+  E("die Feierabend", "quitting time", "noun m."),
+  E("der Vormittag", "the morning (before noon)", "noun m.", "die Vormittage"),
+  E("der Nachmittag", "the afternoon", "noun m.", "die Nachmittage"),
+  E("die Nacht", "the night", "noun f.", "die Nächte"),
+  E("die Mitternacht", "midnight", "noun f."),
+  E("der Mittag", "noon", "noun m.", "die Mittage"),
+  E("der Abend", "the evening", "noun m.", "die Abende"),
+  E("der Morgen", "the morning", "noun m.", "die Morgen"),
+  E("heute", "today", "adverb"),
+  E("gestern", "yesterday", "adverb"),
+  E("morgen", "tomorrow", "adverb"),
+  E("vorgestern", "the day before yesterday", "adverb"),
+  E("übermorgen", "the day after tomorrow", "adverb"),
+  E("jetzt", "now", "adverb"),
+  E("später", "later", "adverb"),
+  E("früher", "earlier", "adverb"),
+  E("sofort", "immediately", "adverb"),
+  E("bald", "soon", "adverb"),
+  E("täglich", "daily", "adjective"),
+  E("wöchentlich", "weekly", "adjective"),
+  E("monatlich", "monthly", "adjective"),
+  E("jährlich", "yearly", "adjective"),
+  E("das Frühjahr", "spring", "noun n."),
+  E("der Spätsommer", "late summer", "noun m."),
+  E("der Herbstanfang", "the beginning of autumn", "noun m."),
+  E("der Winteranfang", "the beginning of winter", "noun m."),
+  E("der Frühlingsanfang", "the beginning of spring", "noun m."),
+  E("der Sommeranfang", "the beginning of summer", "noun m."),
+  E("die Wintersonnenwende", "the winter solstice", "noun f."),
+  E("die Sommersonnenwende", "the summer solstice", "noun f."),
+  E("die Woche", "the week", "noun f.", "die Wochen"),
+  E("die Arbeitswoche", "the working week", "noun f."),
+  E("das Wochenende", "the weekend", "noun n.", "die Wochenenden"),
+  E("der Monatsanfang", "the start of the month", "noun m."),
+  E("das Monatsende", "the end of the month", "noun n."),
+  E("die Monatsmitte", "the middle of the month", "noun f."),
+  E("das Jahr", "the year", "noun n.", "die Jahre"),
+  E("das Schaltjahr", "the leap year", "noun n.", "die Schaltjahre"),
+  E("das Schuljahr", "the school year", "noun n.", "die Schuljahre"),
+  E("die Ferien", "the holidays", "noun f. pl."),
+  E("die Sommerferien", "the summer holidays", "noun f. pl."),
+  E("die Winterferien", "the winter holidays", "noun f. pl."),
+  E("die Osterferien", "the Easter holidays", "noun f. pl."),
+  E("die Weihnachtsferien", "the Christmas holidays", "noun f. pl."),
+  E("der Monat", "the month", "noun m.", "die Monate"),
+  E("der Januar", "January", "noun m."),
+  E("der Februar", "February", "noun m."),
+  E("der März", "March", "noun m."),
+  E("der April", "April", "noun m."),
+  E("der Mai", "May", "noun m."),
+  E("der Juni", "June", "noun m."),
+  E("der Juli", "July", "noun m."),
+  E("der August", "August", "noun m."),
+  E("der September", "September", "noun m."),
+  E("der Oktober", "October", "noun m."),
+  E("der November", "November", "noun m."),
+  E("der Dezember", "December", "noun m."),
+  E("der Montag", "Monday", "noun m."),
+  E("der Dienstag", "Tuesday", "noun m."),
+  E("der Mittwoch", "Wednesday", "noun m."),
+  E("der Donnerstag", "Thursday", "noun m."),
+  E("der Freitag", "Friday", "noun m."),
+  E("der Samstag", "Saturday", "noun m."),
+  E("der Sonntag", "Sunday", "noun m."),
+  E("die Zeit", "the time", "noun f."),
+  E("die Freizeit", "the free time", "noun f."),
+  E("die Frühzeit", "the early days", "noun f."),
+];
+
+const TOPIC_KEYWORDS: Record<string, string[]> = {
+  people: ["man", "woman", "friend", "family", "father", "mother", "brother", "sister", "son", "daughter", "child", "neighbor", "colleague", "teacher", "student", "doctor", "name", "birthday", "age", "husband", "wife", "girl", "boy", "uncle", "aunt", "cousin", "grandma", "grandpa", "people", "human", "person", "partner", "baby", "married", "single", "hello", "name"],
+  home: ["house", "apartment", "room", "kitchen", "bath", "bed", "table", "chair", "cupboard", "lamp", "window", "door", "garden", "balcony", "fridge", "stove", "wall", "floor", "stairs", "key", "sofa", "shelf", "mirror", "rug", "carpet", "bedroom", "living room", "furniture", "home", "towel", "blanket", "pillow", "curtain", "garbage", "cleaning", "mop", "broom", "sink", "shower", "toilet", "hall", "cellar", "roof"],
+  animals: ["dog", "cat", "horse", "cow", "pig", "sheep", "chicken", "bird", "fish", "mouse", "lion", "bear", "elephant", "duck", "bee", "animal", "pet", "rabbit", "goat", "donkey", "hen", "rooster", "snake", "frog", "butterfly", "spider", "ant", "deer", "fox", "wolf", "hamster", "parrot", "turtle", "whale", "shark", "dolphin", "monkey", "tiger", "zebra", "giraffe", "kangaroo", "penguin", "owl", "eagle", "swan", "goose"],
+  nature: ["weather", "sun", "moon", "star", "sky", "rain", "snow", "wind", "storm", "sea", "lake", "mountain", "forest", "river", "flower", "tree", "grass", "nature", "cloud", "ice", "earth", "sand", "fire", "island", "valley", "hill", "rock", "stone", "water", "thunder", "lightning", "fog", "frost", "spring", "autumn", "landscape", "field", "meadow", "beach", "coast", "shore", "sunshine"],
+  "food-drink": ["bread", "milk", "cheese", "egg", "apple", "banana", "orange", "grape", "coffee", "tea", "water", "beer", "juice", "sugar", "salt", "cake", "fruit", "vegetable", "meat", "potato", "tomato", "rice", "ice cream", "food", "drink", "butter", "honey", "oil", "flour", "sausage", "wine", "lemon", "strawberry", "pear", "plum", "cherry", "peach", "melon", "onion", "garlic", "carrot", "cucumber", "salad", "soup", "fish", "chicken", "pork", "beef", "hunger", "thirst", "breakfast", "lunch", "dinner", "taste", "eat", "drink", "cook", "bake", "hungry", "thirsty", "delicious"],
+  restaurant: ["restaurant", "café", "waiter", "waitress", "menu", "bill", "soup", "salad", "breakfast", "lunch", "dinner", "hunger", "thirst", "order", "pay", "taste", "cup", "glass", "fork", "knife", "plate", "table", "drink", "eat", "napkin", "teapot", "coffee cup", "appetizer", "dessert", "main course", "tip", "chef", "kitchen", "guest", "table", "open", "closed", "reservation", "seat", "waiter", "bottle", "bowl", "spoon", "delicious", "cheers"],
+  "travel-transport": ["station", "train", "airplane", "airport", "car", "bus", "taxi", "bicycle", "ticket", "luggage", "journey", "vacation", "hotel", "street", "traffic", "stop", "driver", "drive", "fly", "arrive", "depart", "board", "book", "map", "passport", "trip", "travel", "rail", "platform", "timetable", "boarding", "flight", "seat", "ticket", "tourism", "tourist", "destination", "suitcase", "backpack", "souvenir", "cruise", "highway", "bridge", "tunnel", "round trip", "one-way"],
+  shopping: ["shop", "supermarket", "market", "checkout", "price", "money", "euro", "cent", "shopping", "basket", "offer", "size", "buy", "sell", "pay", "cost", "return", "seller", "clothes", "post", "bank", "bargain", "discount", "receipt", "change", "customer", "queue", "cash", "card", "shopping bag", "department store", "baker", "butcher", "grocer", "mall", "store", "sales", "delivery", "in stock", "sold out", "expensive", "cheap", "open", "closed"],
+  "work-education": ["work", "profession", "office", "company", "appointment", "meeting", "boss", "computer", "email", "telephone", "letter", "employee", "school", "pupil", "student", "lesson", "homework", "learn", "study", "write", "office", "career", "job", "salary", "colleague", "boss", "coworker", "manager", "secretary", "customer", "contract", "vacation day", "sick leave", "university", "class", "teacher", "exam", "grade", "report card", "schoolbag", "blackboard", "book", "pen", "pencil", "notebook", "break", "recess", "degree", "training", "workshop", "conference"],
+  "health-body": ["body", "head", "face", "eye", "ear", "nose", "mouth", "arm", "hand", "leg", "foot", "back", "heart", "doctor", "hospital", "pharmacy", "medicine", "pain", "health", "sick", "tired", "healthy", "tooth", "throat", "stomach", "knee", "shoulder", "neck", "elbow", "finger", "toe", "hair", "skin", "blood", "fever", "cold", "flu", "cough", "headache", "appointment", "patient", "nurse", "dentist", "ambulance", "bandage", "pill", "vaccination", "check-up", "stomachache", "back pain", "hurt", "heal", "rest", "recover"],
+  clothes: ["clothes", "shirt", "trousers", "dress", "jacket", "coat", "sweater", "shoe", "sock", "hat", "cap", "glasses", "bag", "belt", "size", "color", "wear", "put on", "take off", "fit", "skirt", "blouse", "tie", "scarf", "gloves", "boots", "sandals", "pajamas", "swimsuit", "umbrella", "button", "zipper", "pocket", "sleeve", "collar", "laundry", "iron", "fold", "fold up", "suit", "uniform", "costume", "jewelry", "necklace", "ring", "earring", "watch", "handbag", "wallet", "shopping bag", "casual", "formal", "old-fashioned", "fashionable"],
+  city: ["city", "center", "street", "square", "church", "museum", "cinema", "town hall", "hotel", "restaurant", "park", "traffic light", "bridge", "house", "post", "bank", "left", "right", "direction", "subway", "police", "corner", "crossing", "sidewalk", "lantern", "fountain", "statue", "tower", "city map", "district", "downtown", "suburb", "village", "traffic", "pedestrian", "sign", "address", "neighborhood", "city hall", "fire station", "library", "gallery", "opera", "castle", "wall", "gate", "square"],
+  culture: ["music", "film", "cinema", "television", "radio", "book", "newspaper", "magazine", "concert", "theater", "party", "festival", "game", "sport", "football", "read", "watch", "listen", "play", "dance", "sing", "free time", "artist", "painting", "museum", "exhibition", "actor", "actress", "director", "song", "band", "guitar", "piano", "drum", "violin", "stage", "audience", "ticket", "show", "series", "news", "interview", "documentary", "poem", "novel", "author", "theater", "circus", "fireworks", "parade", "hobby", "chess", "cards", "soccer", "tennis", "bike ride", "hiking", "fishing", "cooking", "dancing", "singing"],
+};
+
+/** Deduped union pool of every German word already known to the word lists. */
+const fillPool = (() => {
+  const seen = new Set<string>();
+  const out: WordListEntry[] = [];
+  for (const item of [...goetheVocab, ...wordLists.flatMap((l) => l.words)]) {
+    if (seen.has(item.de)) continue;
+    seen.add(item.de);
+    out.push({ de: item.de, en: item.en, part: item.part, plural: item.plural });
+  }
+  return out;
+})();
+
+/** Curated additions applied before keyword filling, so topics are guaranteed. */
+for (const list of wordLists) {
+  if (list.category === "topic") {
+    const extras = TOPIC_EXTRAS[list.id] ?? [];
+    const have = new Set(list.words.map((w) => w.de));
+    for (const e of extras) if (!have.has(e.de)) list.words.push(e);
+  }
+}
+
+function fillByKeywords(list: WordList, keywords: string[], cap: number) {
+  const have = new Set(list.words.map((w) => w.de));
+  const extras: WordListEntry[] = [];
+  for (const item of fillPool) {
+    if (list.words.length + extras.length >= cap) break;
+    if (have.has(item.de)) continue;
+    const hay = `${item.de} ${item.en}`.toLowerCase();
+    if (keywords.some((k) => hay.includes(k.toLowerCase()))) {
+      extras.push(item);
+      have.add(item.de);
+    }
+  }
+  list.words.push(...extras);
+}
+
+for (const list of wordLists) {
+  if (list.id === "colors") {
+    const have = new Set(list.words.map((w) => w.de));
+    for (const c of COLOR_WORDS) if (!have.has(c.de)) list.words.push(c);
+  }
+  if (list.id === "days-and-months") {
+    const have = new Set(list.words.map((w) => w.de));
+    for (const d of DAYS_MONTHS_EXTRA) if (!have.has(d.de)) list.words.push(d);
+  }
+  if (list.id === "numbers-0-100") {
+    list.words = Array.from({ length: 200 }, (_, i) => {
+      const n = i + 1;
+      return { de: germanNumberWord(n), en: String(n), part: "number" };
+    });
+    list.title = "Numbers 1–200";
+    list.description = "Every German number from 1 to 200, generated by the official number-word rules.";
+  }
+  if (list.id === "top-50-nouns") {
+    list.title = "Most Common German Nouns";
+    list.description = "150 everyday nouns with articles and plurals.";
+    fillByKeywords(list, ["the "], 200);
+  }
+  if (list.id === "top-50-verbs") {
+    list.title = "Most Common German Verbs";
+    list.description = "150 everyday verbs in the infinitive.";
+    fillByKeywords(list, ["to "], 200);
+  }
+  if (list.id === "goethe-a1-adjectives") {
+    fillByKeywords(list, ["the "], 200);
+  }
+  if (list.category === "topic") {
+    const keywords = TOPIC_KEYWORDS[list.id] ?? [];
+    const have = new Set(list.words.map((w) => w.de));
+    for (const e of TOPIC_EXTRAS[list.id] ?? []) if (!have.has(e.de)) list.words.push(e);
+    fillByKeywords(list, keywords, 200);
+  }
+}
+
+export function getWordList(id: string): WordList | undefined {
+  return wordLists.find((list) => list.id === id);
+}
+
+export const wordListCategories = [
+  { id: "essential", label: "Essential lists", blurb: "The words every beginner needs first." },
+  { id: "goethe", label: "Goethe A1 lists", blurb: "The official Goethe A1 Wortliste by part of speech." },
+  { id: "topic", label: "Vocabulary by topic", blurb: "Everyday words grouped the way you use them." },
+] as const;
