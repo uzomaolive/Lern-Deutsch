@@ -40,13 +40,19 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
             >
               Lern Deutsch <span className="text-amber-700">A1-A2</span>
             </Link>
-            <nav aria-label="Main" className="flex items-center gap-4">
+            <nav aria-label="Main" className="flex items-center gap-3 sm:gap-4">
               <VoicePicker />
               <Link
                 href="/practice"
                 className="text-sm text-stone-600 hover:text-stone-900"
               >
                 Sprechen
+              </Link>
+              <Link
+                href="/resources/word-categories"
+                className="text-sm text-stone-600 hover:text-stone-900"
+              >
+                Words
               </Link>
               <Link
                 href="/games"

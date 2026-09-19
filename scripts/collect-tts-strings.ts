@@ -10,6 +10,7 @@ import { join, dirname } from "node:path";
 import { fileURLToPath } from "node:url";
 import { levels } from "../content";
 import { games } from "../content/games";
+import { wordLists } from "../content/wordlists";
 import { practiceTopics } from "../content/practice";
 
 const ROOT = dirname(dirname(fileURLToPath(import.meta.url)));
@@ -70,6 +71,14 @@ function spokenStrings(): string[] {
           }
         } else if (round.kind === "repeat") {
           for (const phrase of round.phrases) add(phrase);
+        } else if (round.kind === "typing") {
+          for (const item of round.items) {
+            if (item.audio) add(item.prompt);
+          }
+        } else if (round.kind === "scramble") {
+          for (const item of round.items) {
+            if (item.audio) add(item.de);
+          }
         }
       }
     }
@@ -80,6 +89,10 @@ function spokenStrings(): string[] {
       add(topic.example);
       for (const word of topic.cheat.words) add(word);
     }
+  }
+
+  for (const list of wordLists) {
+    for (const word of list.words) add(word.de);
   }
 
   return [...seen].sort();

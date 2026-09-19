@@ -1,70 +1,44 @@
-# Task List: Lern Deutsch A1-A2
+# Games Section Overhaul — Task List
 
-All phases complete on 2026-09-09. v1 shipped: full A1-A2 syllabus structure, five authored A1 Unit 1 lessons, six exercise types, TTS, localStorage progress, course map.
+Plan: `tasks/plan.md`. Catalog: the user's full list (34 games across 4
+categories). All phases complete.
 
-## Phase A: Foundation
-- [x] A1: Scaffold Next.js app + Vitest + RTL + layout + README + git init/branches
-- [x] A2: Content schema (Level, Unit, Lesson, blocks, VocabItem, Exercise union)
-- [x] A3: CurriculumRepository + slug/ordering/nextUp tests
+## Coverage map
 
-## Checkpoint A
-- [x] lint + typecheck + test + build pass; dev server renders
+**Noun & Article (11):** Artikel Drop ✅, Der Die Das Rules ✅, Time
+Expressions ✅, Dativ Prepositions ✅, Guess the Word from Image ✅, True or
+False (Nouns) ✅, Noun Plurals ✅, English Nouns to German ✅, Guess the Word
+MC ✅, Guess the Word (typing) ✅, Guess the Artikel ✅ (existing
+article-challenge)
 
-## Phase B: Curriculum skeleton
-- [x] B1: A1 shells: 10 units + all planned lessons per SPEC A1 inventory
-- [x] B2: A2 shells: 10 units + all planned lessons per SPEC A2 inventory
-- [x] B3: Curriculum integrity tests (unique ids, coverage, resolvable chain)
+**Verb (8):** Present to Perfekt ✅, Partizip II ✅, Conjugation Full Table ✅,
+English Verbs to German ✅, Guess the Verb MC ✅, German Verbs to English ✅,
+Conjugation MC ✅, Conjugation (present) ✅
 
-## Checkpoint B
-- [x] repository answers for both levels; inventory fully mirrored
+**Number (7):** Number Drop ✅, Math in German ✅, Number Tap ✅, Time Short
+Form ✅, German Time (analog clock) ✅, Words to Numbers ✅, Numbers to Words ✅
 
-## Phase C: Audio module
-- [x] C1: tts.ts speak/cancel/voice-pick + canSpeak guard
-- [x] C2: SpeakButton + guard tests
+**Vocabulary & Sentence (8):** 9 Words ✅, German Wordle ✅, Word Match Grid ✅,
+German to English Sentence ✅, Sentence Order ✅ (existing sentence-scrabble),
+Buchstabensalat ✅, Word Matching ✅ (existing match-words), Word Guessing ✅
 
-## Phase D: Lessons + Exercise engine
-- [x] D1: scoring.ts + answers.ts (stars, normalization) + tests
-- [x] D2: ExerciseHost + feedback UI + MultipleChoice + Listening + tests
-- [x] D3: FillBlank + Matching + tests
-- [x] D4: WordOrder + Flashcard + tests
-- [x] D5: Lesson page renderer (blocks, vocab table) + route + notFound + footer nav
+## Implementation notes
 
-## Checkpoint D
-- [x] fixture lesson renders all blocks + six exercise types; build + tests pass
+- New round kinds (additive to `content/games/schema.ts`): `typing`, `drop`,
+  `hangman`, `wordsearch`, `time`, `keypad`; each with a dedicated component.
+- Pure logic extracted and tested: Wordle grading (`WordleGame.test.tsx`),
+  German number words (`lib/german/numbers.ts`), word-search grid generation
+  (`lib/games/wordsearch.ts`).
+- Reusable `AnswerInput` typing component (umlaut-tolerant via
+  `normalizeAnswer`); `Clock` SVG for the time game; `DropGame` arcade shared
+  by Artikel Drop and Number Drop.
+- Games index redesigned (featured banner, category sections, level chips).
+- TTS: collector extended for typing/scramble audio; 503 new clips per voice
+  generated; manifest now tracks 40,704 clips.
+- Build: 166 static pages, clean. Tests: 162 pass.
 
-## Phase E: v1 content (A1 Unit 1)
-- [x] E1: Hallo und Guten Tag + Alphabet und Aussprache lessons + MC/listening
-- [x] E2: Zahlen 0 bis 100 lesson + fill-blank/listening
-- [x] E3: Länder und Sprachen lesson + matching/flashcard
-- [x] E4: sein und haben lesson + word-order/MC/fill-blank
-- [x] E5: Unit completeness pass (all six types present, proofread)
+## Verification
 
-## Checkpoint E
-- [x] full Unit 1 browser pass incl. TTS + scoring
-
-## Phase F: Progress module
-- [x] F1: ProgressState + LocalStorageProgress + ProgressProvider + tests
-- [x] F2: streak.ts + wiring results to provider
-- [x] F3: live completion banner + progress-aware next lesson
-
-## Checkpoint F
-- [x] reload persistence + streak verified
-
-## Phase G: Syllabus home
-- [x] G1: course map page with progress, next-up, coming-soon states
-
-## Checkpoint G
-- [x] end-to-end flow on map; responsive + keyboard pass
-
-## Phase H: Polish and close
-- [x] H1: accessibility + responsive audit (Lighthouse 100 across the board, CLS fixed)
-- [x] H2: final gate (lint/typecheck/test/build), docs in sync, merge to main
-
-## Checkpoint H
-- [x] SPEC section 2 criteria all hold; final human review
-
-## Follow-ups (out of v1 scope)
-- Author remaining A1 units (Unit 2 onward), then A2, as content passes
-- Accounts + cloud sync behind the ProgressStore interface when requested
-- Recorded audio swap inside the audio module
-- Deployment target (Vercel) when the user asks
+- [x] Typecheck clean
+- [x] npm test — 162/162 pass
+- [x] npm run build — clean, all 47 game pages exported
