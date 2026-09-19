@@ -10,6 +10,7 @@ import { join, dirname } from "node:path";
 import { fileURLToPath } from "node:url";
 import { levels } from "../content";
 import { games } from "../content/games";
+import { practiceTopics } from "../content/practice";
 
 const ROOT = dirname(dirname(fileURLToPath(import.meta.url)));
 const OUT = join(ROOT, "scripts", "tts-strings.json");
@@ -71,6 +72,13 @@ function spokenStrings(): string[] {
           for (const phrase of round.phrases) add(phrase);
         }
       }
+    }
+  }
+
+  for (const bank of practiceTopics) {
+    for (const topic of bank.topics) {
+      add(topic.example);
+      for (const word of topic.cheat.words) add(word);
     }
   }
 
