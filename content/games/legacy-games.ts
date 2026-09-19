@@ -118014,25 +118014,6 @@ export const choosetheresponseGame: Game = {
 };
 
 
-flashcardsGame
-matchwordsGame
-picturematchGame
-memorycardsGame
-categorysortGame
-articlechallengeGame
-declensionbuilderGame
-sentencefixerGame
-repeataftermeGame
-pronunciationchoiceGame
-listeninggamesGame
-listenandarrangeGame
-missingwordGame
-sentencescrabbleGame
-timewordrushGame
-oddoneoutGame
-storytimeGame
-choosetheresponseGame
-
 export const legacyGames: Game[] = [
   flashcardsGame,
   matchwordsGame,
