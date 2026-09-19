@@ -28919,17 +28919,6 @@ export const guesswordtypingGame: Game = {
   ],
 };
 
-artikeldropGame
-derdiedasrulesGame
-timeexpressionsGame
-dativprepositionsGame
-guesswordfromimageGame
-trueorfalsenounsGame
-nounpluralsGame
-englishnounstogermanGame
-guesswordmcGame
-guesswordtypingGame
-
 export const nounGames: Game[] = [
   artikeldropGame,
   derdiedasrulesGame,

@@ -6681,14 +6681,6 @@ export const numberstowordsGame: Game = {
   ],
 };
 
-numberdropGame
-mathingermanGame
-numbertapGame
-timeshortformGame
-germantimeGame
-wordstonumbersGame
-numberstowordsGame
-
 export const numberGames: Game[] = [
   numberdropGame,
   mathingermanGame,

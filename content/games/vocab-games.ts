@@ -1103,10 +1103,6 @@ export const wordguessingGame: Game = {
   ],
 };
 
-sentencetoenglishGame
-buchstabensalatGame
-wordguessingGame
-
 export const vocabSentenceGames: Game[] = [
   sentencetoenglishGame,
   buchstabensalatGame,

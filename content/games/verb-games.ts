@@ -18274,15 +18274,6 @@ export const presenttoperfektGame: Game = {
   ],
 };
 
-verbconjugationGame
-verbconjugationmcGame
-verbconjugationfulltableGame
-partizipiiGame
-englishverbstogermanGame
-guesstheverbmcGame
-germanverbstoenglishGame
-presenttoperfektGame
-
 export const verbGames: Game[] = [
   verbconjugationGame,
   verbconjugationmcGame,
