@@ -1,5 +1,5 @@
-const fs = require('fs');
-const path = require('path');
+import fs from "fs";
+import path from "path";
 
 const repoRoot = process.cwd();
 const wordlistsDir = path.join(repoRoot, 'content', 'wordlists');
