@@ -379,7 +379,7 @@ function composeSentences(minWords: number, maxWords: number, n: number, seed: s
 
 function buildFlashcards(): string {
   const levels = [0, 1, 2, 3].map((l) => {
-    const pool = take(nounEntries, 100, `fc:${l}`);
+    const pool = take(nounEntries, 200, `fc:${l}`);
     const items = pool.map((n) => ({ front: n.de, back: n.plural ? `${n.en} · ${n.plural}` : n.en }));
     return levelBlock(`flashcards-${l + 1}`, `Level ${l + 1}: ${["People and home", "Food and places", "Everyday objects", "Mixed nouns"][l]}`, flashcardRound(`fc-l${l + 1}`, items));
   });
@@ -392,10 +392,10 @@ function buildFlashcards(): string {
 
 function buildMatchWords(): string {
   const levels = [0, 1, 2, 3].map((l) => {
-    const pool = take(nounEntries, 100, `mw:${l}`);
+    const pool = take(nounEntries, 200, `mw:${l}`);
     const pairs = pool.map((n) => [n.de, n.en] as [string, string]);
     const rounds: string[] = [];
-    for (let r = 0; r < 10; r++) {
+    for (let r = 0; r < 20; r++) {
       rounds.push(matchingRound(`mw-l${l + 1}-${r + 1}`, take(pairs, 10, `mw:${l}:${r}`)));
     }
     return levelBlock(`match-words-${l + 1}`, `Level ${l + 1}: ${["Family and people", "Food", "Places", "Objects"][l]}`, rounds.join(""));
@@ -409,10 +409,10 @@ function buildMatchWords(): string {
 
 function buildPictureMatch(): string {
   const levels = [0, 1, 2, 3].map((l) => {
-    const pool = take(nounEntries, 100, `pm:${l}`);
+    const pool = take(nounEntries, 200, `pm:${l}`);
     const pairs = pool.map((n) => [n.en, n.de] as [string, string]);
     const rounds: string[] = [];
-    for (let r = 0; r < 10; r++) {
+    for (let r = 0; r < 20; r++) {
       rounds.push(matchingRound(`pm-l${l + 1}-${r + 1}`, take(pairs, 10, `pm:${l}:${r}`)));
     }
     return levelBlock(`picture-match-${l + 1}`, `Level ${l + 1}: ${["Animals and food", "Places", "Around the house", "Mixed"][l]}`, rounds.join(""));
@@ -426,10 +426,10 @@ function buildPictureMatch(): string {
 
 function buildMemoryCards(): string {
   const levels = [0, 1, 2, 3].map((l) => {
-    const pool = take(nounEntries, 100, `mc:${l}`);
+    const pool = take(nounEntries, 200, `mc:${l}`);
     const cards = pool.map((n) => ({ de: n.de, en: n.en }));
     const rounds: string[] = [];
-    for (let r = 0; r < 10; r++) {
+    for (let r = 0; r < 20; r++) {
       rounds.push(memoryRound(`mc-l${l + 1}-${r + 1}`, take(cards, 10, `mc:${l}:${r}`)));
     }
     return levelBlock(`memory-cards-${l + 1}`, `Level ${l + 1}: ${["People", "Food", "Places", "Objects"][l]}`, rounds.join(""));
@@ -444,7 +444,7 @@ function buildMemoryCards(): string {
 function buildCategorySort(): string {
   const levels = [0, 1, 2, 3].map((l) => {
     const rounds: string[] = [];
-    for (let r = 0; r < 10; r++) {
+    for (let r = 0; r < 20; r++) {
       const der = take(DER_POOL, 3, `cs:${l}:${r}:der`).map((n) => n.de);
       const die = take(DIE_POOL, 3, `cs:${l}:${r}:die`).map((n) => n.de);
       const das = take(DAS_POOL, 3, `cs:${l}:${r}:das`).map((n) => n.de);
@@ -469,7 +469,7 @@ function buildCategorySort(): string {
 
 function buildArticleChallenge(): string {
   const levels = [0, 1, 2, 3].map((l) => {
-    const pool = take(nounEntries, 100, `ac:${l}`);
+    const pool = take(nounEntries, 200, `ac:${l}`);
     const qs = pool.map((n, i) => {
       const article = articleOf(n.de);
       const base = n.de.replace(/^(der|die|das) /, "");
@@ -501,7 +501,7 @@ function buildDeclensionBuilder(): string {
     ["Ich helfe ___ %s. (a)", "einem", "masculine dative"],
   ];
   const levels = [0, 1, 2, 3].map((l) => {
-    const pool = take(nounEntries, 100, `db:${l}`);
+    const pool = take(nounEntries, 200, `db:${l}`);
     const rounds: string[] = [];
     pool.forEach((n, i) => {
       const article = articleOf(n.de);
@@ -522,7 +522,7 @@ function buildDeclensionBuilder(): string {
 function buildSentenceFixer(): string {
   const levels = [0, 1, 2, 3].map((l) => {
     const pool = [...exampleSentences.filter((s) => s.de.split(" ").length <= 7).map((s) => s.de), ...composeSentences(4, 7, 200, `sf:${l}`)];
-    const sentences = take(pool, 100, `sf:${l}`);
+    const sentences = take(pool, 200, `sf:${l}`);
     const rounds: string[] = [];
     sentences.forEach((s, i) => rounds.push(wordOrderRound(`sf-l${l + 1}-${String(i + 1).padStart(3, "0")}`, s)));
     return levelBlock(`sentence-fixer-${l + 1}`, `Level ${l + 1}: ${["Short sentences", "Verbs", "Longer sentences", "Questions"][l]}`, rounds.join(""));
@@ -536,10 +536,10 @@ function buildSentenceFixer(): string {
 
 function buildRepeatAfterMe(): string {
   const levels = [0, 1, 2, 3].map((l) => {
-    const sentences = take(exampleSentences, 100, `ra:${l}`);
+    const sentences = take(exampleSentences, 200, `ra:${l}`);
     const phrases = sentences.map((s) => s.de);
     const rounds: string[] = [];
-    for (let r = 0; r < 10; r++) {
+    for (let r = 0; r < 20; r++) {
       rounds.push(repeatRound(`ra-l${l + 1}-${r + 1}`, take(phrases, 10, `ra:${l}:${r}`)));
     }
     return levelBlock(`repeat-after-me-${l + 1}`, `Level ${l + 1}: ${["Greetings", "Questions", "Everyday life", "Past tense"][l]}`, rounds.join(""));
@@ -560,7 +560,7 @@ function listeningDistractors(prompt: string): string[] {
 
 function buildPronunciationChoice(): string {
   const levels = [0, 1, 2, 3].map((l) => {
-    const pool = take(nounEntries, 100, `pc:${l}`);
+    const pool = take(nounEntries, 200, `pc:${l}`);
     const rounds: string[] = [];
     pool.forEach((n, i) => {
       const base = n.de.replace(/^(der|die|das) /, "");
@@ -579,7 +579,7 @@ function buildPronunciationChoice(): string {
 
 function buildListeningGames(): string {
   const levels = [0, 1, 2, 3].map((l) => {
-    const pool = l === 3 ? take(allWords, 100, `lg:3`) : take(nounEntries, 100, `lg:${l}`);
+    const pool = l === 3 ? take(allWords, 200, `lg:3`) : take(nounEntries, 200, `lg:${l}`);
     const rounds: string[] = [];
     pool.forEach((n, i) => {
       const de = typeof n === "string" ? n : n.de;
@@ -599,7 +599,7 @@ function buildListeningGames(): string {
 function buildListenAndArrange(): string {
   const levels = [0, 1, 2, 3].map((l) => {
     const pool = [...exampleSentences.filter((s) => s.de.split(" ").length <= 6).map((s) => s.de), ...composeSentences(3, 6, 200, `la:${l}`)];
-    const sentences = take(pool, 100, `la:${l}`);
+    const sentences = take(pool, 200, `la:${l}`);
     const rounds: string[] = [];
     sentences.forEach((s, i) => rounds.push(wordOrderRound(`la-l${l + 1}-${String(i + 1).padStart(3, "0")}`, s)));
     return levelBlock(`listen-and-arrange-${l + 1}`, `Level ${l + 1}: ${["Basics", "Verbs", "Questions", "Mixed"][l]}`, rounds.join(""));
@@ -622,7 +622,7 @@ function blankSentence(sentence: string): { sentence: string; answer: string; hi
 
 function buildMissingWord(): string {
   const levels = [0, 1, 2, 3].map((l) => {
-    const sentences = take(exampleSentences, 100, `mw:${l}`);
+    const sentences = take(exampleSentences, 200, `mw:${l}`);
     const rounds: string[] = [];
     sentences.forEach((s, i) => {
       const { sentence, answer, hint } = blankSentence(s.de);
@@ -640,7 +640,7 @@ function buildMissingWord(): string {
 function buildSentenceScrabble(): string {
   const levels = [0, 1, 2, 3].map((l) => {
     const pool = [...exampleSentences.filter((s) => s.de.split(" ").length >= 4 && s.de.split(" ").length <= 8).map((s) => s.de), ...composeSentences(5, 8, 200, `ss:${l}`)];
-    const sentences = take(pool, 100, `ss:${l}`);
+    const sentences = take(pool, 200, `ss:${l}`);
     const rounds: string[] = [];
     sentences.forEach((s, i) => rounds.push(wordOrderRound(`ss-l${l + 1}-${String(i + 1).padStart(3, "0")}`, s)));
     return levelBlock(`sentence-scrabble-${l + 1}`, `Level ${l + 1}: ${["Easy", "Medium", "Hard", "Expert"][l]}`, rounds.join(""));
@@ -655,7 +655,7 @@ function buildSentenceScrabble(): string {
 function buildTimeWordRush(): string {
   const levels = [0, 1, 2, 3].map((l) => {
     const questions: { prompt: string; options: string[]; correctIndex: number }[] = [];
-    const pool = take(nounEntries, 100, `tw:${l}`);
+    const pool = take(nounEntries, 200, `tw:${l}`);
     pool.forEach((n, i) => {
       if (i % 2 === 0) {
         const article = articleOf(n.de);
@@ -669,7 +669,7 @@ function buildTimeWordRush(): string {
       }
     });
     const rounds: string[] = [];
-    for (let r = 0; r < 10; r++) {
+    for (let r = 0; r < 20; r++) {
       rounds.push(rushRound(`tw-l${l + 1}-${r + 1}`, take(questions, 10, `tw:${l}:${r}`)));
     }
     return levelBlock(`time-word-rush-${l + 1}`, `Level ${l + 1}: ${["Articles", "Meanings", "Articles", "Meanings"][l]}`, rounds.join(""));
@@ -696,7 +696,7 @@ function buildOddOneOut(): string {
   const levels = [0, 1, 2, 3].map((l) => {
     const groupKeys = ["food", "transport", "animals", "places", "furniture", "clothes", "weather", "body"];
     const qs: { prompt: string; options: string[]; correctIndex: number; explain: string }[] = [];
-    for (let i = 0; i < 100; i++) {
+    for (let i = 0; i < 200; i++) {
       const key = groupKeys[(i + l) % groupKeys.length];
       const oddKey = groupKeys[(i + l + 3) % groupKeys.length];
       const group = take(SEMANTIC_GROUPS[key], 3, `oo:${l}:${i}:g`);
@@ -716,7 +716,7 @@ function buildOddOneOut(): string {
 
 function buildStoryTime(): string {
   const levels = [0, 1, 2, 3].map((l) => {
-    const sentences = take(exampleSentences, 100, `st:${l}`);
+    const sentences = take(exampleSentences, 200, `st:${l}`);
     const qs: { prompt: string; options: string[]; correctIndex: number; explain: string }[] = [];
     sentences.forEach((s, i) => {
       const words = s.de.split(" ");
@@ -775,7 +775,7 @@ const RESPONSE_PAIRS: [string, string][] = [
 function buildChooseResponse(): string {
   const levels = [0, 1, 2, 3].map((l) => {
     const qs: { prompt: string; options: string[]; correctIndex: number; explain: string }[] = [];
-    for (let i = 0; i < 100; i++) {
+    for (let i = 0; i < 200; i++) {
       const [prompt, correct] = RESPONSE_PAIRS[i % RESPONSE_PAIRS.length];
       const others = RESPONSE_PAIRS.map((p) => p[1]).filter((r) => r !== correct);
       const options = unique3(correct, others[(i * 7) % others.length], others[(i * 13 + 5) % others.length], others, `cr:${l}:${i}`);
