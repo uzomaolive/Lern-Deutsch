@@ -36,7 +36,7 @@ export const kleidung: Lesson = {
         {
           type: "example",
           de: "Heute trage ich eine Jeans, ein T-Shirt und eine Jacke. Im Winter trage ich einen Mantel und eine Mütze.",
-          en: "What I wear today.",
+          en: "Today I'm wearing jeans, a T-shirt and a jacket. In winter I wear a coat and a hat.",
         },
         {
           type: "tip",
@@ -67,7 +67,7 @@ export const kleidung: Lesson = {
         {
           type: "example",
           de: "Ich ziehe den Mantel an, weil es kalt ist. Kann ich die Hose anprobieren? Ja, die Kabine ist dort.",
-          en: "Dressing and trying on.",
+          en: "I put the coat on because it is cold. Can I try on the trousers? Yes, the fitting room is over there.",
         },
         {
           type: "tip",
@@ -100,7 +100,7 @@ export const kleidung: Lesson = {
         {
           type: "example",
           de: "Kann ich Ihnen helfen? Ja, ich suche ein blaues T-Shirt. Welche Größe haben Sie? Größe M. Hier bitte. Das passt mir gut, das nehme ich.",
-          en: "The complete clothes purchase.",
+          en: "Can I help you? Yes, I'm looking for a blue T-shirt. What size are you? Size M. Here you go. That fits me well, I'll take it.",
         },
         {
           type: "tip",
@@ -317,7 +317,7 @@ export const kleidung: Lesson = {
       type: "word-order",
       title: "Übung 13: Der Satz",
       instruction: "Build the sentence: I am looking for a blue shirt.",
-      chunks: ["Ich", "suche", "ein", "blaues", "Hemd."],
+      chunks: ["Ich", "suche", "ein", "blaues", "Hemd."], translation: "I am looking for a blue shirt.",
       explain: "suchen + accusative with adjective ending.",
     },
     {
@@ -325,7 +325,7 @@ export const kleidung: Lesson = {
       type: "word-order",
       title: "Übung 14: Der Satz",
       instruction: "Build the sentence: I will take the jacket.",
-      chunks: ["Ich", "nehme", "die", "Jacke."],
+      chunks: ["Ich", "nehme", "die", "Jacke."], translation: "I'll take the jacket.",
       explain: "The purchase sentence.",
     },
     {
@@ -383,7 +383,7 @@ export const einkaufsdialoge: Lesson = {
         {
           type: "example",
           de: "Entschuldigung, wo finde ich die Milch? Im Kühlregal hinten links. Danke! Gern geschehen!",
-          en: "Asking where in the supermarket.",
+          en: "Excuse me, where can I find the milk? In the fridge section at the back left. Thanks! You're welcome!",
         },
         {
           type: "tip",
@@ -415,7 +415,7 @@ export const einkaufsdialoge: Lesson = {
         {
           type: "example",
           de: "Kann ich Ihnen helfen? Ja, ich suche eine Bluse in Größe M. Hier ist eine weiße. Kann ich sie anprobieren? Ja, die Kabine ist dort. Sie passt gut, ich nehme sie.",
-          en: "The complete clothes purchase.",
+          en: "Can I help you? Yes, I'm looking for a blouse in size M. Here is a white one. Can I try it on? Yes, the fitting room is over there. It fits well, I'll take it.",
         },
         {
           type: "tip",
@@ -446,7 +446,7 @@ export const einkaufsdialoge: Lesson = {
         {
           type: "example",
           de: "Dieses Hemd kostet 20 Euro, das andere 30 Euro. Das erste ist billiger als das zweite.",
-          en: "Comparing two prices.",
+          en: "This shirt costs 20 euros, the other one 30 euros. The first one is cheaper than the second one.",
         },
         {
           type: "tip",
@@ -476,7 +476,7 @@ export const einkaufsdialoge: Lesson = {
         {
           type: "example",
           de: "Guten Tag, ich möchte dieses T-Shirt umtauschen. Es ist zu klein. Haben Sie die Quittung? Ja, hier ist der Kassenbon. Sie können ein anderes nehmen.",
-          en: "The exchange dialogue.",
+          en: "Good day, I would like to exchange this T-shirt. It is too small. Do you have the receipt? Yes, here is the receipt. You can take another one.",
         },
         {
           type: "tip",
@@ -661,7 +661,7 @@ export const einkaufsdialoge: Lesson = {
       type: "word-order",
       title: "Übung 13: Der Satz",
       instruction: "Build the sentence: Where do I find the milk?",
-      chunks: ["Wo", "finde", "ich", "die", "Milch?"],
+      chunks: ["Wo", "finde", "ich", "die", "Milch?"], translation: "Where can I find the milk?",
       explain: "The finding question.",
     },
     {
@@ -669,7 +669,7 @@ export const einkaufsdialoge: Lesson = {
       type: "word-order",
       title: "Übung 14: Der Satz",
       instruction: "Build the sentence: I would like to exchange this.",
-      chunks: ["Ich", "möchte", "das", "umtauschen."],
+      chunks: ["Ich", "möchte", "das", "umtauschen."], translation: "I would like to exchange that.",
       explain: "The exchange sentence.",
     },
     {
@@ -727,7 +727,7 @@ export const kontraktionen: Lesson = {
         {
           type: "example",
           de: "Ich bin am Montag im Büro und gehe abends ins Kino. Danach fahre ich zum Bahnhof.",
-          en: "The contractions in one day.",
+          en: "I am in the office on Monday and go to the cinema in the evening. Afterwards I drive to the station.",
         },
         {
           type: "tip",
@@ -758,7 +758,7 @@ export const kontraktionen: Lesson = {
         {
           type: "example",
           de: "Am Montag gehe ich ins Büro. Im Sommer fahren wir aufs Land. Am Abend lese ich ein Buch.",
-          en: "Time contractions in use.",
+          en: "On Monday I go to the office. In summer we drive to the countryside. In the evening I read a book.",
         },
         {
           type: "tip",
@@ -788,7 +788,7 @@ export const kontraktionen: Lesson = {
         {
           type: "example",
           de: "Ich gehe zum Bahnhof. Dann fahre ich zur Arbeit. Nach der Arbeit gehe ich noch zum Supermarkt.",
-          en: "The day's directions.",
+          en: "I go to the station. Then I drive to work. After work I also go to the supermarket.",
         },
         {
           type: "tip",
@@ -818,7 +818,7 @@ export const kontraktionen: Lesson = {
         {
           type: "example",
           de: "Ich komme gerade vom Bahnhof und bin jetzt beim Arzt. Nachher gehe ich zum Friseur.",
-          en: "vom and beim together.",
+          en: "I've just come from the station and am now at the doctor's. Afterwards I'm going to the hairdresser.",
         },
         {
           type: "tip",
@@ -1002,7 +1002,7 @@ export const kontraktionen: Lesson = {
       type: "word-order",
       title: "Übung 13: Der Satz",
       instruction: "Build the sentence: I am going to the supermarket.",
-      chunks: ["Ich", "gehe", "zum", "Supermarkt."],
+      chunks: ["Ich", "gehe", "zum", "Supermarkt."], translation: "I am going to the supermarket.",
       explain: "Masculine direction takes zum.",
     },
     {
@@ -1010,7 +1010,7 @@ export const kontraktionen: Lesson = {
       type: "word-order",
       title: "Übung 14: Der Satz",
       instruction: "Build the sentence: We are coming from the market.",
-      chunks: ["Wir", "kommen", "vom", "Markt."],
+      chunks: ["Wir", "kommen", "vom", "Markt."], translation: "We are coming from the market.",
       explain: "Origin takes vom.",
     },
     {
@@ -1067,7 +1067,7 @@ export const umtauschUndReklamation: Lesson = {
         {
           type: "example",
           de: "Guten Tag, ich möchte dieses T-Shirt umtauschen. Es ist zu klein. Haben Sie die Quittung? Ja, hier. Sie können ein anderes nehmen. Danke, ich nehme das.",
-          en: "The complete exchange.",
+          en: "Good day, I would like to exchange this T-shirt. It is too small. Do you have the receipt? Yes, here. You can take another one. Thanks, I'll take that one.",
         },
         {
           type: "tip",
@@ -1098,7 +1098,7 @@ export const umtauschUndReklamation: Lesson = {
         {
           type: "example",
           de: "Ich möchte reklamieren. Die Jacke ist kaputt, der Reißverschluss funktioniert nicht. Haben Sie den Kassenbon? Ja, hier bitte. Wir entschuldigen uns, hier ist Ihr Geld zurück.",
-          en: "The complete complaint.",
+          en: "I would like to make a complaint. The jacket is broken, the zip doesn't work. Do you have the receipt? Yes, here you go. We apologise, here is your money back.",
         },
         {
           type: "tip",
@@ -1129,7 +1129,7 @@ export const umtauschUndReklamation: Lesson = {
         {
           type: "example",
           de: "An der Hose fehlt ein Knopf. An der Jacke ist der Reißverschluss kaputt. An dem Schuh ist die Sohle kaputt.",
-          en: "Naming the failing part.",
+          en: "The trousers are missing a button. The zip on the jacket is broken. The sole of the shoe is broken.",
         },
         {
           type: "tip",
@@ -1311,7 +1311,7 @@ export const umtauschUndReklamation: Lesson = {
       type: "word-order",
       title: "Übung 13: Der Satz",
       instruction: "Build the sentence: The jacket is broken.",
-      chunks: ["Die", "Jacke", "ist", "kaputt."],
+      chunks: ["Die", "Jacke", "ist", "kaputt."], translation: "The jacket is broken.",
       explain: "The broken sentence.",
     },
     {
@@ -1319,7 +1319,7 @@ export const umtauschUndReklamation: Lesson = {
       type: "word-order",
       title: "Übung 14: Der Satz",
       instruction: "Build the sentence: I would like my money back.",
-      chunks: ["Ich", "möchte", "mein", "Geld", "zurück."],
+      chunks: ["Ich", "möchte", "mein", "Geld", "zurück."], translation: "I would like my money back.",
       explain: "The refund sentence.",
     },
     {

@@ -32,7 +32,7 @@ export const meinZuhause: Lesson = {
         {
           type: "example",
           de: "Ich wohne in einer Wohnung im zweiten Stock. Die Wohnung hat einen Balkon und die Garage ist unten.",
-          en: "Describing your own apartment.",
+          en: "I live in a flat on the second floor. The flat has a balcony and the garage is downstairs.",
         },
         {
           type: "tip",
@@ -65,7 +65,7 @@ export const meinZuhause: Lesson = {
         {
           type: "example",
           de: "Unsere Wohnung hat drei Zimmer: ein Wohnzimmer, ein Schlafzimmer und ein Kinderzimmer. Die Küche ist klein, aber das Badezimmer ist modern.",
-          en: "Describing the room count.",
+          en: "Our flat has three rooms: a living room, a bedroom and a children's room. The kitchen is small, but the bathroom is modern.",
         },
         {
           type: "tip",
@@ -100,7 +100,7 @@ export const meinZuhause: Lesson = {
         {
           type: "example",
           de: "Das Sofa steht im Wohnzimmer. Die Lampe steht auf dem Tisch. Das Buch liegt auf dem Bett.",
-          en: "Furniture in place.",
+          en: "The sofa stands in the living room. The lamp stands on the table. The book lies on the bed.",
         },
         {
           type: "tip",
@@ -157,7 +157,7 @@ export const meinZuhause: Lesson = {
         {
           type: "example",
           de: "Ich wohne mit meiner Familie in einem Haus auf dem Land. Wir haben einen großen Garten und zwei Balkone.",
-          en: "The full home statement.",
+          en: "I live with my family in a house in the countryside. We have a big garden and two balconies.",
         },
         {
           type: "tip",
@@ -368,7 +368,7 @@ export const meinZuhause: Lesson = {
       type: "word-order",
       title: "Übung 13: Der Satz",
       instruction: "Build the sentence: We live in a house.",
-      chunks: ["Wir", "wohnen", "in", "einem", "Haus."],
+      chunks: ["Wir", "wohnen", "in", "einem", "Haus."], translation: "We live in a house.",
       explain: "wohnen in + dative.",
     },
     {
@@ -376,7 +376,7 @@ export const meinZuhause: Lesson = {
       type: "word-order",
       title: "Übung 14: Der Satz",
       instruction: "Build the sentence: The apartment has three rooms.",
-      chunks: ["Die", "Wohnung", "hat", "drei", "Zimmer."],
+      chunks: ["Die", "Wohnung", "hat", "drei", "Zimmer."], translation: "The flat has three rooms.",
       explain: "The room count with haben.",
     },
     {
@@ -433,7 +433,7 @@ export const woWohntWas: Lesson = {
         {
           type: "example",
           de: "Das Sofa steht vor dem Tisch. Die Lampe hängt über dem Tisch. Die Katze liegt unter dem Sofa.",
-          en: "Positions in the living room.",
+          en: "The sofa stands in front of the table. The lamp hangs above the table. The cat lies under the sofa.",
         },
         {
           type: "tip",
@@ -463,7 +463,7 @@ export const woWohntWas: Lesson = {
         {
           type: "example",
           de: "Das Bild hängt an der Wand. Der Schrank steht im Schlafzimmer. Die Blumen stehen auf dem Fensterbrett.",
-          en: "The three big position verbs: hängen, stehen, liegen.",
+          en: "The picture hangs on the wall. The cupboard stands in the bedroom. The flowers stand on the windowsill.",
         },
         {
           type: "tip",
@@ -491,7 +491,7 @@ export const woWohntWas: Lesson = {
         {
           type: "example",
           de: "Der Tisch steht in der Küche. Der Teppich liegt im Wohnzimmer. Der Spiegel hängt im Flur.",
-          en: "One verb for each room.",
+          en: "The table stands in the kitchen. The carpet lies in the living room. The mirror hangs in the hallway.",
         },
         {
           type: "tip",
@@ -522,7 +522,7 @@ export const woWohntWas: Lesson = {
         {
           type: "example",
           de: "Wo wohnst du? Ich wohne im Zentrum, in einer Wohnung im dritten Stock.",
-          en: "The complete answer.",
+          en: "Where do you live? I live in the centre, in a flat on the third floor.",
         },
         {
           type: "tip",
@@ -714,7 +714,7 @@ export const woWohntWas: Lesson = {
       type: "word-order",
       title: "Übung 13: Der Satz",
       instruction: "Build the sentence: The lamp is on the table.",
-      chunks: ["Die", "Lampe", "ist", "auf", "dem", "Tisch."],
+      chunks: ["Die", "Lampe", "ist", "auf", "dem", "Tisch."], translation: "The lamp is on the table.",
       explain: "Position with the dative.",
     },
     {
@@ -722,7 +722,7 @@ export const woWohntWas: Lesson = {
       type: "word-order",
       title: "Übung 14: Der Satz",
       instruction: "Build the sentence: I live in the city.",
-      chunks: ["Ich", "wohne", "in", "der", "Stadt."],
+      chunks: ["Ich", "wohne", "in", "der", "Stadt."], translation: "I live in the city.",
       explain: "Living in the city: in der Stadt.",
     },
     {
@@ -778,7 +778,7 @@ export const wohinGehtEs: Lesson = {
         {
           type: "example",
           de: "Wo ist der Schlüssel? Er ist auf dem Tisch. Wohin legst du den Schlüssel? Ich lege ihn auf den Tisch.",
-          en: "The pair: position then direction.",
+          en: "Where is the key? It is on the table. Where are you putting the key? I'm putting it on the table.",
         },
         {
           type: "tip",
@@ -809,7 +809,7 @@ export const wohinGehtEs: Lesson = {
         {
           type: "example",
           de: "Ich lege das Buch auf den Tisch. Er stellt die Lampe auf den Schrank. Wir gehen ins Kino.",
-          en: "Movement verbs with the accusative.",
+          en: "I put the book on the table. He puts the lamp on the cupboard. We go to the cinema.",
         },
         {
           type: "tip",
@@ -839,7 +839,7 @@ export const wohinGehtEs: Lesson = {
         {
           type: "example",
           de: "Wir gehen heute ins Kino. Danach fahren wir aufs Land. Die Kinder laufen in den Garten.",
-          en: "Neuter, masculine, feminine direction.",
+          en: "We're going to the cinema today. Afterwards we drive to the countryside. The children run into the garden.",
         },
         {
           type: "tip",
@@ -867,7 +867,7 @@ export const wohinGehtEs: Lesson = {
         {
           type: "example",
           de: "Ich fahre nach Berlin. Er geht zum Bahnhof. Wir gehen in die Schule.",
-          en: "The three direction systems.",
+          en: "I'm driving to Berlin. He is going to the station. We are going to school.",
         },
         {
           type: "tip",
@@ -1051,7 +1051,7 @@ export const wohinGehtEs: Lesson = {
       type: "word-order",
       title: "Übung 13: Der Satz",
       instruction: "Build the sentence: I am going into the kitchen.",
-      chunks: ["Ich", "gehe", "in", "die", "Küche."],
+      chunks: ["Ich", "gehe", "in", "die", "Küche."], translation: "I am going into the kitchen.",
       explain: "Direction with the accusative.",
     },
     {
@@ -1059,7 +1059,7 @@ export const wohinGehtEs: Lesson = {
       type: "word-order",
       title: "Übung 14: Der Satz",
       instruction: "Build the sentence: We are going to the cinema.",
-      chunks: ["Wir", "gehen", "ins", "Kino."],
+      chunks: ["Wir", "gehen", "ins", "Kino."], translation: "We are going to the cinema.",
       explain: "ins = in + das.",
     },
     {
@@ -1120,7 +1120,7 @@ export const farben: Lesson = {
         {
           type: "example",
           de: "Welche Farbe hat das Auto? Das Auto ist rot. Und der Stuhl? Der Stuhl ist blau.",
-          en: "Asking and answering the colour question.",
+          en: "What colour is the car? The car is red. And the chair? The chair is blue.",
         },
         {
           type: "tip",
@@ -1150,7 +1150,7 @@ export const farben: Lesson = {
         {
           type: "example",
           de: "Ich kaufe ein rotes Auto. Der Himmel ist heute blau. Sie trägt ein weißes Hemd.",
-          en: "Adjective endings in colour.",
+          en: "I'm buying a red car. The sky is blue today. She is wearing a white shirt.",
         },
         {
           type: "tip",
@@ -1182,7 +1182,7 @@ export const farben: Lesson = {
         {
           type: "example",
           de: "Welche Farbe hat die Banane? Die Banane ist gelb. Welche Farbe hat die Tomate? Die Tomate ist rot.",
-          en: "Colour questions about food.",
+          en: "What colour is the banana? The banana is yellow. What colour is the tomato? The tomato is red.",
         },
         {
           type: "tip",
@@ -1212,7 +1212,7 @@ export const farben: Lesson = {
         {
           type: "example",
           de: "Guten Tag! Ich suche ein Kleid. Welche Farbe möchten Sie? Ein grünes Kleid, bitte.",
-          en: "The shopping dialogue.",
+          en: "Good day! I'm looking for a dress. What colour would you like? A green dress, please.",
         },
         {
           type: "tip",
@@ -1419,7 +1419,7 @@ export const farben: Lesson = {
       type: "word-order",
       title: "Übung 14: Der Satz",
       instruction: "Build the sentence: The sky is blue.",
-      chunks: ["Der", "Himmel", "ist", "blau."],
+      chunks: ["Der", "Himmel", "ist", "blau."], translation: "The sky is blue.",
       explain: "Colour after sein.",
     },
     {
@@ -1427,7 +1427,7 @@ export const farben: Lesson = {
       type: "word-order",
       title: "Übung 15: Der Satz",
       instruction: "Build the sentence: I would like a red car.",
-      chunks: ["Ich", "möchte", "ein", "rotes", "Auto."],
+      chunks: ["Ich", "möchte", "ein", "rotes", "Auto."], translation: "I would like a red car.",
       explain: "Adjective before the noun with the ending.",
     },
     {
@@ -1486,7 +1486,7 @@ export const wohnungsanzeigen: Lesson = {
         {
           type: "example",
           de: "3-Zi.-Wohnung, 2. OG, 75 qm, Balk., EBK, warm 850 Euro. Verfügbar ab 1. Oktober.",
-          en: "A typical apartment ad.",
+          en: "3-room flat, 2nd floor, 75 sqm, balcony, fitted kitchen, 850 euros including heating. Available from 1 October.",
         },
         {
           type: "tip",
@@ -1519,7 +1519,7 @@ export const wohnungsanzeigen: Lesson = {
         {
           type: "example",
           de: "Die Warmmiete ist 850 Euro. Die Kaution ist drei Monatsmieten, also 2550 Euro. Die Provision kostet zwei Monatsmieten.",
-          en: "Reading the costs.",
+          en: "The rent including heating is 850 euros. The deposit is three months' rent, so 2550 euros. The commission costs two months' rent.",
         },
         {
           type: "tip",
@@ -1552,7 +1552,7 @@ export const wohnungsanzeigen: Lesson = {
         {
           type: "example",
           de: "Guten Tag, wir möchten die Wohnung besichtigen. Die Wohnung hat drei Zimmer und 75 Quadratmeter. Wie hoch ist die Miete? 850 Euro warm. Wir nehmen die Wohnung.",
-          en: "The complete viewing script.",
+          en: "Good day, we would like to view the flat. The flat has three rooms and 75 square metres. How high is the rent? 850 euros including heating. We'll take the flat.",
         },
         {
           type: "tip",
@@ -1583,7 +1583,7 @@ export const wohnungsanzeigen: Lesson = {
         {
           type: "example",
           de: "Wir ziehen nächste Woche um. Am Samstag packen wir ein, am Sonntag kommt der Umzugswagen.",
-          en: "The move schedule.",
+          en: "We're moving next week. On Saturday we pack, on Sunday the removal van comes.",
         },
         {
           type: "tip",
@@ -1774,7 +1774,7 @@ export const wohnungsanzeigen: Lesson = {
       type: "word-order",
       title: "Übung 13: Der Satz",
       instruction: "Build the sentence: The apartment has three rooms.",
-      chunks: ["Die", "Wohnung", "hat", "drei", "Zimmer."],
+      chunks: ["Die", "Wohnung", "hat", "drei", "Zimmer."], translation: "The flat has three rooms.",
       explain: "Room count with haben.",
     },
     {
@@ -1782,7 +1782,7 @@ export const wohnungsanzeigen: Lesson = {
       type: "word-order",
       title: "Übung 14: Der Satz",
       instruction: "Build the sentence: The rent is 850 euros warm.",
-      chunks: ["Die", "Miete", "ist", "850", "Euro", "warm."],
+      chunks: ["Die", "Miete", "ist", "850", "Euro", "warm."], translation: "The rent is 850 euros including heating.",
       explain: "The warm rent sentence.",
     },
     {
@@ -1835,7 +1835,7 @@ export const adjektivendungen: Lesson = {
         {
           type: "example",
           de: "Das Auto ist rot. Das rote Auto steht da. Ein rotes Auto fährt vorbei.",
-          en: "The same colour in all three roles.",
+          en: "The car is red. The red car stands there. A red car drives past.",
         },
         {
           type: "tip",
@@ -1863,7 +1863,7 @@ export const adjektivendungen: Lesson = {
         {
           type: "example",
           de: "Der neue Tisch steht in der neuen Küche. Ich kaufe den neuen Tisch.",
-          en: "The -e/-en pattern in use.",
+          en: "The new table stands in the new kitchen. I'm buying the new table.",
         },
         {
           type: "tip",
@@ -1891,7 +1891,7 @@ export const adjektivendungen: Lesson = {
         {
           type: "example",
           de: "Ich habe einen neuen Computer. Sie kauft eine neue Tasche. Wir brauchen ein neues Haus.",
-          en: "The mixed endings in use.",
+          en: "I have a new computer. She buys a new bag. We need a new house.",
         },
         {
           type: "tip",
@@ -1919,7 +1919,7 @@ export const adjektivendungen: Lesson = {
         {
           type: "example",
           de: "Die neuen Tische sind teuer. Aber neue Tische gibt es auch günstig.",
-          en: "Plural with and without article.",
+          en: "The new tables are expensive. But there are also cheap new tables.",
         },
         {
           type: "tip",
@@ -2099,7 +2099,7 @@ export const adjektivendungen: Lesson = {
       type: "word-order",
       title: "Übung 13: Der Satz",
       instruction: "Build the sentence: I would like a new computer.",
-      chunks: ["Ich", "möchte", "einen", "neuen", "Computer."],
+      chunks: ["Ich", "möchte", "einen", "neuen", "Computer."], translation: "I would like a new computer.",
       explain: "Accusative masculine: einen neuen.",
     },
     {
@@ -2107,7 +2107,7 @@ export const adjektivendungen: Lesson = {
       type: "word-order",
       title: "Übung 14: Der Satz",
       instruction: "Build the sentence: The old house is beautiful.",
-      chunks: ["Das", "alte", "Haus", "ist", "schön."],
+      chunks: ["Das", "alte", "Haus", "ist", "schön."], translation: "The old house is beautiful.",
       explain: "The der-word ending and sein.",
     },
     {

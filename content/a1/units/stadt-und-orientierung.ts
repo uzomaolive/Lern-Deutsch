@@ -67,7 +67,7 @@ export const dieStadt: Lesson = {
         {
           type: "example",
           de: "Entschuldigung, wie komme ich zum Bahnhof? Gehen Sie geradeaus bis zur Kirche, dann rechts. Danke schön!",
-          en: "The direction dialogue.",
+          en: "Excuse me, how do I get to the station? Go straight ahead to the church, then right. Thank you very much!",
         },
         {
           type: "tip",
@@ -100,7 +100,7 @@ export const dieStadt: Lesson = {
         {
           type: "example",
           de: "Gehen Sie geradeaus bis zur Ampel, dann links. Das Kaufhaus ist auf der rechten Seite.",
-          en: "The full direction.",
+          en: "Go straight ahead to the traffic light, then left. The department store is on the right side.",
         },
         {
           type: "tip",
@@ -280,7 +280,7 @@ export const dieStadt: Lesson = {
       type: "word-order",
       title: "Übung 12: Der Satz",
       instruction: "Build the sentence: How do I get to the station?",
-      chunks: ["Wie", "komme", "ich", "zum", "Bahnhof?"],
+      chunks: ["Wie", "komme", "ich", "zum", "Bahnhof?"], translation: "How do I get to the station?",
       explain: "The direction question.",
     },
     {
@@ -288,7 +288,7 @@ export const dieStadt: Lesson = {
       type: "word-order",
       title: "Übung 13: Der Satz",
       instruction: "Build the sentence: The pharmacy is around the corner.",
-      chunks: ["Die", "Apotheke", "ist", "um", "die", "Ecke."],
+      chunks: ["Die", "Apotheke", "ist", "um", "die", "Ecke."], translation: "The pharmacy is around the corner.",
       explain: "The corner position.",
     },
     {
@@ -355,7 +355,7 @@ export const richtungen: Lesson = {
         {
           type: "example",
           de: "Gehen Sie geradeaus, an der Ampel links, dann bis zur Kirche. Die Bank ist gegenüber der Kirche.",
-          en: "The complete direction.",
+          en: "Go straight ahead, left at the traffic light, then on to the church. The bank is opposite the church.",
         },
         {
           type: "tip",
@@ -384,7 +384,7 @@ export const richtungen: Lesson = {
         {
           type: "example",
           de: "Nehmen Sie die zweite Straße rechts. Biegen Sie an der Ampel links ab.",
-          en: "The formal direction imperatives.",
+          en: "Take the second street on the right. Turn left at the traffic light.",
         },
         {
           type: "tip",
@@ -402,7 +402,7 @@ export const richtungen: Lesson = {
         {
           type: "example",
           de: "Entschuldigung, wie komme ich zum Bahnhof? Gehen Sie geradeaus bis zur Ampel, dann biegen Sie links ab. Dann ist der Bahnhof auf der rechten Seite. Wie weit ist es? Ungefähr zehn Minuten zu Fuß. Danke schön! Gern geschehen!",
-          en: "The complete direction dialogue.",
+          en: "Excuse me, how do I get to the station? Go straight ahead to the traffic light, then turn left. Then the station is on the right side. How far is it? About ten minutes on foot. Thank you very much! You're welcome!",
         },
         {
           type: "tip",
@@ -571,7 +571,7 @@ export const richtungen: Lesson = {
       type: "word-order",
       title: "Übung 11: Der Satz",
       instruction: "Build the sentence: Turn left at the traffic light.",
-      chunks: ["Biegen", "Sie", "an", "der", "Ampel", "links", "ab."],
+      chunks: ["Biegen", "Sie", "an", "der", "Ampel", "links", "ab."], translation: "Turn left at the traffic light.",
       explain: "The separable imperative.",
     },
     {
@@ -579,7 +579,7 @@ export const richtungen: Lesson = {
       type: "word-order",
       title: "Übung 12: Der Satz",
       instruction: "Build the sentence: The bank is opposite the church.",
-      chunks: ["Die", "Bank", "ist", "gegenüber", "der", "Kirche."],
+      chunks: ["Die", "Bank", "ist", "gegenüber", "der", "Kirche."], translation: "The bank is opposite the church.",
       explain: "gegenüber with the dative.",
     },
     {
@@ -632,7 +632,7 @@ export const woWoherWohin: Lesson = {
         {
           type: "example",
           de: "Wo bist du? Ich bin in der Stadt. Woher kommst du? Ich komme aus Berlin. Wohin gehst du? Ich gehe in die Stadt.",
-          en: "The three questions in a row.",
+          en: "Where are you? I am in town. Where are you from? I'm from Berlin. Where are you going? I'm going into town.",
         },
         {
           type: "tip",
@@ -661,7 +661,7 @@ export const woWoherWohin: Lesson = {
         {
           type: "example",
           de: "Ich komme aus Deutschland, aus Berlin. Jetzt komme ich vom Bahnhof und gehe nach Hause.",
-          en: "Origin and departure.",
+          en: "I come from Germany, from Berlin. Now I'm coming from the station and going home.",
         },
         {
           type: "tip",
@@ -690,7 +690,7 @@ export const woWoherWohin: Lesson = {
         {
           type: "example",
           de: "Ich bin in der Stadt, auf dem Markt. Am Abend bin ich bei meiner Oma.",
-          en: "The Wo answers.",
+          en: "I am in town, at the market. In the evening I am at my grandma's.",
         },
         {
           type: "tip",
@@ -719,7 +719,7 @@ export const woWoherWohin: Lesson = {
         {
           type: "example",
           de: "Wohin gehst du? Ich gehe in die Stadt, auf den Markt, und dann nach Hause.",
-          en: "The Wohin answers.",
+          en: "Where are you going? I'm going into town, to the market, and then home.",
         },
         {
           type: "tip",
@@ -888,7 +888,7 @@ export const woWoherWohin: Lesson = {
       type: "word-order",
       title: "Übung 12: Der Satz",
       instruction: "Build the sentence: I am from Germany.",
-      chunks: ["Ich", "komme", "aus", "Deutschland."],
+      chunks: ["Ich", "komme", "aus", "Deutschland."], translation: "I come from Germany.",
       explain: "Origin takes aus.",
     },
     {
@@ -896,7 +896,7 @@ export const woWoherWohin: Lesson = {
       type: "word-order",
       title: "Übung 13: Der Satz",
       instruction: "Build the sentence: I am going home.",
-      chunks: ["Ich", "gehe", "nach", "Hause."],
+      chunks: ["Ich", "gehe", "nach", "Hause."], translation: "I am going home.",
       explain: "The home direction: nach Hause.",
     },
     {
@@ -954,7 +954,7 @@ export const oeffentlicheVerkehrsmittel: Lesson = {
         {
           type: "example",
           de: "Ich fahre mit der U-Bahn zur Arbeit. Am Wochenende nehme ich den Zug nach Hamburg.",
-          en: "Travelling by transport.",
+          en: "I take the underground to work. At the weekend I take the train to Hamburg.",
         },
         {
           type: "tip",
@@ -985,7 +985,7 @@ export const oeffentlicheVerkehrsmittel: Lesson = {
         {
           type: "example",
           de: "Ich hätte gern eine Fahrkarte nach Berlin. Einfach oder hin und zurück? Einfach, bitte. Das macht 29 Euro.",
-          en: "The complete ticket purchase.",
+          en: "I'd like a ticket to Berlin. Single or return? Single, please. That makes 29 euros.",
         },
         {
           type: "tip",
@@ -1016,7 +1016,7 @@ export const oeffentlicheVerkehrsmittel: Lesson = {
         {
           type: "example",
           de: "Entschuldigung, von welchem Gleis fährt der Zug nach Hamburg ab? Gleis 5. Wann kommt er an? Um 10 Uhr.",
-          en: "The platform dialogue.",
+          en: "Excuse me, which platform does the train to Hamburg leave from? Platform 5. When does it arrive? At 10 o'clock.",
         },
         {
           type: "tip",
@@ -1047,7 +1047,7 @@ export const oeffentlicheVerkehrsmittel: Lesson = {
         {
           type: "example",
           de: "Wir fliegen morgen nach Spanien. Am Flughafen gehen wir zuerst zur Sicherheitskontrolle, dann zum Gate.",
-          en: "The airport journey.",
+          en: "We fly to Spain tomorrow. At the airport we first go to security control, then to the gate.",
         },
         {
           type: "tip",
@@ -1242,7 +1242,7 @@ export const oeffentlicheVerkehrsmittel: Lesson = {
       type: "word-order",
       title: "Übung 13: Der Satz",
       instruction: "Build the sentence: I travel by train.",
-      chunks: ["Ich", "fahre", "mit", "dem", "Zug."],
+      chunks: ["Ich", "fahre", "mit", "dem", "Zug."], translation: "I am travelling by train.",
       explain: "Travelling with mit.",
     },
     {
@@ -1250,7 +1250,7 @@ export const oeffentlicheVerkehrsmittel: Lesson = {
       type: "word-order",
       title: "Übung 14: Der Satz",
       instruction: "Build the sentence: The train leaves from platform 5.",
-      chunks: ["Der", "Zug", "fährt", "von", "Gleis", "5", "ab."],
+      chunks: ["Der", "Zug", "fährt", "von", "Gleis", "5", "ab."], translation: "The train departs from platform 5.",
       explain: "The separable departure verb.",
     },
     {
@@ -1307,7 +1307,7 @@ export const dasWetter: Lesson = {
         {
           type: "example",
           de: "Wie ist das Wetter heute? Es ist schön und warm. Die Sonne scheint.",
-          en: "The weather question and answer.",
+          en: "What is the weather like today? It is nice and warm. The sun is shining.",
         },
         {
           type: "tip",
@@ -1338,7 +1338,7 @@ export const dasWetter: Lesson = {
         {
           type: "example",
           de: "Heute regnet es, aber morgen scheint die Sonne. Der Wind weht stark.",
-          en: "The weather verbs in use.",
+          en: "Today it is raining, but tomorrow the sun is shining. The wind is blowing strongly.",
         },
         {
           type: "tip",
@@ -1367,7 +1367,7 @@ export const dasWetter: Lesson = {
         {
           type: "example",
           de: "Im Sommer scheint die Sonne und es ist heiß. Im Winter schneit es und es ist kalt.",
-          en: "The seasonal weather.",
+          en: "In summer the sun shines and it is hot. In winter it snows and it is cold.",
         },
         {
           type: "tip",
@@ -1398,7 +1398,7 @@ export const dasWetter: Lesson = {
         {
           type: "example",
           de: "Es ist heute sehr heiß, über 30 Grad. Morgen wird es kühler, unter 20 Grad.",
-          en: "The temperature forecast.",
+          en: "It is very hot today, over 30 degrees. Tomorrow it will be cooler, under 20 degrees.",
         },
         {
           type: "tip",
@@ -1593,7 +1593,7 @@ export const dasWetter: Lesson = {
       type: "word-order",
       title: "Übung 13: Der Satz",
       instruction: "Build the sentence: The sun is shining.",
-      chunks: ["Die", "Sonne", "scheint."],
+      chunks: ["Die", "Sonne", "scheint."], translation: "The sun is shining.",
       explain: "The sun verb: scheinen.",
     },
     {
@@ -1601,7 +1601,7 @@ export const dasWetter: Lesson = {
       type: "word-order",
       title: "Übung 14: Der Satz",
       instruction: "Build the sentence: It is 20 degrees.",
-      chunks: ["Es", "ist", "20", "Grad."],
+      chunks: ["Es", "ist", "20", "Grad."], translation: "It is 20 degrees.",
       explain: "The temperature sentence.",
     },
     {

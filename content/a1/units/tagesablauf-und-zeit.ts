@@ -335,6 +335,7 @@ export const dieUhrzeit: Lesson = {
       title: "Übung 7: Offiziell schreiben",
       instruction: "Write the official time in words.",
       sentence: "14:15 ist ___ Uhr ___. 20:30 ist ___ Uhr ___.",
+            translation: "14:15 is ___ o'clock ___. 20:30 is ___ o'clock ___.",
       blanks: [
         { answers: ["vierzehn"], hint: "the hour" },
         { answers: ["fünfzehn"], hint: "the minutes" },
@@ -348,6 +349,7 @@ export const dieUhrzeit: Lesson = {
       title: "Übung 8: Informell schreiben",
       instruction: "Write the everyday time in words.",
       sentence: "8:25 ist ___ vor ___ neun. 8:35 ist ___ nach ___ neun.",
+            translation: "8:25 is ___ to ___. 8:35 is ___ past ___.",
       blanks: [
         { answers: ["fünf"], hint: "five minutes" },
         { answers: ["halb"], hint: "half past eight" },
@@ -377,6 +379,7 @@ export const dieUhrzeit: Lesson = {
       title: "Übung 10: Zeit und Präpositionen",
       instruction: "Complete with the right time preposition.",
       sentence: "Ich arbeite ___ neun ___ fünf. Der Laden ist ___ acht Uhr geöffnet. Wir treffen uns ___ sieben. (about)",
+            translation: "I work ___ nine ___ five. The shop is open ___ eight o'clock. We are meeting ___ seven. (about)",
       blanks: [
         { answers: ["von"], hint: "from" },
         { answers: ["bis"], hint: "until" },
@@ -409,7 +412,7 @@ export const dieUhrzeit: Lesson = {
       type: "word-order",
       title: "Übung 13: Der Satz",
       instruction: "Build the sentence: The train departs at 2:30.",
-      chunks: ["Der", "Zug", "fährt", "um", "14:30", "Uhr", "ab."],
+      chunks: ["Der", "Zug", "fährt", "um", "14:30", "Uhr", "ab."], translation: "The train departs at 14:30.",
       explain: "Time with um, then the separable prefix ab closes the sentence.",
     },
     {
@@ -417,7 +420,7 @@ export const dieUhrzeit: Lesson = {
       type: "word-order",
       title: "Übung 14: Der Tag",
       instruction: "Build the sentence: I get up at 6:30.",
-      chunks: ["Ich", "stehe", "um", "halb", "sieben", "auf."],
+      chunks: ["Ich", "stehe", "um", "halb", "sieben", "auf."], translation: "I get up at half past six.",
       explain: "The everyday time with um, the prefix auf at the end.",
     },
     {
@@ -474,7 +477,7 @@ export const wochentageUndMonate: Lesson = {
         {
           type: "example",
           de: "Heute ist Montag. Am Dienstag arbeite ich, am Samstag bin ich frei.",
-          en: "The days in use.",
+          en: "Today is Monday. On Tuesday I work, on Saturday I am free.",
         },
         {
           type: "tip",
@@ -511,7 +514,7 @@ export const wochentageUndMonate: Lesson = {
         {
           type: "example",
           de: "Im Januar ist es kalt, im Juli ist es warm. Mein Geburtstag ist im Mai.",
-          en: "The months in use.",
+          en: "In January it is cold, in July it is warm. My birthday is in May.",
         },
         {
           type: "tip",
@@ -711,7 +714,7 @@ export const wochentageUndMonate: Lesson = {
       type: "word-order",
       title: "Übung 10: Der Satz",
       instruction: "Build the sentence: Today is Monday.",
-      chunks: ["Heute", "ist", "Montag."],
+      chunks: ["Heute", "ist", "Montag."], translation: "Today is Monday.",
       explain: "The bare day after ist.",
     },
     {
@@ -719,7 +722,7 @@ export const wochentageUndMonate: Lesson = {
       type: "word-order",
       title: "Übung 11: Der Satz",
       instruction: "Build the sentence: My birthday is in May.",
-      chunks: ["Mein", "Geburtstag", "ist", "im", "Mai."],
+      chunks: ["Mein", "Geburtstag", "ist", "im", "Mai."], translation: "My birthday is in May.",
       explain: "Months take im.",
     },
     {
@@ -826,7 +829,7 @@ export const meinTagesablauf: Lesson = {
         {
           type: "example",
           de: "Ich stehe um 6 Uhr auf und wasche mich. Um 7 Uhr frühstücke ich. Um 8 Uhr gehe ich zur Arbeit. Von 9 bis 17 Uhr arbeite ich. Um 13 Uhr esse ich zu Mittag. Um 17 Uhr komme ich nach Hause. Am Abend sehe ich fern und um 23 Uhr schlafe ich.",
-          en: "The complete day in sequence.",
+          en: "I get up at 6 o'clock and wash myself. At 7 o'clock I have breakfast. At 8 o'clock I go to work. From 9 to 5 I work. At 1 o'clock I have lunch. At 5 o'clock I come home. In the evening I watch TV and at 11 o'clock I sleep.",
         },
         {
           type: "tip",
@@ -1030,7 +1033,7 @@ export const meinTagesablauf: Lesson = {
       type: "word-order",
       title: "Übung 11: Der Satz",
       instruction: "Build the sentence: I get up at 6 o'clock.",
-      chunks: ["Ich", "stehe", "um", "6", "Uhr", "auf."],
+      chunks: ["Ich", "stehe", "um", "6", "Uhr", "auf."], translation: "I get up at 6 o'clock.",
       explain: "The separable aufstehen.",
     },
     {
@@ -1038,7 +1041,7 @@ export const meinTagesablauf: Lesson = {
       type: "word-order",
       title: "Übung 12: Der Satz",
       instruction: "Build the sentence: I come home at 5 pm.",
-      chunks: ["Ich", "komme", "um", "17", "Uhr", "nach", "Hause."],
+      chunks: ["Ich", "komme", "um", "17", "Uhr", "nach", "Hause."], translation: "I come home at 17:00.",
       explain: "Coming home: nach Hause.",
     },
     {
@@ -1326,7 +1329,7 @@ export const trennbareVerben: Lesson = {
       type: "word-order",
       title: "Übung 11: Der Satz",
       instruction: "Build the sentence: I get up at 6 o'clock.",
-      chunks: ["Ich", "stehe", "um", "6", "Uhr", "auf."],
+      chunks: ["Ich", "stehe", "um", "6", "Uhr", "auf."], translation: "I get up at 6 o'clock.",
       explain: "The separable bracket.",
     },
     {
@@ -1334,7 +1337,7 @@ export const trennbareVerben: Lesson = {
       type: "word-order",
       title: "Übung 12: Der Satz",
       instruction: "Build the sentence: I must get up early today.",
-      chunks: ["Ich", "muss", "heute", "früh", "aufstehen."],
+      chunks: ["Ich", "muss", "heute", "früh", "aufstehen."], translation: "I have to get up early today.",
       explain: "With a modal the infinitive ends the clause.",
     },
     {
@@ -1388,7 +1391,7 @@ export const derImperativ: Lesson = {
         {
           type: "example",
           de: "Geh nach Hause! Geht nach Hause! Gehen Sie nach Hause! Gehen wir nach Hause!",
-          en: "The same command in four forms.",
+          en: "Go home! (informal) Go home! (plural) Go home! (formal) Let's go home!",
         },
         {
           type: "tip",
@@ -1419,7 +1422,7 @@ export const derImperativ: Lesson = {
         {
           type: "example",
           de: "Mach die Tür zu! Sieh dir das an! Sei ruhig!",
-          en: "The du imperatives.",
+          en: "Close the door! Look at that! Be quiet!",
         },
         {
           type: "tip",
@@ -1448,7 +1451,7 @@ export const derImperativ: Lesson = {
         {
           type: "example",
           de: "Nehmen Sie die zweite Straße rechts! Öffnen Sie das Fenster!",
-          en: "The formal imperatives.",
+          en: "Take the second street on the right! Open the window!",
         },
         {
           type: "tip",
@@ -1477,7 +1480,7 @@ export const derImperativ: Lesson = {
         {
           type: "example",
           de: "Steh um 6 Uhr auf! Ruf mich später an! Sehen Sie heute fern? Nein, sehen Sie morgen fern!",
-          en: "The separable imperatives.",
+          en: "Get up at 6 o'clock! Call me later! Are you watching TV today? No, are you watching TV tomorrow!",
         },
         {
           type: "tip",
@@ -1646,7 +1649,7 @@ export const derImperativ: Lesson = {
       type: "word-order",
       title: "Übung 12: Der Satz",
       instruction: "Build the sentence: Call me!",
-      chunks: ["Ruf", "mich", "an!"],
+      chunks: ["Ruf", "mich", "an!"], translation: "Call me!",
       explain: "The separable imperative.",
     },
     {
@@ -1654,7 +1657,7 @@ export const derImperativ: Lesson = {
       type: "word-order",
       title: "Übung 13: Der Satz",
       instruction: "Build the sentence: Let's go to the cinema!",
-      chunks: ["Gehen", "wir", "ins", "Kino!"],
+      chunks: ["Gehen", "wir", "ins", "Kino!"], translation: "Let's go to the cinema!",
       explain: "The wir imperative.",
     },
     {
@@ -1739,7 +1742,7 @@ export const zeitangaben: Lesson = {
         {
           type: "example",
           de: "Vor einer Stunde war ich zu Hause. In zwei Wochen fahre ich in Urlaub. Seit Montag lerne ich Deutsch.",
-          en: "The time relations in use.",
+          en: "An hour ago I was at home. In two weeks I'm going on holiday. Since Monday I've been learning German.",
         },
         {
           type: "tip",
@@ -1769,7 +1772,7 @@ export const zeitangaben: Lesson = {
         {
           type: "example",
           de: "Wann arbeitest du? Von 9 bis 17 Uhr. Wie oft lernst du Deutsch? Jeden Tag.",
-          en: "The time questions and answers.",
+          en: "When do you work? From 9 to 5. How often do you learn German? Every day.",
         },
         {
           type: "tip",
@@ -1941,7 +1944,7 @@ export const zeitangaben: Lesson = {
       type: "word-order",
       title: "Übung 12: Der Satz",
       instruction: "Build the sentence: I work from 9 to 5.",
-      chunks: ["Ich", "arbeite", "von", "9", "bis", "17", "Uhr."],
+      chunks: ["Ich", "arbeite", "von", "9", "bis", "17", "Uhr."], translation: "I work from 9 to 5.",
       explain: "The duration: von ... bis.",
     },
     {
@@ -1949,7 +1952,7 @@ export const zeitangaben: Lesson = {
       type: "word-order",
       title: "Übung 13: Der Satz",
       instruction: "Build the sentence: I am learning German every day.",
-      chunks: ["Ich", "lerne", "jeden", "Tag", "Deutsch."],
+      chunks: ["Ich", "lerne", "jeden", "Tag", "Deutsch."], translation: "I learn German every day.",
       explain: "The frequency phrase.",
     },
     {
@@ -2034,7 +2037,7 @@ export const perfektEinfuehrung: Lesson = {
         {
           type: "example",
           de: "Ich habe gelernt und gegessen. Danach bin ich nach Hause gegangen und zu Hause geblieben.",
-          en: "The two helpers in one story.",
+          en: "I learned and ate. Afterwards I went home and stayed at home.",
         },
         {
           type: "tip",
@@ -2065,7 +2068,7 @@ export const perfektEinfuehrung: Lesson = {
         {
           type: "example",
           de: "Ich habe gespielt. Ich bin gegangen. Ich habe gegessen und getrunken.",
-          en: "Regular and strong participles.",
+          en: "I played. I went. I ate and drank.",
         },
         {
           type: "tip",
@@ -2223,7 +2226,7 @@ export const perfektEinfuehrung: Lesson = {
       type: "word-order",
       title: "Übung 11: Der Satz",
       instruction: "Build the sentence: I worked yesterday.",
-      chunks: ["Ich", "habe", "gestern", "gearbeitet."],
+      chunks: ["Ich", "habe", "gestern", "gearbeitet."], translation: "I worked yesterday.",
       explain: "The perfect bracket.",
     },
     {
@@ -2231,7 +2234,7 @@ export const perfektEinfuehrung: Lesson = {
       type: "word-order",
       title: "Übung 12: Der Satz",
       instruction: "Build the sentence: I went home.",
-      chunks: ["Ich", "bin", "nach", "Hause", "gegangen."],
+      chunks: ["Ich", "bin", "nach", "Hause", "gegangen."], translation: "I went home.",
       explain: "Movement with sein.",
     },
     {
@@ -2320,7 +2323,7 @@ export const perfektMitHaben: Lesson = {
         {
           type: "example",
           de: "Ich habe heute viel gemacht und gespielt. Hast du auch geübt?",
-          en: "The regular perfect.",
+          en: "I did and played a lot today. Did you practise too?",
         },
         {
           type: "tip",
@@ -2547,7 +2550,7 @@ export const perfektMitHaben: Lesson = {
       type: "word-order",
       title: "Übung 11: Der Satz",
       instruction: "Build the sentence: I wrote yesterday.",
-      chunks: ["Ich", "habe", "gestern", "geschrieben."],
+      chunks: ["Ich", "habe", "gestern", "geschrieben."], translation: "I wrote yesterday.",
       explain: "The perfect bracket.",
     },
     {
@@ -2555,7 +2558,7 @@ export const perfektMitHaben: Lesson = {
       type: "word-order",
       title: "Übung 12: Der Satz",
       instruction: "Build the sentence: I went shopping.",
-      chunks: ["Ich", "habe", "eingekauft."],
+      chunks: ["Ich", "habe", "eingekauft."], translation: "I went shopping.",
       explain: "The separable participle.",
     },
     {
@@ -2675,7 +2678,7 @@ export const perfektMitSein: Lesson = {
         {
           type: "example",
           de: "Ich bin aufgestanden, eingeschlafen und wieder aufgewacht. Dann bin ich lange geblieben.",
-          en: "The state changes.",
+          en: "I got up, fell asleep and woke up again. Then I stayed for a long time.",
         },
         {
           type: "tip",
@@ -2704,7 +2707,7 @@ export const perfektMitSein: Lesson = {
         {
           type: "example",
           de: "Ich bin aufgestanden und zur Arbeit gefahren. Dort habe ich gearbeitet, gegessen und getrunken. Am Abend bin ich nach Hause gegangen.",
-          en: "The mixed story.",
+          en: "I got up and drove to work. There I worked, ate and drank. In the evening I went home.",
         },
         {
           type: "tip",
@@ -2866,7 +2869,7 @@ export const perfektMitSein: Lesson = {
       type: "word-order",
       title: "Übung 11: Der Satz",
       instruction: "Build the sentence: I went home.",
-      chunks: ["Ich", "bin", "nach", "Hause", "gegangen."],
+      chunks: ["Ich", "bin", "nach", "Hause", "gegangen."], translation: "I went home.",
       explain: "Movement with sein.",
     },
     {
@@ -2874,7 +2877,7 @@ export const perfektMitSein: Lesson = {
       type: "word-order",
       title: "Übung 12: Der Satz",
       instruction: "Build the sentence: I got up early.",
-      chunks: ["Ich", "bin", "früh", "aufgestanden."],
+      chunks: ["Ich", "bin", "früh", "aufgestanden."], translation: "I got up early.",
       explain: "The separable state verb.",
     },
     {

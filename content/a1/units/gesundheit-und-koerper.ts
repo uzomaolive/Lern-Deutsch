@@ -36,7 +36,7 @@ export const derKoerper: Lesson = {
         {
           type: "example",
           de: "Der Kopf, das Gesicht, die Hand: das sind Teile des Körpers. Wir haben zwei Augen, zwei Ohren, zwei Hände und zwei Füße.",
-          en: "The body in numbers.",
+          en: "The head, the face, the hand: those are parts of the body. We have two eyes, two ears, two hands and two feet.",
         },
         {
           type: "tip",
@@ -98,7 +98,7 @@ export const derKoerper: Lesson = {
         {
           type: "example",
           de: "Mir tut der Kopf weh und ich habe Halsschmerzen. Ich möchte zum Arzt.",
-          en: "The complaint.",
+          en: "My head hurts and I have a sore throat. I would like to go to the doctor.",
         },
         {
           type: "tip",
@@ -292,7 +292,7 @@ export const derKoerper: Lesson = {
       type: "word-order",
       title: "Übung 13: Der Satz",
       instruction: "Build the sentence: My head hurts.",
-      chunks: ["Mir", "tut", "der", "Kopf", "weh."],
+      chunks: ["Mir", "tut", "der", "Kopf", "weh."], translation: "My head hurts.",
       explain: "The pain sentence with the dative.",
     },
     {
@@ -300,7 +300,7 @@ export const derKoerper: Lesson = {
       type: "word-order",
       title: "Übung 14: Der Satz",
       instruction: "Build the sentence: I have a headache.",
-      chunks: ["Ich", "habe", "Kopfschmerzen."],
+      chunks: ["Ich", "habe", "Kopfschmerzen."], translation: "I have a headache.",
       explain: "The Schmerzen sentence.",
     },
     {
@@ -356,7 +356,7 @@ export const beimArzt: Lesson = {
         {
           type: "example",
           de: "Guten Tag, ich möchte einen Termin machen. Was fehlt Ihnen? Ich habe Fieber und Husten.",
-          en: "The appointment dialogue.",
+          en: "Good day, I would like to make an appointment. What is wrong with you? I have a fever and a cough.",
         },
         {
           type: "tip",
@@ -419,7 +419,7 @@ export const beimArzt: Lesson = {
         {
           type: "example",
           de: "Der Arzt sagt: Öffnen Sie den Mund! Dann: Atmen Sie tief! Am Ende: Es ist nichts Schlimmes, nur eine Erkältung.",
-          en: "The complete examination.",
+          en: "The doctor says: Open your mouth! Then: Breathe deeply! At the end: It's nothing serious, just a cold.",
         },
         {
           type: "tip",
@@ -450,7 +450,7 @@ export const beimArzt: Lesson = {
         {
           type: "example",
           de: "Der Arzt verschreibt mir Tabletten und eine Salbe. Ich soll dreimal täglich eine Tablette nehmen.",
-          en: "The prescription.",
+          en: "The doctor prescribes me tablets and an ointment. I should take one tablet three times a day.",
         },
         {
           type: "tip",
@@ -643,7 +643,7 @@ export const beimArzt: Lesson = {
       type: "word-order",
       title: "Übung 13: Der Satz",
       instruction: "Build the sentence: I would like to make an appointment.",
-      chunks: ["Ich", "möchte", "einen", "Termin", "machen."],
+      chunks: ["Ich", "möchte", "einen", "Termin", "machen."], translation: "I would like to make an appointment.",
       explain: "The appointment sentence.",
     },
     {
@@ -651,7 +651,7 @@ export const beimArzt: Lesson = {
       type: "word-order",
       title: "Übung 14: Der Satz",
       instruction: "Build the sentence: I have a fever.",
-      chunks: ["Ich", "habe", "Fieber."],
+      chunks: ["Ich", "habe", "Fieber."], translation: "I have a fever.",
       explain: "The symptom sentence.",
     },
     {
@@ -738,7 +738,7 @@ export const gesundheitstipps: Lesson = {
         {
           type: "example",
           de: "Du sollst mehr Sport machen. Du musst genug schlafen. Du darfst nicht rauchen.",
-          en: "The three health modals.",
+          en: "You should do more sport. You must sleep enough. You must not smoke.",
         },
         {
           type: "tip",
@@ -766,7 +766,7 @@ export const gesundheitstipps: Lesson = {
         {
           type: "example",
           de: "Trink mehr Wasser und mach mehr Sport! Dann fühlst du dich besser.",
-          en: "The informal advice.",
+          en: "Drink more water and do more sport! Then you will feel better.",
         },
         {
           type: "tip",
@@ -990,7 +990,7 @@ export const gesundheitstipps: Lesson = {
       type: "word-order",
       title: "Übung 13: Der Satz",
       instruction: "Build the sentence: You should do more sport.",
-      chunks: ["Du", "sollst", "mehr", "Sport", "machen."],
+      chunks: ["Du", "sollst", "mehr", "Sport", "machen."], translation: "You should do more sport.",
       explain: "The modal bracket.",
     },
     {
@@ -998,7 +998,7 @@ export const gesundheitstipps: Lesson = {
       type: "word-order",
       title: "Übung 14: Der Satz",
       instruction: "Build the sentence: You must not smoke.",
-      chunks: ["Du", "darfst", "nicht", "rauchen."],
+      chunks: ["Du", "darfst", "nicht", "rauchen."], translation: "You must not smoke.",
       explain: "The prohibition sentence.",
     },
     {
