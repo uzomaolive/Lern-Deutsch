@@ -182,8 +182,8 @@ export const wortschatzAD: Lesson = {
 {"id": "ex-ad-1", "type": "multiple-choice", "title": "Übung 1", "instruction": "Choose the word that fits the sentence.", "prompt": "Ich muss mich beim Bürgeramt ___.", "options": ["anmelden", "ankommen", "aussteigen"], "correctIndex": 0, "explain": "Registering is sich anmelden."},
 {"id": "ex-ad-2", "type": "multiple-choice", "title": "Übung 2", "instruction": "Choose the correct translation.", "prompt": "Was heißt 'die Anmeldung'?", "options": ["the registration", "the arrival", "the address"], "correctIndex": 0, "explain": "die Anmeldung is the registration."},
 {"id": "ex-ad-3", "type": "multiple-choice", "title": "Übung 3", "instruction": "Choose the correct translation.", "prompt": "Was heißt 'arbeitslos'?", "options": ["unemployed", "the workplace", "to work"], "correctIndex": 0, "explain": "arbeitslos means unemployed."},
-{"id": "ex-ad-4", "type": "fill-blank", "title": "Übung 4", "instruction": "Type the missing verb.", "sentence": "Wir ___ um zwölf Uhr ab. (fahren)", "blanks": [{"answers": ["fahren"], "hint": "abfahren, wir"}]},
+{"id": "ex-ad-4", "type": "fill-blank", "title": "Übung 4", "instruction": "Type the missing verb.", "sentence": "Wir ___ um zwölf Uhr ab. (fahren)", "translation": "We ___ at twelve o'clock. (depart)", "blanks": [{"answers": ["fahren"], "hint": "abfahren, wir"}]},
 {"id": "ex-ad-5", "type": "multiple-choice", "title": "Übung 5", "instruction": "Choose the word that fits.", "prompt": "Ich habe einen Termin beim ___.", "options": ["Arzt", "Apfel", "Buch"], "correctIndex": 0, "explain": "The doctor is der Arzt."},
-{"id": "ex-ad-6", "type": "word-order", "title": "Übung 6", "instruction": "Build the sentence: I am arriving in Hamburg.", "chunks": ["Ich", "komme", "in", "Hamburg", "an."], "explain": "ankommen splits: komme ... an."}
+{"id": "ex-ad-6", "type": "word-order", "title": "Übung 6", "instruction": "Build the sentence: I am arriving in Hamburg.", "chunks": ["Ich", "komme", "in", "Hamburg", "an."], "translation": "I am arriving in Hamburg.", "explain": "ankommen splits: komme ... an."}
   ],
 };

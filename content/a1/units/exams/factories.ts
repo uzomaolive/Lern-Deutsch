@@ -1,4 +1,5 @@
 import type { Exercise } from "../../../schema";
+import { translationForSentence, translationForChunks } from "./translations";
 
 /**
  * Compact factories for authoring complete Goethe A1 exam papers in the
@@ -105,6 +106,7 @@ export function schreibForm(
     title: `Schreiben, Aufgabe ${n}`,
     instruction: hint,
     sentence,
+    translation: translationForSentence(sentence),
     blanks,
   };
 }
@@ -121,6 +123,7 @@ export function schreibSatz(
     title: `Schreiben, Aufgabe ${n}`,
     instruction,
     chunks,
+    translation: translationForChunks(chunks),
     explain,
   };
 }
@@ -138,6 +141,7 @@ export function sprechenSatz(
     title: `Sprechen, Teil ${teil}`,
     instruction,
     chunks,
+    translation: translationForChunks(chunks),
     explain,
   };
 }
@@ -191,6 +195,7 @@ export function bauen(
     title: `Sätze bauen ${n}`,
     instruction,
     chunks,
+    translation: translationForChunks(chunks),
     explain,
   };
 }

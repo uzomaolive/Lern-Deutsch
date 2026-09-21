@@ -60,7 +60,7 @@ export const halloUndGutenTag: Lesson = {
         {
           type: "example",
           de: "Tschüss, bis morgen! Auf Wiedersehen, Herr Schmidt! Schönen Tag noch!",
-          en: "Informal, formal, and neutral leave-takings.",
+          en: "Bye, see you tomorrow! Goodbye, Mr Schmidt! Have a nice day!",
         },
         {
           type: "gloss",
@@ -122,7 +122,7 @@ export const halloUndGutenTag: Lesson = {
         {
           type: "example",
           de: "Wie geht es dir? Mir geht es gut, danke! Und dir? Auch gut.",
-          en: "The classic small talk exchange.",
+          en: "How are you? I'm fine, thanks! And you? Also fine.",
         },
         {
           type: "gloss",
@@ -170,12 +170,12 @@ export const halloUndGutenTag: Lesson = {
         {
           type: "example",
           de: "Anna: Guten Tag, Frau Weber! Frau Weber: Guten Tag, Anna! Wie geht es dir? Anna: Gut, danke! Und Ihnen? Frau Weber: Auch gut. Tschüss, bis morgen! Anna: Bis morgen, Frau Weber!",
-          en: "A complete formal-informal meeting.",
+          en: "Anna: Good day, Mrs Weber! Mrs Weber: Good day, Anna! How are you? Anna: Fine, thanks! And you (formal)? Mrs Weber: Also fine. Bye, see you tomorrow! Anna: See you tomorrow, Mrs Weber!",
         },
         {
           type: "example",
           de: "Paul: Hallo, Jonas! Jonas: Hi, Paul! Wie geht's? Paul: Super! Und dir? Jonas: Auch gut. Bis später!",
-          en: "The informal version.",
+          en: "Paul: Hi, Jonas! Jonas: Hi, Paul! How's it going? Paul: Great! And you? Jonas: Also good. See you later!",
         },
         {
           type: "tip",
@@ -301,6 +301,7 @@ export const halloUndGutenTag: Lesson = {
       title: "Übung 6: Der Smalltalk",
       instruction: "Complete the small talk.",
       sentence: "Wie ___ es dir? Mir geht es ___. (good) Und ___?",
+            translation: "How ___ it going? I'm ___ (good). And ___?",
       blanks: [
         { answers: ["geht"], hint: "gehen, es-form" },
         { answers: ["gut"], hint: "well" },
@@ -362,7 +363,7 @@ export const halloUndGutenTag: Lesson = {
       type: "word-order",
       title: "Übung 12: Der Dialog",
       instruction: "Build the first sentence of the meeting.",
-      chunks: ["Guten", "Tag,", "Frau", "Weber!"],
+      chunks: ["Guten", "Tag,", "Frau", "Weber!"], translation: "Good day, Mrs Weber!",
       explain: "The greeting leads with the time of day.",
     },
     {
@@ -370,7 +371,7 @@ export const halloUndGutenTag: Lesson = {
       type: "word-order",
       title: "Übung 13: Der Dialog",
       instruction: "Build the leave-taking: See you tomorrow.",
-      chunks: ["Tschüss,", "bis", "morgen!"],
+      chunks: ["Tschüss,", "bis", "morgen!"], translation: "Bye, see you tomorrow!",
       explain: "The bis-phrase follows the goodbye.",
     },
     {
@@ -542,7 +543,7 @@ export const alphabetUndAussprache: Lesson = {
         {
           type: "example",
           de: "Ä: der Käse, die Männer. Ö: schön, die Töchter. Ü: fünf, die Übung, überall.",
-          en: "Practise each umlaut with three words.",
+          en: "Ä: the cheese, the men. Ö: beautiful, the daughters. Ü: five, the exercise, everywhere.",
         },
         {
           type: "tip",
@@ -635,7 +636,7 @@ export const alphabetUndAussprache: Lesson = {
         {
           type: "example",
           de: "ie: vier, die Liebe, spielen, sieben. ei: zwei, mein, heißen, klein.",
-          en: "The ee-sound pair versus the eye-sound pair.",
+          en: "ie: four, love, to play, seven. ei: two, my, to be called, small.",
         },
         {
           type: "tip",
@@ -679,12 +680,12 @@ export const alphabetUndAussprache: Lesson = {
         {
           type: "example",
           de: "Mein Name ist Müller: M, U, Umlaut, doppel-L, E, R. Meine Straße heißt Schillerweg: Sch, I, doppel-L, E, R, W, E, G.",
-          en: "Spelling with letter names, umlauts, and doubles.",
+          en: "My name is Müller: M, U, umlaut, double L, E, R. My street is called Schillerweg: Sch, I, double L, E, R, W, E, G.",
         },
         {
           type: "example",
           de: "Wie schreibt man das? Bitte buchstabieren Sie. Ich buchstabiere: M wie Martha, U wie Ulrich, L wie Ludwig, L wie Ludwig, E wie Emil, R wie Richard.",
-          en: "The polite request and the professional way: names as codewords.",
+          en: "How do you write that? Please spell it. I spell it: M as in Martha, U as in Ulrich, L as in Ludwig, L as in Ludwig, E as in Emil, R as in Richard.",
         },
         {
           type: "tip",
@@ -847,6 +848,7 @@ export const alphabetUndAussprache: Lesson = {
       title: "Übung 11: Umlaute schreiben",
       instruction: "Complete the words with the right umlaut or letter.",
       sentence: "Ich heiße M___ller. Das ist sehr sch___n. Ich habe f___nf Euro.",
+            translation: "My name is M___ller. That is very n___e. I have f___e euros.",
       blanks: [
         { answers: ["ü"], hint: "ue as a fallback" },
         { answers: ["ö"], hint: "oe as a fallback" },
@@ -859,6 +861,7 @@ export const alphabetUndAussprache: Lesson = {
       title: "Übung 12: ei oder ie?",
       instruction: "Type ei or ie to complete the word.",
       sentence: "Ich he___ße Anna. Ich l___be meine Familie. Ich habe zw___ Brüder.",
+            translation: "My name is Ann_. I _ve my family. I have tw_ brothers.",
       blanks: [
         { answers: ["ei"], hint: "heißen, the eye sound" },
         { answers: ["ie"], hint: "lieben, the long ee sound" },
@@ -900,7 +903,7 @@ export const alphabetUndAussprache: Lesson = {
       type: "word-order",
       title: "Übung 15: Der Satz",
       instruction: "Build the sentence: My name is Müller.",
-      chunks: ["Mein", "Name", "ist", "Müller."],
+      chunks: ["Mein", "Name", "ist", "Müller."], translation: "My name is Müller.",
       explain: "The verb ist stays in second position.",
     },
     {
@@ -1080,7 +1083,7 @@ export const zahlen: Lesson = {
         {
           type: "example",
           de: "Was kostet das? 9,99 Euro. Wie alt bist du? Ich bin 25 Jahre alt. Meine Nummer ist 0172 34 56 78.",
-          en: "The three daily number situations.",
+          en: "How much does that cost? 9.99 euros. How old are you? I am 25 years old. My number is 0172 34 56 78.",
         },
         {
           type: "tip",
@@ -1318,6 +1321,7 @@ export const zahlen: Lesson = {
       title: "Übung 7: Zahlen schreiben",
       instruction: "Write the numbers in words.",
       sentence: "25 ist ___. 47 ist ___. 99 ist ___. 100 ist ___.",
+            translation: "25 is ___. 47 is ___. 99 is ___. 100 is ___.",
       blanks: [
         { answers: ["fünfundzwanzig", "25"], hint: "25" },
         { answers: ["siebenundvierzig", "47"], hint: "47" },
@@ -1381,6 +1385,7 @@ export const zahlen: Lesson = {
       title: "Übung 13: Die Telefonnummer",
       instruction: "Complete the phone number reading.",
       sentence: "0172 liest man: ___ eins sieben zwei. 34 liest man: ___ vier.",
+            translation: "0172 is read as: ___ one seven two. 34 is read as: ___ four.",
       blanks: [
         { answers: ["null"], hint: "zero" },
         { answers: ["drei"], hint: "3" },
@@ -1411,7 +1416,7 @@ export const zahlen: Lesson = {
       type: "word-order",
       title: "Übung 16: Der Satz",
       instruction: "Build the sentence: I am 25 years old.",
-      chunks: ["Ich", "bin", "25", "Jahre", "alt."],
+      chunks: ["Ich", "bin", "25", "Jahre", "alt."], translation: "I am 25 years old.",
       explain: "Age: sein + number + Jahre alt.",
     },
     {
@@ -1419,7 +1424,7 @@ export const zahlen: Lesson = {
       type: "word-order",
       title: "Übung 17: Der Satz",
       instruction: "Build the sentence: The bread costs three euros twenty.",
-      chunks: ["Das", "Brot", "kostet", "drei", "Euro", "zwanzig."],
+      chunks: ["Das", "Brot", "kostet", "drei", "Euro", "zwanzig."], translation: "The bread costs three euros twenty.",
       explain: "Price: number + Euro + cents.",
     },
     {
@@ -1539,7 +1544,7 @@ export const laenderUndSprachen: Lesson = {
         {
           type: "example",
           de: "Ich spreche Deutsch, Englisch und ein bisschen Spanisch. Ich lerne Italienisch. Wie sagt man das auf Deutsch?",
-          en: "Language talk in three sentences.",
+          en: "I speak German, English and a little Spanish. I'm learning Italian. How do you say that in German?",
         },
         {
           type: "tip",
@@ -1631,7 +1636,7 @@ export const laenderUndSprachen: Lesson = {
         {
           type: "example",
           de: "Woher kommst du? Ich komme aus Italien, aber ich wohne in Berlin. Welche Sprachen sprichst du? Ich spreche Italienisch, Englisch und ein bisschen Deutsch.",
-          en: "The whole topic in one dialogue.",
+          en: "Where are you from? I'm from Italy, but I live in Berlin. Which languages do you speak? I speak Italian, English and a little German.",
         },
         {
           type: "tip",
@@ -1757,6 +1762,7 @@ export const laenderUndSprachen: Lesson = {
       title: "Übung 3: aus, in, nach",
       instruction: "Complete with the right preposition.",
       sentence: "Ich komme ___ Spanien. Ich wohne ___ Deutschland. Ich fahre ___ Italien.",
+            translation: "I come ___ Spain. I live ___ Germany. I am going ___ Italy.",
       blanks: [
         { answers: ["aus"], hint: "origin" },
         { answers: ["in"], hint: "location" },
@@ -1809,6 +1815,7 @@ export const laenderUndSprachen: Lesson = {
       title: "Übung 8: Die Sprachen",
       instruction: "Complete with the language name.",
       sentence: "Ich spreche ___ und ___. (German and English)",
+            translation: "I speak ___ and ___. (German and English)",
       blanks: [
         { answers: ["Deutsch"], hint: "German" },
         { answers: ["Englisch"], hint: "English" },
@@ -1895,7 +1902,7 @@ export const laenderUndSprachen: Lesson = {
       type: "word-order",
       title: "Übung 16: Der Satz",
       instruction: "Build the sentence: I come from Switzerland.",
-      chunks: ["Ich", "komme", "aus", "der", "Schweiz."],
+      chunks: ["Ich", "komme", "aus", "der", "Schweiz."], translation: "I come from Switzerland.",
       explain: "Origin with the article: aus der Schweiz.",
     },
     {
@@ -1903,7 +1910,7 @@ export const laenderUndSprachen: Lesson = {
       type: "word-order",
       title: "Übung 17: Der Satz",
       instruction: "Build the sentence: I speak a little German.",
-      chunks: ["Ich", "spreche", "ein", "bisschen", "Deutsch."],
+      chunks: ["Ich", "spreche", "ein", "bisschen", "Deutsch."], translation: "I speak a little German.",
       explain: "Language without article, level word ein bisschen.",
     },
     {
@@ -1991,7 +1998,7 @@ const seinUndHaben: Lesson = {
         {
           type: "example",
           de: "Ich bin Anna. Du bist müde. Er ist mein Bruder. Wir sind aus Berlin. Ihr seid willkommen. Sie sind meine Eltern.",
-          en: "All six forms in six short sentences.",
+          en: "I am Anna. You are tired. He is my brother. We are from Berlin. You (plural) are welcome. They are my parents.",
         },
         {
           type: "tip",
@@ -2024,7 +2031,7 @@ const seinUndHaben: Lesson = {
         {
           type: "example",
           de: "Ich bin Anna, ich bin 25 Jahre alt und ich bin aus Italien. Heute bin ich müde. Es ist kalt. Der Termin ist um zehn Uhr.",
-          en: "ein mit allen Funktionen.",
+          en: "I am Anna, I am 25 years old and I am from Italy. Today I am tired. It is cold. The appointment is at ten o'clock.",
         },
         {
           type: "tip",
@@ -2055,7 +2062,7 @@ const seinUndHaben: Lesson = {
         {
           type: "example",
           de: "Ich habe einen Bruder. Du hast ein Auto. Er hat einen Termin. Wir haben Zeit. Ihr habt ein schönes Haus. Sie haben recht.",
-          en: "All six forms in six short sentences.",
+          en: "I have a brother. You have a car. He has an appointment. We have time. You (plural) have a nice house. They are right.",
         },
         {
           type: "tip",
@@ -2088,7 +2095,7 @@ const seinUndHaben: Lesson = {
         {
           type: "example",
           de: "Ich habe Hunger, aber keine Zeit. Du hast Recht, das ist teuer. Er hat einen Termin beim Arzt.",
-          en: "Fixed pairs in real sentences.",
+          en: "I'm hungry, but I have no time. You are right, that is expensive. He has an appointment at the doctor's.",
         },
         {
           type: "tip",
@@ -2115,7 +2122,7 @@ const seinUndHaben: Lesson = {
         {
           type: "example",
           de: "Ich habe gestern Pizza gegessen. Wir sind gestern nach Berlin gefahren. Sie ist um sieben aufgestanden.",
-          en: "Both helpers in action.",
+          en: "I ate pizza yesterday. We drove to Berlin yesterday. She got up at seven.",
         },
         {
           type: "tip",
@@ -2201,6 +2208,7 @@ const seinUndHaben: Lesson = {
       title: "Übung 1: sein konjugieren",
       instruction: "Complete with the right form of sein.",
       sentence: "Ich ___ Anna. Du ___ müde. Er ___ mein Bruder. Wir ___ aus Berlin. Ihr ___ willkommen. Sie ___ meine Eltern.",
+            translation: "I ___ Anna. You ___ tired. He ___ my brother. We ___ from Berlin. You ___ welcome. They ___ my parents.",
       blanks: [
         { answers: ["bin"], hint: "ich" },
         { answers: ["bist"], hint: "du" },
@@ -2216,6 +2224,7 @@ const seinUndHaben: Lesson = {
       title: "Übung 2: haben konjugieren",
       instruction: "Complete with the right form of haben.",
       sentence: "Ich ___ einen Bruder. Du ___ ein Auto. Er ___ einen Termin. Wir ___ Zeit. Ihr ___ ein Haus.",
+            translation: "I ___ a brother. You ___ a car. He ___ an appointment. We ___ time. You ___ a house.",
       blanks: [
         { answers: ["habe"], hint: "ich" },
         { answers: ["hast"], hint: "du" },
@@ -2316,6 +2325,7 @@ const seinUndHaben: Lesson = {
       title: "Übung 11: Fragen",
       instruction: "Complete the questions.",
       sentence: "___ du müde? (yes/no) ___ bist du? (where) ___ alt bist du? (how) ___ hast du Zeit? (when)",
+            translation: "___ you tired? (yes/no) ___ are you? (where) ___ old are you? (how) ___ do you have time? (when)",
       blanks: [
         { answers: ["Bist"], hint: "verb first" },
         { answers: ["Wo"], hint: "place" },
@@ -2368,7 +2378,7 @@ const seinUndHaben: Lesson = {
       type: "word-order",
       title: "Übung 16: Der Satz",
       instruction: "Build the sentence: I am 25 years old.",
-      chunks: ["Ich", "bin", "25", "Jahre", "alt."],
+      chunks: ["Ich", "bin", "25", "Jahre", "alt."], translation: "I am 25 years old.",
       explain: "Age: sein + number + Jahre alt.",
     },
     {
@@ -2376,7 +2386,7 @@ const seinUndHaben: Lesson = {
       type: "word-order",
       title: "Übung 17: Der Satz",
       instruction: "Build the sentence: I have an appointment at the doctor's.",
-      chunks: ["Ich", "habe", "einen", "Termin", "beim", "Arzt."],
+      chunks: ["Ich", "habe", "einen", "Termin", "beim", "Arzt."], translation: "I have an appointment at the doctor's.",
       explain: "haben + accusative, beim = bei + dem.",
     },
     {
@@ -2549,7 +2559,7 @@ export const zahlenAb100: Lesson = {
         {
           type: "example",
           de: "Ich bin 1995 geboren. Neunzehnhundertfünfundneunzig. Im Jahr 2026 habe ich Urlaub.",
-          en: "Years in real sentences.",
+          en: "I was born in 1995. Nineteen ninety-five. In 2026 I have holidays.",
         },
         {
           type: "tip",
@@ -6629,6 +6639,7 @@ export const zahlenAb100: Lesson = {
       title: "Übung 8: Zahlen schreiben",
       instruction: "Write the numbers in words.",
       sentence: "150 ist ___. 300 ist ___. 2.000 ist ___.",
+            translation: "150 is ___. 300 is ___. 2,000 is ___.",
       blanks: [
         { answers: ["einhundertfünfzig", "150"], hint: "150" },
         { answers: ["dreihundert", "300"], hint: "300" },
@@ -6720,7 +6731,7 @@ export const zahlenAb100: Lesson = {
       type: "word-order",
       title: "Übung 17: Der Satz",
       instruction: "Build the sentence: The apartment costs 850 euros.",
-      chunks: ["Die", "Wohnung", "kostet", "850", "Euro."],
+      chunks: ["Die", "Wohnung", "kostet", "850", "Euro."], translation: "The flat costs 850 euros.",
       explain: "The price follows the verb.",
     },
     {
@@ -6728,7 +6739,7 @@ export const zahlenAb100: Lesson = {
       type: "word-order",
       title: "Übung 18: Der Satz",
       instruction: "Build the sentence: I am born in 1995.",
-      chunks: ["Ich", "bin", "1995", "geboren."],
+      chunks: ["Ich", "bin", "1995", "geboren."], translation: "I was born in 1995.",
       explain: "The year follows the verb.",
     },
     {
@@ -6827,7 +6838,7 @@ export const persoenlicheDaten: Lesson = {
         {
           type: "example",
           de: "Guten Tag, Herr Schmidt! Guten Tag, Frau Weber! Können Sie mir helfen, Frau Müller?",
-          en: "Formal address in three sentences.",
+          en: "Good day, Mr Schmidt! Good day, Mrs Weber! Can you help me, Mrs Müller?",
         },
         {
           type: "tip",
@@ -6857,7 +6868,7 @@ export const persoenlicheDaten: Lesson = {
         {
           type: "example",
           de: "Ich wohne in der Hauptstraße 5, 10115 Berlin. Wo wohnen Sie? Wie ist Ihre Adresse?",
-          en: "The address question and answer.",
+          en: "I live at Hauptstraße 5, 10115 Berlin. Where do you live? What is your address?",
         },
         {
           type: "tip",
@@ -6886,7 +6897,7 @@ export const persoenlicheDaten: Lesson = {
         {
           type: "example",
           de: "Wie ist Ihre Telefonnummer? 0172 34 56 78. Wie ist deine Handynummer? 0151 22 33 44.",
-          en: "Phone questions formal and informal.",
+          en: "What is your phone number? 0172 34 56 78. What is your mobile number? 0151 22 33 44.",
         },
         {
           type: "tip",
@@ -6915,7 +6926,7 @@ export const persoenlicheDaten: Lesson = {
         {
           type: "example",
           de: "Wie ist Ihre E-Mail-Adresse? anna.mueller@gmail.com. Das ist: anna Punkt mueller at gmail Punkt com.",
-          en: "Reading an email address aloud.",
+          en: "What is your email address? anna.mueller@gmail.com. That is: anna dot mueller at gmail dot com.",
         },
         {
           type: "tip",
@@ -6945,7 +6956,7 @@ export const persoenlicheDaten: Lesson = {
         {
           type: "example",
           de: "Wann sind Sie geboren? Am 5. Mai 1995. Wo sind Sie geboren? In Rom. Wann hast du Geburtstag? Am 5. Mai.",
-          en: "Birth questions and answers.",
+          en: "When were you born? On 5 May 1995. Where were you born? In Rome. When is your birthday? On 5 May.",
         },
         {
           type: "tip",
@@ -6981,7 +6992,7 @@ export const persoenlicheDaten: Lesson = {
         {
           type: "example",
           de: "Anrede: Frau. Vorname: Anna. Nachname: Müller. Straße: Hauptstraße 5. PLZ: 10115. Ort: Berlin. Geburtsdatum: 05.05.1995.",
-          en: "A filled-in form.",
+          en: "Form of address: Mrs. First name: Anna. Surname: Müller. Street: Hauptstraße 5. Postcode: 10115. City: Berlin. Date of birth: 05.05.1995.",
         },
         {
           type: "tip",
@@ -7108,6 +7119,7 @@ export const persoenlicheDaten: Lesson = {
       title: "Übung 4: Das Formular",
       instruction: "Fill in the form fields.",
       sentence: "Mein ___ ist Müller. (last name) Meine ___ ist Hauptstraße 5. (address) Die ___ ist 10115. (postcode) Mein ___ ist Berlin. (place)",
+            translation: "My ___ is Müller. (last name) My ___ is Hauptstraße 5. (address) The ___ is 10115. (postcode) My ___ is Berlin. (place)",
       blanks: [
         { answers: ["Nachname"], hint: "last name" },
         { answers: ["Adresse"], hint: "address" },
@@ -7131,6 +7143,7 @@ export const persoenlicheDaten: Lesson = {
       title: "Übung 6: Die E-Mail",
       instruction: "Complete the email reading.",
       sentence: "anna.mueller@gmail.com liest man: anna ___ mueller ___ gmail ___ com.",
+            translation: "anna.mueller@gmail.com is read as: anna ___ mueller ___ gmail ___ com.",
       blanks: [
         { answers: ["Punkt"], hint: "the dot" },
         { answers: ["at"], hint: "the @ symbol" },
@@ -7153,6 +7166,7 @@ export const persoenlicheDaten: Lesson = {
       title: "Übung 8: Der Geburtstag",
       instruction: "Complete with the right preposition.",
       sentence: "Mein Geburtstag ist ___ fünften Mai. (on)",
+            translation: "My birthday is ___ the fifth of May. (on)",
       blanks: [{ answers: ["am"], hint: "on + date" }],
     },
     {
@@ -7223,7 +7237,7 @@ export const persoenlicheDaten: Lesson = {
       type: "word-order",
       title: "Übung 15: Der Satz",
       instruction: "Build the sentence: My first name is Anna.",
-      chunks: ["Mein", "Vorname", "ist", "Anna."],
+      chunks: ["Mein", "Vorname", "ist", "Anna."], translation: "My first name is Anna.",
       explain: "The verb ist stays in second position.",
     },
     {
@@ -7231,7 +7245,7 @@ export const persoenlicheDaten: Lesson = {
       type: "word-order",
       title: "Übung 16: Der Satz",
       instruction: "Build the sentence: I live at Hauptstraße 5 in Berlin.",
-      chunks: ["Ich", "wohne", "in", "der", "Hauptstraße", "5."],
+      chunks: ["Ich", "wohne", "in", "der", "Hauptstraße", "5."], translation: "I live at Hauptstraße 5.",
       explain: "The address follows the verb.",
     },
     {
@@ -7314,7 +7328,7 @@ export const anrede: Lesson = {
         {
           type: "example",
           de: "Du lernst Deutsch. Ihr lernt Deutsch. Sie lernen Deutsch. Bist du müde? Seid ihr müde? Sind Sie müde?",
-          en: "The same sentence in all three registers.",
+          en: "You (informal) learn German. You (plural) learn German. You (formal) learn German. Are you tired? Are you (plural) tired? Are you (formal) tired?",
         },
         {
           type: "tip",
@@ -7343,7 +7357,7 @@ export const anrede: Lesson = {
         {
           type: "example",
           de: "Wie ist Ihr Name? (formal) Wie ist dein Name? (informal) Wie ist euer Name? (informal plural) Das ist ihr Name. (her name)",
-          en: "Four possessives, four meanings.",
+          en: "What is your name? (formal) What is your name? (informal) What is your name? (informal plural) That is her name.",
         },
         {
           type: "tip",
@@ -7372,7 +7386,7 @@ export const anrede: Lesson = {
         {
           type: "example",
           de: "Guten Tag, Herr Schmidt! Können Sie mir helfen, Frau Weber? Entschuldigung, sind Sie Herr Müller?",
-          en: "Titles in formal sentences.",
+          en: "Good day, Mr Schmidt! Can you help me, Mrs Weber? Excuse me, are you Mr Müller?",
         },
         {
           type: "tip",
@@ -7403,7 +7417,7 @@ export const anrede: Lesson = {
         {
           type: "example",
           de: "Kellner: Was möchten Sie trinken? Gast: Ich möchte einen Kaffee. Freundin: Was möchtest du trinken? Freund: Einen Tee, bitte.",
-          en: "The same question in a formal and an informal setting.",
+          en: "Waiter: What would you like to drink? Guest: I'd like a coffee. Friend (f.): What would you like to drink? Friend: A tea, please.",
         },
         {
           type: "tip",
@@ -7433,7 +7447,7 @@ export const anrede: Lesson = {
         {
           type: "example",
           de: "Kollege: Wir können uns duzen. Ich heiße Jonas. Neu: Ja, gerne! Dann sag bitte Anna zu mir.",
-          en: "The classic du-offer dialogue.",
+          en: "Colleague: We can use the informal 'du'. My name is Jonas. New person: Yes, gladly! Then please call me Anna.",
         },
         {
           type: "tip",
@@ -7549,6 +7563,7 @@ export const anrede: Lesson = {
       title: "Übung 4: Die Verbformen",
       instruction: "Complete with the right form.",
       sentence: "Du ___ Deutsch. (lernen) Ihr ___ Deutsch. (lernen) Sie ___ Deutsch. (lernen, formal)",
+            translation: "You ___ German. (learn) You ___ German. (learn, plural) You ___ German. (learn, formal)",
       blanks: [
         { answers: ["lernst"], hint: "du" },
         { answers: ["lernt"], hint: "ihr" },
@@ -7561,6 +7576,7 @@ export const anrede: Lesson = {
       title: "Übung 5: sein und haben",
       instruction: "Complete with the right form.",
       sentence: "___ du müde? (be) ___ ihr müde? (be) ___ Sie Herr Müller? (be) ___ Sie Zeit? (have)",
+            translation: "___ you tired? (be) ___ you tired? (be, plural) ___ you Mr Müller? (be, formal) ___ you time? (have, formal)",
       blanks: [
         { answers: ["Bist"], hint: "du" },
         { answers: ["Seid"], hint: "ihr" },
@@ -7574,6 +7590,7 @@ export const anrede: Lesson = {
       title: "Übung 6: Die Possessive",
       instruction: "Complete with the right possessive.",
       sentence: "Wie ist ___ Name? (formal) Wie ist ___ Name? (informal) Wie ist ___ Name? (informal plural)",
+            translation: "What is ___ name? (formal) What is ___ name? (informal) What is ___ name? (informal plural)",
       blanks: [
         { answers: ["Ihr"], hint: "formal, capital I" },
         { answers: ["dein"], hint: "du" },
@@ -7668,7 +7685,7 @@ export const anrede: Lesson = {
       type: "word-order",
       title: "Übung 15: Der Satz",
       instruction: "Build the sentence: We can use du with each other.",
-      chunks: ["Wir", "können", "uns", "duzen."],
+      chunks: ["Wir", "können", "uns", "duzen."], translation: "We can use the informal 'du'.",
       explain: "The modal is second; duzen closes the sentence.",
     },
     {
@@ -7676,7 +7693,7 @@ export const anrede: Lesson = {
       type: "word-order",
       title: "Übung 16: Der Satz",
       instruction: "Build the sentence: What would you like to drink? (formal)",
-      chunks: ["Was", "möchten", "Sie", "trinken?"],
+      chunks: ["Was", "möchten", "Sie", "trinken?"], translation: "What would you like to drink?",
       explain: "The question word leads; the infinitive closes.",
     },
     {
@@ -7828,7 +7845,7 @@ export const nomenUndVerben: Lesson = {
         {
           type: "example",
           de: "Ein Tisch, zwei Tische. Eine Frau, zwei Frauen. Ein Kind, zwei Kinder. Ein Auto, zwei Autos. Ein Vater, zwei Väter.",
-          en: "One each of the five patterns.",
+          en: "One table, two tables. One woman, two women. One child, two children. One car, two cars. One father, two fathers.",
         },
         {
           type: "tip",
@@ -7936,7 +7953,7 @@ export const nomenUndVerben: Lesson = {
         {
           type: "example",
           de: "Ich lerne Deutsch. Du arbeitest im Büro. Wir wohnen in Berlin. Ihr macht Pause. Sie kauft ein.",
-          en: "Regular verbs in action.",
+          en: "I learn German. You work in the office. We live in Berlin. You (plural) take a break. She goes shopping.",
         },
         {
           type: "tip",
@@ -7967,7 +7984,7 @@ export const nomenUndVerben: Lesson = {
         {
           type: "example",
           de: "Ich bin Anna. Du bist müde. Er ist mein Bruder. Wir sind aus Berlin. Sie hat einen Bruder. Ihr habt Zeit.",
-          en: "All twelve forms in one breath.",
+          en: "I am Anna. You are tired. He is my brother. We are from Berlin. She has a brother. You (plural) have time.",
         },
         {
           type: "tip",
@@ -8002,7 +8019,7 @@ export const nomenUndVerben: Lesson = {
         {
           type: "example",
           de: "Ich fahre, du fährst, er fährt. Wir sprechen, ihr sprecht, sie sprechen. Ich lese, du liest, er liest.",
-          en: "The change happens only in du and er/sie/es.",
+          en: "I drive, you drive, he drives. We speak, you (plural) speak, they speak. I read, you read, he reads.",
         },
         {
           type: "tip",
@@ -8033,7 +8050,7 @@ export const nomenUndVerben: Lesson = {
         {
           type: "example",
           de: "Ich kann gut schwimmen. Ich möchte einen Kaffee trinken. Du musst um acht kommen. Wir wollen nach Berlin fahren.",
-          en: "Modal in position two, infinitive at the end.",
+          en: "I can swim well. I would like to drink a coffee. You must come at eight. We want to drive to Berlin.",
         },
         {
           type: "tip",
@@ -8210,6 +8227,7 @@ export const nomenUndVerben: Lesson = {
       title: "Übung 6: Der Plural",
       instruction: "Type the plurals.",
       sentence: "der Tisch -> die ___, die Frau -> die ___, das Auto -> die ___, der Vater -> die ___.",
+            translation: "the table -> the ___, the woman -> the ___, the car -> the ___, the father -> the ___.",
       blanks: [
         { answers: ["Tische"], hint: "+ -e" },
         { answers: ["Frauen"], hint: "+ -en" },
@@ -8223,6 +8241,7 @@ export const nomenUndVerben: Lesson = {
       title: "Übung 7: Die Fälle",
       instruction: "Complete with the right article.",
       sentence: "Der Tisch ist neu. Ich kaufe ___ Tisch. Ich gebe ___ Tisch eine Lampe.",
+            translation: "The table is new. I buy ___ table. I give ___ table a lamp.",
       blanks: [
         { answers: ["den"], hint: "accusative" },
         { answers: ["dem"], hint: "dative" },
@@ -8244,6 +8263,7 @@ export const nomenUndVerben: Lesson = {
       title: "Übung 9: Die Endungen",
       instruction: "Complete with the right endings.",
       sentence: "Ich ___ Deutsch. (lernen) Du ___ im Büro. (arbeiten) Er ___ in Berlin. (wohnen)",
+            translation: "I ___ German. (learn) You ___ in the office. (work) He ___ in Berlin. (live)",
       blanks: [
         { answers: ["lerne"], hint: "ich, -e" },
         { answers: ["arbeitest"], hint: "du, -est after -t" },
@@ -8256,6 +8276,7 @@ export const nomenUndVerben: Lesson = {
       title: "Übung 10: sein und haben",
       instruction: "Complete with sein and haben.",
       sentence: "Ich ___ Anna. Du ___ müde. Sie ___ einen Bruder. Wir ___ aus Berlin. Ihr ___ Zeit.",
+            translation: "I ___ Anna. You ___ tired. She ___ a brother. We ___ from Berlin. You ___ time.",
       blanks: [
         { answers: ["bin"], hint: "sein, ich" },
         { answers: ["bist"], hint: "sein, du" },
@@ -8350,7 +8371,7 @@ export const nomenUndVerben: Lesson = {
       type: "word-order",
       title: "Übung 18: Die Satzklammer",
       instruction: "Build the sentence: I ate pizza yesterday.",
-      chunks: ["Ich", "habe", "gestern", "Pizza", "gegessen."],
+      chunks: ["Ich", "habe", "gestern", "Pizza", "gegessen."], translation: "I ate pizza yesterday.",
       explain: "The helper holds position two; the participle closes the bracket.",
     },
     {
@@ -8358,7 +8379,7 @@ export const nomenUndVerben: Lesson = {
       type: "word-order",
       title: "Übung 19: Die Inversion",
       instruction: "Build the sentence: Today I am learning German.",
-      chunks: ["Heute", "lerne", "ich", "Deutsch."],
+      chunks: ["Heute", "lerne", "ich", "Deutsch."], translation: "Today I am learning German.",
       explain: "The fronted time pushes the verb to position two and the subject behind it.",
     },
     {
@@ -8442,7 +8463,7 @@ export const artikel: Lesson = {
         {
           type: "example",
           de: "Der Mann liest. Ich sehe den Mann. Ich gebe dem Mann das Buch. Das Buch gehört den Kindern.",
-          en: "The same noun through three cases.",
+          en: "The man reads. I see the man. I give the man the book. The book belongs to the children.",
         },
         {
           type: "tip",
@@ -8471,7 +8492,7 @@ export const artikel: Lesson = {
         {
           type: "example",
           de: "Ich suche eine Wohnung. Die Wohnung ist im dritten Stock. Der Balkon ist groß. Die Miete ist 850 Euro.",
-          en: "First ein, then der/die: the classic German text pattern.",
+          en: "I'm looking for an apartment. The apartment is on the third floor. The balcony is big. The rent is 850 euros.",
         },
         {
           type: "tip",
@@ -8499,7 +8520,7 @@ export const artikel: Lesson = {
         {
           type: "example",
           de: "Ich habe einen Termin. Sie hat eine Schwester. Er hat ein Auto. Ich gebe einem Kind einen Apfel.",
-          en: "ein in every case.",
+          en: "I have an appointment. She has a sister. He has a car. I give a child an apple.",
         },
         {
           type: "tip",
@@ -8528,7 +8549,7 @@ export const artikel: Lesson = {
         {
           type: "example",
           de: "Ich suche eine Wohnung. Ich brauche einen Computer. Da ist ein Museum.",
-          en: "New, one of many: ein.",
+          en: "I'm looking for an apartment. I need a computer. There is a museum.",
         },
         {
           type: "tip",
@@ -8590,7 +8611,7 @@ export const artikel: Lesson = {
         {
           type: "example",
           de: "Ich bin Lehrer und ich spreche Deutsch. In Berlin trinke ich gern Milch. Kinder spielen gern im Park.",
-          en: "All five no-article cases in one text.",
+          en: "I am a teacher and I speak German. In Berlin I like to drink milk. Children like to play in the park.",
         },
         {
           type: "tip",
@@ -8625,7 +8646,7 @@ export const artikel: Lesson = {
         {
           type: "example",
           de: "Ich gehe ins Kino. Am Montag gehe ich zur Schule. Der Zug kommt vom Bahnhof. Wir sind beim Arzt.",
-          en: "Contractions in everyday life.",
+          en: "I'm going to the cinema. On Monday I go to school. The train is coming from the station. We are at the doctor's.",
         },
         {
           type: "tip",
@@ -8801,6 +8822,7 @@ export const artikel: Lesson = {
       title: "Übung 8: kein",
       instruction: "Complete with the correct kein form.",
       sentence: "Ich habe ___ Auto. (neuter) Ich habe ___ Schwester. (feminine) Ich habe ___ Bruder. (masculine, accusative) Ich habe ___ Zeit.",
+            translation: "I have ___ car. (neuter) I have ___ sister. (feminine) I have ___ brother. (masculine, accusative) I have ___ time.",
       blanks: [
         { answers: ["kein"], hint: "neuter" },
         { answers: ["keine"], hint: "feminine" },
@@ -8852,6 +8874,7 @@ export const artikel: Lesson = {
       title: "Übung 12: Kontraktionen",
       instruction: "Complete with the contraction.",
       sentence: "Ich gehe ___ Kino. (in + das) Der Termin ist ___ Montag. (an + dem) Wir gehen ___ Schule. (zu + der)",
+            translation: "I am going ___ the cinema. (in + das) The appointment is ___ Monday. (an + dem) We are going ___ school. (zu + der)",
       blanks: [
         { answers: ["ins"], hint: "in + das" },
         { answers: ["am"], hint: "an + dem" },
@@ -8888,6 +8911,7 @@ export const artikel: Lesson = {
       title: "Übung 15: Zeit und Artikel",
       instruction: "Complete the time expressions.",
       sentence: "___ Montag arbeite ich. ___ Juli habe ich Urlaub. ___ acht Uhr beginne ich.",
+            translation: "___ Monday I work. ___ July I have holidays. ___ eight o'clock I begin.",
       blanks: [
         { answers: ["Am"], hint: "days" },
         { answers: ["Im"], hint: "months" },
@@ -8939,7 +8963,7 @@ export const artikel: Lesson = {
       type: "word-order",
       title: "Übung 20: Der Satz",
       instruction: "Build the sentence: I have an appointment at the citizen's office.",
-      chunks: ["Ich", "habe", "einen", "Termin", "beim", "Bürgeramt."],
+      chunks: ["Ich", "habe", "einen", "Termin", "beim", "Bürgeramt."], translation: "I have an appointment at the citizens' office.",
       explain: "einen is the accusative, beim is bei + dem.",
     },
     {
@@ -8947,7 +8971,7 @@ export const artikel: Lesson = {
       type: "word-order",
       title: "Übung 21: Der Satz",
       instruction: "Build the sentence: The book lies on the table.",
-      chunks: ["Das", "Buch", "liegt", "auf", "dem", "Tisch."],
+      chunks: ["Das", "Buch", "liegt", "auf", "dem", "Tisch."], translation: "The book is lying on the table.",
       explain: "Static location takes the dative: auf dem Tisch.",
     },
     {

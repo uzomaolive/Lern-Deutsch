@@ -28,7 +28,7 @@ export const wortschatzEI: Lesson = {
     { id: "w014", de: "der Ehemann", en: "the husband", part: "noun m.", audio: true },
     { id: "w015", de: "die Ehefrau", en: "the wife", part: "noun f.", audio: true },
     { id: "w016", de: "die Eltern", en: "the parents", part: "noun f.", audio: true },
-    { id: "w017", de: "das E-Mail", en: "the email", part: "noun n.", audio: true },
+    { id: "w017", de: "die E-Mail", en: "the email", part: "noun f.", audio: true },
     { id: "w018", de: "empfangen", en: "to receive", part: "verb", audio: true },
     { id: "w019", de: "das Ende", en: "the end", part: "noun n.", audio: true },
     { id: "w020", de: "endlich", en: "finally", part: "adverb", audio: true },
@@ -230,8 +230,8 @@ export const wortschatzEI: Lesson = {
 {"id": "ex-ei-1", "type": "multiple-choice", "title": "Übung 1", "instruction": "Choose the word that fits.", "prompt": "Ich habe einen Termin beim ___.", "options": ["Arzt", "Essig", "Herd"], "correctIndex": 0, "explain": "der Arzt is the doctor."},
 {"id": "ex-ei-2", "type": "multiple-choice", "title": "Übung 2", "instruction": "Choose the correct translation.", "prompt": "Was heißt 'die Eltern'?", "options": ["the parents", "the elderly", "the children"], "correctIndex": 0, "explain": "die Eltern are the parents."},
 {"id": "ex-ei-3", "type": "multiple-choice", "title": "Übung 3", "instruction": "Choose the correct translation.", "prompt": "Was heißt 'das Frühstück'?", "options": ["the breakfast", "the lunch", "the dinner"], "correctIndex": 0, "explain": "das Frühstück is breakfast."},
-{"id": "ex-ei-4", "type": "fill-blank", "title": "Übung 4", "instruction": "Type the missing verb.", "sentence": "Wir ___ um zwölf Uhr ab. (fahren)", "blanks": [{"answers": ["fahren"], "hint": "abfahren, wir"}]},
+{"id": "ex-ei-4", "type": "fill-blank", "title": "Übung 4", "instruction": "Type the missing verb.", "sentence": "Wir ___ um zwölf Uhr ab. (fahren)", "translation": "We ___ at twelve o'clock. (depart)", "blanks": [{"answers": ["fahren"], "hint": "abfahren, wir"}]},
 {"id": "ex-ei-5", "type": "multiple-choice", "title": "Übung 5", "instruction": "Choose the word that fits.", "prompt": "Ich brauche eine ___ nach Berlin.", "options": ["Fahrkarte", "Gebühr", "Hose"], "correctIndex": 0, "explain": "die Fahrkarte is the ticket."},
-{"id": "ex-ei-6", "type": "word-order", "title": "Übung 6", "instruction": "Build the sentence: I am flying to Berlin.", "chunks": ["Ich", "fliege", "nach", "Berlin."], "explain": "The destination follows the verb."}
+{"id": "ex-ei-6", "type": "word-order", "title": "Übung 6", "instruction": "Build the sentence: I am flying to Berlin.", "chunks": ["Ich", "fliege", "nach", "Berlin."], "translation": "I am flying to Berlin.", "explain": "The destination follows the verb."}
   ],
 };
