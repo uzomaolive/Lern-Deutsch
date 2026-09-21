@@ -66,6 +66,12 @@ export function FillBlank({ exercise, savedAnswer, onResult }: FillBlankProps) {
       <h3 className="text-base font-semibold text-stone-900">{exercise.title}</h3>
       <p className="mt-1 text-sm text-stone-600">{exercise.instruction}</p>
 
+      {exercise.translation ? (
+        <p className="mt-2 text-sm italic text-stone-500">
+          Translation: {exercise.translation}
+        </p>
+      ) : null}
+
       <div className="mt-4 rounded-lg border border-stone-200 bg-white p-4 text-lg leading-10 text-stone-800">
         {parts.map((part, index) => (
           <span key={index}>

@@ -126,6 +126,8 @@ export interface FillBlankExercise extends ExerciseBase {
   type: "fill-blank";
   /** German sentence containing one or more `___` placeholders. */
   sentence: string;
+  /** Smooth English translation of the whole sentence, when available. */
+  translation?: string;
   /** One entry per placeholder, in order. */
   blanks: {
     /** Accepted answers, compared after normalization (case, trim, umlaut). */
@@ -144,6 +146,8 @@ export interface WordOrderExercise extends ExerciseBase {
   type: "word-order";
   /** The correct order of chunks, first to last. Shuffled for display. */
   chunks: string[];
+  /** Smooth English translation of the whole sentence, when available. */
+  translation?: string;
 }
 
 export interface FlashcardItem {
