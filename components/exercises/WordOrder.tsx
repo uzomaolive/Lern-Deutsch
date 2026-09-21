@@ -120,6 +120,7 @@ export function WordOrder({ exercise, savedAnswer, onResult }: WordOrderProps) {
           explainCorrect={exercise.explainCorrect}
           explainWrong={exercise.explainWrong}
           explain={exercise.explain}
+          translation={exercise.translation}
         />
       ) : null}
 

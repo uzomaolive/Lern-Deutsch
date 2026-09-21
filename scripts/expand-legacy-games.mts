@@ -535,7 +535,9 @@ const COMPOSE_ADVERBS: { de: string; en: string }[] = [
 ];
 
 function composeSentenceEn(subjectEn: string, verbEn: string, objectEn: string, adverbEn: string): string {
-  return `${subjectEn} ${verbEn} ${objectEn} ${adverbEn}.`.replace(/\s+/g, " ");
+  const raw = `${subjectEn} ${verbEn} ${objectEn} ${adverbEn}`.replace(/\s+/g, " ").trim();
+  const sentence = raw.replace(/\.+$/, "") + ".";
+  return sentence.charAt(0).toUpperCase() + sentence.slice(1);
 }
 
 function composeSentences(minWords: number, maxWords: number, n: number, seed: string): ComposedSentence[] {
@@ -707,6 +709,12 @@ function buildDeclensionBuilder(): string {
   const datIndef = (article: string): string => (article === "der" ? "einem" : article === "die" ? "einer" : "einem");
   const articleEn = (answer: string): string =>
     answer === "einen" || answer === "eine" || answer === "ein" || answer === "einem" || answer === "einer" ? "a" : "the";
+  /** Strip a leading "the/a/an" from the noun's English and use the given article. */
+  const nounEnWith = (nounEn: string, article: string): string => {
+    const bare = nounEn.replace(/^(the|a|an) /i, "").trim();
+    const aOrAn = article === "a" && /^[aeiou]/i.test(bare) ? "an" : article;
+    return `${aOrAn} ${bare}`;
+  };
   const accusativeTemplates: DeclTemplate[] = [
     { de: (b) => `Ich sehe ___ ${b}. (the)`, en: (n) => `I see ${n}.`, case: "acc", indef: false, hint: "accusative, definite article" },
     { de: (b) => `Wir kaufen ___ ${b}. (a)`, en: (n) => `We buy ${n}.`, case: "acc", indef: true, hint: "accusative, indefinite article" },
@@ -746,7 +754,7 @@ function buildDeclensionBuilder(): string {
           : dativeTemplates[datCount++ % dativeTemplates.length]
         : accusativeTemplates[accCount++ % accusativeTemplates.length];
       const answer = t.case === "acc" ? (t.indef ? accIndef(article) : accDef(article)) : (t.indef ? datIndef(article) : datDef(article));
-      const en = t.en(`${articleEn(answer)} ${n.en}`.replace(/^(a|an|the) (the|a|an) /i, "$1 ").replace(/\bthe the\b/gi, "the").replace(/\ba a\b/gi, "a").replace(/\ban a\b/gi, "a"));
+      const en = t.en(nounEnWith(n.en, articleEn(answer)));
       rounds.push(fillBlankRound(`db-l${l + 1}-${String(accCount + datCount).padStart(3, "0")}`, t.de(base), answer, `${t.hint}: ${answer} ${base}`, en));
     });
     return levelBlock(`declension-builder-${l + 1}`, `Level ${l + 1}: ${["Accusative", "Dative", "Mixed", "Mixed"][l]}`, rounds.join(""));

@@ -120,6 +120,7 @@ export function FillBlank({ exercise, savedAnswer, onResult }: FillBlankProps) {
           explainCorrect={exercise.explainCorrect}
           explainWrong={exercise.explainWrong}
           explain={exercise.explain}
+          translation={exercise.translation}
         />
       ) : null}
 

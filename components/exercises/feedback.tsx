@@ -10,6 +10,8 @@ interface FeedbackBannerProps {
   explainWrong?: string;
   /** Legacy fallback shown in both states when the specific reason is absent. */
   explain?: string;
+  /** Full English translation of the sentence, when the exercise carries one. */
+  translation?: string;
 }
 
 const CORRECT_MESSAGES = ["Stark!", "Sehr gut!", "Richtig!", "Prima!"];
@@ -46,6 +48,7 @@ export function FeedbackBanner({
   explainCorrect,
   explainWrong,
   explain,
+  translation,
 }: FeedbackBannerProps) {
   if (kind === "correct") {
     const reason = explainCorrect ?? explain;
@@ -56,6 +59,11 @@ export function FeedbackBanner({
         {reason ? (
           <div className="mt-1 font-normal text-emerald-700">
             <div>Why it is correct: {reason}</div>
+          </div>
+        ) : null}
+        {translation ? (
+          <div className="mt-1 font-normal text-emerald-700">
+            Translation: <span className="italic">{translation}</span>
           </div>
         ) : null}
         {translations.length > 0 ? (
@@ -85,6 +93,11 @@ export function FeedbackBanner({
         </p>
       ) : null}
       {reason ? <p className="mt-1 text-rose-800/80">Why it is wrong: {reason}</p> : null}
+      {translation ? (
+        <p className="mt-1 text-rose-800/80">
+          Translation: <span className="italic">{translation}</span>
+        </p>
+      ) : null}
       {translations.length > 0 ? (
         <div className="mt-2 text-sm text-rose-800/80">
           <div className="font-semibold">Translations:</div>
