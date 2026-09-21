@@ -591,6 +591,7 @@ export const wortartenTief: Lesson = {
           explainCorrect: "Each word was named by its job: Artikel before nouns, Verb as the action, Adverb describing the verb, Präposition showing the relationship.",
           explainWrong: "A word type is decided by its job in the sentence, not by its meaning alone.",
       sentence: "Der (___) kleine (___) Katze (___) schläft (___) gern (___) auf (___) dem (___) Sofa (___).",
+            translation: "The (___) little (___) cat (___) sleeps (___) gladly (___) on (___) the (___) sofa (___).",
       blanks: [
         { answers: ["Artikel", "article"], hint: "before the noun" },
         { answers: ["Adjektiv", "adjective"], hint: "describes the cat" },
@@ -610,6 +611,7 @@ export const wortartenTief: Lesson = {
           explainCorrect: "Ich is a pronoun, habe a verb, drei a numeral, Bücher a noun, und a conjunction, lese a verb, gern an adverb.",
           explainWrong: "Check each word's job: pronouns replace, verbs act, numerals count, conjunctions connect.",
       sentence: "Ich (___) habe (___) drei (___) Bücher (___), und (___) ich (___) lese (___) gern (___).",
+            translation: "I (___) have (___) three (___) books (___), and (___) I (___) read (___) gladly (___).",
       blanks: [
         { answers: ["Pronomen", "pronoun"], hint: "replaces the speaker" },
         { answers: ["Verb", "verb"], hint: "the action" },
@@ -629,6 +631,7 @@ export const wortartenTief: Lesson = {
           explainCorrect: "The articles mark the nouns, und connects, fahren is the verb, mit is the preposition.",
           explainWrong: "Articles stand before nouns; prepositions force the case.",
       sentence: "Der (___) Mann (___) und (___) die (___) Frau (___) fahren (___) mit (___) dem (___) Auto (___).",
+            translation: "The (___) man (___) and (___) the (___) woman (___) drive (___) with (___) the (___) car (___).",
       blanks: [
         { answers: ["Artikel", "article"], hint: "before Mann" },
         { answers: ["Nomen", "noun"], hint: "the person" },
@@ -756,7 +759,7 @@ export const wortartenTief: Lesson = {
       instruction: "Build the sentence: The man works today.",
           explainCorrect: "Der (article) + Mann (noun) + arbeitet (verb in position two) + heute (adverb): the verb stays second.",
           explainWrong: "The article must precede the noun, the verb stays in position two, and the adverb follows freely.",
-      chunks: ["Der", "Mann", "arbeitet", "heute."],
+      chunks: ["Der", "Mann", "arbeitet", "heute."], translation: "The man is working today.",
       explain: "Article + noun + verb + adverb.",
     },
     {
@@ -766,7 +769,7 @@ export const wortartenTief: Lesson = {
       instruction: "Build the sentence: I have three books.",
           explainCorrect: "Ich (pronoun) + habe (verb) + drei (numeral) + Bücher (noun): pronoun, verb, numeral, noun.",
           explainWrong: "Keep the verb in position two and the numeral before the noun.",
-      chunks: ["Ich", "habe", "drei", "Bücher."],
+      chunks: ["Ich", "habe", "drei", "Bücher."], translation: "I have three books.",
       explain: "Pronoun + verb + numeral + noun.",
     },
     {
@@ -945,6 +948,7 @@ const nomenTief: Lesson = {
       title: "Übung 3: Der Plural",
       instruction: "Type the plural of the noun.",
       sentence: "der Tisch -> die ___, die Frau -> die ___, das Auto -> die ___.",
+            translation: "the table -> the ___, the woman -> the ___, the car -> the ___.",
       blanks: [
         { answers: ["Tische"], hint: "+ -e" },
         { answers: ["Frauen"], hint: "+ -en" },
@@ -969,7 +973,7 @@ const nomenTief: Lesson = {
       type: "word-order",
       title: "Übung 5: Der Satz",
       instruction: "Build the sentence: I am drinking a coffee with milk.",
-      chunks: ["Ich", "trinke", "einen", "Kaffee", "mit", "Milch."],
+      chunks: ["Ich", "trinke", "einen", "Kaffee", "mit", "Milch."], translation: "I drink a coffee with milk.",
       explain: "Kaffee and Milch are nouns; mit takes the dative.",
     },
     {
@@ -1163,7 +1167,7 @@ const verbenTief: Lesson = {
       type: "fill-blank",
       title: "Übung 2: sein und haben",
       instruction: "Type the correct form.",
-      sentence: "Ich ___ Anna. Du ___ müde. Sie ___ einen Bruder. Wir ___ aus Berlin.",
+      sentence: "Ich ___ Anna. Du ___ müde. Sie ___ einen Bruder. Wir ___ aus Berlin.", translation: "I ___ Anna. You ___ tired. She ___ a brother. We ___ from Berlin.",
       blanks: [
         { answers: ["bin"], hint: "sein, ich" },
         { answers: ["bist"], hint: "sein, du" },
@@ -1199,7 +1203,7 @@ const verbenTief: Lesson = {
       type: "word-order",
       title: "Übung 5: Trennbare Verben",
       instruction: "Build the sentence: I get up at seven o'clock.",
-      chunks: ["Ich", "stehe", "um", "sieben", "Uhr", "auf."],
+      chunks: ["Ich", "stehe", "um", "sieben", "Uhr", "auf."], translation: "I get up at seven o'clock.",
       explain: "The prefix auf closes the sentence.",
     },
     {
@@ -1332,6 +1336,7 @@ const pronomenTief: Lesson = {
       title: "Übung 3: man und es",
       instruction: "Complete with man or es.",
       sentence: "___ regnet heute. ___ spricht hier Deutsch. ___ gibt viele Geschäfte. ___ ist kalt.",
+            translation: "___ is raining today. ___ speaks German here. ___ are many shops. ___ is cold.",
       blanks: [
         { answers: ["Es"], hint: "weather" },
         { answers: ["Man"], hint: "people in general" },
@@ -1357,7 +1362,7 @@ const pronomenTief: Lesson = {
       type: "word-order",
       title: "Übung 5: Der Satz",
       instruction: "Build the sentence: She knows me.",
-      chunks: ["Sie", "kennt", "mich."],
+      chunks: ["Sie", "kennt", "mich."], translation: "She knows me.",
       explain: "The verb is second; the accusative follows.",
     },
     {
@@ -1503,6 +1508,7 @@ const artikelTief: Lesson = {
       title: "Übung 3: ein und kein",
       instruction: "Complete with ein or kein forms.",
       sentence: "Ich habe ___ Termin. Ich habe ___ Auto. Ich habe ___ Schwester. Ich habe ___ Kinder.",
+            translation: "I have ___ appointment. I have ___ car. I have ___ sister. I have ___ children.",
       blanks: [
         { answers: ["einen"], hint: "masculine accusative" },
         { answers: ["kein"], hint: "neuter nominative" },
@@ -1528,7 +1534,7 @@ const artikelTief: Lesson = {
       type: "word-order",
       title: "Übung 5: Der Satz",
       instruction: "Build the sentence: I have an appointment at the citizen's office.",
-      chunks: ["Ich", "habe", "einen", "Termin", "beim", "Bürgeramt."],
+      chunks: ["Ich", "habe", "einen", "Termin", "beim", "Bürgeramt."], translation: "I have an appointment at the citizens' office.",
       explain: "einen is the accusative, beim is bei + dem.",
     },
     {
@@ -1679,6 +1685,7 @@ const faelleTief: Lesson = {
       title: "Übung 3: Der Dativ",
       instruction: "Complete with the dative forms.",
       sentence: "Ich gebe ___ Kind einen Apfel. Das Buch gehört ___ Frau. Ich fahre mit ___ Zug.",
+            translation: "I give ___ child an apple. The book belongs to ___ woman. I travel by ___ train.",
       blanks: [
         { answers: ["dem"], hint: "dative, neuter" },
         { answers: ["der"], hint: "dative, feminine" },
@@ -1703,7 +1710,7 @@ const faelleTief: Lesson = {
       type: "word-order",
       title: "Übung 5: Der Satz",
       instruction: "Build the sentence: I give the child an apple.",
-      chunks: ["Ich", "gebe", "dem", "Kind", "einen", "Apfel."],
+      chunks: ["Ich", "gebe", "dem", "Kind", "einen", "Apfel."], translation: "I give the child an apple.",
       explain: "Dative receiver first, accusative thing second.",
     },
     {
@@ -1882,7 +1889,7 @@ export const praepositionenTief: Lesson = {
                 {
           type: "gloss",
           de: "Wo ist der Schlüssel? Er ist auf dem Tisch. Wohin legst du den Schlüssel? Ich lege ihn auf den Tisch.",
-          en: "The pair test: position then direction.",
+          en: "Where is the key? It is on the table. Where are you putting the key? I'm putting it on the table.",
           words: [{"word": "Wo", "pos": "Adverb", "en": "where", "detail": "Adverb"}, {"word": "ist", "pos": "Verb", "en": "is", "detail": "Verb"}, {"word": "der", "pos": "Artikel", "en": "the", "detail": "Article (definite: the)"}, {"word": "Schlüssel", "pos": "Nomen", "en": "key", "detail": "Noun"}, {"word": "Er", "pos": "Pronomen", "en": "it", "detail": "Pronoun"}, {"word": "ist", "pos": "Verb", "en": "is", "detail": "Verb"}, {"word": "auf", "pos": "Präposition", "en": "on", "detail": "Preposition"}, {"word": "dem", "pos": "Artikel", "en": "the (dat.)", "detail": "Article (definite: the)"}, {"word": "Tisch", "pos": "Nomen", "en": "table", "detail": "Noun"}, {"word": "Wohin", "pos": "Adverb", "en": "where to", "detail": "Adverb"}, {"word": "legst", "pos": "Verb", "en": "lay", "detail": "Verb"}, {"word": "du", "pos": "Pronomen", "en": "you", "detail": "Pronoun"}, {"word": "den", "pos": "Artikel", "en": "the (acc.)", "detail": "Article (definite: the)"}, {"word": "Schlüssel", "pos": "Nomen", "en": "key", "detail": "Noun"}, {"word": "Ich", "pos": "Pronomen", "en": "I", "detail": "Pronoun"}, {"word": "lege", "pos": "Verb", "en": "lay", "detail": "Verb"}, {"word": "ihn", "pos": "Pronomen", "en": "it (acc.)", "detail": "Pronoun in the accusative case"}, {"word": "auf", "pos": "Präposition", "en": "onto", "detail": "Preposition"}, {"word": "den", "pos": "Artikel", "en": "the (acc.)", "detail": "Article (definite: the)"}, {"word": "Tisch", "pos": "Nomen", "en": "table", "detail": "Noun"}],
         },
 
@@ -2206,7 +2213,7 @@ export const praepositionenTief: Lesson = {
       type: "word-order",
       title: "Übung 17: Der Satz",
       instruction: "Build the sentence: The gift is for you.",
-      chunks: ["Das", "Geschenk", "ist", "für", "dich."],
+      chunks: ["Das", "Geschenk", "ist", "für", "dich."], translation: "The gift is for you.",
       explain: "für + accusative.",
     },
     {
@@ -2214,7 +2221,7 @@ export const praepositionenTief: Lesson = {
       type: "word-order",
       title: "Übung 18: Der Satz",
       instruction: "Build the sentence: I am going to the station.",
-      chunks: ["Ich", "gehe", "zum", "Bahnhof."],
+      chunks: ["Ich", "gehe", "zum", "Bahnhof."], translation: "I am going to the station.",
       explain: "zum = zu + dem.",
     },
     {

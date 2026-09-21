@@ -123,7 +123,7 @@ export const lebensmittel: Lesson = {
         {
           type: "example",
           de: "Zum Frühstück esse ich Brot mit Käse und trinke einen Kaffee. Zum Mittagessen gibt es Nudeln mit Tomatensoße.",
-          en: "Meals in two sentences.",
+          en: "For breakfast I eat bread with cheese and drink a coffee. For lunch there are noodles with tomato sauce.",
         },
         {
           type: "gloss",
@@ -289,6 +289,7 @@ export const lebensmittel: Lesson = {
       title: "Übung 5: Der Plural",
       instruction: "Type the plurals.",
       sentence: "der Apfel -> die ___, die Banane -> die ___, die Kartoffel -> die ___, das Ei -> die ___.",
+            translation: "the apple -> the ___, the banana -> the ___, the potato -> the ___, the egg -> the ___.",
       blanks: [
         { answers: ["Äpfel"], hint: "umlaut" },
         { answers: ["Bananen"], hint: "+ -en" },
@@ -371,7 +372,7 @@ export const lebensmittel: Lesson = {
       type: "word-order",
       title: "Übung 13: Der Satz",
       instruction: "Build the sentence: I am drinking a coffee.",
-      chunks: ["Ich", "trinke", "einen", "Kaffee."],
+      chunks: ["Ich", "trinke", "einen", "Kaffee."], translation: "I drink a coffee.",
       explain: "The accusative object follows the verb.",
     },
     {
@@ -379,7 +380,7 @@ export const lebensmittel: Lesson = {
       type: "word-order",
       title: "Übung 14: Der Satz",
       instruction: "Build the sentence: I buy a kilo of apples.",
-      chunks: ["Ich", "kaufe", "ein", "Kilo", "Äpfel."],
+      chunks: ["Ich", "kaufe", "ein", "Kilo", "Äpfel."], translation: "I am buying a kilo of apples.",
       explain: "Unit + food: ein Kilo Äpfel.",
     },
     {
@@ -487,12 +488,12 @@ export const imRestaurant: Lesson = {
         {
           type: "example",
           de: "Kellner: Guten Tag! Was möchten Sie trinken? Gast: Einen Tee, bitte. Und die Speisekarte. Kellner: Hier bitte. Was möchten Sie essen? Gast: Ich nehme das Hähnchen mit Reis. Kellner: Sehr gut. Sonst noch etwas? Gast: Nein, danke. Kellner: Guten Appetit!",
-          en: "The complete ordering dialogue.",
+          en: "Waiter: Good day! What would you like to drink? Guest: A tea, please. And the menu. Waiter: Here you go. What would you like to eat? Guest: I'll take the chicken with rice. Waiter: Very good. Anything else? Guest: No, thanks. Waiter: Enjoy your meal!",
         },
         {
           type: "example",
           de: "Gast: Die Rechnung, bitte! Kellner: Das macht zwölf Euro. Gast: Stimmt so. Danke schön!",
-          en: "Paying the bill.",
+          en: "Guest: The bill, please! Waiter: That makes twelve euros. Guest: Keep the change. Thank you very much!",
         },
         {
           type: "tip",
@@ -525,7 +526,7 @@ export const imRestaurant: Lesson = {
         {
           type: "example",
           de: "Zahlen bitte! Getrennt oder zusammen? Zusammen, bitte. Das macht zwölf Euro fünfzig. Stimmt so.",
-          en: "The paying dialogue.",
+          en: "The bill, please! Separately or together? Together, please. That makes twelve fifty. Keep the change.",
         },
         {
           type: "tip",
@@ -641,6 +642,7 @@ export const imRestaurant: Lesson = {
       title: "Übung 3: Der Akkusativ",
       instruction: "Complete with the right article.",
       sentence: "Ich möchte ___ Kaffee. (a, m.) Ich möchte ___ Suppe. (a, f.) Ich möchte ___ Bier. (a, n.)",
+            translation: "I would like ___ coffee. (a, m.) I would like ___ soup. (a, f.) I would like ___ beer. (a, n.)",
       blanks: [
         { answers: ["einen"], hint: "masculine" },
         { answers: ["eine"], hint: "feminine" },
@@ -745,7 +747,7 @@ export const imRestaurant: Lesson = {
       type: "word-order",
       title: "Übung 13: Der Satz",
       instruction: "Build the sentence: I would like a tea, please.",
-      chunks: ["Ich", "möchte", "einen", "Tee,", "bitte."],
+      chunks: ["Ich", "möchte", "einen", "Tee,", "bitte."], translation: "I would like a tea, please.",
       explain: "möchte is second; bitte closes the order.",
     },
     {
@@ -753,7 +755,7 @@ export const imRestaurant: Lesson = {
       type: "word-order",
       title: "Übung 14: Der Satz",
       instruction: "Build the sentence: The bill is twelve euros.",
-      chunks: ["Die", "Rechnung", "macht", "zwölf", "Euro."],
+      chunks: ["Die", "Rechnung", "macht", "zwölf", "Euro."], translation: "The bill comes to twelve euros.",
       explain: "The bill makes twelve euros.",
     },
     {
@@ -842,7 +844,7 @@ export const derAkkusativ: Lesson = {
         {
           type: "example",
           de: "Ich sehe den Mann. Ich kaufe einen Apfel. Ich habe keinen Bruder. Ich sehe die Frau, das Kind und die Kinder.",
-          en: "The whole accusative table in five sentences.",
+          en: "I see the man. I buy an apple. I have no brother. I see the woman, the child and the children.",
         },
         {
           type: "tip",
@@ -875,7 +877,7 @@ export const derAkkusativ: Lesson = {
         {
           type: "example",
           de: "Sie kennt mich. Ich sehe ihn. Wir besuchen euch. Du kennst sie.",
-          en: "Pronouns in the accusative.",
+          en: "She knows me. I see him. We visit you. You know her.",
         },
         {
           type: "tip",
@@ -945,7 +947,7 @@ export const derAkkusativ: Lesson = {
         {
           type: "example",
           de: "Ein Geschenk für dich. Ohne den Schlüssel geht es nicht. Wir gehen durch den Park. Das Medikament gegen die Schmerzen.",
-          en: "Prepositions in action, always with the accusative.",
+          en: "A gift for you. Without the key it doesn't work. We walk through the park. The medicine against the pain.",
         },
         {
           type: "tip",
@@ -974,7 +976,7 @@ export const derAkkusativ: Lesson = {
         {
           type: "example",
           de: "Wo ist das Buch? Auf dem Tisch. Wohin legst du das Buch? Auf den Tisch.",
-          en: "The question decides the case: wo asks dative, wohin asks accusative.",
+          en: "Where is the book? On the table. Where are you putting the book? On the table.",
         },
         {
           type: "tip",
@@ -1128,7 +1130,7 @@ export const derAkkusativ: Lesson = {
       type: "fill-blank",
       title: "Übung 5: Die Pronomen",
       instruction: "Complete with the accusative pronoun.",
-      sentence: "Sie kennt ___. (me) Ich sehe ___. (him) Wir besuchen ___. (you all) Du kennst ___. (her)",
+      sentence: "Sie kennt ___. (me) Ich sehe ___. (him) Wir besuchen ___. (you all) Du kennst ___. (her)", translation: "She knows ___. (me) I see ___. (him) We visit ___. (you all) You know ___. (her)",
       blanks: [
         { answers: ["mich"], hint: "ich -> mich" },
         { answers: ["ihn"], hint: "er -> ihn" },
@@ -1142,6 +1144,7 @@ export const derAkkusativ: Lesson = {
       title: "Übung 6: Verben mit Akkusativ",
       instruction: "Complete with the right object.",
       sentence: "Ich habe ___ Termin. Wir suchen ___ Schlüssel. Sie kennt ___ Kellner.",
+            translation: "I have ___ appointment. We are looking for ___ key. She knows ___ waiter.",
       blanks: [
         { answers: ["einen"], hint: "Termin, masculine" },
         { answers: ["den"], hint: "Schlüssel, masculine" },
@@ -1194,6 +1197,7 @@ export const derAkkusativ: Lesson = {
       title: "Übung 11: es gibt",
       instruction: "Complete with the accusative article.",
       sentence: "Es gibt ___ Park. (a) Es gibt ___ Apotheke. (a) Es gibt ___ Museum. (a)",
+            translation: "There is ___ park. (a) There is ___ pharmacy. (a) There is ___ museum. (a)",
       blanks: [
         { answers: ["einen"], hint: "masculine" },
         { answers: ["eine"], hint: "feminine" },
@@ -1245,7 +1249,7 @@ export const derAkkusativ: Lesson = {
       type: "word-order",
       title: "Übung 16: Der Satz",
       instruction: "Build the sentence: I am buying a new computer.",
-      chunks: ["Ich", "kaufe", "einen", "neuen", "Computer."],
+      chunks: ["Ich", "kaufe", "einen", "neuen", "Computer."], translation: "I am buying a new computer.",
       explain: "The accusative object follows the verb.",
     },
     {
@@ -1253,7 +1257,7 @@ export const derAkkusativ: Lesson = {
       type: "word-order",
       title: "Übung 17: Der Satz",
       instruction: "Build the sentence: There is a park in the city.",
-      chunks: ["Es", "gibt", "einen", "Park", "in", "der", "Stadt."],
+      chunks: ["Es", "gibt", "einen", "Park", "in", "der", "Stadt."], translation: "There is a park in the city.",
       explain: "es gibt always takes the accusative.",
     },
     {
@@ -1339,7 +1343,7 @@ export const modalverben: Lesson = {
         {
           type: "example",
           de: "Ich kann schwimmen. Du möchtest einen Kaffee. Er will nach Berlin fahren. Wir müssen arbeiten. Ihr dürft gehen. Sie sollen das Formular ausfüllen.",
-          en: "All six modals, all six persons.",
+          en: "I can swim. You would like a coffee. He wants to drive to Berlin. We must work. You (plural) may go. They should fill in the form.",
         },
         {
           type: "tip",
@@ -1368,7 +1372,7 @@ export const modalverben: Lesson = {
         {
           type: "example",
           de: "Ich kann gut kochen. Ich möchte heute Abend einen Film sehen. Er muss um sieben Uhr aufstehen.",
-          en: "Modal in position two, infinitive at the end.",
+          en: "I can cook well. I would like to watch a film tonight. He must get up at seven o'clock.",
         },
         {
           type: "tip",
@@ -1401,7 +1405,7 @@ export const modalverben: Lesson = {
         {
           type: "example",
           de: "Ich kann Deutsch, aber ich muss mehr üben. Möchten Sie einen Kaffee? Ich will ein Auto kaufen. Hier dürfen Sie nicht rauchen. Du sollst mehr schlafen.",
-          en: "All six modals in one text.",
+          en: "I can speak German, but I must practise more. Would you like a coffee? I want to buy a car. You may not smoke here. You should sleep more.",
         },
         {
           type: "tip",
@@ -1488,6 +1492,7 @@ export const modalverben: Lesson = {
       title: "Übung 1: Die Konjugation",
       instruction: "Complete with the right modal form.",
       sentence: "Ich ___ gut schwimmen. (können) Du ___ einen Kaffee? (möchten) Er ___ nach Berlin fahren. (wollen) Wir ___ arbeiten. (müssen) Ihr ___ gehen. (dürfen)",
+            translation: "I ___ swim well. (can) You ___ a coffee? (would like) He ___ drive to Berlin. (wants) We ___ work. (must) You ___ go. (may)",
       blanks: [
         { answers: ["kann"], hint: "können, ich" },
         { answers: ["möchtest"], hint: "möchten, du" },
@@ -1542,6 +1547,7 @@ export const modalverben: Lesson = {
       title: "Übung 6: Der Infinitiv",
       instruction: "Complete with the infinitive at the end.",
       sentence: "Ich kann gut ___ (schwimmen). Er muss um sieben ___ (aufstehen). Wir wollen am Wochenende ___ (wandern).",
+            translation: "I can ___ well. (swim) He must ___ at seven. (get up) We want to ___ at the weekend. (hike)",
       blanks: [
         { answers: ["schwimmen"], hint: "the action" },
         { answers: ["aufstehen"], hint: "separable infinitive" },
@@ -1564,6 +1570,7 @@ export const modalverben: Lesson = {
       title: "Übung 8: Die Negation",
       instruction: "Complete with nicht or keinen.",
       sentence: "Ich kann ___ kommen. (not) Ich möchte ___ Kaffee. (no, masculine) Hier darf man ___ rauchen. (not)",
+            translation: "I cannot ___. (not) I would like ___ coffee. (no, masculine) You may not ___ here. (not)",
       blanks: [
         { answers: ["nicht"], hint: "before the infinitive" },
         { answers: ["keinen"], hint: "noun negation" },
@@ -1605,7 +1612,7 @@ export const modalverben: Lesson = {
       type: "word-order",
       title: "Übung 12: Der Satz",
       instruction: "Build the sentence: I would like to drink a coffee.",
-      chunks: ["Ich", "möchte", "einen", "Kaffee", "trinken."],
+      chunks: ["Ich", "möchte", "einen", "Kaffee", "trinken."], translation: "I would like to drink a coffee.",
       explain: "The modal is second; the infinitive closes the bracket.",
     },
     {
@@ -1613,7 +1620,7 @@ export const modalverben: Lesson = {
       type: "word-order",
       title: "Übung 13: Der Satz",
       instruction: "Build the sentence: He has to get up at seven.",
-      chunks: ["Er", "muss", "um", "sieben", "Uhr", "aufstehen."],
+      chunks: ["Er", "muss", "um", "sieben", "Uhr", "aufstehen."], translation: "He must get up at seven o'clock.",
       explain: "The separable infinitive stays whole at the end.",
     },
     {
@@ -1747,7 +1754,7 @@ export const pluralBildung: Lesson = {
         {
           type: "example",
           de: "Die Frauen kaufen die Bananen und die Blumen in der Apotheke? Nein, die Blumen im Blumenladen.",
-          en: "Feminine nouns around town.",
+          en: "Are the women buying the bananas and the flowers at the pharmacy? No, the flowers at the flower shop.",
         },
         {
           type: "tip",
@@ -1944,6 +1951,7 @@ export const pluralBildung: Lesson = {
       title: "Übung 8: Die Feminina",
       instruction: "Complete the feminine plurals.",
       sentence: "die Tasche → die ___, die Frau → die ___, die Tür → die ___, die Blume → die ___.",
+            translation: "the bag -> the ___, the woman -> the ___, the door -> the ___, the flower -> the ___.",
       blanks: [
         { answers: ["Taschen"], hint: "+ -n" },
         { answers: ["Frauen"], hint: "+ -en" },
@@ -2048,7 +2056,7 @@ export const preiseUndBezahlen: Lesson = {
         {
           type: "example",
           de: "Was kostet das Brot? Das kostet zwei Euro fünfzig. Und die Butter? Die kostet einen Euro neunundneunzig.",
-          en: "Asking the price for two items.",
+          en: "How much does the bread cost? It costs two euros fifty. And the butter? It costs one euro ninety-nine.",
         },
         {
           type: "tip",
@@ -2079,7 +2087,7 @@ export const preiseUndBezahlen: Lesson = {
         {
           type: "example",
           de: "Das macht zusammen zwölf Euro dreißig. Haben Sie es klein? Ja, hier bitte: zehn Euro, zwei Euro und dreißig Cent.",
-          en: "Counting out the payment.",
+          en: "That makes twelve euros thirty altogether. Do you have anything smaller? Yes, here you go: ten euros, two euros and thirty cents.",
         },
         {
           type: "tip",
@@ -2112,7 +2120,7 @@ export const preiseUndBezahlen: Lesson = {
         {
           type: "example",
           de: "Zahlen Sie bar oder mit Karte? Mit Karte, bitte. Moment, das Lesegerät funktioniert nicht. Dann bar: zwanzig Euro, das macht dreizehn Euro, hier ist Ihr Wechselgeld: sieben Euro.",
-          en: "Switching from card to cash.",
+          en: "Do you pay cash or by card? By card, please. Wait, the card reader doesn't work. Then cash: twenty euros, that makes thirteen euros, here is your change: seven euros.",
         },
         {
           type: "tip",
@@ -2130,7 +2138,7 @@ export const preiseUndBezahlen: Lesson = {
         {
           type: "example",
           de: "Kundin: Guten Tag! Was kostet die Butter? Verkäufer: Die Butter kostet zwei Euro neunundneunzig. Kundin: Ich nehme sie. Und das Brot? Verkäufer: Das Brot kostet drei Euro. Kundin: Okay, zusammen, bitte. Verkäufer: Das macht fünf Euro neunundneunzig. Sonst noch etwas? Kundin: Nein, danke. Verkäufer: Zahlen Sie bar oder mit Karte? Kundin: Bar, bitte. Verkäufer: Haben Sie es klein? Kundin: Nein, tut mir leid. Verkäufer: Kein Problem. Hier ist Ihr Wechselgeld. Kundin: Danke schön! Auf Wiedersehen!",
-          en: "The complete shopping dialogue.",
+          en: "Customer: Good day! How much is the butter? Sales assistant: The butter costs two euros ninety-nine. Customer: I'll take it. And the bread? Sales assistant: The bread costs three euros. Customer: Okay, together, please. Sales assistant: That makes five euros ninety-nine. Anything else? Customer: No, thanks. Sales assistant: Do you pay cash or by card? Customer: Cash, please. Sales assistant: Do you have anything smaller? Customer: No, sorry. Sales assistant: No problem. Here is your change. Customer: Thank you very much! Goodbye!",
         },
         {
           type: "tip",
@@ -2223,6 +2231,7 @@ export const preiseUndBezahlen: Lesson = {
       title: "Übung 3: Preise in Worten",
       instruction: "Write the prices in words.",
       sentence: "3,50 = drei Euro ___. 1,99 = ein Euro ___. 12,30 = zwölf Euro ___.",
+            translation: "3.50 = three euros ___. 1.99 = one euro ___. 12.30 = twelve euros ___.",
       blanks: [
         { answers: ["fünfzig"], hint: "50" },
         { answers: ["neunundneunzig"], hint: "99" },
@@ -2327,7 +2336,7 @@ export const preiseUndBezahlen: Lesson = {
       type: "word-order",
       title: "Übung 13: Der Satz",
       instruction: "Build the sentence: That costs three euros fifty.",
-      chunks: ["Das", "kostet", "drei", "Euro", "fünfzig."],
+      chunks: ["Das", "kostet", "drei", "Euro", "fünfzig."], translation: "That costs three euros fifty.",
       explain: "kostet + euros + cents.",
     },
     {
@@ -2335,7 +2344,7 @@ export const preiseUndBezahlen: Lesson = {
       type: "word-order",
       title: "Übung 14: Der Satz",
       instruction: "Build the sentence: I pay by card.",
-      chunks: ["Ich", "bezahle", "mit", "Karte."],
+      chunks: ["Ich", "bezahle", "mit", "Karte."], translation: "I am paying by card.",
       explain: "Payment method with mit.",
     },
     {

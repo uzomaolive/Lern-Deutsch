@@ -164,6 +164,7 @@ const akkusativTief: Lesson = {
       title: "Übung 3: Die Pronomen",
       instruction: "Complete with the accusative pronoun.",
       sentence: "Sie kennt ___. (me) Ich sehe ___. (him) Wir besuchen ___. (you all)",
+            translation: "She knows ___. (me) I see ___. (him) We visit ___. (you all)",
       blanks: [
         { answers: ["mich"], hint: "ich -> mich" },
         { answers: ["ihn"], hint: "er -> ihn" },
@@ -188,7 +189,7 @@ const akkusativTief: Lesson = {
       type: "word-order",
       title: "Übung 5: Der Satz",
       instruction: "Build the sentence: I am buying a new computer.",
-      chunks: ["Ich", "kaufe", "einen", "neuen", "Computer."],
+      chunks: ["Ich", "kaufe", "einen", "neuen", "Computer."], translation: "I am buying a new computer.",
       explain: "einen neuen Computer is the accusative object.",
     },
     {
@@ -334,6 +335,7 @@ const possessivTief: Lesson = {
       title: "Übung 3: Der Akkusativ",
       instruction: "Complete with the possessive in the accusative.",
       sentence: "Ich sehe ___ Bruder. (my) Er besucht ___ Oma. (his)",
+            translation: "I see ___ brother. (my) He visits ___ grandma. (his)",
       blanks: [
         { answers: ["meinen"], hint: "masculine accusative" },
         { answers: ["seine"], hint: "feminine" },
@@ -357,7 +359,7 @@ const possessivTief: Lesson = {
       type: "word-order",
       title: "Übung 5: Der Satz",
       instruction: "Build the sentence: I see my brother.",
-      chunks: ["Ich", "sehe", "meinen", "Bruder."],
+      chunks: ["Ich", "sehe", "meinen", "Bruder."], translation: "I see my brother.",
       explain: "The accusative masculine takes -en: meinen.",
     },
     {
@@ -533,6 +535,7 @@ const negationTief: Lesson = {
       title: "Übung 3: Die Negativfamilie",
       instruction: "Complete with the negative word.",
       sentence: "Ich habe ___ gekauft. (nothing) Ich trinke ___ Kaffee. (never) Ich habe ___ Zeit.",
+            translation: "I bought ___. (nothing) I ___ drink coffee. (never) I have ___ time.",
       blanks: [
         { answers: ["nichts"], hint: "nothing" },
         { answers: ["nie"], hint: "never" },
@@ -554,7 +557,7 @@ const negationTief: Lesson = {
       type: "word-order",
       title: "Übung 5: Der Satz",
       instruction: "Build the sentence: I have no siblings.",
-      chunks: ["Ich", "habe", "keine", "Geschwister."],
+      chunks: ["Ich", "habe", "keine", "Geschwister."], translation: "I have no siblings.",
       explain: "keine replaces the article before the noun.",
     },
     {
@@ -711,6 +714,7 @@ const fragenTief: Lesson = {
       title: "Übung 3: Die Inversion",
       instruction: "Complete with the right order.",
       sentence: "___ lerne ich Deutsch. (today) ___ du Deutsch? (learn, yes/no)",
+            translation: "___ I am learning German. (today) ___ you German? (learn, yes/no)",
       blanks: [
         { answers: ["Heute"], hint: "time at the front" },
         { answers: ["Lernst"], hint: "verb first" },
@@ -734,7 +738,7 @@ const fragenTief: Lesson = {
       type: "word-order",
       title: "Übung 5: Der Satz",
       instruction: "Build the question: Where do you live?",
-      chunks: ["Wo", "wohnst", "du?"],
+      chunks: ["Wo", "wohnst", "du?"], translation: "Where do you live?",
       explain: "Question word first, verb second.",
     },
     {

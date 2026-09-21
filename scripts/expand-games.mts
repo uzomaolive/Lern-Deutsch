@@ -51,6 +51,35 @@ const DIE = byArticle("die");
 const DAS = byArticle("das");
 
 const verbEntries = goetheVerbs.map((v) => ({ de: v.de, en: v.en }));
+const EXTRA_VERBS: [string, string][] = [
+  ["lachen", "to laugh"], ["schauen", "to look"], ["holen", "to fetch"], ["sagen", "to say"],
+  ["schicken", "to send"], ["packen", "to pack"], ["küssen", "to kiss"], ["rechnen", "to calculate"],
+  ["spazieren", "to stroll"], ["rauchen", "to smoke"], ["träumen", "to dream"], ["erzählen", "to tell"],
+  ["probieren", "to try"], ["studieren", "to study"], ["parken", "to park"], ["tanken", "to refuel"],
+  ["baden", "to bathe"], ["wandern", "to hike"], ["basteln", "to do crafts"], ["klingeln", "to ring"],
+  ["wischen", "to wipe"], ["bürsten", "to brush"], ["trocknen", "to dry"], ["spülen", "to rinse"],
+  ["bügeln", "to iron"], ["nähen", "to sew"], ["stricken", "to knit"], ["klettern", "to climb"],
+  ["retten", "to rescue"], ["bewundern", "to admire"], ["stören", "to disturb"], ["flüstern", "to whisper"],
+  ["lächeln", "to smile"], ["stoppen", "to stop"], ["enden", "to end"], ["zahlen", "to pay"],
+  ["zählen", "to count"], ["prüfen", "to check"], ["begrüßen", "to greet"], ["entschuldigen", "to excuse"],
+  ["vorstellen", "to introduce"], ["mitbringen", "to bring along"], ["mitnehmen", "to take along"],
+  ["aufräumen", "to tidy up"], ["einkaufen", "to shop"], ["fernsehen", "to watch TV"],
+  ["anrufen", "to call"], ["losgehen", "to set off"], ["mitmachen", "to join in"],
+  ["nachfragen", "to ask again"], ["auspacken", "to unpack"], ["einpacken", "to wrap up"],
+  ["umziehen", "to move house"], ["ausfüllen", "to fill in"], ["abschreiben", "to copy"],
+  ["durchlesen", "to read through"], ["nachsehen", "to look up"], ["zurückkommen", "to come back"],
+  ["mitkommen", "to come along"], ["mitfahren", "to ride along"], ["abholen", "to pick up"],
+  ["abgeben", "to hand in"], ["vorlesen", "to read aloud"], ["aussteigen", "to get off"],
+  ["einsteigen", "to get on"], ["umsteigen", "to change trains"], ["ankommen", "to arrive"],
+  ["abfahren", "to depart"], ["mithelfen", "to help out"], ["mitreden", "to join the conversation"],
+  ["zuhören", "to listen"], ["aufpassen", "to pay attention"], ["aussehen", "to look (appearance)"],
+  ["aufwachen", "to wake up"], ["einschlafen", "to fall asleep"], ["zurückgehen", "to go back"],
+  ["hineingehen", "to go in"], ["hinausgehen", "to go out"], ["vorbeigehen", "to pass by"],
+  ["zurückfahren", "to drive back"], ["losfahren", "to set off by car"], ["weitergehen", "to continue"],
+  ["weitermachen", "to carry on"], ["anfangen", "to begin"], ["aufhören", "to stop"],
+  ["einschalten", "to switch on"], ["ausschalten", "to switch off"], ["aufmachen", "to open"],
+  ["zumachen", "to close"], ["anmachen", "to turn on"], ["ausmachen", "to turn off"],
+];
 
 // Lesson example sentences (de/en) for translation games.
 const exampleSentences = (() => {
@@ -192,7 +221,7 @@ function artikelDropItems(level: number, seed: string): { text: string; gateId: 
   let poolNouns = level === 1 ? [...DER, ...DIE, ...DAS] : level === 2 ? [...DER, ...DIE, ...DAS] : [...DER, ...DIE, ...DAS];
   if (level === 2) poolNouns = take(poolNouns, 100, `${seed}:2`);
   if (level === 3) poolNouns = take(poolNouns, 100, `${seed}:3`);
-  return take(poolNouns, 100, `${seed}:${level}`).map((n) => ({
+  return take(poolNouns, 200, `${seed}:${level}`).map((n) => ({
     text: n.de.replace(/^(der|die|das) /, ""),
     gateId: articleOf(n.de),
   }));
@@ -234,7 +263,7 @@ function articleRules(seed: string) {
     ...DIE.filter((n) => /Nacht|Blume|Tasche|Lampe|Pizza|Banane/.test(n.de)),
   ];
   const picks = take(normalized, 60, `${seed}:a`).concat(take(groups.length > 30 ? groups : nounEntries, 40, `${seed}:b`));
-  return take(picks, 100, `${seed}:final`);
+  return take(picks, 200, `${seed}:final`);
 }
 
 // ---------------------------------------------------------------------------
@@ -284,7 +313,16 @@ function timeQuestions(seed: string): TimeQ[] {
   qs.push({ prompt: "heute ___", options: shuffle3("— (nothing)", "am", "um", `${seed}:heute`), correct: "— (nothing)", explain: "heute, morgen and gestern take no preposition." });
   qs.push({ prompt: "morgen ___", options: shuffle3("— (nothing)", "am", "im", `${seed}:morgen`), correct: "— (nothing)", explain: "heute, morgen and gestern take no preposition." });
   qs.push({ prompt: "gestern ___", options: shuffle3("— (nothing)", "am", "im", `${seed}:gestern`), correct: "— (nothing)", explain: "heute, morgen and gestern take no preposition." });
-  return take(qs, 100, `${seed}:final`);
+  const DATES = ["1. Mai", "3. Oktober", "24. Dezember", "6. Januar", "14. Februar", "31. Dezember", "1. Januar", "9. November", "17. Juni", "21. September", "5. August", "25. April", "13. März", "7. Juli", "19. Oktober", "28. November"];
+  for (const d of DATES) {
+    qs.push({ prompt: `___ ${d}`, options: shuffle3("am", "im", "um", `${seed}:d:${d}`), correct: "am", explain: "Dates take am: am 1. Mai, am 24. Dezember." });
+  }
+  for (const y of ["1990", "2000", "2010", "2026", "1989", "2030", "1975", "2024"]) {
+    qs.push({ prompt: `___ Jahr ${y}`, options: shuffle3("im", "am", "um", `${seed}:y:${y}`), correct: "im", explain: "Years take im: im Jahr 2026." });
+  }
+  qs.push({ prompt: "___ Viertelstunde", options: shuffle3("in einer", "am", "im", `${seed}:v`), correct: "in einer", explain: "in einer Viertelstunde: in a quarter of an hour." });
+  qs.push({ prompt: "___ zwei Stunden", options: shuffle3("in", "am", "um", `${seed}:z`), correct: "in", explain: "in + duration: in zwei Stunden (in two hours)." });
+  return take(qs, 200, `${seed}:final`);
 }
 
 // ---------------------------------------------------------------------------
@@ -315,6 +353,15 @@ function dativQuestions(seed: string): DativQ[] {
     ["das Café", "dem Café", "das Café", "zu dem (zum) Café", "aus dem Café"],
     ["die Bibliothek", "der Bibliothek", "die Bibliothek", "zu der (zur) Bibliothek", "aus der Bibliothek"],
     ["der Markt", "dem Markt", "den Markt", "zu dem (zum) Markt", "aus dem Markt"],
+    ["die Bäckerei", "der Bäckerei", "die Bäckerei", "zu der (zur) Bäckerei", "aus der Bäckerei"],
+    ["der Friseur", "dem Friseur", "den Friseur", "zu dem (zum) Friseur", "aus dem Friseur"],
+    ["die Metzgerei", "der Metzgerei", "die Metzgerei", "zu der (zur) Metzgerei", "aus der Metzgerei"],
+    ["das Schwimmbad", "dem Schwimmbad", "das Schwimmbad", "zu dem (zum) Schwimmbad", "aus dem Schwimmbad"],
+    ["der Zahnarzt", "dem Zahnarzt", "den Zahnarzt", "zu dem (zum) Zahnarzt", "aus dem Zahnarzt"],
+    ["die Sparkasse", "der Sparkasse", "die Sparkasse", "zu der (zur) Sparkasse", "aus der Sparkasse"],
+    ["der Park", "dem Park", "den Park", "zu dem (zum) Park", "aus dem Park"],
+    ["die Universität", "der Universität", "die Universität", "zu der (zur) Universität", "aus der Universität"],
+    ["das Stadion", "dem Stadion", "das Stadion", "zu dem (zum) Stadion", "aus dem Stadion"],
   ] as const;
   const qs: DativQ[] = [];
   for (const c of cities) {
@@ -334,7 +381,7 @@ function dativQuestions(seed: string): DativQ[] {
     qs.push({ prompt: `Ich gehe ${zu.replace(/ \(.*\)$/, "")} ${noun}.`, options: unique3(zu.replace(/ \(.*\)$/, ""), dat, akk, [nom], `${seed}:zu${noun}`), correct: zu.replace(/ \(.*\)$/, ""), explain: `zu + Dativ answers Wohin? with buildings: ${zu}.` });
     qs.push({ prompt: `Ich komme ${aus} ${noun}.`, options: unique3(aus, dat, akk, [nom], `${seed}:aus${noun}`), correct: aus, explain: `aus + Dativ answers Woher?: ${aus} ${noun}.` });
   }
-  return take(qs, 100, `${seed}:final`);
+  return take(qs, 200, `${seed}:final`);
 }
 
 // ---------------------------------------------------------------------------
@@ -402,7 +449,15 @@ function trueFalseQuestions(seed: string) {
 // ---------------------------------------------------------------------------
 
 function pluralQuestions(seed: string) {
-  const withPlural = nounEntries.filter((n) => n.plural) as (NounEntry & { plural: string })[];
+  const allNounish = [
+    ...nounEntries,
+    ...wordLists.filter((l) => l.category === "topic" || l.id === "colors" || l.id === "days-and-months").flatMap((l) => l.words),
+  ];
+  const nounMap = new Map<string, NounEntry>();
+  for (const w of allNounish) {
+    if (/^(der|die|das) /.test(w.de)) nounMap.set(w.de, { de: w.de, en: w.en, plural: w.plural });
+  }
+  const withPlural = [...nounMap.values()].filter((n) => n.plural) as (NounEntry & { plural: string })[];
   const picks = take(withPlural, 100, `${seed}:pl`);
   return picks.flatMap((n) => {
     const base = n.de.replace(/^(der|die|das) /, "");
@@ -427,7 +482,7 @@ function pluralQuestions(seed: string) {
 // ---------------------------------------------------------------------------
 
 function enToDeTyping(seed: string) {
-  return take(nounEntries, 100, `${seed}:en2de`).map((n) => ({
+  return take(nounEntries, 200, `${seed}:en2de`).map((n) => ({
     prompt: n.en,
     accept: [n.de.toLowerCase()],
     hint: n.de,
@@ -435,7 +490,7 @@ function enToDeTyping(seed: string) {
 }
 
 function deToEnTyping(seed: string) {
-  return take(nounEntries, 100, `${seed}:de2en`).map((n) => ({
+  return take(nounEntries, 200, `${seed}:de2en`).map((n) => ({
     prompt: n.de,
     accept: [n.en.toLowerCase()],
     audio: true,
@@ -443,7 +498,7 @@ function deToEnTyping(seed: string) {
 }
 
 function deToEnMc(seed: string) {
-  return take(nounEntries, 100, `${seed}:mc`).map((n) => {
+  return take(nounEntries, 200, `${seed}:mc`).map((n) => {
     const others = take(nounEntries.filter((x) => x.de !== n.de), 5, `${seed}:${n.de}`).map((x) => x.en);
     const options = unique3(n.en, others[0], others[1], others, `${seed}:o${n.de}`);
     return {
@@ -468,6 +523,15 @@ const REGULAR_VERBS: [string, string][] = [
   ["telefonieren", "to phone"], ["reisen", "to travel"], ["feiern", "to celebrate"], ["putzen", "to clean"],
   ["kaufen", "to buy"], ["bezahlen", "to pay"], ["bestellen", "to order"], ["glauben", "to believe"],
   ["lieben", "to love"], ["wohnen", "to live"], ["machen", "to make"], ["spielen", "to play"],
+  ["holen", "to fetch"], ["sagen", "to say"], ["schicken", "to send"], ["packen", "to pack"],
+  ["küssen", "to kiss"], ["rechnen", "to calculate"], ["spazieren", "to stroll"], ["rauchen", "to smoke"],
+  ["träumen", "to dream"], ["erzählen", "to tell"], ["probieren", "to try"], ["studieren", "to study"],
+  ["parken", "to park"], ["tanken", "to refuel"], ["baden", "to bathe"], ["wandern", "to hike"],
+  ["basteln", "to do crafts"], ["klingeln", "to ring"], ["wischen", "to wipe"], ["bürsten", "to brush"],
+  ["trocknen", "to dry"], ["spülen", "to rinse"], ["bügeln", "to iron"], ["nähen", "to sew"],
+  ["pflanzen", "to plant"], ["ernten", "to harvest"], ["sammeln", "to collect"], ["enden", "to end"],
+  ["stoppen", "to stop"], ["lächeln", "to smile"], ["flüstern", "to whisper"], ["stören", "to disturb"],
+  ["bewundern", "to admire"], ["retten", "to rescue"], ["putzen", "to clean"], ["klettern", "to climb"],
 ];
 
 const IRREGULAR_VERBS: [string, string][] = [
@@ -573,6 +637,34 @@ const CONJ: Record<string, [string, string, string, string, string, string]> = {
   gewinnen: ["gewinne", "gewinnst", "gewinnt", "gewinnen", "gewinnt", "gewinnen"],
   vergessen: ["vergesse", "vergisst", "vergisst", "vergessen", "vergesst", "vergessen"],
   einladen: ["lade ein", "lädst ein", "lädt ein", "laden ein", "ladet ein", "laden ein"],
+  rauchen: ["rauche", "rauchst", "raucht", "rauchen", "raucht", "rauchen"],
+  träumen: ["träume", "träumst", "träumt", "träumen", "träumt", "träumen"],
+  erzählen: ["erzähle", "erzählst", "erzählt", "erzählen", "erzählt", "erzählen"],
+  probieren: ["probiere", "probierst", "probiert", "probieren", "probiert", "probieren"],
+  studieren: ["studiere", "studierst", "studiert", "studieren", "studiert", "studieren"],
+  parken: ["parke", "parkst", "parkt", "parken", "parkt", "parken"],
+  tanken: ["tanke", "tankst", "tankt", "tanken", "tankt", "tanken"],
+  baden: ["bade", "badest", "badet", "baden", "badet", "baden"],
+  wandern: ["wandere", "wanderst", "wandert", "wandern", "wandert", "wandern"],
+  basteln: ["bastle", "bastelst", "bastelt", "basteln", "bastelt", "basteln"],
+  klingeln: ["klingle", "klingelst", "klingelt", "klingeln", "klingelt", "klingeln"],
+  wischen: ["wische", "wischst", "wischt", "wischen", "wischt", "wischen"],
+  bürsten: ["bürste", "bürstest", "bürstet", "bürsten", "bürstet", "bürsten"],
+  trocknen: ["trockne", "trocknest", "trocknet", "trocknen", "trocknet", "trocknen"],
+  spülen: ["spüle", "spülst", "spült", "spülen", "spült", "spülen"],
+  bügeln: ["bügle", "bügelst", "bügelt", "bügeln", "bügelt", "bügeln"],
+  nähen: ["nähe", "nähst", "näht", "nähen", "näht", "nähen"],
+  pflanzen: ["pflanze", "pflanzst", "pflanzt", "pflanzen", "pflanzt", "pflanzen"],
+  ernten: ["ernte", "erntest", "erntet", "ernten", "erntet", "ernten"],
+  sammeln: ["sammle", "sammelst", "sammelt", "sammeln", "sammelt", "sammeln"],
+  enden: ["ende", "endest", "endet", "enden", "endet", "enden"],
+  stoppen: ["stoppe", "stoppst", "stoppt", "stoppen", "stoppt", "stoppen"],
+  lächeln: ["lächle", "lächelst", "lächelt", "lächeln", "lächelt", "lächeln"],
+  flüstern: ["flüstere", "flüsterst", "flüstert", "flüstern", "flüstert", "flüstern"],
+  stören: ["störe", "störst", "stört", "stören", "stört", "stören"],
+  bewundern: ["bewundere", "bewunderst", "bewundert", "bewundern", "bewundert", "bewundern"],
+  retten: ["rette", "rettest", "rettet", "retten", "rettet", "retten"],
+  klettern: ["klettre", "kletterst", "klettert", "klettern", "klettert", "klettern"],
   anrufen: ["rufe an", "rufst an", "ruft an", "rufen an", "ruft an", "rufen an"],
   einsteigen: ["steige ein", "steigst ein", "steigt ein", "steigen ein", "steigt ein", "steigen ein"],
   aussteigen: ["steige aus", "steigst aus", "steigt aus", "steigen aus", "steigt aus", "steigen aus"],
@@ -640,7 +732,31 @@ const REGULAR_PARTIZIP: [string, string][] = [
   ["klingeln", "geklingelt"], ["wischen", "gewischt"], ["bürsten", "gebürstet"], ["trocknen", "getrocknet"],
   ["spülen", "gespült"], ["bügeln", "gebügelt"], ["nähen", "genäht"], ["stricken", "gestrickt"],
   ["pflanzen", "gepflanzt"], ["gießen", "gegossen"], ["ernten", "geerntet"], ["sammeln", "gesammelt"],
+  ["holen", "geholt"], ["sagen", "gesagt"], ["schicken", "geschickt"], ["packen", "gepackt"],
+  ["küssen", "geküsst"], ["rechnen", "gerechnet"], ["spazieren", "spaziert"], ["rauchen", "geraucht"],
+  ["träumen", "geträumt"], ["erzählen", "erzählt"], ["probieren", "probiert"], ["studieren", "studiert"],
+  ["parken", "geparkt"], ["tanken", "getankt"], ["baden", "gebadet"], ["wandern", "gewandert"],
+  ["basteln", "gebastelt"], ["klingeln", "geklingelt"], ["wischen", "gewischt"], ["bürsten", "gebürstet"],
+  ["trocknen", "getrocknet"], ["spülen", "gespült"], ["bügeln", "gebügelt"], ["nähen", "genäht"],
+  ["stricken", "gestrickt"], ["pflanzen", "gepflanzt"], ["ernten", "geerntet"], ["sammeln", "gesammelt"],
+  ["klettern", "geklettert"], ["retten", "gerettet"], ["bewundern", "bewundert"], ["stören", "gestört"],
+  ["flüstern", "geflüstert"], ["lächeln", "gelächelt"], ["stoppen", "gestoppt"], ["enden", "geendet"],
+  ["zahlen", "gezahlt"], ["zählen", "gezählt"], ["prüfen", "geprüft"], ["kontrollieren", "kontrolliert"],
+  ["begrüßen", "begrüßt"], ["verabschieden", "verabschiedet"], ["entschuldigen", "entschuldigt"],
+  ["bedanken", "bedankt"], ["vorstellen", "vorgestellt"], ["einladen", "eingeladen"],
+  ["mitbringen", "mitgebracht"], ["mitnehmen", "mitgenommen"], ["anziehen", "angezogen"],
+  ["ausziehen", "ausgezogen"], ["aufräumen", "aufgeräumt"], ["abwaschen", "abgewaschen"],
+  ["abtrocknen", "abgetrocknet"], ["einkaufen", "eingekauft"], ["fernsehen", "ferngesehen"],
+  ["anrufen", "angerufen"], ["aufstehen", "aufgestanden"], ["einsteigen", "eingestiegen"],
+  ["aussteigen", "ausgestiegen"], ["umsteigen", "umgestiegen"], ["ankommen", "angekommen"],
+  ["abfahren", "abgefahren"], ["losgehen", "losgegangen"], ["zurückkommen", "zurückgekommen"],
+  ["mitkommen", "mitgekommen"], ["mitfahren", "mitgefahren"], ["mitmachen", "mitgemacht"],
+  ["abholen", "abgeholt"], ["abgeben", "abgegeben"], ["vorlesen", "vorgelesen"],
+  ["mitsprechen", "mitgesprochen"], ["nachfragen", "nachgefragt"], ["auspacken", "ausgepackt"],
+  ["einpacken", "eingepackt"], ["umziehen", "umgezogen"], ["ausfüllen", "ausgefüllt"],
+  ["abschreiben", "abgeschrieben"], ["durchlesen", "durchgelesen"], ["nachsehen", "nachgesehen"],
 ];
+
 for (const [v, form] of REGULAR_PARTIZIP) {
   if (!PARTIZIP[v]) PARTIZIP[v] = { form, aux: "haben" };
 }
@@ -711,6 +827,8 @@ const NUM_RANGES = {
   "0-20": Array.from({ length: 21 }, (_, i) => i),
   "21-99": Array.from({ length: 79 }, (_, i) => i + 21),
   "0-99": Array.from({ length: 100 }, (_, i) => i),
+  "0-199": Array.from({ length: 200 }, (_, i) => i),
+  "200-999": Array.from({ length: 800 }, (_, i) => i + 200),
   "100-999": Array.from({ length: 100 }, (_, i) => 100 + i * 9),
   "1000-9999": Array.from({ length: 100 }, (_, i) => 1000 + i * 90),
 };
@@ -726,7 +844,7 @@ function mathQuestions(seed: string, level: number) {
     }
     return h % n;
   };
-  for (let i = 0; i < 100; i++) {
+  for (let i = 0; i < 200; i++) {
     const op = level === 1 ? (rand(2, `op${i}`) ? "+" : "−") : level === 2 ? "×" : "÷";
     let a: number, b: number, result: number;
     if (op === "+") {
@@ -756,7 +874,7 @@ function mathQuestions(seed: string, level: number) {
 }
 
 function numberWordItems(seed: string, range: number[], level: number) {
-  return take(range, 100, `${seed}:${level}`).map((n) => ({
+  return take(range, 200, `${seed}:${level}`).map((n) => ({
     prompt: String(n),
     accept: [germanNumberWord(n)],
     hint: germanNumberWord(n),
@@ -764,7 +882,7 @@ function numberWordItems(seed: string, range: number[], level: number) {
 }
 
 function wordNumberItems(seed: string, range: number[], level: number) {
-  return take(range, 100, `${seed}:${level}`).map((n) => ({
+  return take(range, 200, `${seed}:${level}`).map((n) => ({
     prompt: germanNumberWord(n),
     accept: [String(n)],
     hint: String(n),
@@ -772,11 +890,11 @@ function wordNumberItems(seed: string, range: number[], level: number) {
 }
 
 function keypadItems(seed: string, range: number[]) {
-  return take(range, 100, `${seed}`).map((n) => ({ word: germanNumberWord(n), target: n }));
+  return take(range, 200, `${seed}`).map((n) => ({ word: germanNumberWord(n), target: n }));
 }
 
 function timePatternItems(seed: string): { minutes: number; accept: string[]; hint: string }[] {
-  const hours = [6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23];
+  const hours = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23];
   const patterns: { off: number; accept: (h: number) => string[]; hint: (h: number) => string }[] = [
     { off: 0, accept: (h) => [`${h} uhr`, `es ist ${h} uhr`, `punkt ${h < 12 ? (h === 12 ? "zwölf" : h) : ""}`.trim()].filter(Boolean), hint: (h) => `${h} Uhr` },
     { off: 30, accept: (h) => [halfWord(h + 1)], hint: (h) => halfWord(h + 1) },
@@ -795,7 +913,7 @@ function timePatternItems(seed: string): { minutes: number; accept: string[]; hi
       items.push({ minutes: h * 60 + p.off, accept: p.accept(h), hint: p.hint(h) });
     }
   }
-  return take(items, 100, `time:${seed}`);
+  return take(items, 200, `time:${seed}`);
 }
 
 function hWord(h: number): string {
@@ -809,7 +927,7 @@ function halfWord(h: number): string {
 }
 
 function timeShortFormItems(seed: string) {
-  const hours = [6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22];
+  const hours = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23];
   const qs: { prompt: string; options: [string, string, string]; correctIndex: number; explain: string }[] = [];
   for (const h of hours) {
     const pairs: [number, string][] = [
@@ -891,7 +1009,7 @@ const LONG_WORDS = [
 ];
 
 function scrambleItems(seed: string, level: number) {
-  const words = level === 1 ? wordlistWordsByLength(3, 6, `${seed}:1`, 100) : level === 2 ? wordlistWordsByLength(6, 9, `${seed}:2`, 100) : [...wordlistWordsByLength(9, 16, `${seed}:3`, 60), ...LONG_WORDS];
+  const words = level === 1 ? [...wordlistWordsByLength(3, 6, `${seed}:1`, 150), ...SHORT_WORDS] : level === 2 ? [...wordlistWordsByLength(6, 9, `${seed}:2`, 150), ...MEDIUM_WORDS] : [...wordlistWordsByLength(9, 16, `${seed}:3`, 100), ...LONG_WORDS];
   return words.map((w) => {
     const entry = [...goetheNouns, ...topicNouns, ...goetheAdj].find((x) => x.de.replace(/^(der|die|das) /, "") === w);
     return { de: w, en: entry?.en ?? "", timeLimit: level === 3 ? 40 : 30, audio: true };
@@ -912,8 +1030,82 @@ interface CaseQ {
 
 const CASE_SUBJECTS = ["Der Mann", "Die Frau", "Das Kind", "Der Hund", "Die Katze", "Der Lehrer", "Die Lehrerin", "Der Kellner", "Das Mädchen", "Der Vater", "Die Mutter", "Der Bruder", "Die Schwester", "Der Student", "Die Oma", "Der Opa", "Der Nachbar", "Die Ärztin", "Der Zug", "Der Bus", "Die Sonne", "Der Regen", "Die Kinder", "Die Blumen", "Der Freund", "Die Freundin", "Die Familie", "Die Schüler", "Der Polizist", "Die Musik"];
 const CASE_VERBS_SUBJECT = ["schläft", "arbeitet", "spielt", "singt", "tanzt", "kocht", "liest", "schreibt", "läuft", "schwimmt", "wartet", "klingelt", "lacht", "weint", "fährt", "fliegt", "kommt", "geht", "steht", "sitzt", "liegt", "schaut", "hört", "träumt", "blüht", "scheint", "fällt", "reist", "feiert", "putzt"];
+const CASE_VERBS_PLURAL = ["schlafen", "arbeiten", "spielen", "singen", "tanzen", "kochen", "lesen", "schreiben", "laufen", "schwimmen", "warten", "klingeln", "lachen", "weinen", "fahren", "fliegen", "kommen", "gehen", "stehen", "sitzen", "liegen", "schauen", "hören", "träumen", "blühen", "scheinen", "fallen", "reisen", "feiern", "putzen"];
+const ANIMATE_SUBJECTS = new Set(["Der Mann", "Die Frau", "Das Kind", "Der Hund", "Die Katze", "Der Lehrer", "Die Lehrerin", "Der Kellner", "Das Mädchen", "Der Vater", "Die Mutter", "Der Bruder", "Die Schwester", "Der Student", "Die Oma", "Der Opa", "Der Nachbar", "Die Ärztin", "Die Kinder", "Der Freund", "Die Freundin", "Die Familie", "Die Schüler", "Der Polizist"]);
+const INANIMATE_VERBS: Record<string, string> = {
+  "Der Zug": "fährt",
+  "Der Bus": "fährt",
+  "Die Sonne": "scheint",
+  "Der Regen": "fällt",
+  "Die Blumen": "blühen",
+  "Die Musik": "spielt",
+};
 const CASE_DIRECT_OBJECTS = ["den Mann", "den Hund", "den Kaffee", "den Apfel", "den Schlüssel", "den Computer", "den Film", "den Brief", "den Bus", "den Zug", "die Frau", "die Tür", "die Oma", "die Katze", "die Musik", "die Zeitung", "die Frage", "die Hausaufgaben", "die Blumen", "die Jacke", "die Tasche", "die Pizza", "die Banane", "die Milch", "das Buch", "das Auto", "das Kind", "das Haus", "das Brot", "das Taxi", "das Wetter", "das Radio", "das Lied", "das Essen", "das Geschenk", "das Fahrrad", "das Zimmer", "das Hemd", "das Kleid", "das Geld", "einen Apfel", "einen Kaffee", "einen Film", "einen Brief", "einen Bruder", "einen Freund", "ein Buch", "ein Auto", "ein Haus", "ein Taxi"];
-const DATIVE_VERBS = ["helfe", "helfen", "danke", "danken", "antworte", "antworten", "glaube", "glauben", "gratuliere", "gratulieren", "wünsche", "wünschen", "gehöre", "gehören", "folge", "folgen"];
+const OBJ_VERBS: Record<string, [string, string]> = {
+  sehe: ["sehe", "sieht"],
+  kaufe: ["kaufe", "kauft"],
+  lese: ["lese", "liest"],
+  trinke: ["trinke", "trinkt"],
+  öffne: ["öffne", "öffnet"],
+  kenne: ["kenne", "kennt"],
+  habe: ["habe", "hat"],
+  besuche: ["besuche", "besucht"],
+  liebe: ["liebe", "liebt"],
+  mag: ["mag", "mag"],
+  brauche: ["brauche", "braucht"],
+  finde: ["finde", "findet"],
+  höre: ["höre", "hört"],
+  mache: ["mache", "macht"],
+  schreibe: ["schreibe", "schreibt"],
+  bestelle: ["bestelle", "bestellt"],
+  suche: ["suche", "sucht"],
+  verstehe: ["verstehe", "versteht"],
+  nehme: ["nehme", "nimmt"],
+  vergesse: ["vergesse", "vergisst"],
+  frage: ["frage", "fragt"],
+  treffe: ["treffe", "trifft"],
+  "warte auf": ["warte auf", "wartet auf"],
+  "lade ein": ["lade ein", "lädt ein"],
+  fotografiere: ["fotografiere", "fotografiert"],
+};
+/** Objects a verb can take without making a nonsense sentence. */
+const OBJ_COMPAT: Record<string, string[]> = {
+  sehe: ["den Mann", "die Frau", "das Kind", "den Hund", "die Katze", "den Film", "das Auto", "das Haus", "das Wetter", "das Geschenk", "das Fahrrad", "die Blumen"],
+  kaufe: ["den Apfel", "einen Apfel", "den Kaffee", "einen Kaffee", "das Brot", "ein Brot", "die Jacke", "die Tasche", "das Buch", "ein Buch", "das Auto", "ein Auto", "das Haus", "ein Haus", "das Geschenk", "die Blumen", "die Zeitung", "das Hemd", "das Kleid"],
+  lese: ["das Buch", "ein Buch", "die Zeitung", "den Brief", "einen Brief", "die Frage"],
+  trinke: ["den Kaffee", "einen Kaffee", "die Milch", "den Tee", "das Wasser", "den Saft", "ein Bier", "den Wein", "die Limonade", "einen Kaffee"],
+  öffne: ["die Tür", "das Fenster", "den Brief", "einen Brief", "das Geschenk", "die Flasche", "die Dose", "das Paket"],
+  kenne: ["den Mann", "die Frau", "das Kind", "den Kellner", "die Lehrerin", "die Oma", "den Freund", "einen Freund", "das Lied", "das Buch"],
+  habe: ["den Schlüssel", "den Computer", "die Hausaufgaben", "das Auto", "ein Auto", "das Geld", "einen Bruder", "einen Freund", "die Zeit", "eine Frage"],
+  besuche: ["die Oma", "die Mutter", "den Freund", "einen Freund", "die Schule", "das Museum", "die Stadt", "den Arzt"],
+  liebe: ["die Familie", "die Mutter", "den Vater", "das Kind", "die Katze", "den Hund", "die Musik"],
+  mag: ["die Musik", "den Kaffee", "das Brot", "die Pizza", "die Banane", "das Eis", "den Tee", "den Film"],
+  brauche: ["den Schlüssel", "den Computer", "die Hilfe", "die Zeit", "das Geld", "einen Freund", "eine Jacke"],
+  finde: ["den Schlüssel", "das Buch", "das Geld", "die Jacke", "den Brief", "ein Taxi"],
+  höre: ["die Musik", "das Radio", "das Lied", "die Nachrichten"],
+  mache: ["die Hausaufgaben", "die Arbeit", "die Pause", "den Kaffee", "einen Kaffee", "die Hausaufgaben"],
+  schreibe: ["den Brief", "einen Brief", "das Buch", "ein Buch", "die Karte", "die Hausaufgaben", "die E-Mail"],
+  bestelle: ["den Kaffee", "einen Kaffee", "die Pizza", "das Essen", "den Tee", "ein Bier", "den Wein", "die Suppe"],
+  suche: ["den Schlüssel", "das Buch", "die Brille", "die Jacke", "die Wohnung", "eine Wohnung", "den Computer"],
+  verstehe: ["die Frage", "das Wort", "den Satz", "die Antwort", "das Buch", "den Text"],
+  nehme: ["das Taxi", "ein Taxi", "den Bus", "den Zug", "den Apfel", "das Buch", "den Kaffee"],
+  vergesse: ["den Schlüssel", "den Termin", "das Buch", "die Tasche", "den Brief"],
+  frage: ["den Lehrer", "die Lehrerin", "den Kellner", "den Mann", "die Frau", "den Polizisten", "den Arzt"],
+  treffe: ["den Freund", "einen Freund", "die Freundin", "die Oma", "den Bruder", "den Kellner"],
+  "warte auf": ["den Bus", "den Zug", "den Freund", "die Oma", "den Arzt"],
+  "lade ein": ["den Freund", "einen Freund", "die Freundin", "die Oma", "den Kollegen"],
+  fotografiere: ["das Auto", "das Haus", "die Katze", "den Hund", "die Blumen", "das Museum"],
+};
+const DATIVE_VERBS: Record<string, [string, string, string, string]> = {
+  helfe: ["helfe", "helfen", "hilft", "hilft"],
+  danke: ["danke", "danken", "dankt", "dankt"],
+  antworte: ["antworte", "antworten", "antwortet", "antwortet"],
+  glaube: ["glaube", "glauben", "glaubt", "glaubt"],
+  gratuliere: ["gratuliere", "gratulieren", "gratuliert", "gratuliert"],
+  wünsche: ["wünsche", "wünschen", "wünscht", "wünscht"],
+  gehöre: ["gehöre", "gehören", "gehört", "gehört"],
+  folge: ["folge", "folgen", "folgt", "folgt"],
+};
 const DATIVE_OBJECTS = ["dem Mann", "dem Lehrer", "dem Kind", "dem Vater", "dem Freund", "dem Nachbarn", "dem Arzt", "dem Kellner", "dem Fahrer", "dem Chef", "dem Studenten", "dem Opa", "dem Bruder", "dem Kollegen", "der Frau", "der Lehrerin", "der Mutter", "der Oma", "der Schwester", "der Ärztin", "der Freundin", "der Tochter", "der Familie", "der Katze", "mir", "dir", "ihm", "ihr", "uns", "den Eltern", "den Kindern", "den Schülern", "den Nachbarn"];
 const WOHIN_OBJECTS: [string, string, string, string, string][] = [
   ["der Supermarkt", "den Supermarkt", "dem Supermarkt", "in den Supermarkt", "Wohin? in takes the accusative: in den Supermarkt."],
@@ -935,64 +1127,120 @@ const WOHIN_OBJECTS: [string, string, string, string, string][] = [
 function caseQuestions(seed: string, level: number): CaseQ[] {
   const qs: CaseQ[] = [];
   if (level === 1) {
-    const subjects = take(CASE_SUBJECTS, 50, `${seed}:s`);
-    const verbs = take(CASE_VERBS_SUBJECT, 40, `${seed}:v`);
+    const subjects = take(CASE_SUBJECTS, 60, `${seed}:s`);
     subjects.forEach((subj, i) => {
-      const verb = verbs[i % verbs.length];
-      const noun = subj.replace(/^(Der|Die|Das) /, "");
-      qs.push({ prompt: `${subj} ${verb}. (${noun})`, options: shuffle3("Nominativ", "Akkusativ", "Dativ", `${seed}:n${i}`), correctIndex: 0, explain: `${subj} is the subject doing the ${verb}: nominative.` });
+      let verb: string;
+      let noun: string;
+      if (INANIMATE_VERBS[subj]) {
+        verb = INANIMATE_VERBS[subj];
+        noun = subj.replace(/^(Der|Die|Das) /, "");
+      } else if (subj === "Die Kinder" || subj === "Die Schüler" || subj === "Die Blumen") {
+        verb = take(CASE_VERBS_PLURAL, 1, `${seed}:v${i}`)[0];
+        noun = subj.replace(/^(Der|Die|Das) /, "");
+      } else {
+        verb = take(CASE_VERBS_SUBJECT, 1, `${seed}:v${i}`)[0];
+        noun = subj.replace(/^(Der|Die|Das) /, "");
+      }
+      const options = shuffle3("Nominativ", "Akkusativ", "Dativ", `${seed}:n${i}`);
+      qs.push({ prompt: `${subj} ${verb}. (${noun})`, options, correctIndex: options.indexOf("Nominativ"), explain: `${subj} is the subject doing the ${verb}: nominative.` });
     });
-    const objects = take(CASE_DIRECT_OBJECTS, 35, `${seed}:o`);
-    const objVerbs = ["sehe", "kaufe", "lese", "trinke", "öffne", "kenne", "habe", "besuche", "liebe", "mag", "brauche", "finde", "höre", "mache", "schreibe", "bestelle", "suche", "verstehe", "nehme", "vergesse", "frage", "treffe", "warte auf", "lade ein", "fotografiere"];
-    objects.forEach((obj, i) => {
-      const v1 = objVerbs[i % objVerbs.length];
-      const v2 = objVerbs[(i + 7) % objVerbs.length];
-      qs.push({ prompt: `Ich ${v1} ${obj}. (${obj})`, options: shuffle3("Akkusativ", "Nominativ", "Dativ", `${seed}:a${i}`), correctIndex: 0, explain: `${obj} is the direct object: accusative.` });
-      qs.push({ prompt: `Er ${v2} ${obj}. (${obj})`, options: shuffle3("Akkusativ", "Nominativ", "Dativ", `${seed}:b${i}`), correctIndex: 0, explain: `${obj} is the direct object: accusative.` });
+    const objVerbs = Object.keys(OBJ_VERBS);
+    const picked = take(objVerbs, 20, `${seed}:ov`);
+    picked.forEach((verbKey, i) => {
+      const [ichForm, erForm] = OBJ_VERBS[verbKey];
+      const compatible = OBJ_COMPAT[verbKey] ?? [];
+      const objects = take(compatible.length ? compatible : CASE_DIRECT_OBJECTS, 5, `${seed}:o${i}`);
+      objects.forEach((obj) => {
+        const aOptions = shuffle3("Akkusativ", "Nominativ", "Dativ", `${seed}:a${i}`);
+        qs.push({ prompt: `Ich ${ichForm} ${obj}. (${obj})`, options: aOptions, correctIndex: aOptions.indexOf("Akkusativ"), explain: `${obj} is the direct object: accusative.` });
+        const bOptions = shuffle3("Akkusativ", "Nominativ", "Dativ", `${seed}:b${i}`);
+        qs.push({ prompt: `Er ${erForm} ${obj}. (${obj})`, options: bOptions, correctIndex: bOptions.indexOf("Akkusativ"), explain: `${obj} is the direct object: accusative.` });
+      });
     });
   } else if (level === 2) {
-    const verbs = take(DATIVE_VERBS, 16, `${seed}:v`);
+    const verbKeys = take(Object.keys(DATIVE_VERBS), 8, `${seed}:v`);
     const objects = take(DATIVE_OBJECTS, 34, `${seed}:o`);
-    verbs.forEach((verb, i) => {
+    verbKeys.forEach((verbKey, i) => {
+      const forms = DATIVE_VERBS[verbKey];
       objects.forEach((obj, j) => {
-        if ((i + j) % 5 !== 0) return;
-        const subject = ["Ich", "Wir", "Er", "Sie"][(i + j) % 4];
-        qs.push({ prompt: `${subject} ${verb} ${obj}. (${obj})`, options: shuffle3("Dativ", "Akkusativ", "Nominativ", `${seed}:q${i}${j}`), correctIndex: 0, explain: `${verb} takes the dative: ${obj}.` });
+        if ((i + j) % 3 !== 0) return;
+        const [subject, verb] = ([["Ich", forms[0]], ["Wir", forms[1]], ["Er", forms[2]], ["Sie", forms[3]]] as [string, string][])[(i + j) % 4];
+        const options = shuffle3("Dativ", "Akkusativ", "Nominativ", `${seed}:q${i}${j}`);
+        qs.push({ prompt: `${subject} ${verb} ${obj}. (${obj})`, options, correctIndex: options.indexOf("Dativ"), explain: `${verbKey} takes the dative: ${obj}.` });
       });
     });
   } else if (level === 3) {
-    const nouns = take(nounEntries, 100, `${seed}:n`);
-    const templates: [string, string, string][] = [
-      ["Ich sehe ___ %s.", "den", "sehen takes the accusative"],
-      ["Ich gebe ___ %s einen Apfel.", "dem", "The receiver of geben is dative"],
-      ["Ich danke ___ %s.", "der", "danken takes the dative"],
-      ["Das schmeckt ___ %s gut.", "dem", "schmecken takes the dative"],
-      ["Wir antworten ___ %s.", "der", "antworten takes the dative"],
-      ["Ich helfe ___ %s.", "dem", "helfen takes the dative"],
-      ["Er gibt ___ %s ein Geschenk.", "der", "The receiver of geben is dative"],
-      ["Sie liebt ___ %s.", "den", "lieben takes the accusative"],
+    const nouns = take(nounEntries, 200, `${seed}:n`);
+    const accTemplates: [string, string][] = [
+      ["Ich sehe ___ %s.", "sehen takes the accusative"],
+      ["Ich kaufe ___ %s.", "kaufen takes the accusative"],
+      ["Ich habe ___ %s.", "haben takes the accusative"],
+      ["Ich brauche ___ %s.", "brauchen takes the accusative"],
+      ["Ich finde ___ %s.", "finden takes the accusative"],
+      ["Ich suche ___ %s.", "suchen takes the accusative"],
+      ["Ich mag ___ %s.", "mögen takes the accusative"],
+      ["Ich kenne ___ %s.", "kennen takes the accusative"],
+      ["Sie liebt ___ %s.", "lieben takes the accusative"],
     ];
+    const datTemplates: [string, string][] = [
+      ["Ich gebe ___ %s einen Apfel.", "The receiver of geben is dative"],
+      ["Ich danke ___ %s.", "danken takes the dative"],
+      ["Das schmeckt ___ %s gut.", "schmecken takes the dative"],
+      ["Wir antworten ___ %s.", "antworten takes the dative"],
+      ["Ich helfe ___ %s.", "helfen takes the dative"],
+      ["Er gibt ___ %s ein Geschenk.", "The receiver of geben is dative"],
+    ];
+    const accusativeForm = (article: string): string => (article === "der" ? "den" : article);
+    const dativeForm = (article: string): string => (article === "die" ? "der" : "dem");
+    const animate = new Set<string>();
+    for (const list of wordLists) {
+      if (list.id === "people" || list.id === "animals") {
+        for (const w of list.words) animate.add(w.de);
+      }
+    }
+    const ANIMATE_FALLBACK = ["der Kellner", "der Opa", "die Oma", "der Polizist", "der Chef", "der König"];
+    for (const n of ANIMATE_FALLBACK) animate.add(n);
+    for (const w of ["der Mann", "die Frau", "das Kind", "der Hund", "die Katze", "der Lehrer", "die Lehrerin", "der Vater", "die Mutter", "der Bruder", "die Schwester", "der Freund", "die Freundin", "der Kollege", "der Student", "der Arzt", "die Ärztin", "der Nachbar", "das Mädchen", "die Familie", "der Kellner", "der Opa", "die Oma", "der Polizist", "der Chef"]) animate.add(w);
     nouns.forEach((n, i) => {
       const article = articleOf(n.de);
       const base = n.de.replace(/^(der|die|das) /, "");
-      const [template, correct, explain] = templates[i % templates.length];
-      const correctForm = (correct === "den" ? "den" : correct === "der" ? "der" : "dem") + "";
-      const optSet = unique3(correctForm, "den", "der", ["dem", "die", "das"], `${seed}:c${i}`);
-      qs.push({
-        prompt: template.replace("%s", base),
-        options: optSet,
-        correctIndex: optSet.indexOf(correctForm),
-        explain: `${explain}: ${correctForm} ${base}.`,
-      });
+      if (animate.has(n.de)) {
+        const [template, explain] = datTemplates[i % datTemplates.length];
+        const correctForm = dativeForm(article);
+        const optSet = unique3(correctForm, "den", "der", ["dem", "die", "das"], `${seed}:c${i}`);
+        qs.push({
+          prompt: template.replace("%s", base),
+          options: optSet,
+          correctIndex: optSet.indexOf(correctForm),
+          explain: `${explain}: ${correctForm} ${base}.`,
+        });
+      } else {
+        const [template, explain] = accTemplates[i % accTemplates.length];
+        const correctForm = accusativeForm(article);
+        const optSet = unique3(correctForm, "den", "der", ["dem", "die", "das"], `${seed}:c${i}`);
+        qs.push({
+          prompt: template.replace("%s", base),
+          options: optSet,
+          correctIndex: optSet.indexOf(correctForm),
+          explain: `${explain}: ${correctForm} ${base}.`,
+        });
+      }
     });
   } else {
-    const places = take(WOHIN_OBJECTS, 14, `${seed}:p`);
-    places.forEach(([, akk, dat, full, explain], i) => {
-      const nom = places[i][0];
+    const places = take(WOHIN_OBJECTS, 30, `${seed}:p`);
+    places.forEach(([nom, akk, dat, full, explain], i) => {
       const base = nom.replace(/^(der|die|das) /, "");
-      qs.push({ prompt: `Ich gehe ${full.includes("zu") ? "zu" : "in"} ${full.includes("zu") ? dat : akk} ${base}. (direction)`, options: unique3(full.includes("zu") ? dat : akk, "den", "dem", [akk, nom], `${seed}:w${i}`), correctIndex: 0, explain });
-      qs.push({ prompt: `Ich bin in ${dat} ${base}. (position)`, options: unique3(dat, akk, nom, ["dem", "die", "das"], `${seed}:p${i}`), correctIndex: 0, explain: `Wo? position takes the dative: in ${dat} ${base}.` });
-      qs.push({ prompt: `Ich komme ${full.includes("zu") ? "aus dem" : "aus der"} ${base}. (origin)`, options: shuffle3(full.includes("zu") ? "aus dem" : "aus der", "aus den", "aus das", `${seed}:u${i}`), correctIndex: 0, explain: `Woher? takes aus + dative: ${full.includes("zu") ? "aus dem" : "aus der"} ${base}.` });
+      const akkArt = akk.split(" ")[0];
+      const datArt = dat.split(" ")[0];
+      const nomArt = nom.split(" ")[0];
+      const isZu = full.includes("zu");
+      const prep = isZu ? "zu" : "in";
+      const directionOptions = unique3(akkArt, datArt, nomArt, ["den", "dem", "die", "das"], `${seed}:w${i}`);
+      qs.push({ prompt: `Ich gehe ${prep} ___ ${base}. (direction)`, options: directionOptions, correctIndex: directionOptions.indexOf(akkArt), explain: isZu ? `zu takes the dative, but the destination phrase is ${full}.` : `Wohin? in takes the accusative: ${full}.` });
+      const positionOptions = unique3(datArt, akkArt, nomArt, ["dem", "den", "die", "das"], `${seed}:p${i}`);
+      qs.push({ prompt: `Ich bin in ___ ${base}. (position)`, options: positionOptions, correctIndex: positionOptions.indexOf(datArt), explain: `Wo? position takes the dative: in ${dat} ${base}.` });
+      const originOptions = unique3(datArt, akkArt, nomArt, ["dem", "den", "die", "das"], `${seed}:u${i}`);
+      qs.push({ prompt: `Ich komme aus ___ ${base}. (origin)`, options: originOptions, correctIndex: originOptions.indexOf(datArt), explain: `Woher? takes aus + dative: aus ${dat} ${base}.` });
     });
     const vehiclePreps: [string, string, string, string, string][] = [
       ["Ich fahre mit ___ Auto.", "dem", "das", "den", "mit always takes the dative: mit dem Auto."],
@@ -1028,18 +1276,18 @@ function caseQuestions(seed: string, level: number): CaseQ[] {
     ];
     vehiclePreps.push(...housePreps);
     vehiclePreps.forEach(([prompt, correct, d1, d2, explain], i) => {
-      qs.push({ prompt, options: shuffle3(correct, d1, d2, `${seed}:v${i}`), correctIndex: 0, explain });
+      const options = shuffle3(correct, d1, d2, `${seed}:v${i}`);
+      qs.push({ prompt, options, correctIndex: options.indexOf(correct), explain });
     });
     const preps: [string, string, string, string, string][] = [
       ["Ich fahre mit ___ Auto.", "dem", "das", "den", "mit always takes the dative: mit dem Auto."],
-      ["Das Geschenk ist für ___ dich.", "dich", "dir", "du", "für always takes the accusative: für dich."],
-      ["Ich komme aus ___ Nigeria.", "aus", "von", "zu", "aus answers Woher? without an article: aus Nigeria."],
+      ["Ich komme ___ Nigeria.", "aus", "von", "zu", "aus answers Woher? without an article: aus Nigeria."],
       ["Die Lampe ist auf ___ Tisch. (position)", "dem", "den", "das", "Wo? position takes the dative: auf dem Tisch."],
       ["Ich lege das Buch auf ___ Tisch. (direction)", "den", "dem", "der", "Wohin? direction takes the accusative: auf den Tisch."],
       ["Wir gehen in ___ Kino. (direction)", "das", "dem", "der", "Wohin? into the cinema: in das Kino."],
       ["Er ist in ___ Schule. (position)", "der", "die", "dem", "Wo? position takes the dative: in der Schule."],
       ["Sie wohnt bei ___ Eltern.", "den", "die", "dem", "bei takes the dative; plural dative is den Eltern."],
-      ["Ich fliege nach ___ Berlin.", "nach", "in", "zu", "nach is used with cities without articles: nach Berlin."],
+      ["Ich fliege ___ Berlin.", "nach", "in", "zu", "nach is used with cities without articles: nach Berlin."],
       ["Das Buch ist für ___ Kind.", "das", "dem", "den", "für takes the accusative; neuter stays das."],
       ["Wir treffen uns vor ___ Kino. (position)", "dem", "das", "den", "Wo? position takes the dative: vor dem Kino."],
       ["Ich stelle die Vase auf ___ Tisch. (direction)", "den", "dem", "der", "Wohin? direction takes the accusative: auf den Tisch."],
@@ -1053,9 +1301,8 @@ function caseQuestions(seed: string, level: number): CaseQ[] {
       ["Das Geschenk ist von ___ Oma.", "der", "die", "dem", "von takes the dative: von der Oma."],
       ["Ich sitze neben ___ Fenster.", "dem", "das", "den", "neben takes the dative for position: neben dem Fenster."],
       ["Der Stuhl steht neben ___ Tisch.", "dem", "den", "der", "Position takes the dative: neben dem Tisch."],
-      ["Ich gehe nach ___ Hause.", "nach", "zu", "in", "nach Hause is the fixed form for going home."],
+      ["Ich gehe ___ Hause.", "nach", "zu", "in", "nach Hause is the fixed form for going home."],
       ["Er fährt zu ___ Oma.", "der", "die", "dem", "zu takes the dative: zu der Oma (zur Oma)."],
-      ["Ich komme zu ___ dir.", "dir", "dich", "du", "zu takes the dative: zu dir."],
       ["Das ist für ___ Mama.", "die", "der", "dem", "für takes the accusative; feminine stays die."],
       ["Wir warten auf ___ Bus.", "den", "dem", "der", "warten auf takes the accusative: auf den Bus."],
       ["Sie fährt mit ___ Zug.", "dem", "den", "das", "mit always takes the dative: mit dem Zug."],
@@ -1063,7 +1310,8 @@ function caseQuestions(seed: string, level: number): CaseQ[] {
       ["Er wohnt gegenüber ___ Bahnhof.", "dem", "den", "der", "gegenüber takes the dative: gegenüber dem Bahnhof."],
     ];
     preps.forEach(([prompt, correct, d1, d2, explain], i) => {
-      qs.push({ prompt, options: shuffle3(correct, d1, d2, `${seed}:p${i}`), correctIndex: 0, explain });
+      const options = shuffle3(correct, d1, d2, `${seed}:p${i}`);
+      qs.push({ prompt, options, correctIndex: options.indexOf(correct), explain });
     });
   }
   return take(qs, 100, `${seed}:final`);
@@ -1078,7 +1326,7 @@ function hangmanWords(seed: string, level: number) {
       : level === 2
         ? [...wordlistWordsByLength(minLen, maxLen, `${seed}:2`, 60), ...MEDIUM_WORDS]
         : [...wordlistWordsByLength(minLen, maxLen, `${seed}:3`, 50), ...LONG_WORDS];
-  const words = take([...new Set(base)], 100, `${seed}:${level}`);
+  const words = take([...new Set(base)], 200, `${seed}:${level}`);
   return words.map((w) => {
     const entry = [...goetheNouns, ...topicNouns, ...goetheAdj].find((x) => x.de.replace(/^(der|die|das) /, "") === w);
     return { word: w, hint: entry?.en ?? "" };
@@ -1158,8 +1406,12 @@ ${artikelDropItems(l, `ad${l}`)
   );
 
   const rulesQuestions = articleRules("rules");
-  const rulesLevel1 = rulesQuestions.slice(0, 100).map((n) => mcExercise(nid(), `___ ${esc(n.de.replace(/^(der|die|das) /, ""))}`, shuffle3("der", "die", "das", `r:${n.de}`), ["der", "die", "das"].indexOf(articleOf(n.de)), articleRuleExplain(n.de)));
-  const rulesLevel2 = take(nounEntries, 100, "rules2").map((n) => mcExercise(nid(), `___ ${esc(n.de.replace(/^(der|die|das) /, ""))}`, shuffle3("der", "die", "das", `r2:${n.de}`), ["der", "die", "das"].indexOf(articleOf(n.de)), articleRuleExplain(n.de)));
+  const articleQuestion = (n: (typeof nounEntries)[number], seed: string) => {
+    const options = shuffle3("der", "die", "das", seed);
+    return mcExercise(nid(), `___ ${esc(n.de.replace(/^(der|die|das) /, ""))}`, options, options.indexOf(articleOf(n.de)), articleRuleExplain(n.de));
+  };
+  const rulesLevel1 = rulesQuestions.slice(0, 200).map((n) => articleQuestion(n, `r:${n.de}`));
+  const rulesLevel2 = take(nounEntries, 200, "rules2").map((n) => articleQuestion(n, `r2:${n.de}`));
 
   const timeL1 = timeQuestions("t1").map((q) => mcExercise(nid(), q.prompt, q.options, q.options.indexOf(q.correct), q.explain));
   const timeL2 = timeQuestions("t2").map((q) => mcExercise(nid(), q.prompt, q.options, q.options.indexOf(q.correct), q.explain));
@@ -1171,11 +1423,11 @@ ${artikelDropItems(l, `ad${l}`)
   const imgL1 = imgQuestions.slice(0, Math.floor(imgQuestions.length / 2)).map((q) => mcExercise(nid(), q.prompt, q.options, q.correctIndex, q.explain));
   const imgL2 = imgQuestions.slice(Math.floor(imgQuestions.length / 2)).map((q) => mcExercise(nid(), q.prompt, q.options, q.correctIndex, q.explain));
 
-  const tfL1 = trueFalseQuestions("tf1").slice(0, 100).map((q) => mcExercise(nid(), q.prompt, q.options, q.correctIndex, q.explain));
-  const tfL2 = trueFalseQuestions("tf2").slice(0, 100).map((q) => mcExercise(nid(), q.prompt, q.options, q.correctIndex, q.explain));
+  const tfL1 = trueFalseQuestions("tf1").slice(0, 200).map((q) => mcExercise(nid(), q.prompt, q.options, q.correctIndex, q.explain));
+  const tfL2 = trueFalseQuestions("tf2").slice(0, 200).map((q) => mcExercise(nid(), q.prompt, q.options, q.correctIndex, q.explain));
 
-  const plL1 = pluralQuestions("pl1").slice(0, 100).map((q) => mcExercise(nid(), q.prompt, q.options, q.correctIndex, q.explain));
-  const plL2 = pluralQuestions("pl2").slice(0, 100).map((q) => mcExercise(nid(), q.prompt, q.options, q.correctIndex, q.explain));
+  const plL1 = pluralQuestions("pl1").slice(0, 200).map((q) => mcExercise(nid(), q.prompt, q.options, q.correctIndex, q.explain));
+  const plL2 = pluralQuestions("pl2").slice(0, 200).map((q) => mcExercise(nid(), q.prompt, q.options, q.correctIndex, q.explain));
 
   const en2deL1 = typingExercise(nid(), enToDeTyping("e1"));
   const en2deL2 = typingExercise(nid(), enToDeTyping("e2"));
@@ -1268,9 +1520,9 @@ ${artikelDropItems(l, `ad${l}`)
 
   // conjugation typing: 3 levels x 100
   const conjLevels = [
-    { level: 1, verbs: take([...new Set(REGULAR_VERBS.map((v) => v[0]))], 25, "cr"), persons: [0, 1, 2, 3] },
-    { level: 2, verbs: take([...new Set(IRREGULAR_VERBS.map((v) => v[0]))], 25, "ci"), persons: [0, 1, 2, 3, 4, 5] },
-    { level: 3, verbs: take(["essen", "lesen", "sehen", "fahren", "sprechen", "schlafen", "helfen", "nehmen", "laufen", "tragen", "halten", "waschen", "werfen", "geben", "treffen", "verlieren", "vergessen", "einladen", "einsteigen", "anrufen"], 20, "cv"), persons: [0, 1, 2, 3, 4] },
+    { level: 1, verbs: take([...new Set(REGULAR_VERBS.map((v) => v[0]))], 50, "cr"), persons: [0, 1, 2, 3] },
+    { level: 2, verbs: take([...new Set(IRREGULAR_VERBS.map((v) => v[0]))], 34, "ci"), persons: [0, 1, 2, 3, 4, 5] },
+    { level: 3, verbs: take(Object.keys(CONJ), 100, "cv"), persons: [1, 2] },
   ];
 
   const conjBlocks = conjLevels.map(({ level, verbs, persons }) => {
@@ -1289,23 +1541,26 @@ ${artikelDropItems(l, `ad${l}`)
   // conjugation MC: 2 levels x 100
   const conjMcLevels = [0, 1].map((level) => {
     const verbs = take(Object.keys(CONJ), 100, `cmc:${level}`);
-    const qs = verbs.map((verb) => {
+    const qs: string[] = [];
+    verbs.forEach((verb, vi) => {
       const forms = CONJ[verb];
-      const p = Math.floor(Math.abs(mulberryHash(`${verb}:${level}`)) % 6);
-      const person = ["ich", "du", "er/sie/es", "wir", "ihr", "sie/Sie"][p];
-      const correct = forms[p];
-      const distractorPool = Object.values(CONJ).map((f) => f[p]).filter((f) => f !== correct);
-      const d1 = distractorPool[Math.floor(mulberryHash(`${verb}:a`) % distractorPool.length)];
-      const d2 = distractorPool[Math.floor(mulberryHash(`${verb}:b`) % distractorPool.length)];
-      const options = shuffle3(correct, d1, d2, `${verb}:${level}`);
-      return mcExercise(nid(), `${person} ___ (${verb})`, options, options.indexOf(correct), `${verb} in the ${person} form is ${correct}.`);
+      for (let j = 0; j < 2; j++) {
+        const p = Math.floor(Math.abs(mulberryHash(`${verb}:${level}:${j}`)) % 6);
+        const person = ["ich", "du", "er/sie/es", "wir", "ihr", "sie/Sie"][p];
+        const correct = forms[p];
+        const distractorPool = Object.values(CONJ).map((f) => f[p]).filter((f) => f !== correct);
+        const d1 = distractorPool[Math.floor(mulberryHash(`${verb}:a:${j}`) % distractorPool.length)];
+        const d2 = distractorPool[Math.floor(mulberryHash(`${verb}:b:${j}`) % distractorPool.length)];
+        const options = unique3(correct, d1, d2, distractorPool, `${verb}:${level}:${j}`);
+        qs.push(mcExercise(nid(), `${person} ___ (${verb})`, options, options.indexOf(correct), `${verb} in the ${person} form is ${correct}.`));
+      }
     });
     return levelBlock(`conjmc-${level + 1}`, `Level ${level + 1}: Conjugation MC`, qs.join(""));
   });
 
   // conjugation full table: 2 levels x 100 (16 verbs x 6 persons + 4)
   const tableBlocks = [0, 1].map((level) => {
-    const verbs = take(Object.keys(CONJ).filter((v) => !["möchten", "können", "müssen", "wollen", "dürfen", "sollen"].includes(v)), 17, `ct:${level}`);
+    const verbs = take(Object.keys(CONJ).filter((v) => !["möchten", "können", "müssen", "wollen", "dürfen", "sollen"].includes(v)), 34, `ct:${level}`);
     const items: { prompt: string; accept: string[]; hint: string; audio: boolean }[] = [];
     for (const verb of verbs) {
       const forms = CONJ[verb];
@@ -1318,14 +1573,14 @@ ${artikelDropItems(l, `ad${l}`)
 
   // partizip II: 2 levels x 100 typing
   const partizipBlocks = [0, 1].map((level) => {
-    const verbs = take(Object.keys(PARTIZIP), 100, `p2:${level}`);
+    const verbs = take(Object.keys(PARTIZIP), 200, `p2:${level}`);
     const items = verbs.map((v) => ({ prompt: v, accept: [PARTIZIP[v].form], hint: PARTIZIP[v].form, audio: true }));
     return levelBlock(`p2-${level + 1}`, `Level ${level + 1}: Partizip II`, typingExercise(nid(), items));
   });
 
   // partizip II aux: 2 levels x 100 MC
   const auxBlocks = [0, 1].map((level) => {
-    const verbs = take(Object.keys(PARTIZIP), 100, `aux:${level}`);
+    const verbs = take(Object.keys(PARTIZIP), 200, `aux:${level}`);
     const qs = verbs.map((v) => {
       const { form, aux } = PARTIZIP[v];
       const other = aux === "haben" ? "bin" : "habe";
@@ -1336,24 +1591,25 @@ ${artikelDropItems(l, `ad${l}`)
   });
 
   // verbs en->de typing: 2 levels x 100
+  const allVerbEntries = [...verbEntries, ...EXTRA_VERBS.map(([de, en]) => ({ de, en }))];
   const en2deV = [0, 1].map((level) => {
-    const verbs = take(goetheVerbs, 100, `ve:${level}`);
+    const verbs = take(allVerbEntries, 200, `ve:${level}`);
     const items = verbs.map((v) => ({ prompt: v.en, accept: [v.de], hint: v.de }));
     return levelBlock(`ev2g-${level + 1}`, `Level ${level + 1}: English verbs to German`, typingExercise(nid(), items));
   });
 
   // verbs de->en typing: 2 levels x 100
   const de2enV = [0, 1].map((level) => {
-    const verbs = take(goetheVerbs, 100, `vd:${level}`);
+    const verbs = take(allVerbEntries, 200, `vd:${level}`);
     const items = verbs.map((v) => ({ prompt: v.de, accept: [v.en.toLowerCase()], audio: true }));
     return levelBlock(`gv2e-${level + 1}`, `Level ${level + 1}: German verbs to English`, typingExercise(nid(), items));
   });
 
   // guess the verb MC: 2 levels x 100
   const guessVerbMc = [0, 1].map((level) => {
-    const verbs = take(goetheVerbs, 100, `gm:${level}`);
+    const verbs = take(allVerbEntries, 200, `gm:${level}`);
     const qs = verbs.map((v) => {
-      const others = take(goetheVerbs.filter((x) => x.de !== v.de), 5, `${v.de}:${level}`).map((x) => x.en);
+      const others = take(allVerbEntries.filter((x) => x.de !== v.de), 5, `${v.de}:${level}`).map((x) => x.en);
       const options = unique3(v.en, others[0], others[1], others, `${v.de}:o`);
       return mcExercise(nid(), v.de, options, options.indexOf(v.en), `${v.de} means ${v.en}.`);
     });
@@ -1365,34 +1621,89 @@ ${artikelDropItems(l, `ad${l}`)
     if (level === 0) {
       const verbs = take(Object.keys(PARTIZIP).filter((v) => PARTIZIP[v].aux === "haben"), 50, "pfh");
       const subjects = ["Ich", "Du", "Er", "Wir", "Sie"];
-      const objects = ["Kaffee", "einen Apfel", "das Buch", "Musik", "Fußball", "einen Film", "die Hausaufgaben", "ein Brot", "einen Brief", "das Auto", "die Tür", "eine Jacke", "das Lied", "ein Geschenk", "den Schlüssel", "die Frage"];
+      const verbObjects: Record<string, string[]> = {
+        kaufen: ["Kaffee", "einen Apfel", "das Brot", "eine Jacke", "ein Auto", "ein Geschenk", "die Blumen", "die Zeitung"],
+        machen: ["die Hausaufgaben", "die Pause", "einen Kaffee", "das Frühstück", "die Arbeit"],
+        lesen: ["das Buch", "die Zeitung", "einen Brief", "die Karte"],
+        trinken: ["Kaffee", "den Tee", "die Milch", "das Wasser", "einen Saft"],
+        essen: ["das Brot", "den Apfel", "die Suppe", "einen Kuchen"],
+        öffnen: ["die Tür", "das Fenster", "einen Brief", "das Geschenk"],
+        hören: ["Musik", "das Radio", "ein Lied", "die Nachrichten"],
+        schreiben: ["einen Brief", "eine Karte", "das Buch", "die Hausaufgaben"],
+        bestellen: ["Kaffee", "die Pizza", "das Essen", "einen Tee"],
+        suchen: ["den Schlüssel", "das Buch", "die Jacke", "die Brille"],
+        brauchen: ["das Geld", "die Hilfe", "einen Computer", "die Zeit"],
+        finden: ["den Schlüssel", "das Geld", "die Jacke", "ein Taxi"],
+        kochen: ["das Essen", "die Suppe", "das Mittagessen"],
+        lernen: ["Deutsch", "die Wörter", "ein Lied"],
+        sehen: ["einen Film", "die Frau", "das Kind", "das Auto"],
+        treffen: ["den Freund", "die Freunde", "die Oma"],
+        vergessen: ["den Schlüssel", "den Termin", "das Buch"],
+        kaufen2: [],
+      };
+      delete verbObjects.kaufen2;
       const items: { prompt: string; accept: string[]; hint: string; audio: boolean }[] = [];
-      for (let i = 0; i < 100; i++) {
-        const v = verbs[i % verbs.length];
-        const form = PARTIZIP[v].form;
-        const subj = subjects[i % subjects.length];
-        const subjForm = subj === "Ich" ? "habe" : subj === "Du" ? "hast" : subj === "Er" ? "hat" : "haben";
-        const obj = objects[(i + Math.floor(i / 4)) % objects.length];
-        const prompt = `${subj} ${v} ${obj}.`;
-        const past = `${subj} ${subjForm} ${form} ${obj}.`;
-        items.push({ prompt, accept: [past.toLowerCase()], hint: past, audio: true });
+      let seedIdx = 0;
+      for (const v of verbs) {
+        const objects = verbObjects[v] ?? [];
+        if (objects.length === 0) continue;
+        const conj = CONJ[v];
+        for (const obj of objects) {
+          if (items.length >= 100) break;
+          const form = PARTIZIP[v].form;
+          const subj = subjects[seedIdx % subjects.length];
+          seedIdx++;
+          const subjForm = subj === "Ich" ? "habe" : subj === "Du" ? "hast" : subj === "Er" ? "hat" : "haben";
+          const present = conj ? conj[["Ich", "Du", "Er", "Wir", "Sie"].indexOf(subj)] : `${subj} ${v}`;
+          const prompt = `${subj} ${present} ${obj}.`;
+          const past = `${subj} ${subjForm} ${obj} ${form}.`;
+          items.push({ prompt, accept: [past.toLowerCase()], hint: past, audio: true });
+        }
+        if (items.length >= 100) break;
       }
       return items;
     }
     if (level === 1) {
       const verbs = take(Object.keys(PARTIZIP).filter((v) => PARTIZIP[v].aux === "sein"), 30, "pfs");
       const subjects = ["Ich", "Du", "Er", "Wir", "Sie"];
-      const places = ["nach Hause", "nach Berlin", "nach München", "in den Park", "in die Stadt", "zum Bahnhof", "ins Kino", "an den See", "in den Urlaub", "nach Hamburg", "zum Flughafen", "in die Schule"];
+      const verbPlaces: Record<string, string[]> = {
+        gehen: ["nach Hause", "nach Berlin", "in die Stadt", "ins Kino", "in den Park"],
+        fahren: ["nach Berlin", "nach Hamburg", "nach München", "in den Urlaub", "zum Bahnhof", "zum Flughafen"],
+        fliegen: ["nach Berlin", "nach München", "nach Spanien", "nach Hamburg"],
+        kommen: ["aus Berlin", "aus München", "nach Hause", "aus der Schule"],
+        laufen: ["im Park", "nach Hause", "in die Stadt", "an den See"],
+        schwimmen: ["im See", "im Meer", "im Schwimmbad", "an den See"],
+        aufstehen: ["um sechs", "um sieben", "früh", "spät"],
+        ankommen: ["in Berlin", "in Hamburg", "in München", "am Bahnhof"],
+        bleiben: ["zu Hause", "im Hotel", "in Berlin"],
+        einsteigen: ["in den Bus", "in den Zug", "in das Auto"],
+        aussteigen: ["aus dem Bus", "aus dem Zug", "aus dem Taxi"],
+        zurückkommen: ["nach Hause", "aus Berlin", "aus dem Urlaub"],
+        mitkommen: ["ins Kino", "nach Berlin", "zum Bahnhof"],
+        losgehen: ["um sieben", "am Morgen", "früh"],
+        umsteigen: ["am Bahnhof", "in Hamburg", "in Berlin"],
+      };
       const items: { prompt: string; accept: string[]; hint: string; audio: boolean }[] = [];
-      for (let i = 0; i < 100; i++) {
-        const v = verbs[i % verbs.length];
-        const form = PARTIZIP[v].form;
-        const subj = subjects[(i + 2) % subjects.length];
-        const subjForm = subj === "Ich" ? "bin" : subj === "Du" ? "bist" : subj === "Er" ? "ist" : "sind";
-        const place = places[(i + Math.floor(i / 5)) % places.length];
-        const prompt = `${subj} ${v} ${place}.`;
-        const past = `${subj} ${subjForm} ${form} ${place}.`;
-        items.push({ prompt, accept: [past.toLowerCase()], hint: past, audio: true });
+      let seedIdx = 0;
+      for (const v of verbs) {
+        const places = verbPlaces[v] ?? [];
+        if (places.length === 0) continue;
+        const conj = CONJ[v];
+        for (const place of places) {
+          if (items.length >= 100) break;
+          const form = PARTIZIP[v].form;
+          const subj = subjects[(seedIdx + 2) % subjects.length];
+          seedIdx++;
+          const subjForm = subj === "Ich" ? "bin" : subj === "Du" ? "bist" : subj === "Er" ? "ist" : "sind";
+          const present = conj ? conj[["Ich", "Du", "Er", "Wir", "Sie"].indexOf(subj)] : `${subj} ${v}`;
+          // Separable verbs ("komme an") put the prefix at the end:
+          // "Du kommst in Hamburg an." not "Du kommst an in Hamburg."
+          const m = present.match(/^(.+) (an|ab|ein|aus|mit|zurück|los)$/);
+          const prompt = m ? `${subj} ${m[1]} ${place} ${m[2]}.` : `${subj} ${present} ${place}.`;
+          const past = `${subj} ${subjForm} ${place} ${form}.`;
+          items.push({ prompt, accept: [past.toLowerCase()], hint: past, audio: true });
+        }
+        if (items.length >= 100) break;
       }
       return items;
     }
@@ -1400,7 +1711,7 @@ ${artikelDropItems(l, `ad${l}`)
     const things = ["ein Auto", "ein Haus", "eine Frage", "eine Idee", "einen Termin", "einen Hund", "eine Schwester", "ein Problem", "Hunger", "Zeit", "ein Buch", "eine Wohnung"];
     const actions = ["schwimmen", "arbeiten", "kommen", "gehen", "fahren", "helfen", "lesen", "sprechen", "kochen", "tanzen", "singen", "laufen"];
     const items: { prompt: string; accept: string[]; hint: string; audio: boolean }[] = [];
-    for (let i = 0; i < 100; i++) {
+    for (let i = 0; i < 200; i++) {
       const type = i % 3;
       const subj = ["Ich", "Du", "Er", "Wir", "Sie"][i % 5];
       if (type === 0) {
@@ -1477,9 +1788,9 @@ ${artikelDropItems(l, `ad${l}`)
 
   const dropLevels = [1, 2, 3].map((l) => {
     // Each level = 10 rounds; each round is one decade with its 10 gates.
-    const startDecade = l === 1 ? 0 : l === 2 ? 100 : 200;
+    const startDecade = l === 1 ? 0 : l === 2 ? 200 : 400;
     const rounds: string[] = [];
-    for (let r = 0; r < 10; r++) {
+    for (let r = 0; r < 20; r++) {
       const decade = startDecade + r * 10;
       const nums = Array.from({ length: 10 }, (_, i) => decade + i);
       const gates = nums.map((n) => String(n));
@@ -1496,16 +1807,16 @@ ${items.map((it) => `            { text: ${JSON.stringify(it.text)}, gateId: ${J
         },
 `);
     }
-    return levelBlock(`numdrop-${l}`, `Level ${l}: ${l === 1 ? "0–99" : l === 2 ? "100–199" : "200–299"}`, rounds.join(""));
+    return levelBlock(`numdrop-${l}`, `Level ${l}: ${l === 1 ? "0–199" : l === 2 ? "200–399" : "400–599"}`, rounds.join(""));
   });
 
   const mathLevels = [1, 2, 3].map((l) => levelBlock(`math-${l}`, `Level ${l}: ${l === 1 ? "+ and −" : l === 2 ? "×" : "÷"}`, typingExercise(nid(), mathQuestions("math", l))));
 
   const keypadLevels = [1, 2, 3].map((l) => {
-    const range = l === 1 ? NUM_RANGES["0-99"] : l === 2 ? NUM_RANGES["100-999"] : NUM_RANGES["1000-9999"];
+    const range = l === 1 ? NUM_RANGES["0-199"] : l === 2 ? NUM_RANGES["200-999"] : NUM_RANGES["1000-9999"];
     return levelBlock(
       `numtap-${l}`,
-      `Level ${l}: ${l === 1 ? "0–99" : l === 2 ? "100–999" : "1000–9999"}`,
+      `Level ${l}: ${l === 1 ? "0–199" : l === 2 ? "200–999" : "1000–9999"}`,
       `        {
           kind: "keypad",
           title: ${JSON.stringify("Number Tap")},
@@ -1527,8 +1838,8 @@ ${keypadItems(`kt:${l}`, range).map((it) => `            { word: ${JSON.stringif
   const timeItems = timePatternItems("time");
   const timeLevels = [0, 1, 2].map((l) => levelBlock(`time-${l + 1}`, `Level ${l + 1}: ${l === 0 ? "Full hours and half" : l === 1 ? "nach and vor" : "halbs and quarters"}`, typingExercise(nid(), take(timeItems, 100, `t:${l}`).map((it) => ({ prompt: `${Math.floor(it.minutes / 60)}:${String(it.minutes % 60).padStart(2, "0")} Uhr?`, accept: it.accept, hint: it.hint })))));
 
-  const w2n = [1, 2, 3].map((l) => levelBlock(`w2n-${l}`, `Level ${l}: ${l === 1 ? "0–99" : l === 2 ? "100–999" : "1000–9999"}`, typingExercise(nid(), wordNumberItems(`w2n:${l}`, l === 1 ? NUM_RANGES["0-99"] : l === 2 ? NUM_RANGES["100-999"] : NUM_RANGES["1000-9999"], l))));
-  const n2w = [1, 2, 3].map((l) => levelBlock(`n2w-${l}`, `Level ${l}: ${l === 1 ? "0–99" : l === 2 ? "100–999" : "1000–9999"}`, typingExercise(nid(), numberWordItems(`n2w:${l}`, l === 1 ? NUM_RANGES["0-99"] : l === 2 ? NUM_RANGES["100-999"] : NUM_RANGES["1000-9999"], l))));
+  const w2n = [1, 2, 3].map((l) => levelBlock(`w2n-${l}`, `Level ${l}: ${l === 1 ? "0–199" : l === 2 ? "200–999" : "1000–9999"}`, typingExercise(nid(), wordNumberItems(`w2n:${l}`, l === 1 ? NUM_RANGES["0-199"] : l === 2 ? NUM_RANGES["200-999"] : NUM_RANGES["1000-9999"], l))));
+  const n2w = [1, 2, 3].map((l) => levelBlock(`n2w-${l}`, `Level ${l}: ${l === 1 ? "0–199" : l === 2 ? "200–999" : "1000–9999"}`, typingExercise(nid(), numberWordItems(`n2w:${l}`, l === 1 ? NUM_RANGES["0-199"] : l === 2 ? NUM_RANGES["200-999"] : NUM_RANGES["1000-9999"], l))));
 
   const src = [
     gameHeader("number-drop", "Number Drop", "🌧️", "German number words rush toward you from the distance. Send each one to the gate with the matching numeral before it gets too close. Fast arcade-style number practice that speeds up as you play.", "grammar", ["A1"]),
@@ -1569,7 +1880,7 @@ ${keypadItems(`kt:${l}`, range).map((it) => `            { word: ${JSON.stringif
   const nid = () => `vc${String(++id).padStart(3, "0")}`;
 
   const sentLevels = [0, 1, 2].map((l) => {
-    const sentences = take(exampleSentences, 100, `se:${l}`);
+    const sentences = take(exampleSentences, 200, `se:${l}`);
     const items = sentences.map((s) => ({
       prompt: s.de,
       accept: [s.en.toLowerCase()],
@@ -1582,7 +1893,7 @@ ${keypadItems(`kt:${l}`, range).map((it) => `            { word: ${JSON.stringif
   const salatLevels = [1, 2, 3].map((l) => {
     const rounds: string[] = [];
     const words = wordsearchWords(`ws:${l}`, l);
-    for (let r = 0; r < 10; r++) {
+    for (let r = 0; r < 20; r++) {
       const ten = take(words, 10, `ws:${l}:${r}`);
       rounds.push(`        {
           kind: "wordsearch",
@@ -1627,7 +1938,7 @@ ${keypadItems(`kt:${l}`, range).map((it) => `            { word: ${JSON.stringif
   const scrambleLevels = [1, 2, 3].map((l) => {
     const items = scrambleItems(`sc:${l}`, l);
     const rounds: string[] = [];
-    for (let r = 0; r < 4; r++) {
+    for (let r = 0; r < 8; r++) {
       rounds.push(`        {
           kind: "scramble",
           title: ${JSON.stringify(`Round ${r + 1}`)},
@@ -1642,7 +1953,7 @@ ${keypadItems(`kt:${l}`, range).map((it) => `            { word: ${JSON.stringif
   const gridLevels = [1, 2, 3].map((l) => {
     const pairs = gridPairs(`gm:${l}`, l);
     const rounds: string[] = [];
-    for (let r = 0; r < 10; r++) {
+    for (let r = 0; r < 20; r++) {
       rounds.push(`        {
           kind: "grid-match",
           title: ${JSON.stringify(`Grid ${r + 1}`)},

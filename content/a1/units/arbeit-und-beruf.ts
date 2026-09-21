@@ -32,7 +32,7 @@ export const berufe: Lesson = {
         {
           type: "example",
           de: "Was bist du von Beruf? Ich bin Lehrer. Und was machst du? Ich unterrichte Deutsch.",
-          en: "The profession dialogue.",
+          en: "What are you by profession? I am a teacher. And what do you do? I teach German.",
         },
         {
           type: "tip",
@@ -62,7 +62,7 @@ export const berufe: Lesson = {
         {
           type: "example",
           de: "Meine Schwester ist Ärztin. Meine Mutter ist Lehrerin. Die Köchinnen arbeiten im Restaurant.",
-          en: "The feminine professions.",
+          en: "My sister is a doctor. My mother is a teacher. The cooks (f.) work in the restaurant.",
         },
         {
           type: "tip",
@@ -93,7 +93,7 @@ export const berufe: Lesson = {
         {
           type: "example",
           de: "Ich arbeite in einer Schule und unterrichte Deutsch. Meine Frau arbeitet im Krankenhaus.",
-          en: "The work sentences.",
+          en: "I work in a school and teach German. My wife works in the hospital.",
         },
         {
           type: "tip",
@@ -280,7 +280,7 @@ export const berufe: Lesson = {
       type: "word-order",
       title: "Übung 12: Der Satz",
       instruction: "Build the sentence: I am a teacher.",
-      chunks: ["Ich", "bin", "Lehrer."],
+      chunks: ["Ich", "bin", "Lehrer."], translation: "I am a teacher.",
       explain: "The profession without an article.",
     },
     {
@@ -288,7 +288,7 @@ export const berufe: Lesson = {
       type: "word-order",
       title: "Übung 13: Der Satz",
       instruction: "Build the sentence: I work in a school.",
-      chunks: ["Ich", "arbeite", "in", "einer", "Schule."],
+      chunks: ["Ich", "arbeite", "in", "einer", "Schule."], translation: "I work in a school.",
       explain: "The work location.",
     },
     {
@@ -347,7 +347,7 @@ export const praepositionenMitDativ: Lesson = {
         {
           type: "example",
           de: "Ich fahre mit dem Auto zur Arbeit. Seit dem Montag wohne ich bei meiner Oma.",
-          en: "The dative prepositions in use.",
+          en: "I drive to work by car. Since Monday I've been living with my grandma.",
         },
         {
           type: "tip",
@@ -376,7 +376,7 @@ export const praepositionenMitDativ: Lesson = {
         {
           type: "example",
           de: "Ich fahre mit dem neuen Auto. Sie spricht mit der neuen Kollegin. Wir sitzen bei den alten Freunden.",
-          en: "The dative endings in use.",
+          en: "I drive with the new car. She talks with the new colleague (f.). We sit with the old friends.",
         },
         {
           type: "tip",
@@ -588,7 +588,7 @@ export const praepositionenMitDativ: Lesson = {
       type: "word-order",
       title: "Übung 13: Der Satz",
       instruction: "Build the sentence: I go to the station.",
-      chunks: ["Ich", "gehe", "zum", "Bahnhof."],
+      chunks: ["Ich", "gehe", "zum", "Bahnhof."], translation: "I am going to the station.",
       explain: "The direction contraction.",
     },
     {
@@ -596,7 +596,7 @@ export const praepositionenMitDativ: Lesson = {
       type: "word-order",
       title: "Übung 14: Der Satz",
       instruction: "Build the sentence: I go with my brother.",
-      chunks: ["Ich", "gehe", "mit", "meinem", "Bruder."],
+      chunks: ["Ich", "gehe", "mit", "meinem", "Bruder."], translation: "I am going with my brother.",
       explain: "Company with mit.",
     },
     {
@@ -654,7 +654,7 @@ export const pronomenImDativ: Lesson = {
         {
           type: "example",
           de: "Das Buch gefällt mir. Das Kleid gefällt ihr. Die Musik gefällt uns.",
-          en: "The dative pronouns in use.",
+          en: "I like the book. She likes the dress. We like the music.",
         },
         {
           type: "tip",
@@ -686,7 +686,7 @@ export const pronomenImDativ: Lesson = {
         {
           type: "example",
           de: "Kann ich dir helfen? Ja, danke. Das Kleid gehört mir, und die Schuhe passen mir gut.",
-          en: "The dative verbs in a dialogue.",
+          en: "Can I help you? Yes, thanks. The dress belongs to me, and the shoes fit me well.",
         },
         {
           type: "tip",
@@ -715,7 +715,7 @@ export const pronomenImDativ: Lesson = {
         {
           type: "example",
           de: "Wie gefällt dir das neue Auto? Es gefällt mir gut. Und die Suppe schmeckt mir sehr gut.",
-          en: "The two dative verbs together.",
+          en: "How do you like the new car? I like it a lot. And the soup tastes very good to me.",
         },
         {
           type: "tip",
@@ -892,7 +892,7 @@ export const pronomenImDativ: Lesson = {
       type: "word-order",
       title: "Übung 12: Der Satz",
       instruction: "Build the sentence: I like that.",
-      chunks: ["Das", "gefällt", "mir."],
+      chunks: ["Das", "gefällt", "mir."], translation: "I like that.",
       explain: "The dative object.",
     },
     {
@@ -900,7 +900,7 @@ export const pronomenImDativ: Lesson = {
       type: "word-order",
       title: "Übung 13: Der Satz",
       instruction: "Build the sentence: I help you.",
-      chunks: ["Ich", "helfe", "dir."],
+      chunks: ["Ich", "helfe", "dir."], translation: "I help you.",
       explain: "helfen + dative.",
     },
     {
@@ -954,7 +954,7 @@ export const wortstellung: Lesson = {
         {
           type: "example",
           de: "Ich lerne Deutsch. Heute lerne ich Deutsch. In Berlin lerne ich Deutsch.",
-          en: "The verb stays in second position.",
+          en: "I learn German. Today I learn German. In Berlin I learn German.",
         },
         {
           type: "tip",
@@ -1011,7 +1011,7 @@ export const wortstellung: Lesson = {
         {
           type: "example",
           de: "Ich gebe dem Mann das Buch. Ich gebe es dem Mann. Ich kaufe dir das Auto.",
-          en: "The object order in use.",
+          en: "I give the man the book. I give it to the man. I buy you the car.",
         },
         {
           type: "tip",
@@ -1166,7 +1166,7 @@ export const wortstellung: Lesson = {
       type: "word-order",
       title: "Übung 11: Der Satz",
       instruction: "Build the sentence: Today I am learning German.",
-      chunks: ["Heute", "lerne", "ich", "Deutsch."],
+      chunks: ["Heute", "lerne", "ich", "Deutsch."], translation: "Today I am learning German.",
       explain: "The verb stays second.",
     },
     {
@@ -1174,7 +1174,7 @@ export const wortstellung: Lesson = {
       type: "word-order",
       title: "Übung 12: Der Satz",
       instruction: "Build the sentence: I am going to Berlin by train today.",
-      chunks: ["Ich", "fahre", "heute", "mit", "dem", "Zug", "nach", "Berlin."],
+      chunks: ["Ich", "fahre", "heute", "mit", "dem", "Zug", "nach", "Berlin."], translation: "Today I am taking the train to Berlin.",
       explain: "Time, manner, place.",
     },
     {
@@ -1263,7 +1263,7 @@ export const imBuerro: Lesson = {
         {
           type: "example",
           de: "Ich arbeite von 9 bis 17 Uhr. Am Vormittag beantworte ich E-Mails, am Nachmittag schreibe ich Berichte.",
-          en: "The workday description.",
+          en: "I work from 9 to 5. In the morning I answer emails, in the afternoon I write reports.",
         },
         {
           type: "tip",
@@ -1294,7 +1294,7 @@ export const imBuerro: Lesson = {
         {
           type: "example",
           de: "Guten Tag, hier ist Frau Schmidt. Kann ich bitte Herrn Müller sprechen? Einen Moment, bitte. Ich verbinde.",
-          en: "The office phone call.",
+          en: "Good day, this is Mrs Schmidt. Can I speak to Mr Müller, please? One moment, please. I'm putting you through.",
         },
         {
           type: "tip",
@@ -1475,7 +1475,7 @@ export const imBuerro: Lesson = {
       type: "word-order",
       title: "Übung 12: Der Satz",
       instruction: "Build the sentence: I work in the office.",
-      chunks: ["Ich", "arbeite", "im", "Büro."],
+      chunks: ["Ich", "arbeite", "im", "Büro."], translation: "I work in the office.",
       explain: "Working in the office.",
     },
     {
@@ -1483,7 +1483,7 @@ export const imBuerro: Lesson = {
       type: "word-order",
       title: "Übung 13: Der Satz",
       instruction: "Build the sentence: This is Ms Schmidt.",
-      chunks: ["Hier", "ist", "Frau", "Schmidt."],
+      chunks: ["Hier", "ist", "Frau", "Schmidt."], translation: "This is Mrs Schmidt.",
       explain: "The phone intro.",
     },
     {
@@ -1569,7 +1569,7 @@ export const derDativ: Lesson = {
         {
           type: "example",
           de: "Das gefällt mir, aber das gefällt dir nicht. Wir helfen euch gerne.",
-          en: "The dative pronouns in a dialogue.",
+          en: "I like that, but you don't like that. We gladly help you (plural).",
         },
         {
           type: "tip",
@@ -1601,7 +1601,7 @@ export const derDativ: Lesson = {
         {
           type: "example",
           de: "Kann ich dir helfen? Ja, danke. Das Kleid gehört mir, und die Schuhe passen mir gut.",
-          en: "The dative verbs together.",
+          en: "Can I help you? Yes, thanks. The dress belongs to me, and the shoes fit me well.",
         },
         {
           type: "tip",
@@ -1803,7 +1803,7 @@ export const derDativ: Lesson = {
       type: "word-order",
       title: "Übung 12: Der Satz",
       instruction: "Build the sentence: I give the woman the book.",
-      chunks: ["Ich", "gebe", "der", "Frau", "das", "Buch."],
+      chunks: ["Ich", "gebe", "der", "Frau", "das", "Buch."], translation: "I give the woman the book.",
       explain: "Dative before accusative.",
     },
     {
@@ -1811,7 +1811,7 @@ export const derDativ: Lesson = {
       type: "word-order",
       title: "Übung 13: Der Satz",
       instruction: "Build the sentence: I help the children.",
-      chunks: ["Ich", "helfe", "den", "Kindern."],
+      chunks: ["Ich", "helfe", "den", "Kindern."], translation: "I help the children.",
       explain: "The plural dative adds -n.",
     },
     {
@@ -1865,7 +1865,7 @@ export const konjunktionen: Lesson = {
         {
           type: "example",
           de: "Ich lerne Deutsch, denn ich möchte in Deutschland arbeiten. Ich mag Kaffee, aber ich trinke Tee.",
-          en: "denn and aber in use.",
+          en: "I learn German because I want to work in Germany. I like coffee, but I drink tea.",
         },
         {
           type: "tip",
@@ -1893,7 +1893,7 @@ export const konjunktionen: Lesson = {
         {
           type: "example",
           de: "Ich bleibe zu Hause, weil es regnet. Ich gehe raus, obwohl es kalt ist.",
-          en: "weil and obwohl in use.",
+          en: "I stay at home because it is raining. I go out although it is cold.",
         },
         {
           type: "tip",
@@ -1922,7 +1922,7 @@ export const konjunktionen: Lesson = {
         {
           type: "example",
           de: "Peter und Anna lernen Deutsch. Sie trinken Kaffee und Tee. Sie lernen und üben jeden Tag.",
-          en: "und in all its roles.",
+          en: "Peter and Anna learn German. They drink coffee and tea. They learn and practise every day.",
         },
         {
           type: "tip",
@@ -1949,7 +1949,7 @@ export const konjunktionen: Lesson = {
         {
           type: "example",
           de: "Ich lerne Deutsch, weil ich in Deutschland arbeiten möchte. Ich lerne Deutsch, denn ich möchte in Deutschland arbeiten.",
-          en: "The same idea, two word orders.",
+          en: "I learn German because I want to work in Germany. I learn German because I want to work in Germany.",
         },
         {
           type: "tip",
@@ -2119,7 +2119,7 @@ export const konjunktionen: Lesson = {
       type: "word-order",
       title: "Übung 12: Der Satz",
       instruction: "Build the sentence: I stay home because it is raining.",
-      chunks: ["Ich", "bleibe", "zu", "Hause,", "weil", "es", "regnet."],
+      chunks: ["Ich", "bleibe", "zu", "Hause,", "weil", "es", "regnet."], translation: "I am staying at home because it is raining.",
       explain: "weil ends the clause.",
     },
     {
@@ -2127,7 +2127,7 @@ export const konjunktionen: Lesson = {
       type: "word-order",
       title: "Übung 13: Der Satz",
       instruction: "Build the sentence: I like coffee, but I drink tea.",
-      chunks: ["Ich", "mag", "Kaffee,", "aber", "ich", "trinke", "Tee."],
+      chunks: ["Ich", "mag", "Kaffee,", "aber", "ich", "trinke", "Tee."], translation: "I like coffee, but I drink tea.",
       explain: "aber keeps the normal order.",
     },
     {

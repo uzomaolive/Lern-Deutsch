@@ -55,7 +55,7 @@ export const wortschatzNR: Lesson = {
     { id: "w041", de: "ohne", en: "without", part: "particle / preposition", audio: true },
     { id: "w042", de: "das Ohr", en: "the ear", part: "noun n.", audio: true },
     { id: "w043", de: "der Onkel", en: "the uncle", part: "noun m.", audio: true },
-    { id: "w044", de: "das Oper", en: "the opera", part: "noun n.", audio: true },
+    { id: "w044", de: "die Oper", en: "the opera", part: "noun f.", audio: true },
     { id: "w045", de: "die Orange", en: "the orange (fruit)", part: "noun f.", audio: true },
     { id: "w046", de: "die Ordnung", en: "the order, the tidiness", part: "noun f.", audio: true },
     { id: "w047", de: "das Paket", en: "the parcel", part: "noun n.", audio: true },
@@ -117,8 +117,8 @@ export const wortschatzNR: Lesson = {
 {"id": "ex-nr-1", "type": "multiple-choice", "title": "Übung 1", "instruction": "Choose the correct translation.", "prompt": "Was heißt 'die Rechnung'?", "options": ["the bill", "the receipt", "the price"], "correctIndex": 0, "explain": "die Rechnung is the bill."},
 {"id": "ex-nr-2", "type": "multiple-choice", "title": "Übung 2", "instruction": "Choose the correct translation.", "prompt": "Was heißt 'rechts'?", "options": ["right (direction)", "left", "straight"], "correctIndex": 0, "explain": "rechts means right."},
 {"id": "ex-nr-3", "type": "multiple-choice", "title": "Übung 3", "instruction": "Choose the word that fits.", "prompt": "Ich brauche eine ___ für das Paket.", "options": ["Quittung", "Rechnung", "Pizza"], "correctIndex": 0, "explain": "die Quittung is the receipt."},
-{"id": "ex-nr-4", "type": "fill-blank", "title": "Übung 4", "instruction": "Type the missing verb.", "sentence": "Wir ___ nach Berlin. (reisen)", "blanks": [{"answers": ["reisen"], "hint": "reisen, wir"}]},
+{"id": "ex-nr-4", "type": "fill-blank", "title": "Übung 4", "instruction": "Type the missing verb.", "sentence": "Wir ___ nach Berlin. (reisen)", "translation": "We ___ to Berlin. (travel)", "blanks": [{"answers": ["reisen"], "hint": "reisen, wir"}]},
 {"id": "ex-nr-5", "type": "multiple-choice", "title": "Übung 5", "instruction": "Choose the word that fits.", "prompt": "Der Zug hat zehn Minuten ___.", "options": ["Verspätung", "Quittung", "Richtung"], "correctIndex": 0, "explain": "die Verspätung is the delay."},
-{"id": "ex-nr-6", "type": "word-order", "title": "Übung 6", "instruction": "Build the sentence: The parcel is on the table.", "chunks": ["Das", "Paket", "liegt", "auf", "dem", "Tisch."], "explain": "Static location takes the dative."}
+{"id": "ex-nr-6", "type": "word-order", "title": "Übung 6", "instruction": "Build the sentence: The parcel is on the table.", "chunks": ["Das", "Paket", "liegt", "auf", "dem", "Tisch."], "translation": "The parcel is lying on the table.", "explain": "Static location takes the dative."}
   ],
 };

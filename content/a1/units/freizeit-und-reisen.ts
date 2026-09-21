@@ -99,7 +99,7 @@ export const hobbysUndSport: Lesson = {
         {
           type: "example",
           de: "Magst du Sport? Ja, ich mag Fußball und spiele gern Tennis. Aber ich schwimme nicht gern.",
-          en: "The like dialogue.",
+          en: "Do you like sport? Yes, I like football and I like playing tennis. But I don't like swimming.",
         },
         {
           type: "tip",
@@ -269,7 +269,7 @@ export const hobbysUndSport: Lesson = {
       type: "word-order",
       title: "Übung 11: Der Satz",
       instruction: "Build the sentence: I do sport in my free time.",
-      chunks: ["Ich", "mache", "in", "meiner", "Freizeit", "Sport."],
+      chunks: ["Ich", "mache", "in", "meiner", "Freizeit", "Sport."], translation: "I do sport in my free time.",
       explain: "The hobby sentence.",
     },
     {
@@ -277,7 +277,7 @@ export const hobbysUndSport: Lesson = {
       type: "word-order",
       title: "Übung 12: Der Satz",
       instruction: "Build the sentence: I play football.",
-      chunks: ["Ich", "spiele", "Fußball."],
+      chunks: ["Ich", "spiele", "Fußball."], translation: "I play football.",
       explain: "The ball game verb.",
     },
     {
@@ -333,7 +333,7 @@ export const nachBerlin: Lesson = {
         {
           type: "example",
           de: "Ich fahre am Samstag nach Berlin und komme um 10 Uhr an. Am Abend übernachte ich im Hotel.",
-          en: "The journey plan.",
+          en: "I drive to Berlin on Saturday and arrive at 10 o'clock. In the evening I stay overnight in the hotel.",
         },
         {
           type: "tip",
@@ -364,7 +364,7 @@ export const nachBerlin: Lesson = {
         {
           type: "example",
           de: "In Berlin möchte ich das Brandenburger Tor und den Fernsehturm sehen. Am Sonntag besuche ich das Museum.",
-          en: "The sightseeing list.",
+          en: "In Berlin I would like to see the Brandenburg Gate and the TV tower. On Sunday I visit the museum.",
         },
         {
           type: "tip",
@@ -397,7 +397,7 @@ export const nachBerlin: Lesson = {
         {
           type: "example",
           de: "Wir fahren im Sommer in Urlaub ans Meer. Das Hotel hat ein Doppelzimmer mit Balkon.",
-          en: "The holiday plan.",
+          en: "In summer we go on holiday to the sea. The hotel has a double room with a balcony.",
         },
         {
           type: "tip",
@@ -567,7 +567,7 @@ export const nachBerlin: Lesson = {
       type: "word-order",
       title: "Übung 11: Der Satz",
       instruction: "Build the sentence: I am travelling to Berlin.",
-      chunks: ["Ich", "fahre", "nach", "Berlin."],
+      chunks: ["Ich", "fahre", "nach", "Berlin."], translation: "I am driving to Berlin.",
       explain: "The destination nach.",
     },
     {
@@ -575,7 +575,7 @@ export const nachBerlin: Lesson = {
       type: "word-order",
       title: "Übung 12: Der Satz",
       instruction: "Build the sentence: We are staying at the hotel.",
-      chunks: ["Wir", "übernachten", "im", "Hotel."],
+      chunks: ["Wir", "übernachten", "im", "Hotel."], translation: "We are staying overnight in the hotel.",
       explain: "Staying overnight: im Hotel.",
     },
     {
@@ -630,7 +630,7 @@ export const reisen: Lesson = {
         {
           type: "example",
           de: "Ich fahre mit dem Zug nach Hamburg. Die Fahrt dauert zwei Stunden.",
-          en: "The journey by train.",
+          en: "I take the train to Hamburg. The journey takes two hours.",
         },
         {
           type: "tip",
@@ -661,7 +661,7 @@ export const reisen: Lesson = {
         {
           type: "example",
           de: "Guten Tag, ich habe ein Zimmer reserviert. Wie lange bleiben Sie? Drei Nächte. Was kostet das Zimmer pro Nacht? 80 Euro, das Frühstück ist inklusive.",
-          en: "The hotel check-in.",
+          en: "Good day, I have reserved a room. How long are you staying? Three nights. How much does the room cost per night? 80 euros, breakfast is included.",
         },
         {
           type: "tip",
@@ -692,7 +692,7 @@ export const reisen: Lesson = {
         {
           type: "example",
           de: "Wann fährst du? Am Samstag. Womit? Mit dem Zug. Wie lange? Drei Stunden. Wo übernachtest du? Im Hotel.",
-          en: "The trip question dialogue.",
+          en: "When are you leaving? On Saturday. By what? By train. How long? Three hours. Where are you staying overnight? In the hotel.",
         },
         {
           type: "tip",
@@ -856,7 +856,7 @@ export const reisen: Lesson = {
       type: "word-order",
       title: "Übung 11: Der Satz",
       instruction: "Build the sentence: I travel by train.",
-      chunks: ["Ich", "fahre", "mit", "dem", "Zug."],
+      chunks: ["Ich", "fahre", "mit", "dem", "Zug."], translation: "I am travelling by train.",
       explain: "The travel pattern: mit + vehicle.",
     },
     {
@@ -864,7 +864,7 @@ export const reisen: Lesson = {
       type: "word-order",
       title: "Übung 12: Der Satz",
       instruction: "Build the sentence: I have reserved a room.",
-      chunks: ["Ich", "habe", "ein", "Zimmer", "reserviert."],
+      chunks: ["Ich", "habe", "ein", "Zimmer", "reserviert."], translation: "I have reserved a room.",
       explain: "The check-in sentence.",
     },
     {
@@ -920,7 +920,7 @@ export const einladungen: Lesson = {
         {
           type: "example",
           de: "Hallo Anna, am Samstag machen wir eine Party. Hast du Zeit? Kommst du mit?",
-          en: "The invitation.",
+          en: "Hi Anna, we're having a party on Saturday. Do you have time? Are you coming along?",
         },
         {
           type: "tip",
@@ -951,7 +951,7 @@ export const einladungen: Lesson = {
         {
           type: "example",
           de: "Kommst du mit ins Kino? Ja, gern! Wann? Am Samstag um 8 Uhr. Perfekt!",
-          en: "The acceptance.",
+          en: "Are you coming to the cinema? Yes, gladly! When? On Saturday at 8 o'clock. Perfect!",
         },
         {
           type: "tip",
@@ -982,7 +982,7 @@ export const einladungen: Lesson = {
         {
           type: "example",
           de: "Kommst du mit? Nein, danke, ich habe keine Zeit. Ich bin schon verabredet. Vielleicht ein anderes Mal!",
-          en: "The polite decline.",
+          en: "Are you coming along? No, thanks, I have no time. I already have plans. Maybe another time!",
         },
         {
           type: "tip",
@@ -1142,7 +1142,7 @@ export const einladungen: Lesson = {
       type: "word-order",
       title: "Übung 11: Der Satz",
       instruction: "Build the sentence: I invite you.",
-      chunks: ["Ich", "lade", "dich", "ein."],
+      chunks: ["Ich", "lade", "dich", "ein."], translation: "I invite you.",
       explain: "The separable einladen.",
     },
     {
@@ -1150,7 +1150,7 @@ export const einladungen: Lesson = {
       type: "word-order",
       title: "Übung 12: Der Satz",
       instruction: "Build the sentence: Do you have time on Saturday?",
-      chunks: ["Hast", "du", "am", "Samstag", "Zeit?"],
+      chunks: ["Hast", "du", "am", "Samstag", "Zeit?"], translation: "Do you have time on Saturday?",
       explain: "The time question.",
     },
     {
@@ -1366,7 +1366,7 @@ export const wiederholung: Lesson = {
       type: "word-order",
       title: "Übung 12: Der Satz",
       instruction: "Build the sentence: I travel by train.",
-      chunks: ["Ich", "fahre", "mit", "dem", "Zug."],
+      chunks: ["Ich", "fahre", "mit", "dem", "Zug."], translation: "I am travelling by train.",
       explain: "Transport with mit.",
     },
     {
@@ -1374,7 +1374,7 @@ export const wiederholung: Lesson = {
       type: "word-order",
       title: "Übung 13: Der Satz",
       instruction: "Build the sentence: I travelled to Berlin.",
-      chunks: ["Ich", "bin", "nach", "Berlin", "gefahren."],
+      chunks: ["Ich", "bin", "nach", "Berlin", "gefahren."], translation: "I drove to Berlin.",
       explain: "The perfect with movement.",
     },
     {
@@ -1518,6 +1518,7 @@ const goetheMockExam: Lesson = {
       title: "Teil: Schreiben",
       instruction: "Fill in the form sentences.",
       sentence: "Mein ___ ist Anna Müller. (last name) Ich habe ___ Termin. (an, masculine)",
+            translation: "My ___ is Anna Müller. (last name) I have ___ appointment. (an, masculine)",
       blanks: [
         { answers: ["Nachname"], hint: "last name" },
         { answers: ["einen"], hint: "accusative, masculine" },
@@ -1541,7 +1542,7 @@ const goetheMockExam: Lesson = {
       type: "word-order",
       title: "Teil: Sprechen",
       instruction: "Build the sentence: I have an appointment at the citizen's office tomorrow.",
-      chunks: ["Ich", "habe", "morgen", "einen", "Termin", "beim", "Bürgeramt."],
+      chunks: ["Ich", "habe", "morgen", "einen", "Termin", "beim", "Bürgeramt."], translation: "I have an appointment at the citizens' office tomorrow.",
       explain: "Time (morgen) comes before the object.",
     },
     {
@@ -1678,6 +1679,7 @@ const telcMockExam: Lesson = {
       title: "Teil: Schreiben",
       instruction: "Complete the housing sentences.",
       sentence: "Die Wohnung ist im dritten ___. (floor) Die Miete ist 850 Euro ___.",
+            translation: "The flat is on the third ___. (floor) The rent is 850 euros ___.",
       blanks: [
         { answers: ["Stock"], hint: "the floor" },
         { answers: ["kalt"], hint: "without utilities" },
@@ -1701,7 +1703,7 @@ const telcMockExam: Lesson = {
       type: "word-order",
       title: "Teil: Sprechen",
       instruction: "Build the directions: Go straight ahead, then left.",
-      chunks: ["Gehen", "Sie", "geradeaus,", "dann", "links."],
+      chunks: ["Gehen", "Sie", "geradeaus,", "dann", "links."], translation: "Go straight ahead, then left.",
       explain: "The imperative leads, the direction follows.",
     },
     {

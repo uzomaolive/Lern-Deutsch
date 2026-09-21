@@ -1,4 +1,5 @@
 import type { Lesson, Exercise } from "../../../schema";
+import { translationForSentence, translationForChunks } from "./translations";
 
 /**
  * Goethe A1 practice exam: 300 questions, one per exercise card, in the
@@ -58,6 +59,7 @@ function fb(
     title: `Frage ${n}: Schreiben`,
     instruction: hint,
     sentence,
+    translation: translationForSentence(sentence),
     blanks,
   };
 }
@@ -74,6 +76,7 @@ function wo(
     title: `Frage ${n}: Satz bauen`,
     instruction,
     chunks,
+    translation: translationForChunks(chunks),
     explain,
   };
 }

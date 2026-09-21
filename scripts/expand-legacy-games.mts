@@ -270,7 +270,7 @@ function mcExercises(questions: { prompt: string; options: string[]; correctInde
     .join("");
 }
 
-function wordOrderRound(id: string, sentence: string) {
+function wordOrderRound(id: string, sentence: string, translation?: string) {
   const chunks = sentence.split(" ").filter(Boolean);
   return `        {
           kind: "exercise",
@@ -280,6 +280,7 @@ function wordOrderRound(id: string, sentence: string) {
             title: ${JSON.stringify("Build the sentence")},
             instruction: ${JSON.stringify("Tap the words in the right order.")},
             chunks: ${JSON.stringify(chunks)},
+            translation: ${JSON.stringify(translation ?? "")},
             explainCorrect: ${JSON.stringify(sentence)},
             explainWrong: ${JSON.stringify(sentence)},
           },
@@ -287,7 +288,7 @@ function wordOrderRound(id: string, sentence: string) {
 `;
 }
 
-function fillBlankRound(id: string, sentence: string, answer: string, hint: string) {
+function fillBlankRound(id: string, sentence: string, answer: string, hint: string, translation?: string) {
   return `        {
           kind: "exercise",
           exercise: {
@@ -296,6 +297,7 @@ function fillBlankRound(id: string, sentence: string, answer: string, hint: stri
             title: ${JSON.stringify("Fill the blank")},
             instruction: ${JSON.stringify("Type the missing word.")},
             sentence: ${JSON.stringify(sentence)},
+            translation: ${JSON.stringify(translation ?? "")},
             blanks: ${JSON.stringify([{ answers: [answer], hint }])},
           },
         },
@@ -322,55 +324,263 @@ function listeningRound(id: string, prompt: string, options: string[], correctIn
 
 // ---------------------------------------------------------------------------
 // Composed sentences for word-order games (lesson pool is too small)
+// Each verb only pairs with objects it can take, so every composed sentence
+// is semantically valid ("Der Mann trinkt einen Kaffee", never "... das Radio").
 // ---------------------------------------------------------------------------
 
-const COMPOSE_SUBJECTS: [string, string][] = [
-  ["Ich", "ich"], ["Der Mann", "er"], ["Die Frau", "sie"], ["Das Kind", "er"], ["Wir", "wir"],
-  ["Der Lehrer", "er"], ["Die Lehrerin", "sie"], ["Der Kellner", "er"], ["Das Mädchen", "sie"],
-  ["Der Vater", "er"], ["Die Mutter", "sie"], ["Der Bruder", "er"], ["Die Schwester", "sie"],
-  ["Der Opa", "er"], ["Die Oma", "sie"], ["Der Nachbar", "er"], ["Die Ärztin", "sie"],
-  ["Der Zug", "er"], ["Der Bus", "er"], ["Die Kinder", "wir"], ["Die Eltern", "wir"],
-];
-const COMPOSE_VERBS: Record<string, [string, string, string]> = {
-  sehen: ["sehe", "sieht", "sehen"], kaufen: ["kaufe", "kauft", "kaufen"],
-  lesen: ["lese", "liest", "lesen"], trinken: ["trinke", "trinkt", "trinken"],
-  öffnen: ["öffne", "öffnet", "öffnen"], haben: ["habe", "hat", "haben"],
-  besuchen: ["besuche", "besucht", "besuchen"], lieben: ["liebe", "liebt", "lieben"],
-  brauchen: ["brauche", "braucht", "brauchen"], finden: ["finde", "findet", "finden"],
-  hören: ["höre", "hört", "hören"], machen: ["mache", "macht", "machen"],
-  schreiben: ["schreibe", "schreibt", "schreiben"], bestellen: ["bestelle", "bestellt", "bestellen"],
-  suchen: ["suche", "sucht", "suchen"], verstehen: ["verstehe", "versteht", "verstehen"],
-  nehmen: ["nehme", "nimmt", "nehmen"], kochen: ["koche", "kocht", "kochen"],
-  essen: ["esse", "isst", "essen"], lernen: ["lerne", "lernt", "lernen"],
-  warten: ["warte", "wartet", "warten"],
-};
-const COMPOSE_OBJECTS = ["den Apfel", "einen Kaffee", "das Buch", "die Tür", "einen Brief", "die Musik", "einen Film", "die Zeitung", "das Auto", "den Zug", "die Hausaufgaben", "ein Brot", "den Schlüssel", "das Taxi", "die Frage", "einen Freund", "das Radio", "das Geschenk", "den Computer", "die Jacke", "den Tee", "das Essen"];
-const COMPOSE_ADVERBS = ["heute", "gestern", "morgen", "jetzt", "oft", "gern", "schon", "bald", "hier", "dort", "manchmal", "jeden Tag", "am Abend", "am Morgen", "in der Stadt", "zu Hause", "im Park", "im Büro", "in der Schule", "am Wochenende"];
+interface ComposeSubject {
+  de: string;
+  person: "ich" | "er" | "wir";
+  en: string;
+}
 
-function composeSentences(minWords: number, maxWords: number, n: number, seed: string): string[] {
-  const out: string[] = [];
+interface ComposeVerb {
+  forms: [string, string, string];
+  /** Third-person singular English form, e.g. "drinks". */
+  en: string;
+  objects: { de: string; en: string }[];
+}
+
+interface ComposedSentence {
+  de: string;
+  en: string;
+}
+
+const COMPOSE_SUBJECTS: ComposeSubject[] = [
+  { de: "Ich", person: "ich", en: "I" },
+  { de: "Der Mann", person: "er", en: "the man" },
+  { de: "Die Frau", person: "er", en: "the woman" },
+  { de: "Das Kind", person: "er", en: "the child" },
+  { de: "Wir", person: "wir", en: "we" },
+  { de: "Der Lehrer", person: "er", en: "the teacher" },
+  { de: "Die Lehrerin", person: "er", en: "the teacher" },
+  { de: "Der Kellner", person: "er", en: "the waiter" },
+  { de: "Das Mädchen", person: "er", en: "the girl" },
+  { de: "Der Vater", person: "er", en: "the father" },
+  { de: "Die Mutter", person: "er", en: "the mother" },
+  { de: "Der Bruder", person: "er", en: "the brother" },
+  { de: "Die Schwester", person: "er", en: "the sister" },
+  { de: "Der Opa", person: "er", en: "the grandpa" },
+  { de: "Die Oma", person: "er", en: "the grandma" },
+  { de: "Der Nachbar", person: "er", en: "the neighbour" },
+  { de: "Die Ärztin", person: "er", en: "the doctor" },
+  { de: "Die Kinder", person: "wir", en: "the children" },
+  { de: "Die Eltern", person: "wir", en: "the parents" },
+];
+
+const COMPOSE_VERBS: Record<string, ComposeVerb> = {
+  sehen: {
+    forms: ["sehe", "sieht", "sehen"], en: "sees",
+    objects: [
+      { de: "den Film", en: "the film" }, { de: "die Frau", en: "the woman" },
+      { de: "das Kind", en: "the child" }, { de: "den Hund", en: "the dog" },
+      { de: "das Auto", en: "the car" }, { de: "die Katze", en: "the cat" },
+    ],
+  },
+  kaufen: {
+    forms: ["kaufe", "kauft", "kaufen"], en: "buys",
+    objects: [
+      { de: "den Apfel", en: "the apple" }, { de: "das Brot", en: "the bread" },
+      { de: "die Blumen", en: "the flowers" }, { de: "ein Geschenk", en: "a gift" },
+      { de: "die Jacke", en: "the jacket" }, { de: "die Zeitung", en: "the newspaper" },
+    ],
+  },
+  lesen: {
+    forms: ["lese", "liest", "lesen"], en: "reads",
+    objects: [
+      { de: "das Buch", en: "the book" }, { de: "die Zeitung", en: "the newspaper" },
+      { de: "einen Brief", en: "a letter" }, { de: "die Karte", en: "the postcard" },
+    ],
+  },
+  trinken: {
+    forms: ["trinke", "trinkt", "trinken"], en: "drinks",
+    objects: [
+      { de: "einen Kaffee", en: "a coffee" }, { de: "den Tee", en: "the tea" },
+      { de: "die Milch", en: "the milk" }, { de: "das Wasser", en: "the water" },
+      { de: "einen Saft", en: "a juice" },
+    ],
+  },
+  öffnen: {
+    forms: ["öffne", "öffnet", "öffnen"], en: "opens",
+    objects: [
+      { de: "die Tür", en: "the door" }, { de: "das Fenster", en: "the window" },
+      { de: "einen Brief", en: "a letter" }, { de: "das Geschenk", en: "the gift" },
+      { de: "die Flasche", en: "the bottle" },
+    ],
+  },
+  haben: {
+    forms: ["habe", "hat", "haben"], en: "has",
+    objects: [
+      { de: "einen Bruder", en: "a brother" }, { de: "eine Schwester", en: "a sister" },
+      { de: "ein Auto", en: "a car" }, { de: "ein Haus", en: "a house" },
+      { de: "einen Termin", en: "an appointment" },
+    ],
+  },
+  besuchen: {
+    forms: ["besuche", "besucht", "besuchen"], en: "visits",
+    objects: [
+      { de: "die Oma", en: "the grandma" }, { de: "den Freund", en: "the friend" },
+      { de: "die Schule", en: "the school" }, { de: "das Museum", en: "the museum" },
+      { de: "den Arzt", en: "the doctor" },
+    ],
+  },
+  lieben: {
+    forms: ["liebe", "liebt", "lieben"], en: "loves",
+    objects: [
+      { de: "die Familie", en: "the family" }, { de: "die Musik", en: "the music" },
+      { de: "das Kind", en: "the child" }, { de: "den Hund", en: "the dog" },
+    ],
+  },
+  brauchen: {
+    forms: ["brauche", "braucht", "brauchen"], en: "needs",
+    objects: [
+      { de: "den Schlüssel", en: "the key" }, { de: "die Hilfe", en: "the help" },
+      { de: "einen Computer", en: "a computer" }, { de: "das Geld", en: "the money" },
+    ],
+  },
+  finden: {
+    forms: ["finde", "findet", "finden"], en: "finds",
+    objects: [
+      { de: "den Schlüssel", en: "the key" }, { de: "das Buch", en: "the book" },
+      { de: "das Geld", en: "the money" }, { de: "die Jacke", en: "the jacket" },
+    ],
+  },
+  hören: {
+    forms: ["höre", "hört", "hören"], en: "listens to",
+    objects: [
+      { de: "die Musik", en: "the music" }, { de: "das Radio", en: "the radio" },
+      { de: "ein Lied", en: "a song" }, { de: "die Nachrichten", en: "the news" },
+    ],
+  },
+  machen: {
+    forms: ["mache", "macht", "machen"], en: "does",
+    objects: [
+      { de: "die Hausaufgaben", en: "the homework" }, { de: "die Pause", en: "the break" },
+      { de: "einen Kaffee", en: "a coffee" }, { de: "das Frühstück", en: "the breakfast" },
+    ],
+  },
+  schreiben: {
+    forms: ["schreibe", "schreibt", "schreiben"], en: "writes",
+    objects: [
+      { de: "einen Brief", en: "a letter" }, { de: "eine Karte", en: "a postcard" },
+      { de: "das Buch", en: "the book" }, { de: "die Hausaufgaben", en: "the homework" },
+    ],
+  },
+  bestellen: {
+    forms: ["bestelle", "bestellt", "bestellen"], en: "orders",
+    objects: [
+      { de: "einen Kaffee", en: "a coffee" }, { de: "die Pizza", en: "the pizza" },
+      { de: "das Essen", en: "the food" }, { de: "einen Tee", en: "a tea" },
+    ],
+  },
+  suchen: {
+    forms: ["suche", "sucht", "suchen"], en: "looks for",
+    objects: [
+      { de: "den Schlüssel", en: "the key" }, { de: "das Buch", en: "the book" },
+      { de: "die Brille", en: "the glasses" }, { de: "die Jacke", en: "the jacket" },
+    ],
+  },
+  verstehen: {
+    forms: ["verstehe", "versteht", "verstehen"], en: "understands",
+    objects: [
+      { de: "die Frage", en: "the question" }, { de: "das Wort", en: "the word" },
+      { de: "den Text", en: "the text" },
+    ],
+  },
+  nehmen: {
+    forms: ["nehme", "nimmt", "nehmen"], en: "takes",
+    objects: [
+      { de: "das Taxi", en: "the taxi" }, { de: "den Bus", en: "the bus" },
+      { de: "den Zug", en: "the train" }, { de: "einen Apfel", en: "an apple" },
+    ],
+  },
+  kochen: {
+    forms: ["koche", "kocht", "kochen"], en: "cooks",
+    objects: [
+      { de: "das Essen", en: "the food" }, { de: "die Suppe", en: "the soup" },
+      { de: "das Mittagessen", en: "the lunch" },
+    ],
+  },
+  essen: {
+    forms: ["esse", "isst", "essen"], en: "eats",
+    objects: [
+      { de: "das Brot", en: "the bread" }, { de: "den Apfel", en: "the apple" },
+      { de: "die Suppe", en: "the soup" }, { de: "einen Kuchen", en: "a cake" },
+    ],
+  },
+  lernen: {
+    forms: ["lerne", "lernt", "lernen"], en: "learns",
+    objects: [
+      { de: "Deutsch", en: "German" }, { de: "die Wörter", en: "the words" },
+      { de: "ein Lied", en: "a song" },
+    ],
+  },
+  "warten auf": {
+    forms: ["warte auf", "wartet auf", "warten auf"], en: "waits for",
+    objects: [
+      { de: "den Bus", en: "the bus" }, { de: "den Zug", en: "the train" },
+      { de: "den Freund", en: "the friend" },
+    ],
+  },
+};
+
+const COMPOSE_ADVERBS: { de: string; en: string }[] = [
+  { de: "heute", en: "today" }, { de: "gestern", en: "yesterday" }, { de: "morgen", en: "tomorrow" },
+  { de: "jetzt", en: "now" }, { de: "oft", en: "often" }, { de: "gern", en: "gladly" },
+  { de: "schon", en: "already" }, { de: "bald", en: "soon" }, { de: "hier", en: "here" },
+  { de: "dort", en: "there" }, { de: "manchmal", en: "sometimes" }, { de: "jeden Tag", en: "every day" },
+  { de: "am Abend", en: "in the evening" }, { de: "am Morgen", en: "in the morning" },
+  { de: "zu Hause", en: "at home" }, { de: "im Park", en: "in the park" },
+  { de: "im Büro", en: "in the office" }, { de: "am Wochenende", en: "at the weekend" },
+];
+
+function composeSentenceEn(subjectEn: string, verbEn: string, objectEn: string, adverbEn: string): string {
+  const raw = `${subjectEn} ${verbEn} ${objectEn} ${adverbEn}`.replace(/\s+/g, " ").trim();
+  const sentence = raw.replace(/\.+$/, "") + ".";
+  return sentence.charAt(0).toUpperCase() + sentence.slice(1);
+}
+
+function composeSentences(minWords: number, maxWords: number, n: number, seed: string): ComposedSentence[] {
+  const subjects = COMPOSE_SUBJECTS;
+  const verbKeys = Object.keys(COMPOSE_VERBS);
+  const out: ComposedSentence[] = [];
   for (let i = 0; i < n; i++) {
-    const [subject, person] = COMPOSE_SUBJECTS[i % COMPOSE_SUBJECTS.length];
-    const verbKey = Object.keys(COMPOSE_VERBS)[(i * 3) % Object.keys(COMPOSE_VERBS).length];
-    const forms = COMPOSE_VERBS[verbKey];
-    const verb = person === "ich" ? forms[0] : person === "wir" ? forms[2] : forms[1];
-    const obj = COMPOSE_OBJECTS[(i * 5) % COMPOSE_OBJECTS.length];
+    const subject = subjects[i % subjects.length];
+    const verb = COMPOSE_VERBS[verbKeys[(i * 3) % verbKeys.length]];
+    const form = subject.person === "ich" ? verb.forms[0] : subject.person === "wir" ? verb.forms[2] : verb.forms[1];
+    const obj = verb.objects[(i * 5) % verb.objects.length];
     const adv = COMPOSE_ADVERBS[(i * 7) % COMPOSE_ADVERBS.length];
-    const parts = [subject, verb, adv, obj];
+    const parts = [subject.de, form, adv.de, obj.de];
     const sentence = parts.join(" ") + ".";
     const wc = sentence.split(" ").length;
-    if (wc >= minWords && wc <= maxWords) out.push(sentence);
-    else {
-      const minimal = [subject, verb, obj].join(" ") + ".";
-      if (minimal.split(" ").length >= minWords && minimal.split(" ").length <= maxWords) out.push(minimal);
-      else {
-        const long = [subject, verb, adv, obj, "heute"].join(" ") + ".";
-        if (long.split(" ").length <= maxWords) out.push(long);
-        else out.push(minimal);
+    let de = sentence;
+    let adverb = adv;
+    if (wc < minWords || wc > maxWords) {
+      const minimal = [subject.de, form, obj.de].join(" ") + ".";
+      if (minimal.split(" ").length >= minWords && minimal.split(" ").length <= maxWords) {
+        de = minimal;
+        adverb = { de: "", en: "" };
+      } else {
+        const long = [subject.de, form, adv.de, obj.de, "heute"].join(" ") + ".";
+        if (long.split(" ").length <= maxWords) {
+          de = long;
+          adverb = { de: "heute", en: "today" };
+        } else {
+          de = minimal;
+          adverb = { de: "", en: "" };
+        }
       }
     }
+    const verbEn = subject.person === "ich" || subject.person === "wir" ? verb.en.replace(/s$/, "") : verb.en;
+    out.push({ de, en: composeSentenceEn(subject.en, verbEn, obj.en, adverb.en) });
   }
-  return take([...new Set(out)], n, `${seed}:final`);
+  const seen = new Set<string>();
+  const unique = out.filter((s) => {
+    if (seen.has(s.de)) return false;
+    seen.add(s.de);
+    return true;
+  });
+  return take(unique, n, `${seed}:final`);
 }
 
 // ---------------------------------------------------------------------------
@@ -486,29 +696,66 @@ function buildArticleChallenge(): string {
 }
 
 function buildDeclensionBuilder(): string {
-  const templates: [string, string, string][] = [
-    ["Ich sehe ___ %s. (the)", "den", "masculine accusative"],
-    ["Wir kaufen ___ %s. (a)", "einen", "masculine accusative"],
-    ["Sie liest ___ %s. (the)", "die", "feminine accusative"],
-    ["Ich trinke ___ %s. (the)", "den", "masculine accusative"],
-    ["Er hat ___ %s. (a)", "einen", "masculine accusative"],
-    ["Wir besuchen ___ %s. (the)", "die", "feminine accusative"],
-    ["Ich mag ___ %s. (the)", "das", "neuter accusative"],
-    ["Sie nimmt ___ %s. (a)", "ein", "neuter accusative"],
-    ["Ich gebe ___ %s ein Geschenk. (the)", "dem", "masculine dative"],
-    ["Wir danken ___ %s. (the)", "der", "feminine dative"],
-    ["Das schmeckt ___ %s. (the)", "dem", "neuter dative"],
-    ["Ich helfe ___ %s. (a)", "einem", "masculine dative"],
+  interface DeclTemplate {
+    de: (base: string) => string;
+    en: (enNoun: string) => string;
+    case: "acc" | "dat";
+    indef: boolean;
+    hint: string;
+  }
+  const accDef = (article: string): string => (article === "der" ? "den" : article);
+  const accIndef = (article: string): string => (article === "der" ? "einen" : article === "die" ? "eine" : "ein");
+  const datDef = (article: string): string => (article === "die" ? "der" : "dem");
+  const datIndef = (article: string): string => (article === "der" ? "einem" : article === "die" ? "einer" : "einem");
+  const articleEn = (answer: string): string =>
+    answer === "einen" || answer === "eine" || answer === "ein" || answer === "einem" || answer === "einer" ? "a" : "the";
+  /** Strip a leading "the/a/an" from the noun's English and use the given article. */
+  const nounEnWith = (nounEn: string, article: string): string => {
+    const bare = nounEn.replace(/^(the|a|an) /i, "").trim();
+    const aOrAn = article === "a" && /^[aeiou]/i.test(bare) ? "an" : article;
+    return `${aOrAn} ${bare}`;
+  };
+  const accusativeTemplates: DeclTemplate[] = [
+    { de: (b) => `Ich sehe ___ ${b}. (the)`, en: (n) => `I see ${n}.`, case: "acc", indef: false, hint: "accusative, definite article" },
+    { de: (b) => `Wir kaufen ___ ${b}. (a)`, en: (n) => `We buy ${n}.`, case: "acc", indef: true, hint: "accusative, indefinite article" },
+    { de: (b) => `Sie liest ___ ${b}. (the)`, en: (n) => `She reads ${n}.`, case: "acc", indef: false, hint: "accusative, definite article" },
+    { de: (b) => `Er hat ___ ${b}. (a)`, en: (n) => `He has ${n}.`, case: "acc", indef: true, hint: "accusative, indefinite article" },
+    { de: (b) => `Ich mag ___ ${b}. (the)`, en: (n) => `I like ${n}.`, case: "acc", indef: false, hint: "accusative, definite article" },
+    { de: (b) => `Sie nimmt ___ ${b}. (a)`, en: (n) => `She takes ${n}.`, case: "acc", indef: true, hint: "accusative, indefinite article" },
   ];
+  const dativeTemplates: DeclTemplate[] = [
+    { de: (b) => `Ich helfe ___ ${b}. (a)`, en: (n) => `I help ${n}.`, case: "dat", indef: true, hint: "dative, indefinite article" },
+    { de: (b) => `Wir danken ___ ${b}. (the)`, en: (n) => `We thank ${n}.`, case: "dat", indef: false, hint: "dative, definite article" },
+    { de: (b) => `Das gehört ___ ${b}. (the)`, en: (n) => `That belongs to ${n}.`, case: "dat", indef: false, hint: "dative, definite article" },
+    { de: (b) => `Ich antworte ___ ${b}. (a)`, en: (n) => `I answer ${n}.`, case: "dat", indef: true, hint: "dative, indefinite article" },
+  ];
+  const animate = new Set<string>();
+  const notAnimateNoun = /Reisepass|Personalausweis|Fell|Wild|Haut|Wolle|Fleisch|Milch|Ei|Steak|Wurst|Horn|Schwanz|Flügel|Zahn|Huf|Bild|Foto|Name|Adresse|Beruf|Job|Termin|Nachname|Vorname|Familienname|Spitzname|Geburtstag|Ausweis|Dokument|Pass|Papiere|Nummer|Telefonnummer|Staatsangehörigkeit|Heimat|Wohnort|Herkunft|Nationalität|Lebenslauf|Jugend|Kindheit|Brieffreund|Namensvetter|Brötchen|Brot|Nahrung|Futter|Käfig|Stall|Leine|Halsband|Knochen|Schnabel|Pfote|Kralle|Spur|Eichhörnchen/;
+  for (const list of wordLists) {
+    if (list.id === "people" || list.id === "animals") {
+      for (const w of list.words) {
+        if (/^(der|die|das) /.test(w.de) && !notAnimateNoun.test(w.de)) animate.add(w.de);
+      }
+    }
+  }
+  for (const w of ["der Mann", "die Frau", "das Kind", "der Lehrer", "die Lehrerin", "der Kellner", "das Mädchen", "der Vater", "die Mutter", "der Bruder", "die Schwester", "der Opa", "die Oma", "der Nachbar", "die Ärztin", "der Freund", "die Freundin", "der Kollege", "der Student", "der Arzt", "der Polizist", "der Chef", "die Familie"]) animate.add(w);
   const levels = [0, 1, 2, 3].map((l) => {
     const pool = take(nounEntries, 200, `db:${l}`);
     const rounds: string[] = [];
-    pool.forEach((n, i) => {
+    let accCount = 0;
+    let datCount = 0;
+    pool.forEach((n) => {
       const article = articleOf(n.de);
       const base = n.de.replace(/^(der|die|das) /, "");
-      const [template, answer, hint] = templates[i % templates.length];
-      const correctAnswer = answer === "den" ? "den" : answer === "dem" ? "dem" : answer === "der" ? "der" : answer === "die" ? "die" : answer === "das" ? "das" : answer === "einen" ? "einen" : answer === "einem" ? "einem" : answer === "ein" ? "ein" : answer;
-      rounds.push(fillBlankRound(`db-l${l + 1}-${String(i + 1).padStart(3, "0")}`, template.replace("%s", base), correctAnswer, hint));
+      const isAnimate = animate.has(n.de);
+      const t = isAnimate
+        ? (accCount + datCount) % 2 === 0
+          ? accusativeTemplates[accCount++ % accusativeTemplates.length]
+          : dativeTemplates[datCount++ % dativeTemplates.length]
+        : accusativeTemplates[accCount++ % accusativeTemplates.length];
+      const answer = t.case === "acc" ? (t.indef ? accIndef(article) : accDef(article)) : (t.indef ? datIndef(article) : datDef(article));
+      const en = t.en(nounEnWith(n.en, articleEn(answer)));
+      rounds.push(fillBlankRound(`db-l${l + 1}-${String(accCount + datCount).padStart(3, "0")}`, t.de(base), answer, `${t.hint}: ${answer} ${base}`, en));
     });
     return levelBlock(`declension-builder-${l + 1}`, `Level ${l + 1}: ${["Accusative", "Dative", "Mixed", "Mixed"][l]}`, rounds.join(""));
   });
@@ -521,10 +768,13 @@ function buildDeclensionBuilder(): string {
 
 function buildSentenceFixer(): string {
   const levels = [0, 1, 2, 3].map((l) => {
-    const pool = [...exampleSentences.filter((s) => s.de.split(" ").length <= 7).map((s) => s.de), ...composeSentences(4, 7, 200, `sf:${l}`)];
+    const pool: ComposedSentence[] = [
+      ...exampleSentences.filter((s) => s.de.split(" ").length <= 7).map((s) => ({ de: s.de, en: s.en })),
+      ...composeSentences(4, 7, 200, `sf:${l}`),
+    ];
     const sentences = take(pool, 200, `sf:${l}`);
     const rounds: string[] = [];
-    sentences.forEach((s, i) => rounds.push(wordOrderRound(`sf-l${l + 1}-${String(i + 1).padStart(3, "0")}`, s)));
+    sentences.forEach((s, i) => rounds.push(wordOrderRound(`sf-l${l + 1}-${String(i + 1).padStart(3, "0")}`, s.de, s.en)));
     return levelBlock(`sentence-fixer-${l + 1}`, `Level ${l + 1}: ${["Short sentences", "Verbs", "Longer sentences", "Questions"][l]}`, rounds.join(""));
   });
   return [
@@ -598,10 +848,13 @@ function buildListeningGames(): string {
 
 function buildListenAndArrange(): string {
   const levels = [0, 1, 2, 3].map((l) => {
-    const pool = [...exampleSentences.filter((s) => s.de.split(" ").length <= 6).map((s) => s.de), ...composeSentences(3, 6, 200, `la:${l}`)];
+    const pool: ComposedSentence[] = [
+      ...exampleSentences.filter((s) => s.de.split(" ").length <= 6).map((s) => ({ de: s.de, en: s.en })),
+      ...composeSentences(3, 6, 200, `la:${l}`),
+    ];
     const sentences = take(pool, 200, `la:${l}`);
     const rounds: string[] = [];
-    sentences.forEach((s, i) => rounds.push(wordOrderRound(`la-l${l + 1}-${String(i + 1).padStart(3, "0")}`, s)));
+    sentences.forEach((s, i) => rounds.push(wordOrderRound(`la-l${l + 1}-${String(i + 1).padStart(3, "0")}`, s.de, s.en)));
     return levelBlock(`listen-and-arrange-${l + 1}`, `Level ${l + 1}: ${["Basics", "Verbs", "Questions", "Mixed"][l]}`, rounds.join(""));
   });
   return [
@@ -626,7 +879,7 @@ function buildMissingWord(): string {
     const rounds: string[] = [];
     sentences.forEach((s, i) => {
       const { sentence, answer, hint } = blankSentence(s.de);
-      rounds.push(fillBlankRound(`mw-l${l + 1}-${String(i + 1).padStart(3, "0")}`, sentence, answer, hint));
+      rounds.push(fillBlankRound(`mw-l${l + 1}-${String(i + 1).padStart(3, "0")}`, sentence, answer, hint, s.en));
     });
     return levelBlock(`missing-word-${l + 1}`, `Level ${l + 1}: ${["Verbs", "Nouns", "Mixed", "Longer sentences"][l]}`, rounds.join(""));
   });
@@ -639,10 +892,13 @@ function buildMissingWord(): string {
 
 function buildSentenceScrabble(): string {
   const levels = [0, 1, 2, 3].map((l) => {
-    const pool = [...exampleSentences.filter((s) => s.de.split(" ").length >= 4 && s.de.split(" ").length <= 8).map((s) => s.de), ...composeSentences(5, 8, 200, `ss:${l}`)];
+    const pool: ComposedSentence[] = [
+      ...exampleSentences.filter((s) => s.de.split(" ").length >= 4 && s.de.split(" ").length <= 8).map((s) => ({ de: s.de, en: s.en })),
+      ...composeSentences(5, 8, 200, `ss:${l}`),
+    ];
     const sentences = take(pool, 200, `ss:${l}`);
     const rounds: string[] = [];
-    sentences.forEach((s, i) => rounds.push(wordOrderRound(`ss-l${l + 1}-${String(i + 1).padStart(3, "0")}`, s)));
+    sentences.forEach((s, i) => rounds.push(wordOrderRound(`ss-l${l + 1}-${String(i + 1).padStart(3, "0")}`, s.de, s.en)));
     return levelBlock(`sentence-scrabble-${l + 1}`, `Level ${l + 1}: ${["Easy", "Medium", "Hard", "Expert"][l]}`, rounds.join(""));
   });
   return [

@@ -22,7 +22,7 @@ export const wortschatzJM: Lesson = {
     { id: "w008", de: "jemand", en: "someone", part: "noun m.", audio: true },
     { id: "w009", de: "jetzt", en: "now", part: "adverb", audio: true },
     { id: "w010", de: "der Job", en: "the job", part: "noun m.", audio: true },
-    { id: "w011", de: "das Joghurt", en: "the yogurt", part: "noun n.", audio: true },
+    { id: "w011", de: "der Joghurt", en: "the yogurt", part: "noun m.", audio: true },
     { id: "w012", de: "jubeln", en: "to cheer", part: "verb", audio: true },
     { id: "w013", de: "jung", en: "young", part: "adjective", audio: true },
     { id: "w014", de: "der Junge", en: "the boy", part: "noun m.", audio: true },
@@ -172,8 +172,8 @@ export const wortschatzJM: Lesson = {
 {"id": "ex-jm-1", "type": "multiple-choice", "title": "Übung 1", "instruction": "Choose the correct translation.", "prompt": "Was heißt 'das Krankenhaus'?", "options": ["the hospital", "the pharmacy", "the doctor"], "correctIndex": 0, "explain": "das Krankenhaus is the hospital."},
 {"id": "ex-jm-2", "type": "multiple-choice", "title": "Übung 2", "instruction": "Choose the correct translation.", "prompt": "Was heißt 'die Möglichkeit'?", "options": ["the possibility", "the memory", "the machine"], "correctIndex": 0, "explain": "die Möglichkeit is the possibility."},
 {"id": "ex-jm-3", "type": "multiple-choice", "title": "Übung 3", "instruction": "Choose the word that fits.", "prompt": "Ich möchte ein Auto ___.", "options": ["mieten", "liegen", "klettern"], "correctIndex": 0, "explain": "Renting is mieten."},
-{"id": "ex-jm-4", "type": "fill-blank", "title": "Übung 4", "instruction": "Type the missing verb.", "sentence": "Ich ___ gern Musik. (hören)", "blanks": [{"answers": ["höre"], "hint": "hören, ich"}]},
+{"id": "ex-jm-4", "type": "fill-blank", "title": "Übung 4", "instruction": "Type the missing verb.", "sentence": "Ich ___ gern Musik. (hören)", "translation": "I ___ music. (listen to)", "blanks": [{"answers": ["höre"], "hint": "hören, ich"}]},
 {"id": "ex-jm-5", "type": "multiple-choice", "title": "Übung 5", "instruction": "Choose the word that fits.", "prompt": "Das ___ steht in der Küche.", "options": ["Kühlschrank", "Koffer", "Kopf"], "correctIndex": 0, "explain": "der Kühlschrank is the fridge."},
-{"id": "ex-jm-6", "type": "word-order", "title": "Übung 6", "instruction": "Build the sentence: I would like to drink a coffee.", "chunks": ["Ich", "möchte", "einen", "Kaffee", "trinken."], "explain": "The modal is second; the infinitive closes."}
+{"id": "ex-jm-6", "type": "word-order", "title": "Übung 6", "instruction": "Build the sentence: I would like to drink a coffee.", "chunks": ["Ich", "möchte", "einen", "Kaffee", "trinken."], "translation": "I would like to drink a coffee.", "explain": "The modal is second; the infinitive closes."}
   ],
 };

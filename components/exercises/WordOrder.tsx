@@ -74,6 +74,12 @@ export function WordOrder({ exercise, savedAnswer, onResult }: WordOrderProps) {
       <h3 className="text-base font-semibold text-stone-900">{exercise.title}</h3>
       <p className="mt-1 text-sm text-stone-600">{exercise.instruction}</p>
 
+      {exercise.translation ? (
+        <p className="mt-2 text-sm italic text-stone-500">
+          Translation: {exercise.translation}
+        </p>
+      ) : null}
+
       <div
         aria-label="Your sentence"
         className="mt-4 flex min-h-16 flex-wrap items-center gap-2 rounded-lg border border-dashed border-stone-400 bg-white p-3"
@@ -114,6 +120,7 @@ export function WordOrder({ exercise, savedAnswer, onResult }: WordOrderProps) {
           explainCorrect={exercise.explainCorrect}
           explainWrong={exercise.explainWrong}
           explain={exercise.explain}
+          translation={exercise.translation}
         />
       ) : null}
 

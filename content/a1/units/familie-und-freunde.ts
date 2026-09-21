@@ -117,12 +117,12 @@ export const meineFamilie: Lesson = {
         {
           type: "example",
           de: "Ich habe einen Bruder und eine Schwester. Er hat zwei Söhne. Sie hat eine Tochter. Wir haben keine Kinder.",
-          en: "The family with haben in all forms.",
+          en: "I have a brother and a sister. He has two sons. She has a daughter. We have no children.",
         },
         {
           type: "gloss",
           de: "Ich habe einen Bruder und eine Schwester. Er hat zwei Söhne. Sie hat eine Tochter. Wir haben keine Kinder.",
-          en: "I have a brother and a sister. He has two sons. She has one daughter. We have no children.",
+          en: "I have a brother and a sister. He has two sons. She has a daughter. We have no children.",
           words: [{"word": "Ich", "pos": "Pronomen", "en": "I", "detail": "Pronoun"}, {"word": "habe", "pos": "Verb", "en": "have", "detail": "Verb"}, {"word": "einen", "pos": "Artikel", "en": "a (acc.)", "detail": "Article (indefinite: a)"}, {"word": "Bruder", "pos": "Nomen", "en": "brother", "detail": "Noun"}, {"word": "und", "pos": "Konjunktion", "en": "and", "detail": "Conjunction"}, {"word": "eine", "pos": "Artikel", "en": "a (acc.)", "detail": "Article (indefinite: a)"}, {"word": "Schwester", "pos": "Nomen", "en": "sister", "detail": "Noun"}, {"word": "Er", "pos": "Pronomen", "en": "he", "detail": "Pronoun"}, {"word": "hat", "pos": "Verb", "en": "has", "detail": "Verb"}, {"word": "zwei", "pos": "Numerale", "en": "two", "detail": "Numeral (cardinal)"}, {"word": "Söhne", "pos": "Nomen", "en": "sons", "detail": "Noun"}, {"word": "Sie", "pos": "Pronomen", "en": "she", "detail": "Pronoun in the accusative case"}, {"word": "hat", "pos": "Verb", "en": "has", "detail": "Verb"}, {"word": "eine", "pos": "Artikel", "en": "a (acc.)", "detail": "Article (indefinite: a)"}, {"word": "Tochter", "pos": "Nomen", "en": "daughter", "detail": "Noun"}, {"word": "Wir", "pos": "Pronomen", "en": "we", "detail": "Pronoun"}, {"word": "haben", "pos": "Verb", "en": "have", "detail": "Verb"}, {"word": "keine", "pos": "Artikel", "en": "no", "detail": "Negative article (no)"}, {"word": "Kinder", "pos": "Nomen", "en": "children", "detail": "Noun"}],
         },
         {
@@ -153,7 +153,7 @@ export const meineFamilie: Lesson = {
         {
           type: "example",
           de: "Was ist Ihr Familienstand? Ich bin verheiratet. Mein Mann heißt Paul. Wir haben zwei Kinder.",
-          en: "The family status question and answer.",
+          en: "What is your marital status? I am married. My husband is called Paul. We have two children.",
         },
         {
           type: "tip",
@@ -286,6 +286,7 @@ export const meineFamilie: Lesson = {
       title: "Übung 4: Der Plural",
       instruction: "Type the plurals.",
       sentence: "der Vater -> die ___, die Schwester -> die ___, der Sohn -> die ___, der Opa -> die ___.",
+            translation: "the father -> the ___, the sister -> the ___, the son -> the ___, the grandpa -> the ___.",
       blanks: [
         { answers: ["Väter"], hint: "umlaut" },
         { answers: ["Schwestern"], hint: "+ -en" },
@@ -299,6 +300,7 @@ export const meineFamilie: Lesson = {
       title: "Übung 5: haben + Akkusativ",
       instruction: "Complete with the right article.",
       sentence: "Ich habe ___ Bruder. (a, m.) Ich habe ___ Schwester. (a, f.) Ich habe ___ Kind. (a, n.) Ich habe zwei ___.",
+            translation: "I have ___ brother. (a, m.) I have ___ sister. (a, f.) I have ___ child. (a, n.) I have two ___.",
       blanks: [
         { answers: ["einen"], hint: "masculine accusative" },
         { answers: ["eine"], hint: "feminine" },
@@ -371,7 +373,7 @@ export const meineFamilie: Lesson = {
       type: "word-order",
       title: "Übung 12: Der Satz",
       instruction: "Build the sentence: My parents live in Hamburg.",
-      chunks: ["Meine", "Eltern", "wohnen", "in", "Hamburg."],
+      chunks: ["Meine", "Eltern", "wohnen", "in", "Hamburg."], translation: "My parents live in Hamburg.",
       explain: "The plural subject takes the plural verb.",
     },
     {
@@ -379,7 +381,7 @@ export const meineFamilie: Lesson = {
       type: "word-order",
       title: "Übung 13: Der Satz",
       instruction: "Build the sentence: I have two children.",
-      chunks: ["Ich", "habe", "zwei", "Kinder."],
+      chunks: ["Ich", "habe", "zwei", "Kinder."], translation: "I have two children.",
       explain: "Numbers demand the plural: zwei Kinder.",
     },
     {
@@ -480,12 +482,12 @@ export const possessivartikel: Lesson = {
         {
           type: "example",
           de: "Mein Vater ist Lehrer. Meine Mutter ist Ärztin. Mein Kind ist klein. Meine Kinder spielen.",
-          en: "All four nominative forms.",
+          en: "My father is a teacher. My mother is a doctor. My child is small. My children are playing.",
         },
         {
           type: "gloss",
           de: "Mein Vater ist Lehrer. Meine Mutter ist Ärztin. Mein Kind ist klein. Meine Kinder spielen.",
-          en: "My father is a teacher. My mother is a doctor. My child is small. My children play.",
+          en: "My father is a teacher. My mother is a doctor. My child is small. My children are playing.",
           words: [{"word": "Mein", "pos": "Pronomen", "en": "my", "detail": "Possessive pronoun"}, {"word": "Vater", "pos": "Nomen", "en": "father", "detail": "Noun"}, {"word": "ist", "pos": "Verb", "en": "is", "detail": "Verb"}, {"word": "Lehrer", "pos": "Nomen", "en": "teacher", "detail": "Noun"}, {"word": "Meine", "pos": "Pronomen", "en": "my", "detail": "Possessive pronoun"}, {"word": "Mutter", "pos": "Nomen", "en": "mother", "detail": "Noun"}, {"word": "ist", "pos": "Verb", "en": "is", "detail": "Verb"}, {"word": "Ärztin", "pos": "Nomen", "en": "doctor", "detail": "Noun"}, {"word": "Mein", "pos": "Pronomen", "en": "my", "detail": "Possessive pronoun"}, {"word": "Kind", "pos": "Nomen", "en": "child", "detail": "Noun"}, {"word": "ist", "pos": "Verb", "en": "is", "detail": "Verb"}, {"word": "klein", "pos": "Adjektiv", "en": "small", "detail": "Adjective"}, {"word": "Meine", "pos": "Pronomen", "en": "my", "detail": "Possessive pronoun"}, {"word": "Kinder", "pos": "Nomen", "en": "children", "detail": "Noun"}, {"word": "spielen", "pos": "Verb", "en": "play", "detail": "Verb"}],
         },
         {
@@ -515,7 +517,7 @@ export const possessivartikel: Lesson = {
         {
           type: "example",
           de: "Ich sehe meinen Bruder. Ich besuche meine Oma. Ich liebe mein Kind.",
-          en: "Possessives in the accusative.",
+          en: "I see my brother. I visit my grandma. I love my child.",
         },
         {
           type: "tip",
@@ -544,7 +546,7 @@ export const possessivartikel: Lesson = {
         {
           type: "example",
           de: "Ich fahre mit meinem Bruder. Ich wohne bei meiner Schwester. Das Buch gehört meinem Kind.",
-          en: "Possessives in the dative.",
+          en: "I drive with my brother. I live with my sister. The book belongs to my child.",
         },
         {
           type: "tip",
@@ -674,6 +676,7 @@ export const possessivartikel: Lesson = {
       title: "Übung 3: Die Endungen",
       instruction: "Complete with the right ending.",
       sentence: "___ Vater ist Lehrer. (my) ___ Mutter ist Ärztin. (my) ___ Kind ist klein. (my) ___ Kinder spielen. (my)",
+            translation: "___ father is a teacher. (my) ___ mother is a doctor. (my) ___ child is small. (my) ___ children are playing. (my)",
       blanks: [
         { answers: ["Mein"], hint: "masculine" },
         { answers: ["Meine"], hint: "feminine" },
@@ -687,6 +690,7 @@ export const possessivartikel: Lesson = {
       title: "Übung 4: Der Akkusativ",
       instruction: "Complete with the accusative possessive.",
       sentence: "Ich sehe ___ Bruder. (my) Ich besuche ___ Oma. (my) Ich liebe ___ Kind. (my)",
+            translation: "I see ___ brother. (my) I visit ___ grandma. (my) I love ___ child. (my)",
       blanks: [
         { answers: ["meinen"], hint: "masculine accusative" },
         { answers: ["meine"], hint: "feminine stays" },
@@ -699,6 +703,7 @@ export const possessivartikel: Lesson = {
       title: "Übung 5: Der Dativ",
       instruction: "Complete with the dative possessive.",
       sentence: "Ich fahre mit ___ Bruder. (my) Ich wohne bei ___ Schwester. (my) Ich fahre mit ___ Kindern. (my)",
+            translation: "I drive with ___ brother. (my) I live with ___ sister. (my) I drive with ___ children. (my)",
       blanks: [
         { answers: ["meinem"], hint: "masculine dative" },
         { answers: ["meiner"], hint: "feminine dative" },
@@ -774,7 +779,7 @@ export const possessivartikel: Lesson = {
       type: "word-order",
       title: "Übung 12: Der Satz",
       instruction: "Build the sentence: I see my brother.",
-      chunks: ["Ich", "sehe", "meinen", "Bruder."],
+      chunks: ["Ich", "sehe", "meinen", "Bruder."], translation: "I see my brother.",
       explain: "Accusative masculine: meinen.",
     },
     {
@@ -782,7 +787,7 @@ export const possessivartikel: Lesson = {
       type: "word-order",
       title: "Übung 13: Der Satz",
       instruction: "Build the sentence: I am travelling with my sister.",
-      chunks: ["Ich", "fahre", "mit", "meiner", "Schwester."],
+      chunks: ["Ich", "fahre", "mit", "meiner", "Schwester."], translation: "I am driving with my sister.",
       explain: "Dative after mit: meiner.",
     },
     {
@@ -854,7 +859,7 @@ export const personalpronomen: Lesson = {
         {
           type: "example",
           de: "Ich lerne Deutsch. Du lernst Englisch. Er lernt Spanisch. Wir lernen Italienisch.",
-          en: "Nominative pronouns with their verb endings.",
+          en: "I learn German. You learn English. He learns Spanish. We learn Italian.",
         },
         {
           type: "tip",
@@ -887,7 +892,7 @@ export const personalpronomen: Lesson = {
         {
           type: "example",
           de: "Sie kennt mich. Ich sehe ihn. Wir besuchen dich. Ich liebe euch.",
-          en: "Accusative pronouns after the verb.",
+          en: "She knows me. I see him. We visit you. I love you (plural).",
         },
         {
           type: "tip",
@@ -921,7 +926,7 @@ export const personalpronomen: Lesson = {
         {
           type: "example",
           de: "Kannst du mir helfen? Das schmeckt mir. Ich danke dir. Wir helfen ihnen. Kommst du mit mir?",
-          en: "Dative pronouns after dative verbs and prepositions.",
+          en: "Can you help me? That tastes good to me. I thank you. We help them. Are you coming with me?",
         },
         {
           type: "tip",
@@ -1056,6 +1061,7 @@ export const personalpronomen: Lesson = {
       title: "Übung 1: Nominativ",
       instruction: "Type the correct nominative pronoun.",
       sentence: "___ lerne Deutsch. (I) ___ lernst Englisch. (you) ___ lernt Spanisch. (he) ___ lernen Italienisch. (we)",
+            translation: "___ learn German. (I) ___ learn English. (you) ___ learns Spanish. (he) ___ learn Italian. (we)",
       blanks: [
         { answers: ["Ich"], hint: "I" },
         { answers: ["Du"], hint: "you" },
@@ -1069,6 +1075,7 @@ export const personalpronomen: Lesson = {
       title: "Übung 2: Akkusativ",
       instruction: "Type the correct accusative pronoun.",
       sentence: "Sie kennt ___. (me) Ich sehe ___. (him) Wir besuchen ___. (you) Ich liebe ___. (you all)",
+            translation: "She knows ___. (me) I see ___. (him) We visit ___. (you) I love ___. (you all)",
       blanks: [
         { answers: ["mich"], hint: "ich -> mich" },
         { answers: ["ihn"], hint: "er -> ihn" },
@@ -1082,6 +1089,7 @@ export const personalpronomen: Lesson = {
       title: "Übung 3: Dativ",
       instruction: "Type the correct dative pronoun.",
       sentence: "Kannst du ___ helfen? (me) Ich danke ___. (you) Das gefällt ___. (her) Wir helfen ___. (them)",
+            translation: "Can you help ___? (me) I thank ___. (you) She likes ___. (her) We help ___. (them)",
       blanks: [
         { answers: ["mir"], hint: "ich -> mir" },
         { answers: ["dir"], hint: "du -> dir" },
@@ -1095,6 +1103,7 @@ export const personalpronomen: Lesson = {
       title: "Übung 4: Alles gemischt",
       instruction: "Type the correct pronoun (any case).",
       sentence: "Ich sehe ___. (him) Ich gebe ___ das Buch. (him) Sie kennt ___. (me) Das schmeckt ___. (me) Wir besuchen ___. (her)",
+            translation: "I see ___. (him) I give ___ the book. (him) She knows ___. (me) That tastes good to ___. (me) We visit ___. (her)",
       blanks: [
         { answers: ["ihn"], hint: "accusative" },
         { answers: ["ihm"], hint: "dative" },
@@ -1169,6 +1178,7 @@ export const personalpronomen: Lesson = {
       title: "Übung 11: man und es",
       instruction: "Complete with man or es.",
       sentence: "___ regnet heute. ___ spricht hier Deutsch. ___ gibt einen Park. ___ ist kalt.",
+            translation: "___ is raining today. ___ speaks German here. ___ is a park. ___ is cold.",
       blanks: [
         { answers: ["Es"], hint: "weather" },
         { answers: ["Man"], hint: "people in general" },
@@ -1235,7 +1245,7 @@ export const personalpronomen: Lesson = {
       type: "word-order",
       title: "Übung 17: Der Satz",
       instruction: "Build the sentence: She knows me.",
-      chunks: ["Sie", "kennt", "mich."],
+      chunks: ["Sie", "kennt", "mich."], translation: "She knows me.",
       explain: "The verb is second; the accusative follows.",
     },
     {
@@ -1243,7 +1253,7 @@ export const personalpronomen: Lesson = {
       type: "word-order",
       title: "Übung 18: Der Satz",
       instruction: "Build the sentence: I give it to you.",
-      chunks: ["Ich", "gebe", "es", "dir."],
+      chunks: ["Ich", "gebe", "es", "dir."], translation: "I give it to you.",
       explain: "Accusative es first, then dative dir.",
     },
     {
@@ -1299,7 +1309,7 @@ export const hobbysUndFreunde: Lesson = {
         {
           type: "example",
           de: "Ich spiele Fußball und Tennis. Sie macht Yoga. Wir gehen schwimmen. Er fährt Rad. Ich höre Musik und lese gern.",
-          en: "The six activity verbs in action.",
+          en: "I play football and tennis. She does yoga. We go swimming. He cycles. I listen to music and like to read.",
         },
         {
           type: "tip",
@@ -1358,7 +1368,7 @@ export const hobbysUndFreunde: Lesson = {
         {
           type: "example",
           de: "Ich spiele gern Fußball, aber ich schwimme lieber. Am liebsten lese ich ein Buch.",
-          en: "All three levels in one text.",
+          en: "I like playing football, but I prefer swimming. Most of all I like reading a book.",
         },
         {
           type: "tip",
@@ -1388,7 +1398,7 @@ export const hobbysUndFreunde: Lesson = {
         {
           type: "example",
           de: "Ich spiele nicht gern Fußball. Sie kocht sehr gern. Er tanzt überhaupt nicht gern.",
-          en: "The negative scale in action.",
+          en: "I don't like playing football. She likes cooking very much. He doesn't like dancing at all.",
         },
         {
           type: "tip",
@@ -1421,7 +1431,7 @@ export const hobbysUndFreunde: Lesson = {
         {
           type: "example",
           de: "Wie oft machst du Sport? Ich mache zweimal pro Woche Sport. Manchmal gehe ich schwimmen, aber selten.",
-          en: "Frequency in questions and answers.",
+          en: "How often do you do sport? I do sport twice a week. Sometimes I go swimming, but rarely.",
         },
         {
           type: "tip",
@@ -1453,7 +1463,7 @@ export const hobbysUndFreunde: Lesson = {
         {
           type: "example",
           de: "Mein bester Freund heißt Jonas. Meine beste Freundin kommt aus Wien. Wir treffen uns am Samstag. Wir kochen gemeinsam.",
-          en: "Friends in four sentences.",
+          en: "My best friend is called Jonas. My best friend (f.) comes from Vienna. We meet on Saturday. We cook together.",
         },
         {
           type: "tip",
@@ -1486,7 +1496,7 @@ export const hobbysUndFreunde: Lesson = {
         {
           type: "example",
           de: "Anna: Ich gehe am Samstag schwimmen. Möchtest du mitkommen? Jonas: Ja, gerne! Wann und wo? Anna: Um zehn Uhr im Schwimmbad.",
-          en: "The invitation dialogue.",
+          en: "Anna: I'm going swimming on Saturday. Would you like to come along? Jonas: Yes, gladly! When and where? Anna: At ten o'clock at the swimming pool.",
         },
         {
           type: "tip",
@@ -1600,6 +1610,7 @@ export const hobbysUndFreunde: Lesson = {
       title: "Übung 4: gern",
       instruction: "Complete with gern, lieber, or am liebsten.",
       sentence: "Ich spiele ___ Fußball. (like to) Ich schwimme ___ als ich laufe. (prefer) ___ höre ich Musik. (most of all)",
+            translation: "I ___ playing football. (like to) I prefer ___ to running. (prefer) ___ I listen to music. (most of all)",
       blanks: [
         { answers: ["gern"], hint: "like to" },
         { answers: ["lieber"], hint: "prefer" },
@@ -1631,7 +1642,7 @@ export const hobbysUndFreunde: Lesson = {
       type: "fill-blank",
       title: "Übung 7: Die Häufigkeit",
       instruction: "Complete with the frequency word.",
-      sentence: "Ich spiele ___ Fußball. (always) Ich koche ___. (sometimes) Ich jogge ___. (never)",
+      sentence: "Ich spiele ___ Fußball. (always) Ich koche ___. (sometimes) Ich jogge ___. (never)", translation: "I ___ play football. (always) I ___ cook. (sometimes) I ___ jog. (never)",
       blanks: [
         { answers: ["immer"], hint: "always" },
         { answers: ["manchmal"], hint: "sometimes" },
@@ -1707,7 +1718,7 @@ export const hobbysUndFreunde: Lesson = {
       type: "word-order",
       title: "Übung 14: Der Satz",
       instruction: "Build the sentence: Most of all I like listening to music.",
-      chunks: ["Am liebsten", "höre", "ich", "Musik."],
+      chunks: ["Am liebsten", "höre", "ich", "Musik."], translation: "Most of all I like listening to music.",
       explain: "am liebsten at the front forces the inversion.",
     },
     {
@@ -1715,7 +1726,7 @@ export const hobbysUndFreunde: Lesson = {
       type: "word-order",
       title: "Übung 15: Der Satz",
       instruction: "Build the sentence: We meet on Saturday at the pool.",
-      chunks: ["Wir", "treffen", "uns", "am", "Samstag", "im", "Schwimmbad."],
+      chunks: ["Wir", "treffen", "uns", "am", "Samstag", "im", "Schwimmbad."], translation: "We are meeting at the swimming pool on Saturday.",
       explain: "Time before place: am Samstag im Schwimmbad.",
     },
     {
@@ -1837,7 +1848,7 @@ export const wFragen: Lesson = {
         {
           type: "example",
           de: "Wo ist der Schlüssel? Auf dem Tisch. Woher kommst du? Aus der Schweiz. Wohin gehst du? Ins Kino.",
-          en: "The three location questions in action.",
+          en: "Where is the key? On the table. Where are you from? From Switzerland. Where are you going? To the cinema.",
         },
         {
           type: "tip",
@@ -1993,6 +2004,7 @@ export const wFragen: Lesson = {
       title: "Übung 3: Das Fragewort",
       instruction: "Type the missing question word.",
       sentence: "___ alt bist du? ___ kommst du? Aus Italien. ___ kostet das? ___ ist das? Das ist Anna.",
+            translation: "___ old are you? Where ___ you ___? From Italy. ___ does that cost? ___ is that? That is Anna.",
       blanks: [
         { answers: ["Wie"], hint: "age" },
         { answers: ["Woher"], hint: "origin" },
@@ -2006,6 +2018,7 @@ export const wFragen: Lesson = {
       title: "Übung 4: Die Personen-Fragen",
       instruction: "Complete with wer, wen, or wem.",
       sentence: "___ ist das? Das ist Anna. ___ siehst du? Ich sehe den Mann. ___ hilfst du? Ich helfe dir.",
+            translation: "___ is that? That is Anna. ___ do you see? I see the man. ___ do you help? I help you.",
       blanks: [
         { answers: ["Wer"], hint: "subject" },
         { answers: ["Wen"], hint: "object" },
@@ -2101,7 +2114,7 @@ export const wFragen: Lesson = {
       type: "word-order",
       title: "Übung 13: Der Satz",
       instruction: "Build the question: Where do you live?",
-      chunks: ["Wo", "wohnst", "du?"],
+      chunks: ["Wo", "wohnst", "du?"], translation: "Where do you live?",
       explain: "Question word first, verb second.",
     },
     {
@@ -2109,7 +2122,7 @@ export const wFragen: Lesson = {
       type: "word-order",
       title: "Übung 14: Der Satz",
       instruction: "Build the question: How many siblings do you have?",
-      chunks: ["Wie viele", "Geschwister", "hast", "du?"],
+      chunks: ["Wie viele", "Geschwister", "hast", "du?"], translation: "How many siblings do you have?",
       explain: "wie viele leads, the verb follows.",
     },
     {
@@ -2165,7 +2178,7 @@ export const verneinung: Lesson = {
         {
           type: "example",
           de: "Ich habe kein Auto, aber ich habe ein Fahrrad. Ich koche nicht gern. Das ist nicht teuer. Ich wohne nicht in Berlin.",
-          en: "All five patterns in one text.",
+          en: "I have no car, but I have a bicycle. I don't like cooking. That is not expensive. I don't live in Berlin.",
         },
         {
           type: "tip",
@@ -2193,7 +2206,7 @@ export const verneinung: Lesson = {
         {
           type: "example",
           de: "Ich habe keinen Bruder, keine Schwester, kein Auto und keine Zeit. Ich helfe keinem Mann.",
-          en: "All forms of kein.",
+          en: "I have no brother, no sister, no car and no time. I help no man.",
         },
         {
           type: "tip",
@@ -2223,7 +2236,7 @@ export const verneinung: Lesson = {
         {
           type: "example",
           de: "Ich komme nicht. Ich komme nicht mit. Ich kann nicht kommen. Ich habe nicht geschlafen.",
-          en: "nicht in four positions.",
+          en: "I'm not coming. I'm not coming along. I can't come. I haven't slept.",
         },
         {
           type: "tip",
@@ -2253,7 +2266,7 @@ export const verneinung: Lesson = {
         {
           type: "example",
           de: "Niemand hat Zeit. Ich habe nichts gegessen. Er trinkt nie Kaffee. Ich habe kein Geld mehr.",
-          en: "The family in action.",
+          en: "Nobody has time. I haven't eaten anything. He never drinks coffee. I have no money left.",
         },
         {
           type: "tip",
@@ -2306,7 +2319,7 @@ export const verneinung: Lesson = {
         {
           type: "example",
           de: "Sprichst du kein Deutsch? Doch, ein bisschen! Hast du kein Auto? Doch, ich habe ein Auto!",
-          en: "doch contradicts the negative.",
+          en: "Don't you speak German? Yes I do, a little! Don't you have a car? Yes I do, I have a car!",
         },
         {
           type: "tip",
@@ -2395,7 +2408,7 @@ export const verneinung: Lesson = {
       type: "fill-blank",
       title: "Übung 4: Die kein-Formen",
       instruction: "Complete with the right kein form.",
-      sentence: "Ich habe ___ Auto. (neuter) Ich habe ___ Schwester. (feminine) Ich habe ___ Bruder. (masculine, accusative) Ich habe ___ Kinder. (plural)",
+      sentence: "Ich habe ___ Auto. (neuter) Ich habe ___ Schwester. (feminine) Ich habe ___ Bruder. (masculine, accusative) Ich habe ___ Kinder. (plural)", translation: "I have ___ car. (neuter) I have ___ sister. (feminine) I have ___ brother. (masculine, accusative) I have ___ children. (plural)",
       blanks: [
         { answers: ["kein"], hint: "neuter" },
         { answers: ["keine"], hint: "feminine" },
@@ -2429,6 +2442,7 @@ export const verneinung: Lesson = {
       title: "Übung 7: Die Negativfamilie",
       instruction: "Complete with the negative word.",
       sentence: "Ich habe ___ gekauft. (nothing) Ich trinke ___ Kaffee. (never) ___ ist zu Hause. (nobody)",
+            translation: "I bought ___. (nothing) I ___ drink coffee. (never) ___ is at home. (nobody)",
       blanks: [
         { answers: ["nichts"], hint: "nothing" },
         { answers: ["nie"], hint: "never" },
@@ -2493,7 +2507,7 @@ export const verneinung: Lesson = {
       type: "word-order",
       title: "Übung 13: Der Satz",
       instruction: "Build the sentence: I have no siblings.",
-      chunks: ["Ich", "habe", "keine", "Geschwister."],
+      chunks: ["Ich", "habe", "keine", "Geschwister."], translation: "I have no siblings.",
       explain: "keine replaces the article before the noun.",
     },
     {
@@ -2501,7 +2515,7 @@ export const verneinung: Lesson = {
       type: "word-order",
       title: "Übung 14: Der Satz",
       instruction: "Build the sentence: I do not live in Berlin.",
-      chunks: ["Ich", "wohne", "nicht", "in", "Berlin."],
+      chunks: ["Ich", "wohne", "nicht", "in", "Berlin."], translation: "I do not live in Berlin.",
       explain: "nicht stands before the negated place.",
     },
     {
@@ -2651,6 +2665,7 @@ const adjektiveGrundlagen: Lesson = {
       title: "Beschreiben",
       instruction: "Complete the descriptions.",
       sentence: "Das Gegenteil von jung ist ___. Meine Schwester ist klein und ___.",
+            translation: "The opposite of young is ___. My sister is small and ___.",
       blanks: [
         { answers: ["alt"], hint: "opposite of young" },
         { answers: ["lustig", "nett", "freundlich", "ruhig", "schön"], hint: "any positive adjective" },
@@ -2674,7 +2689,7 @@ const adjektiveGrundlagen: Lesson = {
       type: "word-order",
       title: "Der Satz",
       instruction: "Build the sentence: My sister is small and funny.",
-      chunks: ["Meine", "Schwester", "ist", "klein", "und", "lustig."],
+      chunks: ["Meine", "Schwester", "ist", "klein", "und", "lustig."], translation: "My sister is small and funny.",
       explain: "The adjective stays bare after sein.",
     },
     {
@@ -2749,7 +2764,7 @@ export const jaNeinFragen: Lesson = {
         {
           type: "example",
           de: "Sprichst du kein Deutsch? Doch, ein bisschen! Hast du kein Auto? Doch, ich habe ein Auto!",
-          en: "doch in the two classic sentences.",
+          en: "Don't you speak German? Yes I do, a little! Don't you have a car? Yes I do, I have a car!",
         },
         {
           type: "tip",
@@ -2956,6 +2971,7 @@ export const jaNeinFragen: Lesson = {
       title: "Übung 6: Die kurze Antwort",
       instruction: "Complete the short answers.",
       sentence: "Lernst du Deutsch? Ja, ich ___ Deutsch. Nein, ich lerne ___. Bist du müde? Ja, ich ___ müde.",
+            translation: "Do you learn German? Yes, I ___ German. No, I am not ___. Are you tired? Yes, I ___ tired.",
       blanks: [
         { answers: ["lerne"], hint: "repeat the verb" },
         { answers: ["nicht"], hint: "verb negation" },
@@ -3027,7 +3043,7 @@ export const jaNeinFragen: Lesson = {
       type: "word-order",
       title: "Übung 13: Der Satz",
       instruction: "Build the question: Are you learning German?",
-      chunks: ["Lernst", "du", "Deutsch?"],
+      chunks: ["Lernst", "du", "Deutsch?"], translation: "Do you learn German?",
       explain: "The verb leads, the subject follows.",
     },
     {
@@ -3035,7 +3051,7 @@ export const jaNeinFragen: Lesson = {
       type: "word-order",
       title: "Übung 14: Der Satz",
       instruction: "Build the question: Can you help me?",
-      chunks: ["Können", "Sie", "mir", "helfen?"],
+      chunks: ["Können", "Sie", "mir", "helfen?"], translation: "Can you help me?",
       explain: "The modal leads; the infinitive closes.",
     },
     {
@@ -3104,7 +3120,7 @@ export const starkeVerben: Lesson = {
         {
           type: "example",
           de: "Ich fahre, du fährst, er fährt. Wir schlafen, du schläfst, er schläft.",
-          en: "The a-to-ä pattern in action.",
+          en: "I drive, you drive, he drives. We sleep, you sleep, he sleeps.",
         },
         {
           type: "tip",
@@ -3132,7 +3148,7 @@ export const starkeVerben: Lesson = {
         {
           type: "example",
           de: "Ich spreche, du sprichst, er spricht. Ich esse, du isst, er isst. Ich helfe, du hilfst, er hilft.",
-          en: "The e-to-i pattern in action.",
+          en: "I speak, you speak, he speaks. I eat, you eat, he eats. I help, you help, he helps.",
         },
         {
           type: "tip",
@@ -3156,7 +3172,7 @@ export const starkeVerben: Lesson = {
         {
           type: "example",
           de: "Ich lese, du liest, er liest. Ich sehe, du siehst, er sieht.",
-          en: "The e-to-ie pattern in action.",
+          en: "I read, you read, he reads. I see, you see, he sees.",
         },
         {
           type: "tip",
@@ -3335,6 +3351,7 @@ export const starkeVerben: Lesson = {
       title: "Übung 6: Die Formen",
       instruction: "Complete with the strong verb forms.",
       sentence: "Er ___ nach Berlin. (fahren) Du ___ das Buch. (lesen) Sie ___ Deutsch. (sprechen) Ich ___ einen Kaffee. (trinken, regular!)",
+            translation: "He ___ to Berlin. (drive) You ___ the book. (read) She ___ German. (speak) I ___ a coffee. (drink)",
       blanks: [
         { answers: ["fährt"], hint: "a -> ä, er" },
         { answers: ["liest"], hint: "e -> ie, du" },
@@ -3425,7 +3442,7 @@ export const starkeVerben: Lesson = {
       type: "word-order",
       title: "Übung 14: Der Satz",
       instruction: "Build the sentence: He speaks German very well.",
-      chunks: ["Er", "spricht", "sehr", "gut", "Deutsch."],
+      chunks: ["Er", "spricht", "sehr", "gut", "Deutsch."], translation: "He speaks German very well.",
       explain: "The strong form spricht holds position two.",
     },
     {
