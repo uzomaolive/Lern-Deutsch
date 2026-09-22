@@ -35,7 +35,7 @@ export const wortschatzNR: Lesson = {
     { id: "w021", de: "nichts", en: "nothing", part: "adverb", audio: true },
     { id: "w022", de: "nie", en: "never", part: "adverb", audio: true },
     { id: "w023", de: "niedrig", en: "low", part: "adjective", audio: true },
-    { id: "w024", de: "niemand", en: "nobody", part: "noun m.", audio: true },
+    { id: "w024", de: "niemand", en: "nobody", part: "pronoun", audio: true },
     { id: "w025", de: "noch", en: "still, yet", part: "adverb", audio: true },
     { id: "w026", de: "der Norden", en: "the north", part: "noun m.", audio: true },
     { id: "w027", de: "normal", en: "normal", part: "adjective", audio: true },

@@ -29,17 +29,32 @@ for (const wl of wordLists) {
   }
 }
 
-function findTranslations(text?: string): Array<[string, string]> {
+function escapeRegExp(value: string): string {
+  return value.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+}
+
+/** German-aware word boundary: umlauts and ß count as word characters. */
+const WORD_CHAR = "[a-zäöüß0-9]";
+
+export function findTranslations(text?: string): Array<[string, string]> {
   if (!text) return [];
-  const found: Array<[string, string]> = [];
-  // iterate over map keys and check for substring matches (simple heuristic)
+  const found: Array<{ de: string; en: string; index: number }> = [];
+  const lower = text.toLowerCase();
+  // Match whole words only: "er" must not match inside "Lehrer", and
+  // "mal" must not match inside "normal" or "einmal".
   for (const [de, en] of TRANSLATION_MAP) {
-    if (text.includes(de)) {
-      found.push([de, en]);
+    const escaped = escapeRegExp(de.toLowerCase());
+    const match = lower.match(
+      new RegExp(`(?<!${WORD_CHAR})${escaped}(?!${WORD_CHAR})`),
+    );
+    if (match) {
+      found.push({ de, en, index: match.index ?? 0 });
       if (found.length >= 12) break; // safety limit
     }
   }
-  return found;
+  // Present the breakdown in sentence order.
+  found.sort((a, b) => a.index - b.index);
+  return found.map(({ de, en }) => [de, en]);
 }
 
 export function FeedbackBanner({
