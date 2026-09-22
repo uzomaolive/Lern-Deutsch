@@ -326,7 +326,9 @@ function timeQuestions(seed: string): TimeQ[] {
 }
 
 // ---------------------------------------------------------------------------
-// Game: Dativ Prepositions (2 levels x 100)
+// Game: Dativ Prepositions (2 levels)
+// Level 1: Wohin?/Wo?/Woher? with cities and countries
+// Level 2: Wo?/Wohin? with buildings (in, zu, aus)
 // ---------------------------------------------------------------------------
 
 interface DativQ {
@@ -336,52 +338,98 @@ interface DativQ {
   explain: string;
 }
 
-function dativQuestions(seed: string): DativQ[] {
-  const cities = ["Berlin", "München", "Hamburg", "Köln", "Frankfurt", "Wien", "Zürich", "Paris", "London", "Rom"];
-  const countries = ["Deutschland", "Nigeria", "Frankreich", "Italien", "Spanien", "Österreich", "der Schweiz", "den USA", "Japan", "Brasilien"];
-  const buildings = [
-    ["der Supermarkt", "dem Supermarkt", "den Supermarkt", "zu dem (zum) Supermarkt", "aus dem Supermarkt"],
-    ["die Schule", "der Schule", "die Schule", "zu der (zur) Schule", "aus der Schule"],
-    ["das Kino", "dem Kino", "das Kino", "zu dem (zum) Kino", "aus dem Kino"],
-    ["der Bahnhof", "dem Bahnhof", "den Bahnhof", "zu dem (zum) Bahnhof", "aus dem Bahnhof"],
-    ["die Apotheke", "der Apotheke", "die Apotheke", "zu der (zur) Apotheke", "aus der Apotheke"],
-    ["das Krankenhaus", "dem Krankenhaus", "das Krankenhaus", "zu dem (zum) Krankenhaus", "aus dem Krankenhaus"],
-    ["die Bank", "der Bank", "die Bank", "zu der (zur) Bank", "aus der Bank"],
-    ["das Restaurant", "dem Restaurant", "das Restaurant", "zu dem (zum) Restaurant", "aus dem Restaurant"],
-    ["die Post", "der Post", "die Post", "zu der (zur) Post", "aus der Post"],
-    ["das Museum", "dem Museum", "das Museum", "zu dem (zum) Museum", "aus dem Museum"],
-    ["das Café", "dem Café", "das Café", "zu dem (zum) Café", "aus dem Café"],
-    ["die Bibliothek", "der Bibliothek", "die Bibliothek", "zu der (zur) Bibliothek", "aus der Bibliothek"],
-    ["der Markt", "dem Markt", "den Markt", "zu dem (zum) Markt", "aus dem Markt"],
-    ["die Bäckerei", "der Bäckerei", "die Bäckerei", "zu der (zur) Bäckerei", "aus der Bäckerei"],
-    ["der Friseur", "dem Friseur", "den Friseur", "zu dem (zum) Friseur", "aus dem Friseur"],
-    ["die Metzgerei", "der Metzgerei", "die Metzgerei", "zu der (zur) Metzgerei", "aus der Metzgerei"],
-    ["das Schwimmbad", "dem Schwimmbad", "das Schwimmbad", "zu dem (zum) Schwimmbad", "aus dem Schwimmbad"],
-    ["der Zahnarzt", "dem Zahnarzt", "den Zahnarzt", "zu dem (zum) Zahnarzt", "aus dem Zahnarzt"],
-    ["die Sparkasse", "der Sparkasse", "die Sparkasse", "zu der (zur) Sparkasse", "aus der Sparkasse"],
-    ["der Park", "dem Park", "den Park", "zu dem (zum) Park", "aus dem Park"],
-    ["die Universität", "der Universität", "die Universität", "zu der (zur) Universität", "aus der Universität"],
-    ["das Stadion", "dem Stadion", "das Stadion", "zu dem (zum) Stadion", "aus dem Stadion"],
-  ] as const;
+const DATIV_CITIES = [
+  "Berlin", "München", "Hamburg", "Köln", "Frankfurt", "Stuttgart", "Leipzig", "Dresden",
+  "Wien", "Zürich", "Bern", "Paris", "London", "Rom", "Madrid", "Amsterdam", "Lissabon",
+  "Warschau", "Prag", "Tokio",
+];
+
+const DATIV_PLAIN_COUNTRIES = [
+  "Deutschland", "Nigeria", "Frankreich", "Italien", "Spanien", "Österreich", "Japan",
+  "Brasilien", "Polen", "Griechenland", "Portugal", "Schweden", "Norwegen", "Finnland",
+  "Dänemark", "Russland", "China", "Indien", "Mexiko", "Kanada",
+];
+
+/** [country, nominative article, dative article, accusative article]. */
+const DATIV_ARTICLED_COUNTRIES: [string, string, string, string][] = [
+  ["Schweiz", "die", "der", "die"],
+  ["USA", "die", "den", "die"],
+  ["Türkei", "die", "der", "die"],
+  ["Ukraine", "die", "der", "die"],
+  ["Iran", "der", "dem", "den"],
+  ["Irak", "der", "dem", "den"],
+  ["Libanon", "der", "dem", "den"],
+];
+
+/** [nominative, dative, accusative] article+noun forms. */
+const DATIV_BUILDINGS: [string, string, string][] = [
+  ["der Supermarkt", "dem Supermarkt", "den Supermarkt"],
+  ["die Schule", "der Schule", "die Schule"],
+  ["das Kino", "dem Kino", "das Kino"],
+  ["der Bahnhof", "dem Bahnhof", "den Bahnhof"],
+  ["die Apotheke", "der Apotheke", "die Apotheke"],
+  ["das Krankenhaus", "dem Krankenhaus", "das Krankenhaus"],
+  ["die Bank", "der Bank", "die Bank"],
+  ["das Restaurant", "dem Restaurant", "das Restaurant"],
+  ["die Post", "der Post", "die Post"],
+  ["das Museum", "dem Museum", "das Museum"],
+  ["das Café", "dem Café", "das Café"],
+  ["die Bibliothek", "der Bibliothek", "die Bibliothek"],
+  ["der Markt", "dem Markt", "den Markt"],
+  ["die Bäckerei", "der Bäckerei", "die Bäckerei"],
+  ["der Friseur", "dem Friseur", "den Friseur"],
+  ["die Metzgerei", "der Metzgerei", "die Metzgerei"],
+  ["das Schwimmbad", "dem Schwimmbad", "das Schwimmbad"],
+  ["der Zahnarzt", "dem Zahnarzt", "den Zahnarzt"],
+  ["die Sparkasse", "der Sparkasse", "die Sparkasse"],
+  ["der Park", "dem Park", "den Park"],
+  ["die Universität", "der Universität", "die Universität"],
+  ["das Stadion", "dem Stadion", "das Stadion"],
+];
+
+/** Three distinct options; when case forms collide, fall back to a wrong-form distractor. */
+function caseOptions(correct: string, d1: string, d2: string, noun: string, seed: string): [string, string, string] {
+  const set = new Set<string>([correct, d1, d2]);
+  const fallbacks = ["das", "dem", "den", "der", "die"].filter(
+    (article) => article !== correct.split(" ")[0],
+  );
+  let fb = 0;
+  while (set.size < 3) {
+    set.add(`${fallbacks[fb++ % fallbacks.length]} ${noun}`);
+  }
+  return shuffle3(...([...set] as [string, string, string]), seed);
+}
+
+function dativQuestions(seed: string, level: 1 | 2): DativQ[] {
   const qs: DativQ[] = [];
-  for (const c of cities) {
-    qs.push({ prompt: `Ich wohne ___ ${c}.`, options: shuffle3("in", "nach", "aus", `${seed}:wo${c}`), correct: "in", explain: "in + Dativ answers Wo?: Ich wohne in Berlin." });
-    qs.push({ prompt: `Ich fliege ___ ${c}.`, options: shuffle3("nach", "in", "zu", `${seed}:fl${c}`), correct: "nach", explain: "nach answers Wohin? with cities: nach Berlin." });
-    qs.push({ prompt: `Ich komme aus ___ ${c}.`, options: shuffle3("aus", "von", "zu", `${seed}:ko${c}`), correct: "aus", explain: "aus answers Woher?: Ich komme aus Berlin." });
+  if (level === 1) {
+    for (const c of DATIV_CITIES) {
+      qs.push({ prompt: `Ich wohne ___ ${c}.`, options: shuffle3("in", "nach", "aus", `${seed}:wo${c}`), correct: "in", explain: "in + Dativ answers Wo?: Ich wohne in Berlin." });
+      qs.push({ prompt: `Ich fliege ___ ${c}.`, options: shuffle3("nach", "in", "zu", `${seed}:fl${c}`), correct: "nach", explain: "nach answers Wohin? with cities: nach Berlin." });
+      qs.push({ prompt: `Ich komme ___ ${c}.`, options: shuffle3("aus", "von", "zu", `${seed}:ko${c}`), correct: "aus", explain: "aus answers Woher?: Ich komme aus Berlin." });
+    }
+    for (const co of DATIV_PLAIN_COUNTRIES) {
+      qs.push({ prompt: `Ich komme ___ ${co}.`, options: shuffle3("aus", "nach", "zu", `${seed}:co${co}`), correct: "aus", explain: "aus answers Woher?: Ich komme aus Deutschland." });
+      qs.push({ prompt: `Ich fahre ___ ${co}.`, options: shuffle3("nach", "in", "aus", `${seed}:co2${co}`), correct: "nach", explain: "nach answers Wohin? with countries: nach Deutschland." });
+    }
+    for (const [name, nom, dat, akk] of DATIV_ARTICLED_COUNTRIES) {
+      qs.push({ prompt: `Ich komme aus ___ ${name}.`, options: caseOptions(dat, nom, akk, name, `${seed}:ausart${name}`), correct: dat, explain: `aus + Dativ answers Woher?: aus ${dat} ${name}.` });
+      qs.push({ prompt: `Ich fahre in ___ ${name}.`, options: caseOptions(akk, nom, dat, name, `${seed}:inart${name}`), correct: akk, explain: `in + Akkusativ answers Wohin?: in ${akk} ${name}.` });
+    }
+    return qs;
   }
-  for (const co of countries) {
-    const simple = co.replace("der ", "").replace("den ", "");
-    qs.push({ prompt: `Ich komme aus ___ ${simple}.`, options: shuffle3("aus", "nach", "zu", `${seed}:co${co}`), correct: "aus", explain: "aus answers Woher?: Ich komme aus Deutschland." });
-    qs.push({ prompt: `Ich fahre nach ___ ${simple}.`, options: shuffle3("nach", "in", "aus", `${seed}:co2${co}`), correct: "nach", explain: "nach answers Wohin? with countries: nach Deutschland." });
-  }
-  for (const [nom, dat, akk, zu, aus] of buildings) {
+  for (const [nom, dat, akk] of DATIV_BUILDINGS) {
     const noun = nom.replace(/^(der|die|das) /, "");
-    qs.push({ prompt: `Ich gehe in ___ ${noun}. (direction)`, options: unique3(akk, dat, nom, ["dem", "die", "das"], `${seed}:in${noun}`), correct: akk, explain: `Wohin? takes the accusative: in ${akk} ${noun}.` });
-    qs.push({ prompt: `Ich bin in ___ ${noun}. (position)`, options: unique3(dat, akk, nom, ["dem", "die", "das"], `${seed}:bin${noun}`), correct: dat, explain: `Wo? takes the dative: in ${dat} ${noun}.` });
-    qs.push({ prompt: `Ich gehe ${zu.replace(/ \(.*\)$/, "")} ${noun}.`, options: unique3(zu.replace(/ \(.*\)$/, ""), dat, akk, [nom], `${seed}:zu${noun}`), correct: zu.replace(/ \(.*\)$/, ""), explain: `zu + Dativ answers Wohin? with buildings: ${zu}.` });
-    qs.push({ prompt: `Ich komme ${aus} ${noun}.`, options: unique3(aus, dat, akk, [nom], `${seed}:aus${noun}`), correct: aus, explain: `aus + Dativ answers Woher?: ${aus} ${noun}.` });
+    const article = nom.split(" ")[0];
+    qs.push({ prompt: `Ich gehe in ___ ${noun}. (direction)`, options: caseOptions(akk, dat, nom, noun, `${seed}:in${noun}`), correct: akk, explain: `Wohin? takes the accusative: in ${akk}.` });
+    qs.push({ prompt: `Ich bin in ___ ${noun}. (position)`, options: caseOptions(dat, akk, nom, noun, `${seed}:bin${noun}`), correct: dat, explain: `Wo? takes the dative: in ${dat}.` });
+    const zu = article === "die" ? `zur ${noun}` : `zum ${noun}`;
+    const zuFull = article === "die" ? "zu der" : "zu dem";
+    qs.push({ prompt: `Ich gehe ___ ${noun}.`, options: caseOptions(zu, akk, nom, noun, `${seed}:zu${noun}`), correct: zu, explain: `zu + Dativ answers Wohin? with buildings: ${zu} (${zuFull} ${noun}).` });
+    const aus = `aus ${dat}`;
+    qs.push({ prompt: `Ich komme ___ ${noun}.`, options: caseOptions(aus, akk, nom, noun, `${seed}:aus${noun}`), correct: aus, explain: `aus + Dativ answers Woher?: ${aus}.` });
   }
-  return take(qs, 200, `${seed}:final`);
+  return qs;
 }
 
 // ---------------------------------------------------------------------------
@@ -457,7 +505,7 @@ function pluralQuestions(seed: string) {
   for (const w of allNounish) {
     if (/^(der|die|das) /.test(w.de)) nounMap.set(w.de, { de: w.de, en: w.en, plural: w.plural });
   }
-  const withPlural = [...nounMap.values()].filter((n) => n.plural) as (NounEntry & { plural: string })[];
+  const withPlural = [...nounMap.values()].filter((n) => n.plural && n.plural !== n.de) as (NounEntry & { plural: string })[];
   const picks = take(withPlural, 100, `${seed}:pl`);
   return picks.flatMap((n) => {
     const base = n.de.replace(/^(der|die|das) /, "");
@@ -1416,8 +1464,8 @@ ${artikelDropItems(l, `ad${l}`)
   const timeL1 = timeQuestions("t1").map((q) => mcExercise(nid(), q.prompt, q.options, q.options.indexOf(q.correct), q.explain));
   const timeL2 = timeQuestions("t2").map((q) => mcExercise(nid(), q.prompt, q.options, q.options.indexOf(q.correct), q.explain));
 
-  const datL1 = dativQuestions("d1").map((q) => mcExercise(nid(), q.prompt, q.options, q.options.indexOf(q.correct), q.explain));
-  const datL2 = dativQuestions("d2").map((q) => mcExercise(nid(), q.prompt, q.options, q.options.indexOf(q.correct), q.explain));
+  const datL1 = dativQuestions("d1", 1).map((q) => mcExercise(nid(), q.prompt, q.options, q.options.indexOf(q.correct), q.explain));
+  const datL2 = dativQuestions("d2", 2).map((q) => mcExercise(nid(), q.prompt, q.options, q.options.indexOf(q.correct), q.explain));
 
   const imgQuestions = imageQuestions("img");
   const imgL1 = imgQuestions.slice(0, Math.floor(imgQuestions.length / 2)).map((q) => mcExercise(nid(), q.prompt, q.options, q.correctIndex, q.explain));
@@ -1455,7 +1503,7 @@ ${artikelDropItems(l, `ad${l}`)
     "\n",
     gameHeader("dativ-prepositions", "Dativ Prepositions", "📍", "Fill in the correct preposition or article for Wohin?, Wo?, Woher? sentences. Learn Dativ with cities, buildings, shops, and more.", "grammar", ["A1", "A2"]),
     levelBlock("dativ-1", "Level 1: Cities and countries", datL1.join("")),
-    levelBlock("dativ-2", "Level 2: Wo? and Wohin?", datL2.join("")),
+    levelBlock("dativ-2", "Level 2: Buildings with in, zu, aus", datL2.join("")),
     closeGame(),
     "\n",
     gameHeader("guess-word-from-image", "Guess the Word from Image", "🐶", "Look at an image and pick the correct German noun with its artikel, across animals and food & drink categories.", "vocabulary", ["A1"]),

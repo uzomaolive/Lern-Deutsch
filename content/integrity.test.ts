@@ -153,6 +153,20 @@ describe("curriculum integrity", () => {
     }
   });
 
+  it("never labels a function word as a noun", () => {
+    // Nouns carry an article or start with a capital letter. Pronouns,
+    // articles and numbers were once mislabeled "noun m./f./n.".
+    for (const lesson of allLessons()) {
+      for (const item of lesson.vocab) {
+        if (!item.part || !/^noun [mfn]\.$/.test(item.part)) continue;
+        expect(
+          /^(der|die|das) /.test(item.de) || /^[A-ZÄÖÜ]/.test(item.de),
+          `${lesson.id}:${item.id} (${item.de})`,
+        ).toBe(true);
+      }
+    }
+  });
+
   it("keeps table rowSpeak aligned with table rows", () => {
     for (const lesson of allLessons()) {
       for (const section of lesson.sections) {
@@ -247,6 +261,25 @@ describe("games integrity", () => {
             expect(ex.correctIndex).toBeGreaterThanOrEqual(0);
             expect(ex.correctIndex).toBeLessThan(ex.options.length);
           }
+        }
+      }
+    }
+  });
+
+  it("never offers an answer that is already visible next to the blank", () => {
+    // The learner must not be able to copy the correct option straight from
+    // the sentence, e.g. "Ich komme aus ___ Berlin." with "aus" as an option.
+    for (const game of games) {
+      for (const level of game.levels) {
+        for (const round of level.rounds) {
+          if (round.kind !== "exercise") continue;
+          const ex = round.exercise;
+          if (ex.type !== "multiple-choice") continue;
+          const before = ex.prompt.match(/(\w+)\s+___/)?.[1];
+          const after = ex.prompt.match(/___\s+(\w+)/)?.[1];
+          const correct = ex.options[ex.correctIndex];
+          expect(before, `${game.id}:${ex.id}`).not.toBe(correct);
+          expect(after, `${game.id}:${ex.id}`).not.toBe(correct);
         }
       }
     }
