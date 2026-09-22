@@ -1,4 +1,5 @@
 import type { Lesson, Unit } from "../../schema";
+import { wortstellungTief } from "./wortstellung";
 
 export const wortartenTief: Lesson = {
   id: "wortarten-erklaert",
@@ -2251,5 +2252,5 @@ export const grammatikKompakt1: Unit = {
   id: "grammatik-kompakt-1",
   title: "Grammatik Kompakt 1",
   theme: "Grammar deep dives",
-  lessons: [wortartenTief, nomenTief, verbenTief, pronomenTief, artikelTief, faelleTief, praepositionenTief],
+  lessons: [wortartenTief, nomenTief, verbenTief, pronomenTief, artikelTief, faelleTief, praepositionenTief, wortstellungTief],
 };
