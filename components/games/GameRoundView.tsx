@@ -19,9 +19,24 @@ import type { GameRound } from "@/content/games/schema";
 interface GameRoundViewProps {
   round: GameRound;
   roundIndex: number;
+  /** Stable progress key for exercise rounds; undefined for custom games. */
+  exerciseKey?: string;
+  /** Saved answer payload restored on revisit. */
+  savedAnswer?: unknown;
+  /** Fired once per attempt session with the first-attempt score and answer. */
+  onResult?: (percent: number, answer?: unknown) => void;
+  /** Flashcard-only: per-card mastery reports. */
+  onFlashcardResult?: (itemIndex: number, correct: boolean) => void;
 }
 
-export function GameRoundView({ round, roundIndex }: GameRoundViewProps) {
+export function GameRoundView({
+  round,
+  roundIndex,
+  exerciseKey,
+  savedAnswer,
+  onResult,
+  onFlashcardResult,
+}: GameRoundViewProps) {
   if (round.kind === "memory") {
     return <MemoryCards round={round} />;
   }
@@ -63,11 +78,16 @@ export function GameRoundView({ round, roundIndex }: GameRoundViewProps) {
   }
   return (
     <ExerciseHost
+      key={
+        exerciseKey && savedAnswer !== undefined
+          ? `answered:${exerciseKey}`
+          : `fresh:${exerciseKey ?? roundIndex}`
+      }
       exercise={round.exercise}
-      exerciseKey={`games:round:${roundIndex}:${round.exercise.id}`}
-      onResult={() => {
-        /* games are practice; nothing to persist */
-      }}
+      exerciseKey={exerciseKey ?? `games:round:${roundIndex}:${round.exercise.id}`}
+      savedAnswer={savedAnswer}
+      onResult={onResult ?? (() => {})}
+      onFlashcardResult={onFlashcardResult}
     />
   );
 }
