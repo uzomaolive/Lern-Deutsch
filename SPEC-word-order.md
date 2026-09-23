@@ -11,12 +11,18 @@ learners practice every type in a dedicated game. Two deliverables:
 2. A new game "Word Order (Satzbau)" in the Games section, one level per word
    order type, each round a sentence-building exercise carrying a rule
    explanation and an English translation.
+3. A follow-up A2 lesson "Wortstellung intensiv" (the three verb positions, the
+   full verb complex, object order, adverb order with nicht, subordinate and
+   relative clauses, prepositional questions).
+4. A follow-up A2 lesson "Trennbare und untrennbare Verben" covering both verb
+   families in detail: separable prefixes, the perfect participle, modals and
+   imperatives, inseparable prefixes, and double-form verbs.
 
 ## Capability map
 
 | Module id      | Responsibility                                          | Depends on |
 | -------------- | ------------------------------------------------------- | ---------- |
-| lesson-content | The in-depth Wortstellung lesson (sections, vocab, exercises) | existing lesson schema + page |
+| lesson-content | The Wortstellung lessons (A1 basics, A2 intensive) and the separable/inseparable verbs lesson: sections, vocab, exercises | existing lesson schema + page |
 | game-content   | The Satzbau game (4 levels of word-order rounds)        | existing game schema + round views |
 
 Build order: lesson-content, game-content (independent, no shared code changes).
