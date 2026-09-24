@@ -1,337 +1,215 @@
 import type { Game, GameRound } from "./schema";
 
-interface McData {
-  id: string;
-  prompt: string;
-  options: string[];
-  correctIndex: number;
-  explain: string;
-}
-
-interface WoData {
-  id: string;
-  chunks: string[];
-  translation: string;
-  explain: string;
-}
-
-interface FbData {
-  id: string;
-  sentence: string;
-  translation: string;
-  answers: string[];
-  explain: string;
-}
-
-interface MtData {
-  id: string;
-  pairs: [string, string][];
-  explain: string;
-}
-
-interface LsData {
-  id: string;
-  prompt: string;
-  options: string[];
-  correctIndex: number;
-  explain: string;
-}
-
-function mc(round: McData): GameRound {
-  return {
-    kind: "exercise",
-    exercise: {
-      id: round.id,
-      type: "multiple-choice",
-      title: "Practice",
-      instruction: "Choose the correct answer.",
-      prompt: round.prompt,
-      options: round.options,
-      correctIndex: round.correctIndex,
-      explain: round.explain,
-    },
-  };
-}
-
-function wo(round: WoData): GameRound {
-  return {
-    kind: "exercise",
-    exercise: {
-      id: round.id,
-      type: "word-order",
-      title: "Practice",
-      instruction: `Build the sentence: ${round.translation}`,
-      chunks: round.chunks,
-      translation: round.translation,
-      explain: round.explain,
-    },
-  };
-}
-
-function fb(round: FbData): GameRound {
-  return {
-    kind: "exercise",
-    exercise: {
-      id: round.id,
-      type: "fill-blank",
-      title: "Practice",
-      instruction: "Complete the sentence.",
-      sentence: round.sentence,
-      translation: round.translation,
-      blanks: [{ answers: round.answers }],
-      explain: round.explain,
-    },
-  };
-}
-
-function mt(round: MtData): GameRound {
-  return {
-    kind: "exercise",
-    exercise: {
-      id: round.id,
-      type: "matching",
-      title: "Practice",
-      instruction: "Match each item with its partner.",
-      pairs: round.pairs,
-      explain: round.explain,
-    },
-  };
-}
-
-function ls(round: LsData): GameRound {
-  return {
-    kind: "exercise",
-    exercise: {
-      id: round.id,
-      type: "listening",
-      title: "Practice",
-      instruction: "Listen and choose the sentence you hear.",
-      prompt: round.prompt,
-      options: round.options,
-      correctIndex: round.correctIndex,
-      explain: round.explain,
-    },
-  };
-}
-
 const level1Rounds: GameRound[] = [
-  {
-    kind: "sort",
-    title: "Sort",
-    instruction: "Drag each verb into the right category.",
-    categories: [
-      {
-        name: "trennbar",
-        items: ["aufstehen", "einkaufen", "mitkommen", "anrufen", "abfahren", "aussteigen"],
-      },
-      {
-        name: "untrennbar",
-        items: ["verstehen", "besuchen", "erklären", "entschuldigen", "gehören", "zerbrechen"],
-      },
-    ],
-  },
-  {
-    kind: "sort",
-    title: "Sort",
-    instruction: "Drag each prefix into the right category.",
-    categories: [
-      {
-        name: "trennbar",
-        items: ["auf-", "an-", "ein-", "mit-", "ab-", "aus-", "vor-", "nach-", "zu-", "weg-"],
-      },
-      {
-        name: "untrennbar",
-        items: ["be-", "ent-", "er-", "ge-", "ver-", "zer-", "miss-"],
-      },
-    ],
-  },
-  mc({
-    id: "tv1-1",
-    prompt: "Which prefix is always separable?",
-    options: ["auf-", "ver-", "be-"],
-    correctIndex: 0,
-    explain: "auf- is separable: aufstehen, aufräumen. ver- and be- never split.",
-  }),
-  mc({
-    id: "tv1-2",
-    prompt: "Which prefix is always inseparable?",
-    options: ["er-", "ein-", "auf-"],
-    correctIndex: 0,
-    explain: "er- is inseparable: erklären, erzählen. ein- and auf- split.",
-  }),
-  mc({
-    id: "tv1-3",
-    prompt: "Which prefix is always separable?",
-    options: ["mit-", "ge-", "ver-"],
-    correctIndex: 0,
-    explain: "mit- is separable: mitkommen, mitbringen. ge- and ver- never split.",
-  }),
-  mt({
-    id: "tv1-4",
-    pairs: [
-      ["abfahren", "to depart"],
-      ["ankommen", "to arrive"],
-      ["aufstehen", "to get up"],
-      ["einkaufen", "to shop"],
-      ["mitkommen", "to come along"],
-      ["verstehen", "to understand"],
-      ["besuchen", "to visit"],
-      ["erklären", "to explain"],
-    ],
-    explain: "The prefix carries the meaning: ab- (away), an- (arrival), auf- (up), ver- (inseparable).",
-  }),
+    {"kind":"sort","title":"Sort","instruction":"Drag each verb into the right category.","categories":[{"name":"trennbar","items":["aufstehen","einkaufen","mitkommen","anrufen","abfahren"]},{"name":"untrennbar","items":["verstehen","besuchen","erklären","entschuldigen","gehören"]}]},
+    {"kind":"sort","title":"Sort","instruction":"Drag each verb into the right category.","categories":[{"name":"trennbar","items":["aussteigen","aufräumen","anfangen","zumachen","mitbringen"]},{"name":"untrennbar","items":["zerstören","erzählen","verdienen","bestellen","bezahlen"]}]},
+    {"kind":"sort","title":"Sort","instruction":"Drag each verb into the right category.","categories":[{"name":"trennbar","items":["zurückkommen","aufpassen","fernsehen","teilnehmen","einschlafen"]},{"name":"untrennbar","items":["erleben","versuchen","vergessen","verlieren","bekommen"]}]},
+    {"kind":"sort","title":"Sort","instruction":"Drag each verb into the right category.","categories":[{"name":"trennbar","items":["abholen","losgehen","einsteigen","aufmachen","mitnehmen"]},{"name":"untrennbar","items":["entdecken","verpassen","beantworten","erwarten","vermieten"]}]},
+    {"kind":"sort","title":"Sort","instruction":"Drag each verb into the right category.","categories":[{"name":"trennbar","items":["aufhören","anziehen","ausziehen","auspacken","einpacken"]},{"name":"untrennbar","items":["verkaufen","vermissen","besichtigen","gefallen","gehorchen"]}]},
+    {"kind":"sort","title":"Sort","instruction":"Drag each verb into the right category.","categories":[{"name":"trennbar","items":["vorbeikommen","mitmachen","aufwachen","wegfahren","zurückgeben"]},{"name":"untrennbar","items":["zerbrechen","missverstehen","vertreiben","enttäuschen","beschreiben"]}]},
+    {"kind":"exercise","exercise":{"id":"sv1-mc-1","type":"multiple-choice","title":"Practice","instruction":"Choose the correct answer.","prompt":"Is \"aufstehen\" separable?","options":["separable","inseparable"],"correctIndex":0,"explain":"aufstehen splits: the prefix goes to the end of the sentence."}},
+    {"kind":"exercise","exercise":{"id":"sv1-mc-2","type":"multiple-choice","title":"Practice","instruction":"Choose the correct answer.","prompt":"Is \"einkaufen\" separable?","options":["separable","inseparable"],"correctIndex":0,"explain":"einkaufen splits: the prefix goes to the end of the sentence."}},
+    {"kind":"exercise","exercise":{"id":"sv1-mc-3","type":"multiple-choice","title":"Practice","instruction":"Choose the correct answer.","prompt":"Is \"mitkommen\" separable?","options":["separable","inseparable"],"correctIndex":0,"explain":"mitkommen splits: the prefix goes to the end of the sentence."}},
+    {"kind":"exercise","exercise":{"id":"sv1-mc-4","type":"multiple-choice","title":"Practice","instruction":"Choose the correct answer.","prompt":"Is \"anrufen\" separable?","options":["separable","inseparable"],"correctIndex":0,"explain":"anrufen splits: the prefix goes to the end of the sentence."}},
+    {"kind":"exercise","exercise":{"id":"sv1-mc-5","type":"multiple-choice","title":"Practice","instruction":"Choose the correct answer.","prompt":"Is \"abfahren\" separable?","options":["separable","inseparable"],"correctIndex":0,"explain":"abfahren splits: the prefix goes to the end of the sentence."}},
+    {"kind":"exercise","exercise":{"id":"sv1-mc-6","type":"multiple-choice","title":"Practice","instruction":"Choose the correct answer.","prompt":"Is \"aussteigen\" separable?","options":["separable","inseparable"],"correctIndex":0,"explain":"aussteigen splits: the prefix goes to the end of the sentence."}},
+    {"kind":"exercise","exercise":{"id":"sv1-mc-7","type":"multiple-choice","title":"Practice","instruction":"Choose the correct answer.","prompt":"Is \"aufräumen\" separable?","options":["separable","inseparable"],"correctIndex":0,"explain":"aufräumen splits: the prefix goes to the end of the sentence."}},
+    {"kind":"exercise","exercise":{"id":"sv1-mc-8","type":"multiple-choice","title":"Practice","instruction":"Choose the correct answer.","prompt":"Is \"anfangen\" separable?","options":["separable","inseparable"],"correctIndex":0,"explain":"anfangen splits: the prefix goes to the end of the sentence."}},
+    {"kind":"exercise","exercise":{"id":"sv1-mc-9","type":"multiple-choice","title":"Practice","instruction":"Choose the correct answer.","prompt":"Is \"zumachen\" separable?","options":["separable","inseparable"],"correctIndex":0,"explain":"zumachen splits: the prefix goes to the end of the sentence."}},
+    {"kind":"exercise","exercise":{"id":"sv1-mc-10","type":"multiple-choice","title":"Practice","instruction":"Choose the correct answer.","prompt":"Is \"mitbringen\" separable?","options":["separable","inseparable"],"correctIndex":0,"explain":"mitbringen splits: the prefix goes to the end of the sentence."}},
+    {"kind":"exercise","exercise":{"id":"sv1-mc-11","type":"multiple-choice","title":"Practice","instruction":"Choose the correct answer.","prompt":"Is \"zurückkommen\" separable?","options":["separable","inseparable"],"correctIndex":0,"explain":"zurückkommen splits: the prefix goes to the end of the sentence."}},
+    {"kind":"exercise","exercise":{"id":"sv1-mc-12","type":"multiple-choice","title":"Practice","instruction":"Choose the correct answer.","prompt":"Is \"aufpassen\" separable?","options":["separable","inseparable"],"correctIndex":0,"explain":"aufpassen splits: the prefix goes to the end of the sentence."}},
+    {"kind":"exercise","exercise":{"id":"sv1-mc-13","type":"multiple-choice","title":"Practice","instruction":"Choose the correct answer.","prompt":"Is \"fernsehen\" separable?","options":["separable","inseparable"],"correctIndex":0,"explain":"fernsehen splits: the prefix goes to the end of the sentence."}},
+    {"kind":"exercise","exercise":{"id":"sv1-mc-14","type":"multiple-choice","title":"Practice","instruction":"Choose the correct answer.","prompt":"Is \"teilnehmen\" separable?","options":["separable","inseparable"],"correctIndex":0,"explain":"teilnehmen splits: the prefix goes to the end of the sentence."}},
+    {"kind":"exercise","exercise":{"id":"sv1-mc-15","type":"multiple-choice","title":"Practice","instruction":"Choose the correct answer.","prompt":"Is \"einschlafen\" separable?","options":["separable","inseparable"],"correctIndex":0,"explain":"einschlafen splits: the prefix goes to the end of the sentence."}},
+    {"kind":"exercise","exercise":{"id":"sv1-mc-16","type":"multiple-choice","title":"Practice","instruction":"Choose the correct answer.","prompt":"Is \"abholen\" separable?","options":["separable","inseparable"],"correctIndex":0,"explain":"abholen splits: the prefix goes to the end of the sentence."}},
+    {"kind":"exercise","exercise":{"id":"sv1-mc-17","type":"multiple-choice","title":"Practice","instruction":"Choose the correct answer.","prompt":"Is \"losgehen\" separable?","options":["separable","inseparable"],"correctIndex":0,"explain":"losgehen splits: the prefix goes to the end of the sentence."}},
+    {"kind":"exercise","exercise":{"id":"sv1-mc-18","type":"multiple-choice","title":"Practice","instruction":"Choose the correct answer.","prompt":"Is \"verstehen\" separable?","options":["separable","inseparable"],"correctIndex":1,"explain":"verstehen never splits: the prefix stays attached."}},
+    {"kind":"exercise","exercise":{"id":"sv1-mc-19","type":"multiple-choice","title":"Practice","instruction":"Choose the correct answer.","prompt":"Is \"besuchen\" separable?","options":["separable","inseparable"],"correctIndex":1,"explain":"besuchen never splits: the prefix stays attached."}},
+    {"kind":"exercise","exercise":{"id":"sv1-mc-20","type":"multiple-choice","title":"Practice","instruction":"Choose the correct answer.","prompt":"Is \"erklären\" separable?","options":["separable","inseparable"],"correctIndex":1,"explain":"erklären never splits: the prefix stays attached."}},
+    {"kind":"exercise","exercise":{"id":"sv1-mc-21","type":"multiple-choice","title":"Practice","instruction":"Choose the correct answer.","prompt":"Is \"entschuldigen\" separable?","options":["separable","inseparable"],"correctIndex":1,"explain":"entschuldigen never splits: the prefix stays attached."}},
+    {"kind":"exercise","exercise":{"id":"sv1-mc-22","type":"multiple-choice","title":"Practice","instruction":"Choose the correct answer.","prompt":"Is \"gehören\" separable?","options":["separable","inseparable"],"correctIndex":1,"explain":"gehören never splits: the prefix stays attached."}},
+    {"kind":"exercise","exercise":{"id":"sv1-mc-23","type":"multiple-choice","title":"Practice","instruction":"Choose the correct answer.","prompt":"Is \"zerstören\" separable?","options":["separable","inseparable"],"correctIndex":1,"explain":"zerstören never splits: the prefix stays attached."}},
+    {"kind":"exercise","exercise":{"id":"sv1-mc-24","type":"multiple-choice","title":"Practice","instruction":"Choose the correct answer.","prompt":"Is \"erzählen\" separable?","options":["separable","inseparable"],"correctIndex":1,"explain":"erzählen never splits: the prefix stays attached."}},
+    {"kind":"exercise","exercise":{"id":"sv1-mc-25","type":"multiple-choice","title":"Practice","instruction":"Choose the correct answer.","prompt":"Is \"verdienen\" separable?","options":["separable","inseparable"],"correctIndex":1,"explain":"verdienen never splits: the prefix stays attached."}},
+    {"kind":"exercise","exercise":{"id":"sv1-mc-26","type":"multiple-choice","title":"Practice","instruction":"Choose the correct answer.","prompt":"Is \"bestellen\" separable?","options":["separable","inseparable"],"correctIndex":1,"explain":"bestellen never splits: the prefix stays attached."}},
+    {"kind":"exercise","exercise":{"id":"sv1-mc-27","type":"multiple-choice","title":"Practice","instruction":"Choose the correct answer.","prompt":"Is \"bezahlen\" separable?","options":["separable","inseparable"],"correctIndex":1,"explain":"bezahlen never splits: the prefix stays attached."}},
+    {"kind":"exercise","exercise":{"id":"sv1-mc-28","type":"multiple-choice","title":"Practice","instruction":"Choose the correct answer.","prompt":"Is \"erleben\" separable?","options":["separable","inseparable"],"correctIndex":1,"explain":"erleben never splits: the prefix stays attached."}},
+    {"kind":"exercise","exercise":{"id":"sv1-mc-29","type":"multiple-choice","title":"Practice","instruction":"Choose the correct answer.","prompt":"Is \"versuchen\" separable?","options":["separable","inseparable"],"correctIndex":1,"explain":"versuchen never splits: the prefix stays attached."}},
+    {"kind":"exercise","exercise":{"id":"sv1-mc-30","type":"multiple-choice","title":"Practice","instruction":"Choose the correct answer.","prompt":"Is \"vergessen\" separable?","options":["separable","inseparable"],"correctIndex":1,"explain":"vergessen never splits: the prefix stays attached."}},
+    {"kind":"exercise","exercise":{"id":"sv1-mc-31","type":"multiple-choice","title":"Practice","instruction":"Choose the correct answer.","prompt":"Is \"verlieren\" separable?","options":["separable","inseparable"],"correctIndex":1,"explain":"verlieren never splits: the prefix stays attached."}},
+    {"kind":"exercise","exercise":{"id":"sv1-mc-32","type":"multiple-choice","title":"Practice","instruction":"Choose the correct answer.","prompt":"Is \"bekommen\" separable?","options":["separable","inseparable"],"correctIndex":1,"explain":"bekommen never splits: the prefix stays attached."}},
+    {"kind":"exercise","exercise":{"id":"sv1-mc-33","type":"multiple-choice","title":"Practice","instruction":"Choose the correct answer.","prompt":"Is \"entdecken\" separable?","options":["separable","inseparable"],"correctIndex":1,"explain":"entdecken never splits: the prefix stays attached."}},
+    {"kind":"exercise","exercise":{"id":"sv1-mc-34","type":"multiple-choice","title":"Practice","instruction":"Choose the correct answer.","prompt":"Is \"verpassen\" separable?","options":["separable","inseparable"],"correctIndex":1,"explain":"verpassen never splits: the prefix stays attached."}},
+    {"kind":"exercise","exercise":{"id":"sv1-mt-1","type":"matching","title":"Practice","instruction":"Match each item with its partner.","pairs":[["abfahren","to depart"],["abholen","to pick up"],["abgeben","to hand in"],["ankommen","to arrive"],["anrufen","to call"]],"explain":"The prefix carries the meaning: ab- (away), an- (arrival), auf- (up), ver- (inseparable)."}},
+    {"kind":"exercise","exercise":{"id":"sv1-mt-2","type":"matching","title":"Practice","instruction":"Match each item with its partner.","pairs":[["anfangen","to start"],["aufstehen","to get up"],["aufräumen","to tidy up"],["aufpassen","to pay attention"],["aussteigen","to get out"]],"explain":"The prefix carries the meaning: ab- (away), an- (arrival), auf- (up), ver- (inseparable)."}},
+    {"kind":"exercise","exercise":{"id":"sv1-mt-3","type":"matching","title":"Practice","instruction":"Match each item with its partner.","pairs":[["auspacken","to unpack"],["ausziehen","to take off"],["einkaufen","to shop"],["einsteigen","to get in"],["einpacken","to pack up"]],"explain":"The prefix carries the meaning: ab- (away), an- (arrival), auf- (up), ver- (inseparable)."}},
+    {"kind":"exercise","exercise":{"id":"sv1-mt-4","type":"matching","title":"Practice","instruction":"Match each item with its partner.","pairs":[["mitkommen","to come along"],["mitbringen","to bring along"],["mitmachen","to join in"],["nachfragen","to ask again"],["nachschauen","to look up"]],"explain":"The prefix carries the meaning: ab- (away), an- (arrival), auf- (up), ver- (inseparable)."}},
+    {"kind":"exercise","exercise":{"id":"sv1-mt-5","type":"matching","title":"Practice","instruction":"Match each item with its partner.","pairs":[["nachdenken","to think over"],["vorstellen","to introduce"],["vorbereiten","to prepare"],["vorbeikommen","to come by"],["zumachen","to close"]],"explain":"The prefix carries the meaning: ab- (away), an- (arrival), auf- (up), ver- (inseparable)."}},
+    {"kind":"exercise","exercise":{"id":"sv1-mt-6","type":"matching","title":"Practice","instruction":"Match each item with its partner.","pairs":[["zuhören","to listen"],["zunehmen","to put on weight"],["weggehen","to go away"],["wegwerfen","to throw away"],["wegfahren","to drive away"]],"explain":"The prefix carries the meaning: ab- (away), an- (arrival), auf- (up), ver- (inseparable)."}},
+    {"kind":"exercise","exercise":{"id":"sv1-mt-7","type":"matching","title":"Practice","instruction":"Match each item with its partner.","pairs":[["zurückkommen","to come back"],["zurückgeben","to give back"],["zurückfahren","to drive back"],["bestellen","to order"],["bezahlen","to pay"]],"explain":"The prefix carries the meaning: ab- (away), an- (arrival), auf- (up), ver- (inseparable)."}},
+    {"kind":"exercise","exercise":{"id":"sv1-mt-8","type":"matching","title":"Practice","instruction":"Match each item with its partner.","pairs":[["besuchen","to visit"],["verstehen","to understand"],["verkaufen","to sell"],["vergessen","to forget"],["erklären","to explain"]],"explain":"The prefix carries the meaning: ab- (away), an- (arrival), auf- (up), ver- (inseparable)."}},
+    {"kind":"exercise","exercise":{"id":"sv1-mt-9","type":"matching","title":"Practice","instruction":"Match each item with its partner.","pairs":[["erzählen","to tell"],["erleben","to experience"],["entschuldigen","to excuse"],["entdecken","to discover"],["entfernen","to remove"]],"explain":"The prefix carries the meaning: ab- (away), an- (arrival), auf- (up), ver- (inseparable)."}},
+    {"kind":"exercise","exercise":{"id":"sv1-mt-10","type":"matching","title":"Practice","instruction":"Match each item with its partner.","pairs":[["gehören","to belong"],["gefallen","to please"],["gewinnen","to win"]],"explain":"The prefix carries the meaning: ab- (away), an- (arrival), auf- (up), ver- (inseparable)."}},
 ];
 
 const level2Rounds: GameRound[] = [
-  wo({
-    id: "tv2-1",
-    chunks: ["Ich", "stehe", "um sieben Uhr", "auf."],
-    translation: "I get up at seven o'clock.",
-    explain: "The separable prefix auf closes the sentence frame.",
-  }),
-  wo({
-    id: "tv2-2",
-    chunks: ["Er", "ruft", "seine", "Mutter", "an."],
-    translation: "He calls his mother.",
-    explain: "The prefix an closes the frame: ruft ... an.",
-  }),
-  wo({
-    id: "tv2-3",
-    chunks: ["Wir", "kaufen", "heute", "ein."],
-    translation: "We are going shopping today.",
-    explain: "einkaufen splits: ein closes the frame.",
-  }),
-  wo({
-    id: "tv2-4",
-    chunks: ["Der", "Zug", "fährt", "um", "14:30", "Uhr", "ab."],
-    translation: "The train departs at 14:30.",
-    explain: "abfahren splits: the time phrase sits between the verb and ab.",
-  }),
-  wo({
-    id: "tv2-5",
-    chunks: ["Ich", "mache", "das", "Fenster", "zu."],
-    translation: "I am closing the window.",
-    explain: "zumachen splits: zu closes the frame.",
-  }),
-  wo({
-    id: "tv2-6",
-    chunks: ["Sie", "kommt", "heute", "mit."],
-    translation: "She is coming along today.",
-    explain: "mitkommen splits: the prefix mit closes the sentence.",
-  }),
-  wo({
-    id: "tv2-7",
-    chunks: ["Kommst", "du", "mit?"],
-    translation: "Are you coming along?",
-    explain: "In the question the verb is first, the prefix still closes the frame.",
-  }),
+    {"kind":"exercise","exercise":{"id":"sv2-wo-1","type":"word-order","title":"Practice","instruction":"Build the sentence: I get up at seven o'clock.","chunks":["Ich","stehe","um sieben Uhr","auf."],"translation":"I get up at seven o'clock.","explain":"auf- closes the frame: stehe ... auf."}},
+    {"kind":"exercise","exercise":{"id":"sv2-wo-2","type":"word-order","title":"Practice","instruction":"Build the sentence: He calls his mother.","chunks":["Er","ruft","seine Mutter","an."],"translation":"He calls his mother.","explain":"an- closes the frame: ruft ... an."}},
+    {"kind":"exercise","exercise":{"id":"sv2-wo-3","type":"word-order","title":"Practice","instruction":"Build the sentence: We are going shopping today.","chunks":["Wir","kaufen","heute","ein."],"translation":"We are going shopping today.","explain":"ein- closes the frame: kaufen ... ein."}},
+    {"kind":"exercise","exercise":{"id":"sv2-wo-4","type":"word-order","title":"Practice","instruction":"Build the sentence: The train departs at 14:30.","chunks":["Der Zug","fährt","um 14:30 Uhr","ab."],"translation":"The train departs at 14:30.","explain":"The time phrase sits between the verb and the prefix ab."}},
+    {"kind":"exercise","exercise":{"id":"sv2-wo-5","type":"word-order","title":"Practice","instruction":"Build the sentence: I am closing the window.","chunks":["Ich","mache","das Fenster","zu."],"translation":"I am closing the window.","explain":"zu- closes the frame: mache ... zu."}},
+    {"kind":"exercise","exercise":{"id":"sv2-wo-6","type":"word-order","title":"Practice","instruction":"Build the sentence: She is coming along today.","chunks":["Sie","kommt","heute","mit."],"translation":"She is coming along today.","explain":"mit- closes the frame: kommt ... mit."}},
+    {"kind":"exercise","exercise":{"id":"sv2-wo-7","type":"word-order","title":"Practice","instruction":"Build the sentence: I am tidying my room.","chunks":["Ich","räume","mein Zimmer","auf."],"translation":"I am tidying my room.","explain":"auf- closes the frame: räume ... auf."}},
+    {"kind":"exercise","exercise":{"id":"sv2-wo-8","type":"word-order","title":"Practice","instruction":"Build the sentence: The course starts at nine o'clock.","chunks":["Der Kurs","fängt","um neun Uhr","an."],"translation":"The course starts at nine o'clock.","explain":"an- closes the frame: fängt ... an."}},
+    {"kind":"exercise","exercise":{"id":"sv2-wo-9","type":"word-order","title":"Practice","instruction":"Build the sentence: She gets out at the stop.","chunks":["Sie","steigt","an der Haltestelle","aus."],"translation":"She gets out at the stop.","explain":"aus- closes the frame: steigt ... aus."}},
+    {"kind":"exercise","exercise":{"id":"sv2-wo-10","type":"word-order","title":"Practice","instruction":"Build the sentence: We are getting on the bus.","chunks":["Wir","steigen","in den Bus","ein."],"translation":"We are getting on the bus.","explain":"ein- closes the frame: steigen ... ein."}},
+    {"kind":"exercise","exercise":{"id":"sv2-wo-11","type":"word-order","title":"Practice","instruction":"Build the sentence: He brings a present for his son.","chunks":["Er","bringt","seinem Sohn","ein Geschenk","mit."],"translation":"He brings a present for his son.","explain":"mit- closes the frame: bringt ... mit."}},
+    {"kind":"exercise","exercise":{"id":"sv2-wo-12","type":"word-order","title":"Practice","instruction":"Build the sentence: I am taking my umbrella along.","chunks":["Ich","nehme","meinen Regenschirm","mit."],"translation":"I am taking my umbrella along.","explain":"mit- closes the frame: nehme ... mit."}},
+    {"kind":"exercise","exercise":{"id":"sv2-wo-13","type":"word-order","title":"Practice","instruction":"Build the sentence: We come back in the evening.","chunks":["Wir","kommen","am Abend","zurück."],"translation":"We come back in the evening.","explain":"zurück- closes the frame: kommen ... zurück."}},
+    {"kind":"exercise","exercise":{"id":"sv2-wo-14","type":"word-order","title":"Practice","instruction":"Build the sentence: You are not going away today.","chunks":["Du","gehst","heute","nicht","weg."],"translation":"You are not going away today.","explain":"weg- closes the frame: gehst ... weg."}},
+    {"kind":"exercise","exercise":{"id":"sv2-wo-15","type":"word-order","title":"Practice","instruction":"Build the sentence: I pay attention in class.","chunks":["Ich","passe","im Unterricht","auf."],"translation":"I pay attention in class.","explain":"auf- closes the frame: passe ... auf."}},
+    {"kind":"exercise","exercise":{"id":"sv2-wo-16","type":"word-order","title":"Practice","instruction":"Build the sentence: She watches TV in the evening.","chunks":["Sie","sieht","am Abend","fern."],"translation":"She watches TV in the evening.","explain":"fern- closes the frame: sieht ... fern."}},
+    {"kind":"exercise","exercise":{"id":"sv2-wo-17","type":"word-order","title":"Practice","instruction":"Build the sentence: We take part in the course.","chunks":["Wir","nehmen","am Kurs","teil."],"translation":"We take part in the course.","explain":"teil- closes the frame: nehmen ... teil."}},
+    {"kind":"exercise","exercise":{"id":"sv2-wo-18","type":"word-order","title":"Practice","instruction":"Build the sentence: I fall asleep at ten o'clock.","chunks":["Ich","schlafe","um zehn Uhr","ein."],"translation":"I fall asleep at ten o'clock.","explain":"ein- closes the frame: schlafe ... ein."}},
+    {"kind":"exercise","exercise":{"id":"sv2-wo-19","type":"word-order","title":"Practice","instruction":"Build the sentence: He picks me up from the station.","chunks":["Er","holt","mich","vom Bahnhof","ab."],"translation":"He picks me up from the station.","explain":"ab- closes the frame: holt ... ab."}},
+    {"kind":"exercise","exercise":{"id":"sv2-wo-20","type":"word-order","title":"Practice","instruction":"Build the sentence: We are leaving now.","chunks":["Wir","gehen","jetzt","los."],"translation":"We are leaving now.","explain":"los- closes the frame: gehen ... los."}},
+    {"kind":"exercise","exercise":{"id":"sv2-wo-21","type":"word-order","title":"Practice","instruction":"Build the sentence: The film starts at eight o'clock.","chunks":["Der Film","fängt","um acht Uhr","an."],"translation":"The film starts at eight o'clock.","explain":"an- closes the frame: fängt ... an."}},
+    {"kind":"exercise","exercise":{"id":"sv2-wo-22","type":"word-order","title":"Practice","instruction":"Build the sentence: I get up late on Sunday.","chunks":["Ich","stehe","am Sonntag","spät","auf."],"translation":"I get up late on Sunday.","explain":"auf- closes the frame: stehe ... auf."}},
+    {"kind":"exercise","exercise":{"id":"sv2-wo-23","type":"word-order","title":"Practice","instruction":"Build the sentence: She stops at midnight.","chunks":["Sie","hört","um Mitternacht","auf."],"translation":"She stops at midnight.","explain":"auf- closes the frame: hört ... auf."}},
+    {"kind":"exercise","exercise":{"id":"sv2-wo-24","type":"word-order","title":"Practice","instruction":"Build the sentence: You are putting on your jacket.","chunks":["Du","ziehst","deine Jacke","an."],"translation":"You are putting on your jacket.","explain":"an- closes the frame: ziehst ... an."}},
+    {"kind":"exercise","exercise":{"id":"sv2-wo-25","type":"word-order","title":"Practice","instruction":"Build the sentence: I am taking off my shoes.","chunks":["Ich","ziehe","meine Schuhe","aus."],"translation":"I am taking off my shoes.","explain":"aus- closes the frame: ziehe ... aus."}},
+    {"kind":"exercise","exercise":{"id":"sv2-wo-26","type":"word-order","title":"Practice","instruction":"Build the sentence: We are unpacking our suitcases.","chunks":["Wir","packen","unsere Koffer","aus."],"translation":"We are unpacking our suitcases.","explain":"aus- closes the frame: packen ... aus."}},
+    {"kind":"exercise","exercise":{"id":"sv2-wo-27","type":"word-order","title":"Practice","instruction":"Build the sentence: He is packing his things.","chunks":["Er","packt","seine Sachen","ein."],"translation":"He is packing his things.","explain":"ein- closes the frame: packt ... ein."}},
+    {"kind":"exercise","exercise":{"id":"sv2-wo-28","type":"word-order","title":"Practice","instruction":"Build the sentence: She is coming by on Saturday.","chunks":["Sie","kommt","am Samstag","vorbei."],"translation":"She is coming by on Saturday.","explain":"vorbei- closes the frame: kommt ... vorbei."}},
+    {"kind":"exercise","exercise":{"id":"sv2-wo-29","type":"word-order","title":"Practice","instruction":"Build the sentence: We drive off in the morning.","chunks":["Wir","fahren","am Morgen","los."],"translation":"We drive off in the morning.","explain":"los- closes the frame: fahren ... los."}},
+    {"kind":"exercise","exercise":{"id":"sv2-wo-30","type":"word-order","title":"Practice","instruction":"Build the sentence: I ride along by bicycle.","chunks":["Ich","fahre","mit dem Fahrrad","mit."],"translation":"I ride along by bicycle.","explain":"mit- closes the frame: fahre ... mit."}},
+    {"kind":"exercise","exercise":{"id":"sv2-wo-31","type":"word-order","title":"Practice","instruction":"Build the sentence: You are joining the game.","chunks":["Du","machst","beim Spiel","mit."],"translation":"You are joining the game.","explain":"mit- closes the frame: machst ... mit."}},
+    {"kind":"exercise","exercise":{"id":"sv2-wo-32","type":"word-order","title":"Practice","instruction":"Build the sentence: I wake up at six o'clock.","chunks":["Ich","wache","um sechs Uhr","auf."],"translation":"I wake up at six o'clock.","explain":"auf- closes the frame: wache ... auf."}},
+    {"kind":"exercise","exercise":{"id":"sv2-wo-33","type":"word-order","title":"Practice","instruction":"Build the sentence: She is tidying the kitchen.","chunks":["Sie","räumt","die Küche","auf."],"translation":"She is tidying the kitchen.","explain":"auf- closes the frame: räumt ... auf."}},
+    {"kind":"exercise","exercise":{"id":"sv2-wo-34","type":"word-order","title":"Practice","instruction":"Build the sentence: We are opening the door.","chunks":["Wir","machen","die Tür","auf."],"translation":"We are opening the door.","explain":"auf- closes the frame: machen ... auf."}},
+    {"kind":"exercise","exercise":{"id":"sv2-wo-35","type":"word-order","title":"Practice","instruction":"Build the sentence: He hands in the homework.","chunks":["Er","gibt","die Hausaufgaben","ab."],"translation":"He hands in the homework.","explain":"ab- closes the frame: gibt ... ab."}},
+    {"kind":"exercise","exercise":{"id":"sv2-wo-36","type":"word-order","title":"Practice","instruction":"Build the sentence: I sign up for the course.","chunks":["Ich","melde","mich","im Kurs","an."],"translation":"I sign up for the course.","explain":"an- closes the frame: melde ... an."}},
+    {"kind":"exercise","exercise":{"id":"sv2-wo-37","type":"word-order","title":"Practice","instruction":"Build the sentence: She logs out of the app.","chunks":["Sie","meldet","sich","in der App","ab."],"translation":"She logs out of the app.","explain":"ab- closes the frame: meldet ... ab."}},
+    {"kind":"exercise","exercise":{"id":"sv2-wo-38","type":"word-order","title":"Practice","instruction":"Build the sentence: We will call you later.","chunks":["Wir","rufen","dich","später","an."],"translation":"We will call you later.","explain":"an- closes the frame: rufen ... an."}},
+    {"kind":"exercise","exercise":{"id":"sv2-wo-39","type":"word-order","title":"Practice","instruction":"Build the sentence: You return the book.","chunks":["Du","gibst","das Buch","zurück."],"translation":"You return the book.","explain":"zurück- closes the frame: gibst ... zurück."}},
+    {"kind":"exercise","exercise":{"id":"sv2-wo-40","type":"word-order","title":"Practice","instruction":"Build the sentence: I throw away the rubbish.","chunks":["Ich","werfe","den Müll","weg."],"translation":"I throw away the rubbish.","explain":"weg- closes the frame: werfe ... weg."}},
+    {"kind":"exercise","exercise":{"id":"sv2-wo-41","type":"word-order","title":"Practice","instruction":"Build the sentence: She stops working.","chunks":["Sie","hört","mit der Arbeit","auf."],"translation":"She stops working.","explain":"auf- closes the frame: hört ... auf."}},
+    {"kind":"exercise","exercise":{"id":"sv2-wo-42","type":"word-order","title":"Practice","instruction":"Build the sentence: We board early tomorrow.","chunks":["Wir","steigen","morgen früh","ein."],"translation":"We board early tomorrow.","explain":"ein- closes the frame: steigen ... ein."}},
+    {"kind":"exercise","exercise":{"id":"sv2-wo-43","type":"word-order","title":"Practice","instruction":"Build the sentence: He leaves at eight o'clock.","chunks":["Er","fährt","um acht Uhr","los."],"translation":"He leaves at eight o'clock.","explain":"los- closes the frame: fährt ... los."}},
+    {"kind":"exercise","exercise":{"id":"sv2-wo-44","type":"word-order","title":"Practice","instruction":"Build the sentence: I bring cake to the party.","chunks":["Ich","bringe","Kuchen","zur Party","mit."],"translation":"I bring cake to the party.","explain":"mit- closes the frame: bringe ... mit."}},
+    {"kind":"exercise","exercise":{"id":"sv2-wo-45","type":"word-order","title":"Practice","instruction":"Build the sentence: She dresses warmly.","chunks":["Sie","zieht","sich","warm","an."],"translation":"She dresses warmly.","explain":"an- closes the frame: zieht ... an."}},
+    {"kind":"exercise","exercise":{"id":"sv2-wo-46","type":"word-order","title":"Practice","instruction":"Build the sentence: We like watching TV.","chunks":["Wir","sehen","gern","fern."],"translation":"We like watching TV.","explain":"fern- closes the frame: sehen ... fern."}},
+    {"kind":"exercise","exercise":{"id":"sv2-wo-47","type":"word-order","title":"Practice","instruction":"Build the sentence: You take lunch along.","chunks":["Du","nimmst","das Mittagessen","mit."],"translation":"You take lunch along.","explain":"mit- closes the frame: nimmst ... mit."}},
+    {"kind":"exercise","exercise":{"id":"sv2-wo-48","type":"word-order","title":"Practice","instruction":"Build the sentence: I start on Monday.","chunks":["Ich","fange","am Montag","an."],"translation":"I start on Monday.","explain":"an- closes the frame: fange ... an."}},
+    {"kind":"exercise","exercise":{"id":"sv2-wo-49","type":"word-order","title":"Practice","instruction":"Build the sentence: She is coming along this evening.","chunks":["Sie","kommt","heute Abend","mit."],"translation":"She is coming along this evening.","explain":"mit- closes the frame: kommt ... mit."}},
+    {"kind":"exercise","exercise":{"id":"sv2-wo-50","type":"word-order","title":"Practice","instruction":"Build the sentence: We get up early.","chunks":["Wir","stehen","früh","auf."],"translation":"We get up early.","explain":"auf- closes the frame: stehen ... auf."}},
 ];
 
 const level3Rounds: GameRound[] = [
-  fb({
-    id: "tv3-1",
-    sentence: "Ich bin heute früh ___.",
-    translation: "I got up early today.",
-    answers: ["aufgestanden"],
-    explain: "aufstehen → aufgestanden: ge- sits between auf- and the stem.",
-  }),
-  fb({
-    id: "tv3-2",
-    sentence: "Wir haben gestern ___.",
-    translation: "We went shopping yesterday.",
-    answers: ["eingekauft"],
-    explain: "einkaufen → eingekauft: the prefix keeps ge- after it.",
-  }),
-  fb({
-    id: "tv3-3",
-    sentence: "Sie hat mich gestern ___.",
-    translation: "She called me yesterday.",
-    answers: ["angerufen"],
-    explain: "anrufen → angerufen: ge- goes between an- and rufen.",
-  }),
-  fb({
-    id: "tv3-4",
-    sentence: "Wir haben die Aufgabe ___.",
-    translation: "We understood the task.",
-    answers: ["verstanden"],
-    explain: "ver- never splits, so the participle takes no ge-: verstanden.",
-  }),
-  wo({
-    id: "tv3-5",
-    chunks: ["Ich", "bin", "um", "sieben", "Uhr", "aufgestanden."],
-    translation: "I got up at seven o'clock.",
-    explain: "aufstehen takes sein; the participle closes the frame.",
-  }),
-  wo({
-    id: "tv3-6",
-    chunks: ["Wir", "haben", "gestern", "eingekauft."],
-    translation: "We went shopping yesterday.",
-    explain: "einkaufen takes haben; eingekauft closes the frame.",
-  }),
-  wo({
-    id: "tv3-7",
-    chunks: ["Er", "hat", "die", "Frage", "verstanden."],
-    translation: "He understood the question.",
-    explain: "Inseparable verbs take no ge-: verstanden.",
-  }),
+    {"kind":"exercise","exercise":{"id":"sv3-fb-1","type":"fill-blank","title":"Practice","instruction":"Complete the sentence.","sentence":"Ich bin heute früh ___.","translation":"I got up early today.","blanks":[{"answers":["aufgestanden"]}],"explain":"aufstehen → aufgestanden: ge- sits between the prefix and the stem; takes sein."}},
+    {"kind":"exercise","exercise":{"id":"sv3-fb-2","type":"fill-blank","title":"Practice","instruction":"Complete the sentence.","sentence":"Wir haben gestern ___.","translation":"We went shopping yesterday.","blanks":[{"answers":["eingekauft"]}],"explain":"einkaufen → eingekauft: ge- sits between the prefix and the stem; takes haben."}},
+    {"kind":"exercise","exercise":{"id":"sv3-fb-3","type":"fill-blank","title":"Practice","instruction":"Complete the sentence.","sentence":"Sie hat mich gestern ___.","translation":"She called me yesterday.","blanks":[{"answers":["angerufen"]}],"explain":"anrufen → angerufen: ge- sits between the prefix and the stem; takes haben."}},
+    {"kind":"exercise","exercise":{"id":"sv3-fb-4","type":"fill-blank","title":"Practice","instruction":"Complete the sentence.","sentence":"Ich habe mein Zimmer ___.","translation":"I tidied my room.","blanks":[{"answers":["aufgeräumt"]}],"explain":"aufräumen → aufgeräumt: ge- sits between the prefix and the stem; takes haben."}},
+    {"kind":"exercise","exercise":{"id":"sv3-fb-5","type":"fill-blank","title":"Practice","instruction":"Complete the sentence.","sentence":"Der Kurs hat um neun Uhr ___.","translation":"The course started at nine o'clock.","blanks":[{"answers":["angefangen"]}],"explain":"anfangen → angefangen: ge- sits between the prefix and the stem; takes haben."}},
+    {"kind":"exercise","exercise":{"id":"sv3-fb-6","type":"fill-blank","title":"Practice","instruction":"Complete the sentence.","sentence":"Ich habe das Fenster ___.","translation":"I closed the window.","blanks":[{"answers":["zugemacht"]}],"explain":"zumachen → zugemacht: ge- sits between the prefix and the stem; takes haben."}},
+    {"kind":"exercise","exercise":{"id":"sv3-fb-7","type":"fill-blank","title":"Practice","instruction":"Complete the sentence.","sentence":"Wir sind am Morgen ___.","translation":"We set off in the morning.","blanks":[{"answers":["losgefahren"]}],"explain":"losfahren → losgefahren: ge- sits between the prefix and the stem; takes sein."}},
+    {"kind":"exercise","exercise":{"id":"sv3-fb-8","type":"fill-blank","title":"Practice","instruction":"Complete the sentence.","sentence":"Sie ist an der Haltestelle ___.","translation":"She got out at the stop.","blanks":[{"answers":["ausgestiegen"]}],"explain":"aussteigen → ausgestiegen: ge- sits between the prefix and the stem; takes sein."}},
+    {"kind":"exercise","exercise":{"id":"sv3-fb-9","type":"fill-blank","title":"Practice","instruction":"Complete the sentence.","sentence":"Wir sind in den Bus ___.","translation":"We got on the bus.","blanks":[{"answers":["eingestiegen"]}],"explain":"einsteigen → eingestiegen: ge- sits between the prefix and the stem; takes sein."}},
+    {"kind":"exercise","exercise":{"id":"sv3-fb-10","type":"fill-blank","title":"Practice","instruction":"Complete the sentence.","sentence":"Er hat ein Geschenk ___.","translation":"He brought a present.","blanks":[{"answers":["mitgebracht"]}],"explain":"mitbringen → mitgebracht: ge- sits between the prefix and the stem; takes haben."}},
+    {"kind":"exercise","exercise":{"id":"sv3-fb-11","type":"fill-blank","title":"Practice","instruction":"Complete the sentence.","sentence":"Ich habe meinen Regenschirm ___.","translation":"I took my umbrella along.","blanks":[{"answers":["mitgenommen"]}],"explain":"mitnehmen → mitgenommen: ge- sits between the prefix and the stem; takes haben."}},
+    {"kind":"exercise","exercise":{"id":"sv3-fb-12","type":"fill-blank","title":"Practice","instruction":"Complete the sentence.","sentence":"Wir sind am Abend ___.","translation":"We came back in the evening.","blanks":[{"answers":["zurückgekommen"]}],"explain":"zurückkommen → zurückgekommen: ge- sits between the prefix and the stem; takes sein."}},
+    {"kind":"exercise","exercise":{"id":"sv3-fb-13","type":"fill-blank","title":"Practice","instruction":"Complete the sentence.","sentence":"Du bist heute nicht ___.","translation":"You did not go away today.","blanks":[{"answers":["weggegangen"]}],"explain":"weggehen → weggegangen: ge- sits between the prefix and the stem; takes sein."}},
+    {"kind":"exercise","exercise":{"id":"sv3-fb-14","type":"fill-blank","title":"Practice","instruction":"Complete the sentence.","sentence":"Ich habe im Unterricht ___.","translation":"I paid attention in class.","blanks":[{"answers":["aufgepasst"]}],"explain":"aufpassen → aufgepasst: ge- sits between the prefix and the stem; takes haben."}},
+    {"kind":"exercise","exercise":{"id":"sv3-fb-15","type":"fill-blank","title":"Practice","instruction":"Complete the sentence.","sentence":"Sie hat am Abend ___.","translation":"She watched TV in the evening.","blanks":[{"answers":["ferngesehen"]}],"explain":"fernsehen → ferngesehen: ge- sits between the prefix and the stem; takes haben."}},
+    {"kind":"exercise","exercise":{"id":"sv3-fb-16","type":"fill-blank","title":"Practice","instruction":"Complete the sentence.","sentence":"Wir haben am Kurs ___.","translation":"We took part in the course.","blanks":[{"answers":["teilgenommen"]}],"explain":"teilnehmen → teilgenommen: ge- sits between the prefix and the stem; takes haben."}},
+    {"kind":"exercise","exercise":{"id":"sv3-fb-17","type":"fill-blank","title":"Practice","instruction":"Complete the sentence.","sentence":"Ich bin um zehn Uhr ___.","translation":"I fell asleep at ten o'clock.","blanks":[{"answers":["eingeschlafen"]}],"explain":"einschlafen → eingeschlafen: ge- sits between the prefix and the stem; takes sein."}},
+    {"kind":"exercise","exercise":{"id":"sv3-fb-18","type":"fill-blank","title":"Practice","instruction":"Complete the sentence.","sentence":"Er hat mich vom Bahnhof ___.","translation":"He picked me up from the station.","blanks":[{"answers":["abgeholt"]}],"explain":"abholen → abgeholt: ge- sits between the prefix and the stem; takes haben."}},
+    {"kind":"exercise","exercise":{"id":"sv3-fb-19","type":"fill-blank","title":"Practice","instruction":"Complete the sentence.","sentence":"Wir sind jetzt ___.","translation":"We have set off now.","blanks":[{"answers":["losgegangen"]}],"explain":"losgehen → losgegangen: ge- sits between the prefix and the stem; takes sein."}},
+    {"kind":"exercise","exercise":{"id":"sv3-fb-20","type":"fill-blank","title":"Practice","instruction":"Complete the sentence.","sentence":"Sie hat die Jacke ___.","translation":"She put on the jacket.","blanks":[{"answers":["angezogen"]}],"explain":"anziehen → angezogen: ge- sits between the prefix and the stem; takes haben."}},
+    {"kind":"exercise","exercise":{"id":"sv3-fb-21","type":"fill-blank","title":"Practice","instruction":"Complete the sentence.","sentence":"Ich habe die Schuhe ___.","translation":"I took off the shoes.","blanks":[{"answers":["ausgezogen"]}],"explain":"ausziehen → ausgezogen: ge- sits between the prefix and the stem; takes haben."}},
+    {"kind":"exercise","exercise":{"id":"sv3-fb-22","type":"fill-blank","title":"Practice","instruction":"Complete the sentence.","sentence":"Wir haben die Koffer ___.","translation":"We unpacked the suitcases.","blanks":[{"answers":["ausgepackt"]}],"explain":"auspacken → ausgepackt: ge- sits between the prefix and the stem; takes haben."}},
+    {"kind":"exercise","exercise":{"id":"sv3-fb-23","type":"fill-blank","title":"Practice","instruction":"Complete the sentence.","sentence":"Er hat seine Sachen ___.","translation":"He packed his things.","blanks":[{"answers":["eingepackt"]}],"explain":"einpacken → eingepackt: ge- sits between the prefix and the stem; takes haben."}},
+    {"kind":"exercise","exercise":{"id":"sv3-fb-24","type":"fill-blank","title":"Practice","instruction":"Complete the sentence.","sentence":"Sie ist am Samstag ___.","translation":"She came by on Saturday.","blanks":[{"answers":["vorbeigekommen"]}],"explain":"vorbeikommen → vorbeigekommen: ge- sits between the prefix and the stem; takes sein."}},
+    {"kind":"exercise","exercise":{"id":"sv3-fb-25","type":"fill-blank","title":"Practice","instruction":"Complete the sentence.","sentence":"Ich habe die Hausaufgaben ___.","translation":"I handed in the homework.","blanks":[{"answers":["abgegeben"]}],"explain":"abgeben → abgegeben: ge- sits between the prefix and the stem; takes haben."}},
+    {"kind":"exercise","exercise":{"id":"sv3-fb-26","type":"fill-blank","title":"Practice","instruction":"Complete the sentence.","sentence":"Ich habe mich im Kurs ___.","translation":"I signed up for the course.","blanks":[{"answers":["angemeldet"]}],"explain":"anmelden → angemeldet: ge- sits between the prefix and the stem; takes haben."}},
+    {"kind":"exercise","exercise":{"id":"sv3-fb-27","type":"fill-blank","title":"Practice","instruction":"Complete the sentence.","sentence":"Sie hat sich in der App ___.","translation":"She logged out of the app.","blanks":[{"answers":["abgemeldet"]}],"explain":"abmelden → abgemeldet: ge- sits between the prefix and the stem; takes haben."}},
+    {"kind":"exercise","exercise":{"id":"sv3-fb-28","type":"fill-blank","title":"Practice","instruction":"Complete the sentence.","sentence":"Du hast das Buch ___.","translation":"You returned the book.","blanks":[{"answers":["zurückgegeben"]}],"explain":"zurückgeben → zurückgegeben: ge- sits between the prefix and the stem; takes haben."}},
+    {"kind":"exercise","exercise":{"id":"sv3-fb-29","type":"fill-blank","title":"Practice","instruction":"Complete the sentence.","sentence":"Ich habe den Müll ___.","translation":"I threw away the rubbish.","blanks":[{"answers":["weggeworfen"]}],"explain":"wegwerfen → weggeworfen: ge- sits between the prefix and the stem; takes haben."}},
+    {"kind":"exercise","exercise":{"id":"sv3-fb-30","type":"fill-blank","title":"Practice","instruction":"Complete the sentence.","sentence":"Ich bin um sechs Uhr ___.","translation":"I woke up at six o'clock.","blanks":[{"answers":["aufgewacht"]}],"explain":"aufwachen → aufgewacht: ge- sits between the prefix and the stem; takes sein."}},
+    {"kind":"exercise","exercise":{"id":"sv3-wo-1","type":"word-order","title":"Practice","instruction":"Build the sentence: I got up at seven o'clock.","chunks":["Ich","bin","um sieben Uhr","aufgestanden."],"translation":"I got up at seven o'clock.","explain":"aufstehen takes sein; the participle closes the frame."}},
+    {"kind":"exercise","exercise":{"id":"sv3-wo-2","type":"word-order","title":"Practice","instruction":"Build the sentence: We went shopping yesterday.","chunks":["Wir","haben","gestern","eingekauft."],"translation":"We went shopping yesterday.","explain":"einkaufen takes haben; eingekauft closes the frame."}},
+    {"kind":"exercise","exercise":{"id":"sv3-wo-3","type":"word-order","title":"Practice","instruction":"Build the sentence: He understood the question.","chunks":["Er","hat","die Frage","verstanden."],"translation":"He understood the question.","explain":"Inseparable verbs take no ge-: verstanden."}},
+    {"kind":"exercise","exercise":{"id":"sv3-wo-4","type":"word-order","title":"Practice","instruction":"Build the sentence: She bought the book.","chunks":["Sie","hat","das Buch","gekauft."],"translation":"She bought the book.","explain":"haben second, the participle closes the frame."}},
+    {"kind":"exercise","exercise":{"id":"sv3-wo-5","type":"word-order","title":"Practice","instruction":"Build the sentence: I closed the window.","chunks":["Ich","habe","das Fenster","zugemacht."],"translation":"I closed the window.","explain":"zugemacht: ge- sits between zu- and the stem."}},
+    {"kind":"exercise","exercise":{"id":"sv3-wo-6","type":"word-order","title":"Practice","instruction":"Build the sentence: We started the course.","chunks":["Wir","haben","den Kurs","angefangen."],"translation":"We started the course.","explain":"angefangen: ge- sits between an- and the stem."}},
+    {"kind":"exercise","exercise":{"id":"sv3-wo-7","type":"word-order","title":"Practice","instruction":"Build the sentence: You came along.","chunks":["Du","bist","mitgekommen."],"translation":"You came along.","explain":"mitkommen takes sein; mitgekommen closes the frame."}},
+    {"kind":"exercise","exercise":{"id":"sv3-wo-8","type":"word-order","title":"Practice","instruction":"Build the sentence: He called his mother.","chunks":["Er","hat","seine Mutter","angerufen."],"translation":"He called his mother.","explain":"angerufen: ge- sits between an- and rufen."}},
+    {"kind":"exercise","exercise":{"id":"sv3-wo-9","type":"word-order","title":"Practice","instruction":"Build the sentence: We drove home.","chunks":["Wir","sind","nach Hause","gefahren."],"translation":"We drove home.","explain":"fahren takes sein; the participle closes the frame."}},
+    {"kind":"exercise","exercise":{"id":"sv3-wo-10","type":"word-order","title":"Practice","instruction":"Build the sentence: I learned German yesterday.","chunks":["Ich","habe","gestern","Deutsch","gelernt."],"translation":"I learned German yesterday.","explain":"haben second, the participle closes the frame."}},
+    {"kind":"exercise","exercise":{"id":"sv3-wo-11","type":"word-order","title":"Practice","instruction":"Build the sentence: She opened the door.","chunks":["Sie","hat","die Tür","aufgemacht."],"translation":"She opened the door.","explain":"aufgemacht: ge- sits between auf- and the stem."}},
+    {"kind":"exercise","exercise":{"id":"sv3-wo-12","type":"word-order","title":"Practice","instruction":"Build the sentence: We ordered pizza.","chunks":["Wir","haben","Pizza","bestellt."],"translation":"We ordered pizza.","explain":"bestellen takes no ge-: the prefix be- never splits."}},
+    {"kind":"exercise","exercise":{"id":"sv3-wo-13","type":"word-order","title":"Practice","instruction":"Build the sentence: He left at eight o'clock.","chunks":["Er","ist","um acht Uhr","losgefahren."],"translation":"He left at eight o'clock.","explain":"losfahren takes sein; losgefahren closes the frame."}},
+    {"kind":"exercise","exercise":{"id":"sv3-wo-14","type":"word-order","title":"Practice","instruction":"Build the sentence: I paid for the coffee.","chunks":["Ich","habe","den Kaffee","bezahlt."],"translation":"I paid for the coffee.","explain":"bezahlen takes no ge-: the prefix be- never splits."}},
+    {"kind":"exercise","exercise":{"id":"sv3-wo-15","type":"word-order","title":"Practice","instruction":"Build the sentence: She visited the concert.","chunks":["Sie","hat","das Konzert","besucht."],"translation":"She visited the concert.","explain":"besuchen takes no ge-: the prefix be- never splits."}},
+    {"kind":"exercise","exercise":{"id":"sv3-wo-16","type":"word-order","title":"Practice","instruction":"Build the sentence: We understood the text.","chunks":["Wir","haben","den Text","verstanden."],"translation":"We understood the text.","explain":"verstehen takes no ge-: verstanden."}},
+    {"kind":"exercise","exercise":{"id":"sv3-wo-17","type":"word-order","title":"Practice","instruction":"Build the sentence: I woke up early today.","chunks":["Ich","bin","heute früh","aufgewacht."],"translation":"I woke up early today.","explain":"aufwachen takes sein; aufgewacht closes the frame."}},
+    {"kind":"exercise","exercise":{"id":"sv3-wo-18","type":"word-order","title":"Practice","instruction":"Build the sentence: You forgot the task.","chunks":["Du","hast","die Aufgabe","vergessen."],"translation":"You forgot the task.","explain":"vergessen takes no ge-: the prefix ver- never splits."}},
+    {"kind":"exercise","exercise":{"id":"sv3-wo-19","type":"word-order","title":"Practice","instruction":"Build the sentence: He picked me up from the station.","chunks":["Er","hat","mich","vom Bahnhof","abgeholt."],"translation":"He picked me up from the station.","explain":"abholen takes haben; abgeholt closes the frame."}},
+    {"kind":"exercise","exercise":{"id":"sv3-wo-20","type":"word-order","title":"Practice","instruction":"Build the sentence: We ordered the tickets.","chunks":["Wir","haben","die Tickets","bestellt."],"translation":"We ordered the tickets.","explain":"bestellt: no ge- after the inseparable prefix be-."}},
 ];
 
 const level4Rounds: GameRound[] = [
-  wo({
-    id: "tv4-1",
-    chunks: ["Ich", "muss", "um sieben Uhr", "aufstehen."],
-    translation: "I have to get up at seven o'clock.",
-    explain: "With a modal the prefix stays attached: aufstehen closes the sentence.",
-  }),
-  wo({
-    id: "tv4-2",
-    chunks: ["Wir", "wollen", "morgen", "einkaufen."],
-    translation: "We want to go shopping tomorrow.",
-    explain: "wollen second, the full infinitive einkaufen at the end.",
-  }),
-  wo({
-    id: "tv4-3",
-    chunks: ["Steh", "bitte", "auf!"],
-    translation: "Please get up!",
-    explain: "The imperative opens with the verb, the prefix closes it.",
-  }),
-  wo({
-    id: "tv4-4",
-    chunks: ["Stehen", "Sie", "bitte", "auf!"],
-    translation: "Please stand up! (formal)",
-    explain: "Formal imperative: infinitive + Sie, the prefix still closes the sentence.",
-  }),
-  wo({
-    id: "tv4-5",
-    chunks: ["Mach", "die", "Tür", "zu!"],
-    translation: "Close the door!",
-    explain: "zumachen in the imperative: zu ... mach, the prefix closes the command.",
-  }),
-  mc({
-    id: "tv4-6",
-    prompt: "Which is the correct participle of aufstehen?",
-    options: ["aufgestanden", "aufstanden", "gestanden"],
-    correctIndex: 0,
-    explain: "aufgestanden: ge- slides in after the prefix auf-.",
-  }),
-  mc({
-    id: "tv4-7",
-    prompt: "Which is the correct participle of verstehen?",
-    options: ["verstanden", "geverstanden", "verstandt"],
-    correctIndex: 0,
-    explain: "ver- never splits, so the participle has no ge-: verstanden.",
-  }),
-  ls({
-    id: "tv4-8",
-    prompt: "Wir haben gestern eingekauft.",
-    options: [
-      "Wir haben gestern eingekauft.",
-      "Wir sind gestern eingekauft.",
-      "Wir haben gestern gekauft.",
-    ],
-    correctIndex: 0,
-    explain: "einkaufen takes haben, and the participle is eingekauft, not gekauft.",
-  }),
+    {"kind":"exercise","exercise":{"id":"sv4-wo-1","type":"word-order","title":"Practice","instruction":"Build the sentence: I have to get up at seven o'clock.","chunks":["Ich","muss","um sieben Uhr","aufstehen."],"translation":"I have to get up at seven o'clock.","explain":"With a modal the prefix stays attached: aufstehen closes the sentence."}},
+    {"kind":"exercise","exercise":{"id":"sv4-wo-2","type":"word-order","title":"Practice","instruction":"Build the sentence: We want to go shopping tomorrow.","chunks":["Wir","wollen","morgen","einkaufen."],"translation":"We want to go shopping tomorrow.","explain":"wollen second, the full infinitive einkaufen at the end."}},
+    {"kind":"exercise","exercise":{"id":"sv4-wo-3","type":"word-order","title":"Practice","instruction":"Build the sentence: You can call me tomorrow.","chunks":["Du","kannst","mich","morgen","anrufen."],"translation":"You can call me tomorrow.","explain":"kannst second, the full infinitive anrufen at the end."}},
+    {"kind":"exercise","exercise":{"id":"sv4-wo-4","type":"word-order","title":"Practice","instruction":"Build the sentence: I do not want to go shopping today.","chunks":["Ich","will","heute","nicht","einkaufen."],"translation":"I do not want to go shopping today.","explain":"The modal keeps the infinitive whole: einkaufen."}},
+    {"kind":"exercise","exercise":{"id":"sv4-wo-5","type":"word-order","title":"Practice","instruction":"Build the sentence: We have to get up at eight o'clock.","chunks":["Wir","müssen","um acht Uhr","aufstehen."],"translation":"We have to get up at eight o'clock.","explain":"müssen second, aufstehen closes the frame."}},
+    {"kind":"exercise","exercise":{"id":"sv4-wo-6","type":"word-order","title":"Practice","instruction":"Build the sentence: She should close the window.","chunks":["Sie","soll","das Fenster","zumachen."],"translation":"She should close the window.","explain":"soll second, the full infinitive zumachen at the end."}},
+    {"kind":"exercise","exercise":{"id":"sv4-wo-7","type":"word-order","title":"Practice","instruction":"Build the sentence: I would like to get up early tomorrow.","chunks":["Ich","möchte","morgen früh","aufstehen."],"translation":"I would like to get up early tomorrow.","explain":"möchte second, aufstehen closes the sentence."}},
+    {"kind":"exercise","exercise":{"id":"sv4-wo-8","type":"word-order","title":"Practice","instruction":"Build the sentence: Please get up!","chunks":["Steh","bitte","auf!"],"translation":"Please get up!","explain":"The imperative opens with the verb, the prefix closes it."}},
+    {"kind":"exercise","exercise":{"id":"sv4-wo-9","type":"word-order","title":"Practice","instruction":"Build the sentence: Please stand up! (formal)","chunks":["Stehen","Sie","bitte","auf!"],"translation":"Please stand up! (formal)","explain":"Formal imperative: infinitive + Sie, the prefix still closes the sentence."}},
+    {"kind":"exercise","exercise":{"id":"sv4-wo-10","type":"word-order","title":"Practice","instruction":"Build the sentence: Close the door!","chunks":["Mach","die Tür","zu!"],"translation":"Close the door!","explain":"zumachen in the imperative: zu ... mach, the prefix closes the command."}},
+    {"kind":"exercise","exercise":{"id":"sv4-wo-11","type":"word-order","title":"Practice","instruction":"Build the sentence: Call me later!","chunks":["Ruf","mich","später","an!"],"translation":"Call me later!","explain":"anrufen splits: Ruf ... an."}},
+    {"kind":"exercise","exercise":{"id":"sv4-wo-12","type":"word-order","title":"Practice","instruction":"Build the sentence: Go shopping!","chunks":["Kauf","ein!"],"translation":"Go shopping!","explain":"einkaufen splits: Kauf ... ein."}},
+    {"kind":"exercise","exercise":{"id":"sv4-wo-13","type":"word-order","title":"Practice","instruction":"Build the sentence: Tidy your room!","chunks":["Räum","dein Zimmer","auf!"],"translation":"Tidy your room!","explain":"aufräumen splits: Räum ... auf."}},
+    {"kind":"exercise","exercise":{"id":"sv4-wo-14","type":"word-order","title":"Practice","instruction":"Build the sentence: Please come along!","chunks":["Komm","bitte","mit!"],"translation":"Please come along!","explain":"mitkommen splits: Komm ... mit."}},
+    {"kind":"exercise","exercise":{"id":"sv4-wo-15","type":"word-order","title":"Practice","instruction":"Build the sentence: Get out at the stop!","chunks":["Steig","an der Haltestelle","aus!"],"translation":"Get out at the stop!","explain":"aussteigen splits: Steig ... aus."}},
+    {"kind":"exercise","exercise":{"id":"sv4-wo-16","type":"word-order","title":"Practice","instruction":"Build the sentence: Get out at the stop! (formal)","chunks":["Steigen","Sie","an der Haltestelle","aus!"],"translation":"Get out at the stop! (formal)","explain":"Formal imperative: Steigen Sie ... aus."}},
+    {"kind":"exercise","exercise":{"id":"sv4-wo-17","type":"word-order","title":"Practice","instruction":"Build the sentence: Bring me the book!","chunks":["Bring","mir","das Buch","mit!"],"translation":"Bring me the book!","explain":"mitbringen splits: Bring ... mit."}},
+    {"kind":"exercise","exercise":{"id":"sv4-wo-18","type":"word-order","title":"Practice","instruction":"Build the sentence: Take your umbrella along!","chunks":["Nimm","deinen Regenschirm","mit!"],"translation":"Take your umbrella along!","explain":"mitnehmen splits: Nimm ... mit."}},
+    {"kind":"exercise","exercise":{"id":"sv4-wo-19","type":"word-order","title":"Practice","instruction":"Build the sentence: Dress warmly!","chunks":["Zieh","dich","warm","an!"],"translation":"Dress warmly!","explain":"anziehen splits: Zieh ... an."}},
+    {"kind":"exercise","exercise":{"id":"sv4-wo-20","type":"word-order","title":"Practice","instruction":"Build the sentence: Stop working!","chunks":["Hör","mit der Arbeit","auf!"],"translation":"Stop working!","explain":"aufhören splits: Hör ... auf."}},
+    {"kind":"exercise","exercise":{"id":"sv4-wo-21","type":"word-order","title":"Practice","instruction":"Build the sentence: Hand in the homework!","chunks":["Gib","die Hausaufgaben","ab!"],"translation":"Hand in the homework!","explain":"abgeben splits: Gib ... ab."}},
+    {"kind":"exercise","exercise":{"id":"sv4-wo-22","type":"word-order","title":"Practice","instruction":"Build the sentence: Sign up for the course!","chunks":["Meld","dich","im Kurs","an!"],"translation":"Sign up for the course!","explain":"anmelden splits: Meld ... an."}},
+    {"kind":"exercise","exercise":{"id":"sv4-wo-23","type":"word-order","title":"Practice","instruction":"Build the sentence: Throw away the rubbish!","chunks":["Wirf","den Müll","weg!"],"translation":"Throw away the rubbish!","explain":"wegwerfen splits: Wirf ... weg."}},
+    {"kind":"exercise","exercise":{"id":"sv4-wo-24","type":"word-order","title":"Practice","instruction":"Build the sentence: Look at that!","chunks":["Sieh","dir","das","an!"],"translation":"Look at that!","explain":"ansehen splits: Sieh ... an."}},
+    {"kind":"exercise","exercise":{"id":"sv4-wo-25","type":"word-order","title":"Practice","instruction":"Build the sentence: We have to leave now.","chunks":["Wir","müssen","jetzt","losgehen."],"translation":"We have to leave now.","explain":"losgehen stays whole after the modal: müssen ... losgehen."}},
+    {"kind":"exercise","exercise":{"id":"sv4-wo-26","type":"word-order","title":"Practice","instruction":"Build the sentence: I can ride along by bicycle.","chunks":["Ich","kann","mit dem Fahrrad","mitfahren."],"translation":"I can ride along by bicycle.","explain":"mitfahren stays whole after kann."}},
+    {"kind":"exercise","exercise":{"id":"sv4-mc-1","type":"multiple-choice","title":"Practice","instruction":"Choose the correct answer.","prompt":"Which is the correct participle of aufstehen?","options":["aufgestanden","aufstanden","gestanden"],"correctIndex":0,"explain":"The correct participle of aufstehen is aufgestanden."}},
+    {"kind":"exercise","exercise":{"id":"sv4-mc-2","type":"multiple-choice","title":"Practice","instruction":"Choose the correct answer.","prompt":"Which is the correct participle of verstehen?","options":["verstanden","geverstanden","verstandt"],"correctIndex":0,"explain":"The correct participle of verstehen is verstanden."}},
+    {"kind":"exercise","exercise":{"id":"sv4-mc-3","type":"multiple-choice","title":"Practice","instruction":"Choose the correct answer.","prompt":"Which is the correct participle of einkaufen?","options":["eingekauft","gekauft","einkauft"],"correctIndex":0,"explain":"The correct participle of einkaufen is eingekauft."}},
+    {"kind":"exercise","exercise":{"id":"sv4-mc-4","type":"multiple-choice","title":"Practice","instruction":"Choose the correct answer.","prompt":"Which is the correct participle of anrufen?","options":["angerufen","gerufen","anruft"],"correctIndex":0,"explain":"The correct participle of anrufen is angerufen."}},
+    {"kind":"exercise","exercise":{"id":"sv4-mc-5","type":"multiple-choice","title":"Practice","instruction":"Choose the correct answer.","prompt":"Which is the correct participle of aufräumen?","options":["aufgeräumt","geräumt","aufraumt"],"correctIndex":0,"explain":"The correct participle of aufräumen is aufgeräumt."}},
+    {"kind":"exercise","exercise":{"id":"sv4-mc-6","type":"multiple-choice","title":"Practice","instruction":"Choose the correct answer.","prompt":"Which is the correct participle of anfangen?","options":["angefangen","gefangen","anfangt"],"correctIndex":0,"explain":"The correct participle of anfangen is angefangen."}},
+    {"kind":"exercise","exercise":{"id":"sv4-mc-7","type":"multiple-choice","title":"Practice","instruction":"Choose the correct answer.","prompt":"Which is the correct participle of zumachen?","options":["zugemacht","gemacht","zumacht"],"correctIndex":0,"explain":"The correct participle of zumachen is zugemacht."}},
+    {"kind":"exercise","exercise":{"id":"sv4-mc-8","type":"multiple-choice","title":"Practice","instruction":"Choose the correct answer.","prompt":"Which is the correct participle of mitkommen?","options":["mitgekommen","gekommen","mitkommt"],"correctIndex":0,"explain":"The correct participle of mitkommen is mitgekommen."}},
+    {"kind":"exercise","exercise":{"id":"sv4-mc-9","type":"multiple-choice","title":"Practice","instruction":"Choose the correct answer.","prompt":"Which is the correct participle of aussteigen?","options":["ausgestiegen","gestiegen","aussteigt"],"correctIndex":0,"explain":"The correct participle of aussteigen is ausgestiegen."}},
+    {"kind":"exercise","exercise":{"id":"sv4-mc-10","type":"multiple-choice","title":"Practice","instruction":"Choose the correct answer.","prompt":"Which is the correct participle of mitbringen?","options":["mitgebracht","gebracht","mitbringt"],"correctIndex":0,"explain":"The correct participle of mitbringen is mitgebracht."}},
+    {"kind":"exercise","exercise":{"id":"sv4-mc-11","type":"multiple-choice","title":"Practice","instruction":"Choose the correct answer.","prompt":"Which is the correct participle of abholen?","options":["abgeholt","geholt","abholt"],"correctIndex":0,"explain":"The correct participle of abholen is abgeholt."}},
+    {"kind":"exercise","exercise":{"id":"sv4-mc-12","type":"multiple-choice","title":"Practice","instruction":"Choose the correct answer.","prompt":"Which is the correct participle of aufpassen?","options":["aufgepasst","gepasst","aufpasst"],"correctIndex":0,"explain":"The correct participle of aufpassen is aufgepasst."}},
+    {"kind":"exercise","exercise":{"id":"sv4-mc-13","type":"multiple-choice","title":"Practice","instruction":"Choose the correct answer.","prompt":"Which is the correct participle of fernsehen?","options":["ferngesehen","gesehen","fernsieht"],"correctIndex":0,"explain":"The correct participle of fernsehen is ferngesehen."}},
+    {"kind":"exercise","exercise":{"id":"sv4-mc-14","type":"multiple-choice","title":"Practice","instruction":"Choose the correct answer.","prompt":"Which is the correct participle of teilnehmen?","options":["teilgenommen","genommen","teilnimmt"],"correctIndex":0,"explain":"The correct participle of teilnehmen is teilgenommen."}},
+    {"kind":"exercise","exercise":{"id":"sv4-mc-15","type":"multiple-choice","title":"Practice","instruction":"Choose the correct answer.","prompt":"Which is the correct participle of einschlafen?","options":["eingeschlafen","geschlafen","einschläft"],"correctIndex":0,"explain":"The correct participle of einschlafen is eingeschlafen."}},
+    {"kind":"exercise","exercise":{"id":"sv4-mc-16","type":"multiple-choice","title":"Practice","instruction":"Choose the correct answer.","prompt":"Which is the correct participle of abgeben?","options":["abgegeben","gegeben","abgibt"],"correctIndex":0,"explain":"The correct participle of abgeben is abgegeben."}},
+    {"kind":"exercise","exercise":{"id":"sv4-mc-17","type":"multiple-choice","title":"Practice","instruction":"Choose the correct answer.","prompt":"Which is the correct participle of anmelden?","options":["angemeldet","gemeldet","anmeldet"],"correctIndex":0,"explain":"The correct participle of anmelden is angemeldet."}},
+    {"kind":"exercise","exercise":{"id":"sv4-mc-18","type":"multiple-choice","title":"Practice","instruction":"Choose the correct answer.","prompt":"Which is the correct participle of zurückgeben?","options":["zurückgegeben","gegeben","zurückgibt"],"correctIndex":0,"explain":"The correct participle of zurückgeben is zurückgegeben."}},
+    {"kind":"exercise","exercise":{"id":"sv4-mc-19","type":"multiple-choice","title":"Practice","instruction":"Choose the correct answer.","prompt":"Which is the correct participle of wegwerfen?","options":["weggeworfen","geworfen","wegwirft"],"correctIndex":0,"explain":"The correct participle of wegwerfen is weggeworfen."}},
+    {"kind":"exercise","exercise":{"id":"sv4-ls-1","type":"listening","title":"Practice","instruction":"Listen and choose what you hear.","prompt":"Wir haben gestern eingekauft.","options":["Wir haben gestern eingekauft.","Wir sind gestern eingekauft.","Wir haben gestern gekauft."],"correctIndex":0,"explain":"einkaufen takes haben, and the participle is eingekauft, not gekauft."}},
+    {"kind":"exercise","exercise":{"id":"sv4-ls-2","type":"listening","title":"Practice","instruction":"Listen and choose what you hear.","prompt":"Ich muss um sieben Uhr aufstehen.","options":["Ich muss um sieben Uhr aufstehen.","Ich stehe um sieben Uhr auf.","Ich muss um sieben Uhr auf."],"correctIndex":0,"explain":"With a modal the prefix stays attached: aufstehen."}},
+    {"kind":"exercise","exercise":{"id":"sv4-ls-3","type":"listening","title":"Practice","instruction":"Listen and choose what you hear.","prompt":"Ruf mich später an!","options":["Ruf mich später an!","Ruf mich an später!","Anruf mich später!"],"correctIndex":0,"explain":"The command is Ruf mich später an: verb first, prefix at the end."}},
+    {"kind":"exercise","exercise":{"id":"sv4-ls-4","type":"listening","title":"Practice","instruction":"Listen and choose what you hear.","prompt":"Steh um 6 Uhr auf!","options":["Steh um 6 Uhr auf!","Steh auf um 6 Uhr!","Aufsteh um 6 Uhr!"],"correctIndex":0,"explain":"The command is Steh um 6 Uhr auf: verb first, prefix at the end."}},
+    {"kind":"exercise","exercise":{"id":"sv4-ls-5","type":"listening","title":"Practice","instruction":"Listen and choose what you hear.","prompt":"Er hat die Frage verstanden.","options":["Er hat die Frage verstanden.","Er hat die Frage geverstanden.","Er hat die Frage versteht."],"correctIndex":0,"explain":"ver- never splits, so the participle has no ge-: verstanden."}},
 ];
 
 export const separableVerbsGame: Game = {
