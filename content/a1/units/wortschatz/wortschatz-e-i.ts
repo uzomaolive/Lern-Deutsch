@@ -151,7 +151,7 @@ export const wortschatzEI: Lesson = {
     { id: "w137", de: "das Glück", en: "the luck", part: "noun n.", audio: true },
     { id: "w138", de: "glücklich", en: "happy", part: "adjective", audio: true },
     { id: "w139", de: "das Gold", en: "the gold", part: "noun n.", audio: true },
-    { id: "w140", de: "der Gratis", en: "free of charge", part: "noun m.", audio: true },
+    { id: "w140", de: "das Gratis", en: "free of charge", part: "noun n.", audio: true },
     { id: "w141", de: "grau", en: "grey", part: "adjective", audio: true },
     { id: "w142", de: "greifen", en: "to grab, reach", part: "verb", audio: true },
     { id: "w143", de: "groß", en: "big, tall", part: "adjective", audio: true },

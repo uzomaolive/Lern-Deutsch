@@ -339,7 +339,7 @@ export const goethePracticeExam: Lesson = {
     m(140, "Wortwahl", "Nimmst du den Regenschirm ___?", ["mit", "ein", "auf"], 0, "mitnehmen splits: nimmst ... mit."),
     m(141, "Wortwahl", "Er kommt morgen ___.", ["zurück", "vor", "auf"], 0, "zurückkommen splits: kommt ... zurück."),
     m(142, "Wortwahl", "Wann fährst du ___?", ["ab", "ein", "mit"], 0, "abfahren splits: fährst ... ab."),
-    m(143, "Wortwahl", "Ich möchte mich ___ anmelden.", ["anmelden", "abmelden", "ankommen"], 0, "Registering is sich anmelden."),
+    m(143, "Wortwahl", "Ich möchte mich ___.", ["anmelden", "abmelden", "ankommen"], 0, "Registering is sich anmelden."),
     m(144, "Wortwahl", "Es ist 14:30 Uhr. Das ist ___ Uhr dreißig.", ["vierzehn", "vier", "halb"], 0, "Formal time: vierzehn Uhr dreißig."),
     m(145, "Wortwahl", "Es ist halb neun. Das ist ___.", ["8:30", "9:30", "8:15"], 0, "halb neun is halfway to nine: 8:30."),
     m(146, "Wortwahl", "Es ist Viertel nach acht. Das ist ___.", ["8:15", "8:45", "9:15"], 0, "Viertel nach acht is 8:15."),

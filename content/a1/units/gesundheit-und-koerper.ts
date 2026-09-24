@@ -67,7 +67,7 @@ export const derKoerper: Lesson = {
         {
           type: "example",
           de: "Ich sehe mit den Augen, höre mit den Ohren und spreche mit dem Mund.",
-          en: "The senses in one line.",
+          en: "I see with my eyes, hear with my ears and speak with my mouth.",
         },
         {
           type: "tip",
@@ -388,7 +388,7 @@ export const beimArzt: Lesson = {
         {
           type: "example",
           de: "Ich habe eine Erkältung: Husten, Schnupfen und leichtes Fieber.",
-          en: "The cold symptom list.",
+          en: "I have a cold: a cough, a runny nose and a slight fever.",
         },
         {
           type: "tip",
@@ -708,7 +708,7 @@ export const gesundheitstipps: Lesson = {
         {
           type: "example",
           de: "Du sollst gesund essen, viel Wasser trinken und genug schlafen.",
-          en: "The health advice with sollen.",
+          en: "You should eat healthily, drink lots of water and sleep enough.",
         },
         {
           type: "tip",
@@ -796,7 +796,7 @@ export const gesundheitstipps: Lesson = {
         {
           type: "example",
           de: "Iss viel Obst und Gemüse, aber wenig Zucker und Süßigkeiten.",
-          en: "The healthy eating advice.",
+          en: "Eat lots of fruit and vegetables, but little sugar and few sweets.",
         },
         {
           type: "tip",

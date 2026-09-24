@@ -1535,7 +1535,7 @@ export const imBuerro: Lesson = {
         {
           type: "example",
           de: "Auf meinem Schreibtisch stehen ein Computer, ein Bildschirm und ein Telefon.",
-          en: "The desk description.",
+          en: "On my desk there are a computer, a screen and a telephone.",
         },
         {
           type: "tip",
@@ -1840,7 +1840,7 @@ export const derDativ: Lesson = {
         {
           type: "example",
           de: "Ich helfe dem Mann, der Frau, dem Kind und den Kindern.",
-          en: "All four dative articles.",
+          en: "I help the man, the woman, the child and the children.",
         },
         {
           type: "tip",
@@ -1937,7 +1937,7 @@ export const derDativ: Lesson = {
         {
           type: "example",
           de: "Ich fahre mit dem Auto nach der Arbeit zu meiner Oma.",
-          en: "Three dative prepositions in one sentence.",
+          en: "I drive by car to my grandma's after work.",
         },
         {
           type: "tip",

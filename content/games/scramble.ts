@@ -506,7 +506,7 @@ export const wordmatchgridGame: Game = {
           title: "Grid 3",
           instruction: "Tap a German word, then its English match.",
           timeLimit: 35,
-          pairs: [["das Museum","the museum"],["das Benzin","the petrol"],["der Rand","the edge"],["der Gehweg","the pavement"],["die Pflanze","the plant"],["der Flohmarkt","the flea market"],["der Nebel","the fog"],["die Metzgerei","the butcher's"],["der Popmusik","the pop music"],["das Büro","the office"]],
+          pairs: [["das Museum","the museum"],["das Benzin","the petrol"],["der Rand","the edge"],["der Gehweg","the pavement"],["die Pflanze","the plant"],["der Flohmarkt","the flea market"],["der Nebel","the fog"],["die Metzgerei","the butcher's"],["die Popmusik","the pop music"],["das Büro","the office"]],
         },
         {
           kind: "grid-match",
@@ -520,7 +520,7 @@ export const wordmatchgridGame: Game = {
           title: "Grid 5",
           instruction: "Tap a German word, then its English match.",
           timeLimit: 35,
-          pairs: [["der Popmusik","the pop music"],["der Tausch","the exchange, the swap"],["die Schokolade","the chocolate"],["der Geschäftsführer","the managing director"],["der Pinguin","the penguin"],["die Anprobe","the fitting"],["der Baum","the tree"],["das Auto","the car"],["der Strom","the electricity, the current"],["die Behandlung","the treatment"]],
+          pairs: [["die Popmusik","the pop music"],["der Tausch","the exchange, the swap"],["die Schokolade","the chocolate"],["der Geschäftsführer","the managing director"],["der Pinguin","the penguin"],["die Anprobe","the fitting"],["der Baum","the tree"],["das Auto","the car"],["der Strom","the electricity, the current"],["die Behandlung","the treatment"]],
         },
         {
           kind: "grid-match",
@@ -590,7 +590,7 @@ export const wordmatchgridGame: Game = {
           title: "Grid 15",
           instruction: "Tap a German word, then its English match.",
           timeLimit: 35,
-          pairs: [["der Anzug","the suit"],["die Ente","the duck"],["die Stadtmauer","the city wall"],["das Kostüm","the costume"],["die Kirmes","the fair"],["die Universität","the university"],["der Zug","the train"],["das Wasser","the water"],["der Popmusik","the pop music"],["die Mitbewohnerin","the flatmate (f.)"]],
+          pairs: [["der Anzug","the suit"],["die Ente","the duck"],["die Stadtmauer","the city wall"],["das Kostüm","the costume"],["die Kirmes","the fair"],["die Universität","the university"],["der Zug","the train"],["das Wasser","the water"],["die Popmusik","the pop music"],["die Mitbewohnerin","the flatmate (f.)"]],
         },
         {
           kind: "grid-match",
@@ -625,7 +625,7 @@ export const wordmatchgridGame: Game = {
           title: "Grid 20",
           instruction: "Tap a German word, then its English match.",
           timeLimit: 35,
-          pairs: [["die Recycling","the recycling"],["die Schokolade","the chocolate"],["der Füller","the fountain pen"],["die Pflanze","the plant"],["der Sonntag","Sunday"],["der Geschäftsführer","the managing director"],["der Sektor","the sector"],["die Musikrichtung","the music genre"],["der Pinguin","the penguin"],["der Zug","the train"]],
+          pairs: [["das Recycling","the recycling"],["die Schokolade","the chocolate"],["der Füller","the fountain pen"],["die Pflanze","the plant"],["der Sonntag","Sunday"],["der Geschäftsführer","the managing director"],["der Sektor","the sector"],["die Musikrichtung","the music genre"],["der Pinguin","the penguin"],["der Zug","the train"]],
         },
 
       ],
