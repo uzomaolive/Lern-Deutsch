@@ -18,14 +18,16 @@ describe("wortstellung-erklaert lesson integrity", () => {
   it("explains every word-order type in its own section", () => {
     const headings = lessonSectionHeadings().join(" ");
     const expected = [
-      "Aussagesatz", // verb-second rule
-      "Ja/Nein-Fragen", // questions: verb first
-      "W-Fragen", // questions: question word
+      "Grundmuster", // the four basic patterns
+      "Position 2", // the conjugated verb and the second element
+      "Standardwortstellung",
       "Inversion",
+      "Transposition",
+      "Subordination", // subordinate clauses, verb last
+      "Relativsätze",
       "Te-ka-mo-lo", // time-manner-place
       "Satzrahmen", // sentence frame
-      "Nebensatz", // subordinate clauses, verb last
-      "Negation", // negation and imperatives
+      "Negation",
     ];
     for (const topic of expected) {
       expect(headings, topic).toContain(topic);
