@@ -3,6 +3,8 @@ import { wordleGame } from "./wordle";
 import { ninewordsGame as scrambleGame, wordmatchgridGame as gridMatchGame } from "./scramble";
 import { casedetectiveGame as caseDetectiveGame } from "./case-detective";
 import { wordorderGame } from "./word-order";
+import { separableVerbsGame } from "./separable-verbs";
+import { imperativeGame } from "./imperative";
 import { nounGames } from "./noun-games";
 import { verbGames } from "./verb-games";
 import { numberGames } from "./number-games";
@@ -13,6 +15,8 @@ export const games: Game[] = [
   ...legacyGames,
   caseDetectiveGame,
   wordorderGame,
+  separableVerbsGame,
+  imperativeGame,
   wordleGame,
   scrambleGame,
   gridMatchGame,
