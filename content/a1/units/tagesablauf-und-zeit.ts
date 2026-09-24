@@ -543,7 +543,7 @@ export const wochentageUndMonate: Lesson = {
         {
           type: "example",
           de: "Im Frühling blühen die Blumen, im Sommer ist es heiß, im Herbst fällt das Laub, im Winter schneit es.",
-          en: "The year in four sentences.",
+          en: "In spring the flowers bloom, in summer it is hot, in autumn the leaves fall, in winter it snows.",
         },
         {
           type: "tip",
@@ -778,7 +778,7 @@ export const meinTagesablauf: Lesson = {
         {
           type: "example",
           de: "Am Morgen stehe ich auf, am Mittag esse ich zu Mittag, am Abend schlafe ich nicht zu spät.",
-          en: "The times of day in use.",
+          en: "In the morning I get up, at midday I have lunch, in the evening I don't go to bed too late.",
         },
         {
           type: "tip",
@@ -811,7 +811,7 @@ export const meinTagesablauf: Lesson = {
         {
           type: "example",
           de: "Ich stehe um 6 Uhr auf, frühstücke um 7 Uhr und gehe um 8 Uhr zur Arbeit.",
-          en: "The morning routine.",
+          en: "I get up at 6, have breakfast at 7 and go to work at 8.",
         },
         {
           type: "tip",
@@ -859,7 +859,7 @@ export const meinTagesablauf: Lesson = {
         {
           type: "example",
           de: "Zuerst stehe ich auf, dann frühstücke ich, danach gehe ich zur Arbeit, zum Schluss schlafe ich.",
-          en: "The day in sequence words.",
+          en: "First I get up, then I have breakfast, then I go to work, and finally I sleep.",
         },
         {
           type: "tip",
@@ -1139,7 +1139,7 @@ export const trennbareVerben: Lesson = {
         {
           type: "example",
           de: "Ich stehe um 6 Uhr auf, rufe dann meine Mutter an und sehe am Abend fern.",
-          en: "Three separable verbs in one day: auf...stehe, an...rufe, sehe...fern.",
+          en: "I get up at 6, then call my mother and watch TV in the evening.",
         },
         {
           type: "tip",
@@ -1168,7 +1168,7 @@ export const trennbareVerben: Lesson = {
         {
           type: "example",
           de: "Ich muss heute früh aufstehen, weil ich den Zug erreichen will.",
-          en: "The modal plus the separable infinitive in one sentence.",
+          en: "I have to get up early today because I want to catch the train.",
         },
         {
           type: "tip",
@@ -1276,7 +1276,7 @@ export const trennbareVerben: Lesson = {
         {
           type: "example",
           de: "Ich besuche meine Oma. Sie versteht Deutsch. Wir bezahlen die Rechnung.",
-          en: "The inseparable verbs do not move: besuche, versteht, bezahlen.",
+          en: "I visit my grandma. She understands German. We pay the bill.",
         },
         {
           type: "tip",
@@ -2086,7 +2086,7 @@ export const zeitangaben: Lesson = {
         {
           type: "example",
           de: "Ich stehe um 7 Uhr auf, arbeite am Montag und fahre im Sommer in Urlaub.",
-          en: "The three time prepositions in one sentence.",
+          en: "I get up at 7, work on Monday and go on holiday in the summer.",
         },
         {
           type: "tip",
@@ -2380,7 +2380,7 @@ export const perfektEinfuehrung: Lesson = {
         {
           type: "example",
           de: "Gestern habe ich gearbeitet und danach bin ich nach Hause gegangen.",
-          en: "The perfect with both helpers.",
+          en: "Yesterday I worked and afterwards I went home.",
         },
         {
           type: "tip",
@@ -2666,7 +2666,7 @@ export const perfektMitHaben: Lesson = {
         {
           type: "example",
           de: "Ich habe gestern gearbeitet, gegessen, getrunken und am Abend ein Buch gelesen.",
-          en: "The haben perfect in a day.",
+          en: "Yesterday I worked, ate, drank and read a book in the evening.",
         },
         {
           type: "tip",
@@ -2728,7 +2728,7 @@ export const perfektMitHaben: Lesson = {
         {
           type: "example",
           de: "Ich habe gegessen und getrunken, dann habe ich einen Film gesehen.",
-          en: "The strong perfect.",
+          en: "I ate and drank, then I watched a film.",
         },
         {
           type: "tip",
@@ -2758,7 +2758,7 @@ export const perfektMitHaben: Lesson = {
         {
           type: "example",
           de: "Ich habe eingekauft und angerufen, dann bin ich aufgestanden und mitgekommen.",
-          en: "The separable perfect.",
+          en: "I shopped and called, then I got up and came along.",
         },
         {
           type: "tip",
@@ -2990,7 +2990,7 @@ export const perfektMitSein: Lesson = {
         {
           type: "example",
           de: "Ich bin heute früh aufgestanden, dann bin ich zur Arbeit gefahren und am Abend zu Hause geblieben.",
-          en: "The sein perfect in a day.",
+          en: "I got up early today, then drove to work and stayed at home in the evening.",
         },
         {
           type: "tip",
@@ -3021,7 +3021,7 @@ export const perfektMitSein: Lesson = {
         {
           type: "example",
           de: "Ich bin nach Berlin gefahren, dann bin ich zum See geschwommen und am Abend nach Hause gelaufen.",
-          en: "The movement perfect.",
+          en: "I drove to Berlin, then swam to the lake and walked home in the evening.",
         },
         {
           type: "tip",

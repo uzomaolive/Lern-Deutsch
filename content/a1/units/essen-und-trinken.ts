@@ -464,7 +464,7 @@ export const imRestaurant: Lesson = {
         {
           type: "example",
           de: "Ich möchte einen Kaffee, eine Suppe und ein Bier, bitte.",
-          en: "All three genders in one order.",
+          en: "I would like a coffee, a soup and a beer, please.",
         },
         {
           type: "gloss",
@@ -916,7 +916,7 @@ export const derAkkusativ: Lesson = {
         {
           type: "example",
           de: "Ich brauche einen Kaffee. Wir suchen den Schlüssel. Sie kennt den Kellner. Er liest die Zeitung.",
-          en: "The accusative verb pattern: verb + wen? + object.",
+          en: "I need a coffee. We are looking for the key. She knows the waiter. He is reading the newspaper.",
         },
         {
           type: "tip",

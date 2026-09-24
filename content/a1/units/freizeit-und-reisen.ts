@@ -34,7 +34,7 @@ export const hobbysUndSport: Lesson = {
         {
           type: "example",
           de: "In meiner Freizeit mache ich Sport, spiele Gitarre und lese Bücher.",
-          en: "The hobby list.",
+          en: "In my free time I do sport, play the guitar and read books.",
         },
         {
           type: "tip",
@@ -67,7 +67,7 @@ export const hobbysUndSport: Lesson = {
         {
           type: "example",
           de: "Ich spiele am Wochenende Fußball und schwimme im Sommer im See.",
-          en: "The sport sentences.",
+          en: "At the weekend I play football and in the summer I swim in the lake.",
         },
         {
           type: "tip",
