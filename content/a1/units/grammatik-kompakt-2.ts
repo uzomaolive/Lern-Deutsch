@@ -1,4 +1,6 @@
 import type { Lesson, Unit } from "../../schema";
+import { wortstellungIntensiv } from "./wortstellung-intensiv";
+import { trennbareVerbenTief } from "./trennbare-verben";
 
 const akkusativTief: Lesson = {
   id: "akkusativ-erklaert",
@@ -762,5 +764,5 @@ export const grammatikKompakt2: Unit = {
   id: "grammatik-kompakt-2",
   title: "Grammatik Kompakt 2",
   theme: "Grammar deep dives",
-  lessons: [akkusativTief, possessivTief, negationTief, fragenTief],
+  lessons: [akkusativTief, possessivTief, negationTief, fragenTief, wortstellungIntensiv, trennbareVerbenTief],
 };
