@@ -860,8 +860,8 @@ export const alphabetUndAussprache: Lesson = {
       type: "fill-blank",
       title: "Übung 12: ei oder ie?",
       instruction: "Type ei or ie to complete the word.",
-      sentence: "Ich he___ße Anna. Ich l___be meine Familie. Ich habe zw___ Brüder.",
-            translation: "My name is Ann_. I _ve my family. I have tw_ brothers.",
+sentence: "Ich h___ße Anna. Ich l___be meine Familie. Ich habe zw___ Brüder.",
+      translation: "My n___me is Anna. I l___ve my family. I have tw___ brothers.",
       blanks: [
         { answers: ["ei"], hint: "heißen, the eye sound" },
         { answers: ["ie"], hint: "lieben, the long ee sound" },
