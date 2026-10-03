@@ -1,354 +1,215 @@
 import type { Game, GameRound } from "./schema";
 
-interface McData {
-  id: string;
-  prompt: string;
-  options: string[];
-  correctIndex: number;
-  explain: string;
-}
-
-interface WoData {
-  id: string;
-  chunks: string[];
-  translation: string;
-  explain: string;
-}
-
-interface FbData {
-  id: string;
-  sentence: string;
-  translation: string;
-  answers: string[];
-  explain: string;
-}
-
-interface MtData {
-  id: string;
-  pairs: [string, string][];
-  explain: string;
-}
-
-interface LsData {
-  id: string;
-  prompt: string;
-  options: string[];
-  correctIndex: number;
-  explain: string;
-}
-
-interface FcData {
-  id: string;
-  cards: { front: string; back: string }[];
-}
-
-function mc(round: McData): GameRound {
-  return {
-    kind: "exercise",
-    exercise: {
-      id: round.id,
-      type: "multiple-choice",
-      title: "Practice",
-      instruction: "Choose the correct imperative.",
-      prompt: round.prompt,
-      options: round.options,
-      correctIndex: round.correctIndex,
-      explain: round.explain,
-    },
-  };
-}
-
-function wo(round: WoData): GameRound {
-  return {
-    kind: "exercise",
-    exercise: {
-      id: round.id,
-      type: "word-order",
-      title: "Practice",
-      instruction: `Build the command: ${round.translation}`,
-      chunks: round.chunks,
-      translation: round.translation,
-      explain: round.explain,
-    },
-  };
-}
-
-function fb(round: FbData): GameRound {
-  return {
-    kind: "exercise",
-    exercise: {
-      id: round.id,
-      type: "fill-blank",
-      title: "Practice",
-      instruction: "Complete the command.",
-      sentence: round.sentence,
-      translation: round.translation,
-      blanks: [{ answers: round.answers }],
-      explain: round.explain,
-    },
-  };
-}
-
-function mt(round: MtData): GameRound {
-  return {
-    kind: "exercise",
-    exercise: {
-      id: round.id,
-      type: "matching",
-      title: "Practice",
-      instruction: "Match each form with its meaning.",
-      pairs: round.pairs,
-      explain: round.explain,
-    },
-  };
-}
-
-function ls(round: LsData): GameRound {
-  return {
-    kind: "exercise",
-    exercise: {
-      id: round.id,
-      type: "listening",
-      title: "Practice",
-      instruction: "Listen and choose the command you hear.",
-      prompt: round.prompt,
-      options: round.options,
-      correctIndex: round.correctIndex,
-      explain: round.explain,
-    },
-  };
-}
-
-function fc(round: FcData): GameRound {
-  return {
-    kind: "exercise",
-    exercise: {
-      id: round.id,
-      type: "flashcard",
-      title: "Practice",
-      instruction: "Say the German command before revealing the meaning.",
-      items: round.cards.map((card) => ({ ...card, frontAudio: true })),
-    },
-  };
-}
-
 const level1Rounds: GameRound[] = [
-  mt({
-    id: "imp1-1",
-    pairs: [
-      ["du", "Geh!"],
-      ["ihr", "Geht!"],
-      ["Sie (formal)", "Gehen Sie!"],
-      ["wir", "Gehen wir!"],
-    ],
-    explain: "The du form drops the -st, the ihr form keeps the -t, the formal uses infinitive + Sie.",
-  }),
-  mc({
-    id: "imp1-2",
-    prompt: "Go home! (du)",
-    options: ["Geh nach Hause!", "Gehst nach Hause!", "Gehen nach Hause!"],
-    correctIndex: 0,
-    explain: "The du form drops the -st.",
-  }),
-  mc({
-    id: "imp1-3",
-    prompt: "Go home! (ihr)",
-    options: ["Geht nach Hause!", "Geh nach Hause!", "Gehen Sie nach Hause!"],
-    correctIndex: 0,
-    explain: "The ihr form takes -t.",
-  }),
-  mc({
-    id: "imp1-4",
-    prompt: "Go home! (formal)",
-    options: ["Gehen Sie nach Hause!", "Geh nach Hause!", "Geht nach Hause!"],
-    correctIndex: 0,
-    explain: "The formal imperative: infinitive + Sie.",
-  }),
-  mc({
-    id: "imp1-5",
-    prompt: "Let's go to the cinema! (wir)",
-    options: ["Gehen wir ins Kino!", "Gehen ins Kino!", "Geht ins Kino!"],
-    correctIndex: 0,
-    explain: "The wir form invites: infinitive + wir.",
-  }),
-  fc({
-    id: "imp1-6",
-    cards: [
-      { front: "Geh nach Hause!", back: "Go home! (du)" },
-      { front: "Geht nach Hause!", back: "Go home! (ihr)" },
-      { front: "Gehen Sie nach Hause!", back: "Go home! (formal)" },
-      { front: "Gehen wir nach Hause!", back: "Let's go home!" },
-    ],
-  }),
+    {"kind":"exercise","exercise":{"id":"imp1-mc-1","type":"multiple-choice","title":"Practice","instruction":"Choose the correct answer.","prompt":"Go! (du)","options":["Geh!","Gehst!","Geht!"],"correctIndex":0,"explain":"The du imperative of gehen is Geh!"}},
+    {"kind":"exercise","exercise":{"id":"imp1-mc-2","type":"multiple-choice","title":"Practice","instruction":"Choose the correct answer.","prompt":"Make! (ihr)","options":["Macht!","Mach!","Machen Sie!"],"correctIndex":0,"explain":"The ihr imperative of machen is Macht!"}},
+    {"kind":"exercise","exercise":{"id":"imp1-mc-3","type":"multiple-choice","title":"Practice","instruction":"Choose the correct answer.","prompt":"Play! (formal)","options":["Spielen Sie!","Spielt!","Spielen!"],"correctIndex":0,"explain":"The formal imperative of spielen is Spielen Sie!"}},
+    {"kind":"exercise","exercise":{"id":"imp1-mc-4","type":"multiple-choice","title":"Practice","instruction":"Choose the correct answer.","prompt":"Let's come! (wir)","options":["Kommen wir!","Komm!","Kommt!"],"correctIndex":0,"explain":"The wir imperative of kommen is Kommen wir!"}},
+    {"kind":"exercise","exercise":{"id":"imp1-mc-5","type":"multiple-choice","title":"Practice","instruction":"Choose the correct answer.","prompt":"Drink! (du)","options":["Trink!","Trinkst!","Trinkt!"],"correctIndex":0,"explain":"The du imperative of trinken is Trink!"}},
+    {"kind":"exercise","exercise":{"id":"imp1-mc-6","type":"multiple-choice","title":"Practice","instruction":"Choose the correct answer.","prompt":"Learn! (ihr)","options":["Lernt!","Lern!","Lernen Sie!"],"correctIndex":0,"explain":"The ihr imperative of lernen is Lernt!"}},
+    {"kind":"exercise","exercise":{"id":"imp1-mc-7","type":"multiple-choice","title":"Practice","instruction":"Choose the correct answer.","prompt":"Work! (formal)","options":["Arbeiten Sie!","Arbeitet!","Arbeiten!"],"correctIndex":0,"explain":"The formal imperative of arbeiten is Arbeiten Sie!"}},
+    {"kind":"exercise","exercise":{"id":"imp1-mc-8","type":"multiple-choice","title":"Practice","instruction":"Choose the correct answer.","prompt":"Let's wait! (wir)","options":["Warten wir!","Warte!","Wartet!"],"correctIndex":0,"explain":"The wir imperative of warten is Warten wir!"}},
+    {"kind":"exercise","exercise":{"id":"imp1-mc-9","type":"multiple-choice","title":"Practice","instruction":"Choose the correct answer.","prompt":"Open! (du)","options":["Öffne!","Öffnest!","Öffnet!"],"correctIndex":0,"explain":"The du imperative of öffnen is Öffne!"}},
+    {"kind":"exercise","exercise":{"id":"imp1-mc-10","type":"multiple-choice","title":"Practice","instruction":"Choose the correct answer.","prompt":"Take! (ihr)","options":["Nehmt!","Nimm!","Nehmen Sie!"],"correctIndex":0,"explain":"The ihr imperative of nehmen is Nehmt!"}},
+    {"kind":"exercise","exercise":{"id":"imp1-mc-11","type":"multiple-choice","title":"Practice","instruction":"Choose the correct answer.","prompt":"Give! (formal)","options":["Geben Sie!","Gebt!","Geben!"],"correctIndex":0,"explain":"The formal imperative of geben is Geben Sie!"}},
+    {"kind":"exercise","exercise":{"id":"imp1-mc-12","type":"multiple-choice","title":"Practice","instruction":"Choose the correct answer.","prompt":"Let's look! (wir)","options":["Sehen wir!","Sieh!","Seht!"],"correctIndex":0,"explain":"The wir imperative of sehen is Sehen wir!"}},
+    {"kind":"exercise","exercise":{"id":"imp1-mc-13","type":"multiple-choice","title":"Practice","instruction":"Choose the correct answer.","prompt":"Speak! (du)","options":["Sprich!","Sprichst!","Sprecht!"],"correctIndex":0,"explain":"The du imperative of sprechen is Sprich!"}},
+    {"kind":"exercise","exercise":{"id":"imp1-mc-14","type":"multiple-choice","title":"Practice","instruction":"Choose the correct answer.","prompt":"Eat! (ihr)","options":["Esst!","Iss!","Essen Sie!"],"correctIndex":0,"explain":"The ihr imperative of essen is Esst!"}},
+    {"kind":"exercise","exercise":{"id":"imp1-mc-15","type":"multiple-choice","title":"Practice","instruction":"Choose the correct answer.","prompt":"Read! (formal)","options":["Lesen Sie!","Lest!","Lesen!"],"correctIndex":0,"explain":"The formal imperative of lesen is Lesen Sie!"}},
+    {"kind":"exercise","exercise":{"id":"imp1-mc-16","type":"multiple-choice","title":"Practice","instruction":"Choose the correct answer.","prompt":"Let's drive! (wir)","options":["Fahren wir!","Fahr!","Fahrt!"],"correctIndex":0,"explain":"The wir imperative of fahren is Fahren wir!"}},
+    {"kind":"exercise","exercise":{"id":"imp1-mc-17","type":"multiple-choice","title":"Practice","instruction":"Choose the correct answer.","prompt":"Sleep! (du)","options":["Schlaf!","Schläfst!","Schlaft!"],"correctIndex":0,"explain":"The du imperative of schlafen is Schlaf!"}},
+    {"kind":"exercise","exercise":{"id":"imp1-mc-18","type":"multiple-choice","title":"Practice","instruction":"Choose the correct answer.","prompt":"Run! (ihr)","options":["Lauft!","Lauf!","Laufen Sie!"],"correctIndex":0,"explain":"The ihr imperative of laufen is Lauft!"}},
+    {"kind":"exercise","exercise":{"id":"imp1-mc-19","type":"multiple-choice","title":"Practice","instruction":"Choose the correct answer.","prompt":"Buy! (formal)","options":["Kaufen Sie!","Kauft!","Kaufen!"],"correctIndex":0,"explain":"The formal imperative of kaufen is Kaufen Sie!"}},
+    {"kind":"exercise","exercise":{"id":"imp1-mc-20","type":"multiple-choice","title":"Practice","instruction":"Choose the correct answer.","prompt":"Let's pay! (wir)","options":["Bezahlen wir!","Bezahl!","Bezahlt!"],"correctIndex":0,"explain":"The wir imperative of bezahlen is Bezahlen wir!"}},
+    {"kind":"exercise","exercise":{"id":"imp1-mc-21","type":"multiple-choice","title":"Practice","instruction":"Choose the correct answer.","prompt":"Order! (du)","options":["Bestell!","Bestellst!","Bestellt!"],"correctIndex":0,"explain":"The du imperative of bestellen is Bestell!"}},
+    {"kind":"exercise","exercise":{"id":"imp1-mc-22","type":"multiple-choice","title":"Practice","instruction":"Choose the correct answer.","prompt":"Ask! (ihr)","options":["Fragt!","Frag!","Fragen Sie!"],"correctIndex":0,"explain":"The ihr imperative of fragen is Fragt!"}},
+    {"kind":"exercise","exercise":{"id":"imp1-mc-23","type":"multiple-choice","title":"Practice","instruction":"Choose the correct answer.","prompt":"Answer! (formal)","options":["Antworten Sie!","Antwortet!","Antworten!"],"correctIndex":0,"explain":"The formal imperative of antworten is Antworten Sie!"}},
+    {"kind":"exercise","exercise":{"id":"imp1-mc-24","type":"multiple-choice","title":"Practice","instruction":"Choose the correct answer.","prompt":"Let's bring! (wir)","options":["Bringen wir!","Bring!","Bringt!"],"correctIndex":0,"explain":"The wir imperative of bringen is Bringen wir!"}},
+    {"kind":"exercise","exercise":{"id":"imp1-mc-25","type":"multiple-choice","title":"Practice","instruction":"Choose the correct answer.","prompt":"Fetch! (du)","options":["Hol!","Holst!","Holt!"],"correctIndex":0,"explain":"The du imperative of holen is Hol!"}},
+    {"kind":"exercise","exercise":{"id":"imp1-mc-26","type":"multiple-choice","title":"Practice","instruction":"Choose the correct answer.","prompt":"Show! (ihr)","options":["Zeigt!","Zeig!","Zeigen Sie!"],"correctIndex":0,"explain":"The ihr imperative of zeigen is Zeigt!"}},
+    {"kind":"exercise","exercise":{"id":"imp1-mc-27","type":"multiple-choice","title":"Practice","instruction":"Choose the correct answer.","prompt":"Search! (formal)","options":["Suchen Sie!","Sucht!","Suchen!"],"correctIndex":0,"explain":"The formal imperative of suchen is Suchen Sie!"}},
+    {"kind":"exercise","exercise":{"id":"imp1-mc-28","type":"multiple-choice","title":"Practice","instruction":"Choose the correct answer.","prompt":"Let's find! (wir)","options":["Finden wir!","Finde!","Findet!"],"correctIndex":0,"explain":"The wir imperative of finden is Finden wir!"}},
+    {"kind":"exercise","exercise":{"id":"imp1-mc-29","type":"multiple-choice","title":"Practice","instruction":"Choose the correct answer.","prompt":"Understand! (du)","options":["Versteh!","Verstehst!","Versteht!"],"correctIndex":0,"explain":"The du imperative of verstehen is Versteh!"}},
+    {"kind":"exercise","exercise":{"id":"imp1-mc-30","type":"multiple-choice","title":"Practice","instruction":"Choose the correct answer.","prompt":"Listen! (ihr)","options":["Hört!","Hör!","Hören Sie!"],"correctIndex":0,"explain":"The ihr imperative of hören is Hört!"}},
+    {"kind":"exercise","exercise":{"id":"imp1-mt-1","type":"matching","title":"Practice","instruction":"Match each item with its partner.","pairs":[["du","Geh!"],["ihr","Geht!"],["Sie (formal)","Gehen Sie!"],["wir","Gehen wir!"],["du","Öffne!"],["ihr","Öffnet!"],["Sie (formal)","Öffnen Sie!"],["wir","Öffnen wir!"]],"explain":"The du form drops the -st, the ihr form keeps the -t, the formal uses infinitive + Sie."}},
+    {"kind":"exercise","exercise":{"id":"imp1-mt-2","type":"matching","title":"Practice","instruction":"Match each item with its partner.","pairs":[["du","Mach!"],["ihr","Macht!"],["Sie (formal)","Machen Sie!"],["wir","Machen wir!"],["du","Nimm!"],["ihr","Nehmt!"],["Sie (formal)","Nehmen Sie!"],["wir","Nehmen wir!"]],"explain":"The du form drops the -st, the ihr form keeps the -t, the formal uses infinitive + Sie."}},
+    {"kind":"exercise","exercise":{"id":"imp1-mt-3","type":"matching","title":"Practice","instruction":"Match each item with its partner.","pairs":[["du","Spiel!"],["ihr","Spielt!"],["Sie (formal)","Spielen Sie!"],["wir","Spielen wir!"],["du","Gib!"],["ihr","Gebt!"],["Sie (formal)","Geben Sie!"],["wir","Geben wir!"]],"explain":"The du form drops the -st, the ihr form keeps the -t, the formal uses infinitive + Sie."}},
+    {"kind":"exercise","exercise":{"id":"imp1-mt-4","type":"matching","title":"Practice","instruction":"Match each item with its partner.","pairs":[["du","Komm!"],["ihr","Kommt!"],["Sie (formal)","Kommen Sie!"],["wir","Kommen wir!"],["du","Sieh!"],["ihr","Seht!"],["Sie (formal)","Sehen Sie!"],["wir","Sehen wir!"]],"explain":"The du form drops the -st, the ihr form keeps the -t, the formal uses infinitive + Sie."}},
+    {"kind":"exercise","exercise":{"id":"imp1-mt-5","type":"matching","title":"Practice","instruction":"Match each item with its partner.","pairs":[["du","Trink!"],["ihr","Trinkt!"],["Sie (formal)","Trinken Sie!"],["wir","Trinken wir!"],["du","Sprich!"],["ihr","Sprecht!"],["Sie (formal)","Sprechen Sie!"],["wir","Sprechen wir!"]],"explain":"The du form drops the -st, the ihr form keeps the -t, the formal uses infinitive + Sie."}},
+    {"kind":"exercise","exercise":{"id":"imp1-mt-6","type":"matching","title":"Practice","instruction":"Match each item with its partner.","pairs":[["du","Lern!"],["ihr","Lernt!"],["Sie (formal)","Lernen Sie!"],["wir","Lernen wir!"],["du","Iss!"],["ihr","Esst!"],["Sie (formal)","Essen Sie!"],["wir","Essen wir!"]],"explain":"The du form drops the -st, the ihr form keeps the -t, the formal uses infinitive + Sie."}},
+    {"kind":"exercise","exercise":{"id":"imp1-mt-7","type":"matching","title":"Practice","instruction":"Match each item with its partner.","pairs":[["du","Arbeite!"],["ihr","Arbeitet!"],["Sie (formal)","Arbeiten Sie!"],["wir","Arbeiten wir!"],["du","Lies!"],["ihr","Lest!"],["Sie (formal)","Lesen Sie!"],["wir","Lesen wir!"]],"explain":"The du form drops the -st, the ihr form keeps the -t, the formal uses infinitive + Sie."}},
+    {"kind":"exercise","exercise":{"id":"imp1-mt-8","type":"matching","title":"Practice","instruction":"Match each item with its partner.","pairs":[["du","Warte!"],["ihr","Wartet!"],["Sie (formal)","Warten Sie!"],["wir","Warten wir!"],["du","Fahr!"],["ihr","Fahrt!"],["Sie (formal)","Fahren Sie!"],["wir","Fahren wir!"]],"explain":"The du form drops the -st, the ihr form keeps the -t, the formal uses infinitive + Sie."}},
+    {"kind":"exercise","exercise":{"id":"imp1-fc-1","type":"flashcard","title":"Practice","instruction":"Say the German command before revealing the meaning.","items":[{"front":"Geh nach Hause!","back":"Go home! (du)","frontAudio":true},{"front":"Geht nach Hause!","back":"Go home! (ihr)","frontAudio":true},{"front":"Gehen Sie nach Hause!","back":"Go home! (formal)","frontAudio":true},{"front":"Gehen wir nach Hause!","back":"Let's go home!","frontAudio":true},{"front":"Sei ruhig!","back":"Be quiet! (du)","frontAudio":true},{"front":"Hab Spaß!","back":"Have fun! (du)","frontAudio":true}]}},
+    {"kind":"exercise","exercise":{"id":"imp1-fc-2","type":"flashcard","title":"Practice","instruction":"Say the German command before revealing the meaning.","items":[{"front":"Öffnen Sie das Fenster!","back":"Open the window! (formal)","frontAudio":true},{"front":"Nehmen Sie die zweite Straße rechts!","back":"Take the second street right! (formal)","frontAudio":true},{"front":"Steh um 6 Uhr auf!","back":"Get up at 6 o'clock! (du)","frontAudio":true},{"front":"Ruf mich an!","back":"Call me! (du)","frontAudio":true},{"front":"Kauf ein!","back":"Go shopping! (du)","frontAudio":true},{"front":"Sieh fern!","back":"Watch TV! (du)","frontAudio":true}]}},
+    {"kind":"exercise","exercise":{"id":"imp1-fc-3","type":"flashcard","title":"Practice","instruction":"Say the German command before revealing the meaning.","items":[{"front":"Mach die Tür zu!","back":"Close the door! (du)","frontAudio":true},{"front":"Komm mit!","back":"Come along! (du)","frontAudio":true},{"front":"Wach auf!","back":"Wake up! (du)","frontAudio":true},{"front":"Fang an!","back":"Start! (du)","frontAudio":true},{"front":"Lies die Aufgabe!","back":"Read the task! (du)","frontAudio":true},{"front":"Sprich langsam!","back":"Speak slowly! (du)","frontAudio":true}]}},
+    {"kind":"exercise","exercise":{"id":"imp1-fc-4","type":"flashcard","title":"Practice","instruction":"Say the German command before revealing the meaning.","items":[{"front":"Warte auf mich!","back":"Wait for me! (du)","frontAudio":true},{"front":"Nimm Platz!","back":"Sit down! (du)","frontAudio":true},{"front":"Seid ruhig!","back":"Be quiet! (ihr)","frontAudio":true},{"front":"Haben Sie einen schönen Tag!","back":"Have a nice day! (formal)","frontAudio":true},{"front":"Gehen wir einkaufen!","back":"Let's go shopping!","frontAudio":true},{"front":"Fangen wir an!","back":"Let's begin!","frontAudio":true}]}},
+    {"kind":"exercise","exercise":{"id":"imp1-fc-5","type":"flashcard","title":"Practice","instruction":"Say the German command before revealing the meaning.","items":[{"front":"Trink deinen Kaffee!","back":"Drink your coffee! (du)","frontAudio":true},{"front":"Bring mir das Buch!","back":"Bring me the book! (du)","frontAudio":true},{"front":"Sieh dir das an!","back":"Look at that! (du)","frontAudio":true},{"front":"Zieh dich warm an!","back":"Dress warmly! (du)","frontAudio":true},{"front":"Hör auf!","back":"Stop it! (du)","frontAudio":true},{"front":"Räum dein Zimmer auf!","back":"Tidy your room! (du)","frontAudio":true}]}},
+    {"kind":"exercise","exercise":{"id":"imp1-fc-6","type":"flashcard","title":"Practice","instruction":"Say the German command before revealing the meaning.","items":[{"front":"Steigen Sie um 6 Uhr auf!","back":"Get up at 6 o'clock! (formal)","frontAudio":true},{"front":"Rufen Sie mich später an!","back":"Call me later! (formal)","frontAudio":true},{"front":"Öffnet das Fenster!","back":"Open the window! (ihr)","frontAudio":true},{"front":"Nehmt Platz!","back":"Sit down! (ihr)","frontAudio":true},{"front":"Seht fern!","back":"Watch TV! (ihr)","frontAudio":true},{"front":"Kommt mit!","back":"Come along! (ihr)","frontAudio":true}]}},
+    {"kind":"exercise","exercise":{"id":"imp1-sp-1","type":"multiple-choice","title":"Practice","instruction":"Choose the correct answer.","prompt":"Be quiet! (du)","options":["Sei ruhig!","Seist ruhig!","Sein ruhig!"],"correctIndex":0,"explain":"The sein imperative is Sei, not Seist."}},
+    {"kind":"exercise","exercise":{"id":"imp1-sp-2","type":"multiple-choice","title":"Practice","instruction":"Choose the correct answer.","prompt":"Have fun! (du)","options":["Hab Spaß!","Hast Spaß!","Haben Spaß!"],"correctIndex":0,"explain":"The haben imperative is Hab, dropping the -st."}},
+    {"kind":"exercise","exercise":{"id":"imp1-sp-3","type":"multiple-choice","title":"Practice","instruction":"Choose the correct answer.","prompt":"Let's go to the cinema!","options":["Gehen wir ins Kino!","Gehen ins Kino!","Geht ins Kino!"],"correctIndex":0,"explain":"The wir form invites: infinitive + wir."}},
+    {"kind":"exercise","exercise":{"id":"imp1-sp-4","type":"multiple-choice","title":"Practice","instruction":"Choose the correct answer.","prompt":"Be careful! (du)","options":["Sei vorsichtig!","Seist vorsichtig!","Sein vorsichtig!"],"correctIndex":0,"explain":"The du imperative of sein is Sei."}},
+    {"kind":"exercise","exercise":{"id":"imp1-sp-5","type":"multiple-choice","title":"Practice","instruction":"Choose the correct answer.","prompt":"Have a nice day! (formal)","options":["Haben Sie einen schönen Tag!","Haben einen schönen Tag!","Habt einen schönen Tag!"],"correctIndex":0,"explain":"The formal imperative keeps Sie: Haben Sie."}},
+    {"kind":"exercise","exercise":{"id":"imp1-sp-6","type":"multiple-choice","title":"Practice","instruction":"Choose the correct answer.","prompt":"Be quiet! (ihr)","options":["Seid ruhig!","Sei ruhig!","Seien ruhig!"],"correctIndex":0,"explain":"The ihr imperative of sein is Seid."}},
 ];
 
 const level2Rounds: GameRound[] = [
-  mc({
-    id: "imp2-1",
-    prompt: "Be quiet! (du)",
-    options: ["Sei ruhig!", "Seist ruhig!", "Sein ruhig!"],
-    correctIndex: 0,
-    explain: "The sein imperative is Sei, not Seist.",
-  }),
-  mc({
-    id: "imp2-2",
-    prompt: "Have fun! (du)",
-    options: ["Hab Spaß!", "Hast Spaß!", "Haben Spaß!"],
-    correctIndex: 0,
-    explain: "The haben imperative is Hab, dropping the -st.",
-  }),
-  mc({
-    id: "imp2-3",
-    prompt: "Look at that! (du)",
-    options: ["Sieh dir das an!", "Siehst dir das an!", "Sieh das an dir!"],
-    correctIndex: 0,
-    explain: "sehen → Sieh; ansehen splits, so an closes the command.",
-  }),
-  fb({
-    id: "imp2-4",
-    sentence: "___ ruhig!",
-    translation: "Be quiet! (du)",
-    answers: ["Sei"],
-    explain: "The du imperative of sein is Sei.",
-  }),
-  fb({
-    id: "imp2-5",
-    sentence: "___ Spaß!",
-    translation: "Have fun! (du)",
-    answers: ["Hab"],
-    explain: "The du imperative of haben is Hab.",
-  }),
-  wo({
-    id: "imp2-6",
-    chunks: ["Geh", "nach", "Hause!"],
-    translation: "Go home! (du)",
-    explain: "The du imperative opens with the verb: Geh.",
-  }),
-  wo({
-    id: "imp2-7",
-    chunks: ["Mach", "die", "Tür", "zu!"],
-    translation: "Close the door! (du)",
-    explain: "zumachen splits: the prefix zu closes the command.",
-  }),
-  wo({
-    id: "imp2-8",
-    chunks: ["Sieh", "dir", "das", "an!"],
-    translation: "Look at that! (du)",
-    explain: "ansehen splits: Sieh ... an, with the dative dir.",
-  }),
+    {"kind":"exercise","exercise":{"id":"imp2-mc-1","type":"multiple-choice","title":"Practice","instruction":"Choose the correct answer.","prompt":"Go! (du)","options":["Geh!","Gehst!","Geht!"],"correctIndex":0,"explain":"The du imperative of gehen is Geh!."}},
+    {"kind":"exercise","exercise":{"id":"imp2-mc-2","type":"multiple-choice","title":"Practice","instruction":"Choose the correct answer.","prompt":"Make! (du)","options":["Mach!","Machst!","Macht!"],"correctIndex":0,"explain":"The du imperative of machen is Mach!."}},
+    {"kind":"exercise","exercise":{"id":"imp2-mc-3","type":"multiple-choice","title":"Practice","instruction":"Choose the correct answer.","prompt":"Play! (du)","options":["Spiel!","Spielst!","Spielt!"],"correctIndex":0,"explain":"The du imperative of spielen is Spiel!."}},
+    {"kind":"exercise","exercise":{"id":"imp2-mc-4","type":"multiple-choice","title":"Practice","instruction":"Choose the correct answer.","prompt":"Come! (du)","options":["Komm!","Kommst!","Kommt!"],"correctIndex":0,"explain":"The du imperative of kommen is Komm!."}},
+    {"kind":"exercise","exercise":{"id":"imp2-mc-5","type":"multiple-choice","title":"Practice","instruction":"Choose the correct answer.","prompt":"Drink! (du)","options":["Trink!","Trinkst!","Trinkt!"],"correctIndex":0,"explain":"The du imperative of trinken is Trink!."}},
+    {"kind":"exercise","exercise":{"id":"imp2-mc-6","type":"multiple-choice","title":"Practice","instruction":"Choose the correct answer.","prompt":"Learn! (du)","options":["Lern!","Lernst!","Lernt!"],"correctIndex":0,"explain":"The du imperative of lernen is Lern!."}},
+    {"kind":"exercise","exercise":{"id":"imp2-mc-7","type":"multiple-choice","title":"Practice","instruction":"Choose the correct answer.","prompt":"Work! (du)","options":["Arbeite!","Arbeitest!","Arbeitet!"],"correctIndex":0,"explain":"The du imperative of arbeiten is Arbeite!."}},
+    {"kind":"exercise","exercise":{"id":"imp2-mc-8","type":"multiple-choice","title":"Practice","instruction":"Choose the correct answer.","prompt":"Wait! (du)","options":["Warte!","Wartest!","Wartet!"],"correctIndex":0,"explain":"The du imperative of warten is Warte!."}},
+    {"kind":"exercise","exercise":{"id":"imp2-mc-9","type":"multiple-choice","title":"Practice","instruction":"Choose the correct answer.","prompt":"Open! (du)","options":["Öffne!","Öffnest!","Öffnet!"],"correctIndex":0,"explain":"The du imperative of öffnen is Öffne!."}},
+    {"kind":"exercise","exercise":{"id":"imp2-mc-10","type":"multiple-choice","title":"Practice","instruction":"Choose the correct answer.","prompt":"Take! (du)","options":["Nimm!","Nimmst!","Nehmt!"],"correctIndex":0,"explain":"The du imperative of nehmen is Nimm!."}},
+    {"kind":"exercise","exercise":{"id":"imp2-mc-11","type":"multiple-choice","title":"Practice","instruction":"Choose the correct answer.","prompt":"Give! (du)","options":["Gib!","Gibst!","Gebt!"],"correctIndex":0,"explain":"The du imperative of geben is Gib!."}},
+    {"kind":"exercise","exercise":{"id":"imp2-mc-12","type":"multiple-choice","title":"Practice","instruction":"Choose the correct answer.","prompt":"Look! (du)","options":["Sieh!","Siehst!","Seht!"],"correctIndex":0,"explain":"The du imperative of sehen is Sieh!."}},
+    {"kind":"exercise","exercise":{"id":"imp2-mc-13","type":"multiple-choice","title":"Practice","instruction":"Choose the correct answer.","prompt":"Speak! (du)","options":["Sprich!","Sprichst!","Sprecht!"],"correctIndex":0,"explain":"The du imperative of sprechen is Sprich!."}},
+    {"kind":"exercise","exercise":{"id":"imp2-mc-14","type":"multiple-choice","title":"Practice","instruction":"Choose the correct answer.","prompt":"Eat! (du)","options":["Iss!","Isst!","Esst!"],"correctIndex":0,"explain":"The du imperative of essen is Iss!."}},
+    {"kind":"exercise","exercise":{"id":"imp2-mc-15","type":"multiple-choice","title":"Practice","instruction":"Choose the correct answer.","prompt":"Read! (du)","options":["Lies!","Liest!","Lest!"],"correctIndex":0,"explain":"The du imperative of lesen is Lies!."}},
+    {"kind":"exercise","exercise":{"id":"imp2-mc-16","type":"multiple-choice","title":"Practice","instruction":"Choose the correct answer.","prompt":"Drive! (du)","options":["Fahr!","Fährst!","Fahrt!"],"correctIndex":0,"explain":"The du imperative of fahren is Fahr!."}},
+    {"kind":"exercise","exercise":{"id":"imp2-mc-17","type":"multiple-choice","title":"Practice","instruction":"Choose the correct answer.","prompt":"Sleep! (du)","options":["Schlaf!","Schläfst!","Schlaft!"],"correctIndex":0,"explain":"The du imperative of schlafen is Schlaf!."}},
+    {"kind":"exercise","exercise":{"id":"imp2-mc-18","type":"multiple-choice","title":"Practice","instruction":"Choose the correct answer.","prompt":"Run! (du)","options":["Lauf!","Läufst!","Lauft!"],"correctIndex":0,"explain":"The du imperative of laufen is Lauf!."}},
+    {"kind":"exercise","exercise":{"id":"imp2-mc-19","type":"multiple-choice","title":"Practice","instruction":"Choose the correct answer.","prompt":"Buy! (du)","options":["Kauf!","Kaufst!","Kauft!"],"correctIndex":0,"explain":"The du imperative of kaufen is Kauf!."}},
+    {"kind":"exercise","exercise":{"id":"imp2-mc-20","type":"multiple-choice","title":"Practice","instruction":"Choose the correct answer.","prompt":"Pay! (du)","options":["Bezahl!","Bezahlst!","Bezahlt!"],"correctIndex":0,"explain":"The du imperative of bezahlen is Bezahl!."}},
+    {"kind":"exercise","exercise":{"id":"imp2-mc-21","type":"multiple-choice","title":"Practice","instruction":"Choose the correct answer.","prompt":"Order! (du)","options":["Bestell!","Bestellst!","Bestellt!"],"correctIndex":0,"explain":"The du imperative of bestellen is Bestell!."}},
+    {"kind":"exercise","exercise":{"id":"imp2-mc-22","type":"multiple-choice","title":"Practice","instruction":"Choose the correct answer.","prompt":"Ask! (du)","options":["Frag!","Fragst!","Fragt!"],"correctIndex":0,"explain":"The du imperative of fragen is Frag!."}},
+    {"kind":"exercise","exercise":{"id":"imp2-mc-23","type":"multiple-choice","title":"Practice","instruction":"Choose the correct answer.","prompt":"Answer! (du)","options":["Antworte!","Antwortest!","Antwortet!"],"correctIndex":0,"explain":"The du imperative of antworten is Antworte!."}},
+    {"kind":"exercise","exercise":{"id":"imp2-mc-24","type":"multiple-choice","title":"Practice","instruction":"Choose the correct answer.","prompt":"Bring! (du)","options":["Bring!","Bringst!","Bringt!"],"correctIndex":0,"explain":"The du imperative of bringen is Bring!."}},
+    {"kind":"exercise","exercise":{"id":"imp2-mc-25","type":"multiple-choice","title":"Practice","instruction":"Choose the correct answer.","prompt":"Fetch! (du)","options":["Hol!","Holst!","Holt!"],"correctIndex":0,"explain":"The du imperative of holen is Hol!."}},
+    {"kind":"exercise","exercise":{"id":"imp2-mc-26","type":"multiple-choice","title":"Practice","instruction":"Choose the correct answer.","prompt":"Show! (du)","options":["Zeig!","Zeigst!","Zeigt!"],"correctIndex":0,"explain":"The du imperative of zeigen is Zeig!."}},
+    {"kind":"exercise","exercise":{"id":"imp2-mc-27","type":"multiple-choice","title":"Practice","instruction":"Choose the correct answer.","prompt":"Search! (du)","options":["Such!","Suchst!","Sucht!"],"correctIndex":0,"explain":"The du imperative of suchen is Such!."}},
+    {"kind":"exercise","exercise":{"id":"imp2-mc-28","type":"multiple-choice","title":"Practice","instruction":"Choose the correct answer.","prompt":"Find! (du)","options":["Finde!","Findest!","Findet!"],"correctIndex":0,"explain":"The du imperative of finden is Finde!."}},
+    {"kind":"exercise","exercise":{"id":"imp2-mc-29","type":"multiple-choice","title":"Practice","instruction":"Choose the correct answer.","prompt":"Understand! (du)","options":["Versteh!","Verstehst!","Versteht!"],"correctIndex":0,"explain":"The du imperative of verstehen is Versteh!."}},
+    {"kind":"exercise","exercise":{"id":"imp2-mc-30","type":"multiple-choice","title":"Practice","instruction":"Choose the correct answer.","prompt":"Listen! (du)","options":["Hör!","Hörst!","Hört!"],"correctIndex":0,"explain":"The du imperative of hören is Hör!."}},
+    {"kind":"exercise","exercise":{"id":"imp2-fb-1","type":"fill-blank","title":"Practice","instruction":"Complete the sentence.","sentence":"___ ruhig!","translation":"Be quiet! (du)","blanks":[{"answers":["Sei"]}],"explain":"The du imperative of sein is Sei."}},
+    {"kind":"exercise","exercise":{"id":"imp2-fb-2","type":"fill-blank","title":"Practice","instruction":"Complete the sentence.","sentence":"___ Spaß!","translation":"Have fun! (du)","blanks":[{"answers":["Hab"]}],"explain":"The du imperative of haben is Hab."}},
+    {"kind":"exercise","exercise":{"id":"imp2-fb-3","type":"fill-blank","title":"Practice","instruction":"Complete the sentence.","sentence":"___ nach Hause!","translation":"Go home! (du)","blanks":[{"answers":["Geh"]}],"explain":"The du imperative drops the -st: Geh."}},
+    {"kind":"exercise","exercise":{"id":"imp2-fb-4","type":"fill-blank","title":"Practice","instruction":"Complete the sentence.","sentence":"___ das Fenster!","translation":"Open the window! (du)","blanks":[{"answers":["Öffne"]}],"explain":"Verbs ending in -t add -e: Öffne."}},
+    {"kind":"exercise","exercise":{"id":"imp2-fb-5","type":"fill-blank","title":"Practice","instruction":"Complete the sentence.","sentence":"___ die Aufgabe!","translation":"Read the task! (du)","blanks":[{"answers":["Lies"]}],"explain":"lesen changes the vowel: Lies."}},
+    {"kind":"exercise","exercise":{"id":"imp2-fb-6","type":"fill-blank","title":"Practice","instruction":"Complete the sentence.","sentence":"___ langsam!","translation":"Speak slowly! (du)","blanks":[{"answers":["Sprich"]}],"explain":"sprechen changes the vowel: Sprich."}},
+    {"kind":"exercise","exercise":{"id":"imp2-fb-7","type":"fill-blank","title":"Practice","instruction":"Complete the sentence.","sentence":"___ deinen Kaffee!","translation":"Drink your coffee! (du)","blanks":[{"answers":["Trink"]}],"explain":"The du imperative drops the -st: Trink."}},
+    {"kind":"exercise","exercise":{"id":"imp2-fb-8","type":"fill-blank","title":"Practice","instruction":"Complete the sentence.","sentence":"___ mir das Buch!","translation":"Bring me the book! (du)","blanks":[{"answers":["Bring"]}],"explain":"The du imperative: Bring."}},
+    {"kind":"exercise","exercise":{"id":"imp2-fb-9","type":"fill-blank","title":"Practice","instruction":"Complete the sentence.","sentence":"___ bitte Platz!","translation":"Please sit down! (du)","blanks":[{"answers":["Nimm"]}],"explain":"nehmen changes the vowel: Nimm."}},
+    {"kind":"exercise","exercise":{"id":"imp2-fb-10","type":"fill-blank","title":"Practice","instruction":"Complete the sentence.","sentence":"___ mich später an!","translation":"Call me later! (du)","blanks":[{"answers":["Ruf"]}],"explain":"anrufen splits: Ruf ... an."}},
+    {"kind":"exercise","exercise":{"id":"imp2-wo-1","type":"word-order","title":"Practice","instruction":"Build the command: Go home!","chunks":["Geh","nach Hause!"],"translation":"Go home!","explain":"The du imperative opens with the verb: Geh."}},
+    {"kind":"exercise","exercise":{"id":"imp2-wo-2","type":"word-order","title":"Practice","instruction":"Build the command: Close the door!","chunks":["Mach","die Tür","zu!"],"translation":"Close the door!","explain":"zumachen splits: the prefix zu closes the command."}},
+    {"kind":"exercise","exercise":{"id":"imp2-wo-3","type":"word-order","title":"Practice","instruction":"Build the command: Please come along!","chunks":["Komm","bitte","mit!"],"translation":"Please come along!","explain":"mitkommen splits: Komm ... mit."}},
+    {"kind":"exercise","exercise":{"id":"imp2-wo-4","type":"word-order","title":"Practice","instruction":"Build the command: Drink your coffee!","chunks":["Trink","deinen Kaffee!"],"translation":"Drink your coffee!","explain":"The du imperative drops the -st: Trink."}},
+    {"kind":"exercise","exercise":{"id":"imp2-wo-5","type":"word-order","title":"Practice","instruction":"Build the command: Read the task!","chunks":["Lies","die Aufgabe!"],"translation":"Read the task!","explain":"lesen changes the vowel: Lies, not Lest."}},
+    {"kind":"exercise","exercise":{"id":"imp2-wo-6","type":"word-order","title":"Practice","instruction":"Build the command: Open the window!","chunks":["Öffne","das Fenster!"],"translation":"Open the window!","explain":"Verbs ending in -t add -e in the du form: Öffne."}},
+    {"kind":"exercise","exercise":{"id":"imp2-wo-7","type":"word-order","title":"Practice","instruction":"Build the command: Bring me the book!","chunks":["Bring","mir","das Buch!"],"translation":"Bring me the book!","explain":"The du imperative: Bring, from du bringst."}},
+    {"kind":"exercise","exercise":{"id":"imp2-wo-8","type":"word-order","title":"Practice","instruction":"Build the command: Speak slowly!","chunks":["Sprich","langsam!"],"translation":"Speak slowly!","explain":"sprechen changes the vowel: Sprich, not Sprech."}},
+    {"kind":"exercise","exercise":{"id":"imp2-wo-9","type":"word-order","title":"Practice","instruction":"Build the command: Look at that!","chunks":["Sieh","dir","das","an!"],"translation":"Look at that!","explain":"ansehen splits: Sieh ... an, with the dative dir."}},
+    {"kind":"exercise","exercise":{"id":"imp2-wo-10","type":"word-order","title":"Practice","instruction":"Build the command: Wait for me!","chunks":["Warte","auf mich!"],"translation":"Wait for me!","explain":"Verbs ending in -t add -e: Warte."}},
 ];
 
 const level3Rounds: GameRound[] = [
-  mc({
-    id: "imp3-1",
-    prompt: "Take the second street on the right! (formal)",
-    options: [
-      "Nehmen Sie die zweite Straße rechts!",
-      "Nehmen die zweite Straße rechts!",
-      "Nehmt die zweite Straße rechts!",
-    ],
-    correctIndex: 0,
-    explain: "The formal imperative keeps Sie: Nehmen Sie.",
-  }),
-  mc({
-    id: "imp3-2",
-    prompt: "Open the window! (formal)",
-    options: ["Öffnen Sie das Fenster!", "Öffnet das Fenster!", "Öffnen das Fenster!"],
-    correctIndex: 0,
-    explain: "Formal: infinitive + Sie, so Öffnen Sie.",
-  }),
-  fb({
-    id: "imp3-3",
-    sentence: "___ Sie bitte Platz!",
-    translation: "Please take a seat! (formal)",
-    answers: ["Nehmen"],
-    explain: "The formal imperative is the infinitive: Nehmen Sie.",
-  }),
-  fb({
-    id: "imp3-4",
-    sentence: "___ nach Hause! (ihr)",
-    translation: "Go home! (ihr)",
-    answers: ["Geht"],
-    explain: "The ihr form keeps the -t: Geht.",
-  }),
-  mt({
-    id: "imp3-5",
-    pairs: [
-      ["Gehen Sie!", "formal"],
-      ["Geht!", "ihr"],
-      ["Machen Sie!", "formal"],
-      ["Macht!", "ihr"],
-    ],
-    explain: "The formal is infinitive + Sie; the ihr form keeps -t.",
-  }),
-  ls({
-    id: "imp3-6",
-    prompt: "Nehmen Sie die zweite Straße rechts!",
-    options: [
-      "Nehmen Sie die zweite Straße rechts!",
-      "Nehmt die zweite Straße rechts!",
-      "Nehmen die zweite Straße rechts!",
-    ],
-    correctIndex: 0,
-    explain: "The formal command keeps Sie: Nehmen Sie die zweite Straße rechts.",
-  }),
+    {"kind":"exercise","exercise":{"id":"imp3-mc-1","type":"multiple-choice","title":"Practice","instruction":"Choose the correct answer.","prompt":"Go! (ihr)","options":["Geht!","Geh!","Gehen Sie!"],"correctIndex":0,"explain":"The ihr imperative of gehen keeps the -t: Geht!."}},
+    {"kind":"exercise","exercise":{"id":"imp3-mc-2","type":"multiple-choice","title":"Practice","instruction":"Choose the correct answer.","prompt":"Make! (formal)","options":["Machen Sie!","Macht!","Machen!"],"correctIndex":0,"explain":"The formal imperative is the infinitive + Sie: Machen Sie!."}},
+    {"kind":"exercise","exercise":{"id":"imp3-mc-3","type":"multiple-choice","title":"Practice","instruction":"Choose the correct answer.","prompt":"Play! (ihr)","options":["Spielt!","Spiel!","Spielen Sie!"],"correctIndex":0,"explain":"The ihr imperative of spielen keeps the -t: Spielt!."}},
+    {"kind":"exercise","exercise":{"id":"imp3-mc-4","type":"multiple-choice","title":"Practice","instruction":"Choose the correct answer.","prompt":"Come! (formal)","options":["Kommen Sie!","Kommt!","Kommen!"],"correctIndex":0,"explain":"The formal imperative is the infinitive + Sie: Kommen Sie!."}},
+    {"kind":"exercise","exercise":{"id":"imp3-mc-5","type":"multiple-choice","title":"Practice","instruction":"Choose the correct answer.","prompt":"Drink! (ihr)","options":["Trinkt!","Trink!","Trinken Sie!"],"correctIndex":0,"explain":"The ihr imperative of trinken keeps the -t: Trinkt!."}},
+    {"kind":"exercise","exercise":{"id":"imp3-mc-6","type":"multiple-choice","title":"Practice","instruction":"Choose the correct answer.","prompt":"Learn! (formal)","options":["Lernen Sie!","Lernt!","Lernen!"],"correctIndex":0,"explain":"The formal imperative is the infinitive + Sie: Lernen Sie!."}},
+    {"kind":"exercise","exercise":{"id":"imp3-mc-7","type":"multiple-choice","title":"Practice","instruction":"Choose the correct answer.","prompt":"Work! (ihr)","options":["Arbeitet!","Arbeite!","Arbeiten Sie!"],"correctIndex":0,"explain":"The ihr imperative of arbeiten keeps the -t: Arbeitet!."}},
+    {"kind":"exercise","exercise":{"id":"imp3-mc-8","type":"multiple-choice","title":"Practice","instruction":"Choose the correct answer.","prompt":"Wait! (formal)","options":["Warten Sie!","Wartet!","Warten!"],"correctIndex":0,"explain":"The formal imperative is the infinitive + Sie: Warten Sie!."}},
+    {"kind":"exercise","exercise":{"id":"imp3-mc-9","type":"multiple-choice","title":"Practice","instruction":"Choose the correct answer.","prompt":"Open! (ihr)","options":["Öffnet!","Öffne!","Öffnen Sie!"],"correctIndex":0,"explain":"The ihr imperative of öffnen keeps the -t: Öffnet!."}},
+    {"kind":"exercise","exercise":{"id":"imp3-mc-10","type":"multiple-choice","title":"Practice","instruction":"Choose the correct answer.","prompt":"Take! (formal)","options":["Nehmen Sie!","Nehmt!","Nehmen!"],"correctIndex":0,"explain":"The formal imperative is the infinitive + Sie: Nehmen Sie!."}},
+    {"kind":"exercise","exercise":{"id":"imp3-mc-11","type":"multiple-choice","title":"Practice","instruction":"Choose the correct answer.","prompt":"Give! (ihr)","options":["Gebt!","Gib!","Geben Sie!"],"correctIndex":0,"explain":"The ihr imperative of geben keeps the -t: Gebt!."}},
+    {"kind":"exercise","exercise":{"id":"imp3-mc-12","type":"multiple-choice","title":"Practice","instruction":"Choose the correct answer.","prompt":"Look! (formal)","options":["Sehen Sie!","Seht!","Sehen!"],"correctIndex":0,"explain":"The formal imperative is the infinitive + Sie: Sehen Sie!."}},
+    {"kind":"exercise","exercise":{"id":"imp3-mc-13","type":"multiple-choice","title":"Practice","instruction":"Choose the correct answer.","prompt":"Speak! (ihr)","options":["Sprecht!","Sprich!","Sprechen Sie!"],"correctIndex":0,"explain":"The ihr imperative of sprechen keeps the -t: Sprecht!."}},
+    {"kind":"exercise","exercise":{"id":"imp3-mc-14","type":"multiple-choice","title":"Practice","instruction":"Choose the correct answer.","prompt":"Eat! (formal)","options":["Essen Sie!","Esst!","Essen!"],"correctIndex":0,"explain":"The formal imperative is the infinitive + Sie: Essen Sie!."}},
+    {"kind":"exercise","exercise":{"id":"imp3-mc-15","type":"multiple-choice","title":"Practice","instruction":"Choose the correct answer.","prompt":"Read! (ihr)","options":["Lest!","Lies!","Lesen Sie!"],"correctIndex":0,"explain":"The ihr imperative of lesen keeps the -t: Lest!."}},
+    {"kind":"exercise","exercise":{"id":"imp3-mc-16","type":"multiple-choice","title":"Practice","instruction":"Choose the correct answer.","prompt":"Drive! (formal)","options":["Fahren Sie!","Fahrt!","Fahren!"],"correctIndex":0,"explain":"The formal imperative is the infinitive + Sie: Fahren Sie!."}},
+    {"kind":"exercise","exercise":{"id":"imp3-mc-17","type":"multiple-choice","title":"Practice","instruction":"Choose the correct answer.","prompt":"Sleep! (ihr)","options":["Schlaft!","Schlaf!","Schlafen Sie!"],"correctIndex":0,"explain":"The ihr imperative of schlafen keeps the -t: Schlaft!."}},
+    {"kind":"exercise","exercise":{"id":"imp3-mc-18","type":"multiple-choice","title":"Practice","instruction":"Choose the correct answer.","prompt":"Run! (formal)","options":["Laufen Sie!","Lauft!","Laufen!"],"correctIndex":0,"explain":"The formal imperative is the infinitive + Sie: Laufen Sie!."}},
+    {"kind":"exercise","exercise":{"id":"imp3-mc-19","type":"multiple-choice","title":"Practice","instruction":"Choose the correct answer.","prompt":"Buy! (ihr)","options":["Kauft!","Kauf!","Kaufen Sie!"],"correctIndex":0,"explain":"The ihr imperative of kaufen keeps the -t: Kauft!."}},
+    {"kind":"exercise","exercise":{"id":"imp3-mc-20","type":"multiple-choice","title":"Practice","instruction":"Choose the correct answer.","prompt":"Pay! (formal)","options":["Bezahlen Sie!","Bezahlt!","Bezahlen!"],"correctIndex":0,"explain":"The formal imperative is the infinitive + Sie: Bezahlen Sie!."}},
+    {"kind":"exercise","exercise":{"id":"imp3-mc-21","type":"multiple-choice","title":"Practice","instruction":"Choose the correct answer.","prompt":"Order! (ihr)","options":["Bestellt!","Bestell!","Bestellen Sie!"],"correctIndex":0,"explain":"The ihr imperative of bestellen keeps the -t: Bestellt!."}},
+    {"kind":"exercise","exercise":{"id":"imp3-mc-22","type":"multiple-choice","title":"Practice","instruction":"Choose the correct answer.","prompt":"Ask! (formal)","options":["Fragen Sie!","Fragt!","Fragen!"],"correctIndex":0,"explain":"The formal imperative is the infinitive + Sie: Fragen Sie!."}},
+    {"kind":"exercise","exercise":{"id":"imp3-mc-23","type":"multiple-choice","title":"Practice","instruction":"Choose the correct answer.","prompt":"Answer! (ihr)","options":["Antwortet!","Antworte!","Antworten Sie!"],"correctIndex":0,"explain":"The ihr imperative of antworten keeps the -t: Antwortet!."}},
+    {"kind":"exercise","exercise":{"id":"imp3-mc-24","type":"multiple-choice","title":"Practice","instruction":"Choose the correct answer.","prompt":"Bring! (formal)","options":["Bringen Sie!","Bringt!","Bringen!"],"correctIndex":0,"explain":"The formal imperative is the infinitive + Sie: Bringen Sie!."}},
+    {"kind":"exercise","exercise":{"id":"imp3-mc-25","type":"multiple-choice","title":"Practice","instruction":"Choose the correct answer.","prompt":"Fetch! (ihr)","options":["Holt!","Hol!","Holen Sie!"],"correctIndex":0,"explain":"The ihr imperative of holen keeps the -t: Holt!."}},
+    {"kind":"exercise","exercise":{"id":"imp3-mc-26","type":"multiple-choice","title":"Practice","instruction":"Choose the correct answer.","prompt":"Show! (formal)","options":["Zeigen Sie!","Zeigt!","Zeigen!"],"correctIndex":0,"explain":"The formal imperative is the infinitive + Sie: Zeigen Sie!."}},
+    {"kind":"exercise","exercise":{"id":"imp3-mc-27","type":"multiple-choice","title":"Practice","instruction":"Choose the correct answer.","prompt":"Search! (ihr)","options":["Sucht!","Such!","Suchen Sie!"],"correctIndex":0,"explain":"The ihr imperative of suchen keeps the -t: Sucht!."}},
+    {"kind":"exercise","exercise":{"id":"imp3-mc-28","type":"multiple-choice","title":"Practice","instruction":"Choose the correct answer.","prompt":"Find! (formal)","options":["Finden Sie!","Findet!","Finden!"],"correctIndex":0,"explain":"The formal imperative is the infinitive + Sie: Finden Sie!."}},
+    {"kind":"exercise","exercise":{"id":"imp3-mc-29","type":"multiple-choice","title":"Practice","instruction":"Choose the correct answer.","prompt":"Understand! (ihr)","options":["Versteht!","Versteh!","Verstehen Sie!"],"correctIndex":0,"explain":"The ihr imperative of verstehen keeps the -t: Versteht!."}},
+    {"kind":"exercise","exercise":{"id":"imp3-mc-30","type":"multiple-choice","title":"Practice","instruction":"Choose the correct answer.","prompt":"Listen! (formal)","options":["Hören Sie!","Hört!","Hören!"],"correctIndex":0,"explain":"The formal imperative is the infinitive + Sie: Hören Sie!."}},
+    {"kind":"exercise","exercise":{"id":"imp3-fb-1","type":"fill-blank","title":"Practice","instruction":"Complete the sentence.","sentence":"___ Sie bitte Platz!","translation":"Please take a seat! (formal)","blanks":[{"answers":["Nehmen"]}],"explain":"The formal imperative is the infinitive: Nehmen Sie."}},
+    {"kind":"exercise","exercise":{"id":"imp3-fb-2","type":"fill-blank","title":"Practice","instruction":"Complete the sentence.","sentence":"___ nach Hause! (ihr)","translation":"Go home! (ihr)","blanks":[{"answers":["Geht"]}],"explain":"The ihr form keeps the -t: Geht."}},
+    {"kind":"exercise","exercise":{"id":"imp3-fb-3","type":"fill-blank","title":"Practice","instruction":"Complete the sentence.","sentence":"___ Sie das Fenster!","translation":"Open the window! (formal)","blanks":[{"answers":["Öffnen"]}],"explain":"Formal: infinitive + Sie, so Öffnen."}},
+    {"kind":"exercise","exercise":{"id":"imp3-fb-4","type":"fill-blank","title":"Practice","instruction":"Complete the sentence.","sentence":"___ das Fenster! (ihr)","translation":"Open the window! (ihr)","blanks":[{"answers":["Öffnet"]}],"explain":"The ihr form keeps the -t: Öffnet."}},
+    {"kind":"exercise","exercise":{"id":"imp3-fb-5","type":"fill-blank","title":"Practice","instruction":"Complete the sentence.","sentence":"___ Sie den Kaffee!","translation":"Drink the coffee! (formal)","blanks":[{"answers":["Trinken"]}],"explain":"Formal: infinitive + Sie, so Trinken."}},
+    {"kind":"exercise","exercise":{"id":"imp3-fb-6","type":"fill-blank","title":"Practice","instruction":"Complete the sentence.","sentence":"___ mir das Buch! (ihr)","translation":"Bring me the book! (ihr)","blanks":[{"answers":["Bringt"]}],"explain":"The ihr form keeps the -t: Bringt."}},
+    {"kind":"exercise","exercise":{"id":"imp3-fb-7","type":"fill-blank","title":"Practice","instruction":"Complete the sentence.","sentence":"___ Sie bitte langsam!","translation":"Please speak slowly! (formal)","blanks":[{"answers":["Sprechen"]}],"explain":"Formal: infinitive + Sie, so Sprechen."}},
+    {"kind":"exercise","exercise":{"id":"imp3-fb-8","type":"fill-blank","title":"Practice","instruction":"Complete the sentence.","sentence":"___ ruhig! (ihr)","translation":"Be quiet! (ihr)","blanks":[{"answers":["Seid"]}],"explain":"The ihr imperative of sein is Seid."}},
+    {"kind":"exercise","exercise":{"id":"imp3-fb-9","type":"fill-blank","title":"Practice","instruction":"Complete the sentence.","sentence":"___ Sie einen schönen Tag!","translation":"Have a nice day! (formal)","blanks":[{"answers":["Haben"]}],"explain":"Formal: infinitive + Sie, so Haben."}},
+    {"kind":"exercise","exercise":{"id":"imp3-fb-10","type":"fill-blank","title":"Practice","instruction":"Complete the sentence.","sentence":"___ auf! (ihr)","translation":"Get up! (ihr)","blanks":[{"answers":["Steht"]}],"explain":"aufstehen splits: the ihr form Steht ... auf."}},
+    {"kind":"exercise","exercise":{"id":"imp3-mt-1","type":"matching","title":"Practice","instruction":"Match each item with its partner.","pairs":[["Gehen Sie!","formal"],["Geht!","ihr"],["Machen Sie!","formal"],["Macht!","ihr"]],"explain":"The formal is infinitive + Sie; the ihr form keeps -t."}},
+    {"kind":"exercise","exercise":{"id":"imp3-mt-2","type":"matching","title":"Practice","instruction":"Match each item with its partner.","pairs":[["Nehmen Sie!","formal"],["Nehmt!","ihr"],["Trinken Sie!","formal"],["Trinkt!","ihr"]],"explain":"The formal is infinitive + Sie; the ihr form keeps -t."}},
+    {"kind":"exercise","exercise":{"id":"imp3-mt-3","type":"matching","title":"Practice","instruction":"Match each item with its partner.","pairs":[["Öffnen Sie!","formal"],["Öffnet!","ihr"],["Bringen Sie!","formal"],["Bringt!","ihr"]],"explain":"The formal is infinitive + Sie; the ihr form keeps -t."}},
+    {"kind":"exercise","exercise":{"id":"imp3-mt-4","type":"matching","title":"Practice","instruction":"Match each item with its partner.","pairs":[["Laufen Sie!","formal"],["Lauft!","ihr"],["Sehen Sie!","formal"],["Seht!","ihr"]],"explain":"The formal is infinitive + Sie; the ihr form keeps -t."}},
+    {"kind":"exercise","exercise":{"id":"imp3-mt-5","type":"matching","title":"Practice","instruction":"Match each item with its partner.","pairs":[["Seien Sie!","formal"],["Seid!","ihr"],["Haben Sie!","formal"],["Habt!","ihr"]],"explain":"The formal is infinitive + Sie; the ihr form keeps -t."}},
+    {"kind":"exercise","exercise":{"id":"imp3-ls-1","type":"listening","title":"Practice","instruction":"Listen and choose what you hear.","prompt":"Nehmen Sie die zweite Straße rechts!","options":["Nehmen Sie die zweite Straße rechts!","Nehmt die zweite Straße rechts!","Nehmen die zweite Straße rechts!"],"correctIndex":0,"explain":"The formal command keeps Sie: Nehmen Sie die zweite Straße rechts."}},
+    {"kind":"exercise","exercise":{"id":"imp3-ls-2","type":"listening","title":"Practice","instruction":"Listen and choose what you hear.","prompt":"Öffnen Sie das Fenster!","options":["Öffnen Sie das Fenster!","Öffnet das Fenster!","Öffnen das Fenster!"],"correctIndex":0,"explain":"The formal imperative is the infinitive: Öffnen Sie."}},
+    {"kind":"exercise","exercise":{"id":"imp3-ls-3","type":"listening","title":"Practice","instruction":"Listen and choose what you hear.","prompt":"Seid ruhig!","options":["Seid ruhig!","Sei ruhig!","Seien ruhig!"],"correctIndex":0,"explain":"The ihr imperative of sein is Seid."}},
+    {"kind":"exercise","exercise":{"id":"imp3-ls-4","type":"listening","title":"Practice","instruction":"Listen and choose what you hear.","prompt":"Geht nach Hause!","options":["Geht nach Hause!","Geh nach Hause!","Gehen nach Hause!"],"correctIndex":0,"explain":"The ihr form keeps the -t: Geht."}},
+    {"kind":"exercise","exercise":{"id":"imp3-ls-5","type":"listening","title":"Practice","instruction":"Listen and choose what you hear.","prompt":"Haben Sie einen schönen Tag!","options":["Haben Sie einen schönen Tag!","Habt einen schönen Tag!","Haben einen schönen Tag!"],"correctIndex":0,"explain":"The formal imperative keeps Sie: Haben Sie."}},
 ];
 
 const level4Rounds: GameRound[] = [
-  wo({
-    id: "imp4-1",
-    chunks: ["Steh", "um", "6", "Uhr", "auf!"],
-    translation: "Get up at 6 o'clock! (du)",
-    explain: "aufstehen splits in the imperative: the prefix auf closes the command.",
-  }),
-  wo({
-    id: "imp4-2",
-    chunks: ["Ruf", "mich", "später", "an!"],
-    translation: "Call me later! (du)",
-    explain: "anrufen splits: Ruf ... an, the object and time sit between.",
-  }),
-  wo({
-    id: "imp4-3",
-    chunks: ["Stehen", "Sie", "um", "6", "Uhr", "auf!"],
-    translation: "Please get up at 6 o'clock! (formal)",
-    explain: "Formal imperative: Stehen Sie ... auf, the prefix still closes the sentence.",
-  }),
-  wo({
-    id: "imp4-4",
-    chunks: ["Kauf", "ein!"],
-    translation: "Go shopping! (du)",
-    explain: "einkaufen splits: Kauf ... ein.",
-  }),
-  mc({
-    id: "imp4-5",
-    prompt: "Call me! (du)",
-    options: ["Ruf mich an!", "Anruf mich!", "Ruf an mich!"],
-    correctIndex: 0,
-    explain: "The separable verb: Ruf ... an. The object never sits between the verb and the prefix.",
-  }),
-  mc({
-    id: "imp4-6",
-    prompt: "Get up at 6 o'clock! (du)",
-    options: ["Steh um 6 Uhr auf!", "Steh auf um 6 Uhr!", "Aufsteh um 6 Uhr!"],
-    correctIndex: 0,
-    explain: "The prefix closes the command: Steh um 6 Uhr auf.",
-  }),
-  ls({
-    id: "imp4-7",
-    prompt: "Ruf mich später an!",
-    options: ["Ruf mich später an!", "Ruf mich an später!", "Ruf später mich an!"],
-    correctIndex: 0,
-    explain: "The command is Ruf mich später an: verb first, prefix at the end.",
-  }),
-  fc({
-    id: "imp4-8",
-    cards: [
-      { front: "Steh auf!", back: "Get up! (du)" },
-      { front: "Ruf mich an!", back: "Call me! (du)" },
-      { front: "Mach die Tür zu!", back: "Close the door! (du)" },
-      { front: "Kauf ein!", back: "Go shopping! (du)" },
-    ],
-  }),
+    {"kind":"exercise","exercise":{"id":"imp4-wo-1","type":"word-order","title":"Practice","instruction":"Build the command: Get up at 6 o'clock!","chunks":["Steh","um","6","Uhr","auf!"],"translation":"Get up at 6 o'clock!","explain":"aufstehen splits: the prefix auf closes the command."}},
+    {"kind":"exercise","exercise":{"id":"imp4-wo-2","type":"word-order","title":"Practice","instruction":"Build the command: Get up at 6 o'clock! (formal)","chunks":["Stehen","Sie","um","6","Uhr","auf!"],"translation":"Get up at 6 o'clock! (formal)","explain":"Formal imperative: Stehen Sie ... auf."}},
+    {"kind":"exercise","exercise":{"id":"imp4-wo-3","type":"word-order","title":"Practice","instruction":"Build the command: Call me later!","chunks":["Ruf","mich","später","an!"],"translation":"Call me later!","explain":"anrufen splits: Ruf ... an."}},
+    {"kind":"exercise","exercise":{"id":"imp4-wo-4","type":"word-order","title":"Practice","instruction":"Build the command: Call me later! (formal)","chunks":["Rufen","Sie","mich","später","an!"],"translation":"Call me later! (formal)","explain":"Formal imperative: Rufen Sie ... an."}},
+    {"kind":"exercise","exercise":{"id":"imp4-wo-5","type":"word-order","title":"Practice","instruction":"Build the command: Go shopping!","chunks":["Kauf","ein!"],"translation":"Go shopping!","explain":"einkaufen splits: Kauf ... ein."}},
+    {"kind":"exercise","exercise":{"id":"imp4-wo-6","type":"word-order","title":"Practice","instruction":"Build the command: Go shopping! (formal)","chunks":["Kaufen","Sie","ein!"],"translation":"Go shopping! (formal)","explain":"Formal imperative: Kaufen Sie ... ein."}},
+    {"kind":"exercise","exercise":{"id":"imp4-wo-7","type":"word-order","title":"Practice","instruction":"Build the command: Tidy your room!","chunks":["Räum","dein Zimmer","auf!"],"translation":"Tidy your room!","explain":"aufräumen splits: Räum ... auf."}},
+    {"kind":"exercise","exercise":{"id":"imp4-wo-8","type":"word-order","title":"Practice","instruction":"Build the command: Tidy your room! (formal)","chunks":["Räumen","Sie","Ihr Zimmer","auf!"],"translation":"Tidy your room! (formal)","explain":"Formal imperative: Räumen Sie ... auf."}},
+    {"kind":"exercise","exercise":{"id":"imp4-wo-9","type":"word-order","title":"Practice","instruction":"Build the command: Please come along!","chunks":["Komm","bitte","mit!"],"translation":"Please come along!","explain":"mitkommen splits: Komm ... mit."}},
+    {"kind":"exercise","exercise":{"id":"imp4-wo-10","type":"word-order","title":"Practice","instruction":"Build the command: Please come along! (formal)","chunks":["Kommen","Sie","bitte","mit!"],"translation":"Please come along! (formal)","explain":"Formal imperative: Kommen Sie ... mit."}},
+    {"kind":"exercise","exercise":{"id":"imp4-wo-11","type":"word-order","title":"Practice","instruction":"Build the command: Close the door!","chunks":["Mach","die Tür","zu!"],"translation":"Close the door!","explain":"zumachen splits: Mach ... zu."}},
+    {"kind":"exercise","exercise":{"id":"imp4-wo-12","type":"word-order","title":"Practice","instruction":"Build the command: Close the door! (formal)","chunks":["Machen","Sie","die Tür","zu!"],"translation":"Close the door! (formal)","explain":"Formal imperative: Machen Sie ... zu."}},
+    {"kind":"exercise","exercise":{"id":"imp4-wo-13","type":"word-order","title":"Practice","instruction":"Build the command: Get out at the stop!","chunks":["Steig","an der Haltestelle","aus!"],"translation":"Get out at the stop!","explain":"aussteigen splits: Steig ... aus."}},
+    {"kind":"exercise","exercise":{"id":"imp4-wo-14","type":"word-order","title":"Practice","instruction":"Build the command: Get out at the stop! (formal)","chunks":["Steigen","Sie","an der Haltestelle","aus!"],"translation":"Get out at the stop! (formal)","explain":"Formal imperative: Steigen Sie ... aus."}},
+    {"kind":"exercise","exercise":{"id":"imp4-wo-15","type":"word-order","title":"Practice","instruction":"Build the command: Bring me the book!","chunks":["Bring","mir","das Buch","mit!"],"translation":"Bring me the book!","explain":"mitbringen splits: Bring ... mit."}},
+    {"kind":"exercise","exercise":{"id":"imp4-wo-16","type":"word-order","title":"Practice","instruction":"Build the command: Take your umbrella along!","chunks":["Nimm","deinen Regenschirm","mit!"],"translation":"Take your umbrella along!","explain":"mitnehmen splits: Nimm ... mit."}},
+    {"kind":"exercise","exercise":{"id":"imp4-wo-17","type":"word-order","title":"Practice","instruction":"Build the command: Dress warmly!","chunks":["Zieh","dich","warm","an!"],"translation":"Dress warmly!","explain":"anziehen splits: Zieh ... an."}},
+    {"kind":"exercise","exercise":{"id":"imp4-wo-18","type":"word-order","title":"Practice","instruction":"Build the command: Stop working!","chunks":["Hör","mit der Arbeit","auf!"],"translation":"Stop working!","explain":"aufhören splits: Hör ... auf."}},
+    {"kind":"exercise","exercise":{"id":"imp4-wo-19","type":"word-order","title":"Practice","instruction":"Build the command: Hand in the homework!","chunks":["Gib","die Hausaufgaben","ab!"],"translation":"Hand in the homework!","explain":"abgeben splits: Gib ... ab."}},
+    {"kind":"exercise","exercise":{"id":"imp4-wo-20","type":"word-order","title":"Practice","instruction":"Build the command: Sign up for the course!","chunks":["Meld","dich","im Kurs","an!"],"translation":"Sign up for the course!","explain":"anmelden splits: Meld ... an."}},
+    {"kind":"exercise","exercise":{"id":"imp4-wo-21","type":"word-order","title":"Practice","instruction":"Build the command: Throw away the rubbish!","chunks":["Wirf","den Müll","weg!"],"translation":"Throw away the rubbish!","explain":"wegwerfen splits: Wirf ... weg."}},
+    {"kind":"exercise","exercise":{"id":"imp4-wo-22","type":"word-order","title":"Practice","instruction":"Build the command: Look at that!","chunks":["Sieh","dir","das","an!"],"translation":"Look at that!","explain":"ansehen splits: Sieh ... an."}},
+    {"kind":"exercise","exercise":{"id":"imp4-wo-23","type":"word-order","title":"Practice","instruction":"Build the command: Join in!","chunks":["Mach","mit!"],"translation":"Join in!","explain":"mitmachen splits: Mach ... mit."}},
+    {"kind":"exercise","exercise":{"id":"imp4-wo-24","type":"word-order","title":"Practice","instruction":"Build the command: Wake up!","chunks":["Wach","auf!"],"translation":"Wake up!","explain":"aufwachen splits: Wach ... auf."}},
+    {"kind":"exercise","exercise":{"id":"imp4-wo-25","type":"word-order","title":"Practice","instruction":"Build the command: Unpack your suitcases!","chunks":["Pack","deine Koffer","aus!"],"translation":"Unpack your suitcases!","explain":"auspacken splits: Pack ... aus."}},
+    {"kind":"exercise","exercise":{"id":"imp4-wo-26","type":"word-order","title":"Practice","instruction":"Build the command: Start now!","chunks":["Fang","jetzt","an!"],"translation":"Start now!","explain":"anfangen splits: Fang ... an."}},
+    {"kind":"exercise","exercise":{"id":"imp4-wo-27","type":"word-order","title":"Practice","instruction":"Build the command: Take the present along! (formal)","chunks":["Nehmen","Sie","das Geschenk","mit!"],"translation":"Take the present along! (formal)","explain":"Formal imperative: Nehmen Sie ... mit."}},
+    {"kind":"exercise","exercise":{"id":"imp4-wo-28","type":"word-order","title":"Practice","instruction":"Build the command: Watch TV today! (formal)","chunks":["Sehen","Sie","heute","fern!"],"translation":"Watch TV today! (formal)","explain":"Formal imperative: Sehen Sie ... fern."}},
+    {"kind":"exercise","exercise":{"id":"imp4-wo-29","type":"word-order","title":"Practice","instruction":"Build the command: Let's go shopping!","chunks":["Gehen","wir","einkaufen!"],"translation":"Let's go shopping!","explain":"The wir form invites: Gehen wir einkaufen."}},
+    {"kind":"exercise","exercise":{"id":"imp4-wo-30","type":"word-order","title":"Practice","instruction":"Build the command: Let's begin!","chunks":["Fangen","wir","an!"],"translation":"Let's begin!","explain":"anfangen splits: Fangen wir an."}},
+    {"kind":"exercise","exercise":{"id":"imp4-mc-1","type":"multiple-choice","title":"Practice","instruction":"Choose the correct answer.","prompt":"Call me! (du)","options":["Ruf mich an!","Anruf mich!","Ruf an mich!"],"correctIndex":0,"explain":"The separable verb: Ruf ... an. The object never sits between the verb and the prefix."}},
+    {"kind":"exercise","exercise":{"id":"imp4-mc-2","type":"multiple-choice","title":"Practice","instruction":"Choose the correct answer.","prompt":"Get up at 6 o'clock! (du)","options":["Steh um 6 Uhr auf!","Steh auf um 6 Uhr!","Aufsteh um 6 Uhr!"],"correctIndex":0,"explain":"The prefix closes the command: Steh um 6 Uhr auf."}},
+    {"kind":"exercise","exercise":{"id":"imp4-mc-3","type":"multiple-choice","title":"Practice","instruction":"Choose the correct answer.","prompt":"Close the door! (du)","options":["Mach die Tür zu!","Zu mach die Tür!","Mach zu die Tür!"],"correctIndex":0,"explain":"The prefix closes the command: Mach die Tür zu."}},
+    {"kind":"exercise","exercise":{"id":"imp4-mc-4","type":"multiple-choice","title":"Practice","instruction":"Choose the correct answer.","prompt":"Tidy your room! (du)","options":["Räum dein Zimmer auf!","Aufräum dein Zimmer!","Räum auf dein Zimmer!"],"correctIndex":0,"explain":"The prefix closes the command: Räum dein Zimmer auf."}},
+    {"kind":"exercise","exercise":{"id":"imp4-mc-5","type":"multiple-choice","title":"Practice","instruction":"Choose the correct answer.","prompt":"Come along! (du)","options":["Komm mit!","Mitkomm!","Komm!"],"correctIndex":0,"explain":"mitkommen splits: Komm ... mit."}},
+    {"kind":"exercise","exercise":{"id":"imp4-mc-6","type":"multiple-choice","title":"Practice","instruction":"Choose the correct answer.","prompt":"Sign up! (du)","options":["Meld dich an!","Anmeld dich!","Meld an dich!"],"correctIndex":0,"explain":"anmelden splits: Meld ... an."}},
+    {"kind":"exercise","exercise":{"id":"imp4-mc-7","type":"multiple-choice","title":"Practice","instruction":"Choose the correct answer.","prompt":"Watch TV! (du)","options":["Sieh fern!","Fernsieh!","Sieh!"],"correctIndex":0,"explain":"fernsehen splits: Sieh ... fern."}},
+    {"kind":"exercise","exercise":{"id":"imp4-mc-8","type":"multiple-choice","title":"Practice","instruction":"Choose the correct answer.","prompt":"Wake up! (du)","options":["Wach auf!","Aufwach!","Wach!"],"correctIndex":0,"explain":"aufwachen splits: Wach ... auf."}},
+    {"kind":"exercise","exercise":{"id":"imp4-mc-9","type":"multiple-choice","title":"Practice","instruction":"Choose the correct answer.","prompt":"Get out at the stop! (formal)","options":["Steigen Sie an der Haltestelle aus!","Steigen an der Haltestelle aus!","Aussteigen Sie an der Haltestelle!"],"correctIndex":0,"explain":"Formal imperative: Steigen Sie ... aus."}},
+    {"kind":"exercise","exercise":{"id":"imp4-mc-10","type":"multiple-choice","title":"Practice","instruction":"Choose the correct answer.","prompt":"Call me later! (formal)","options":["Rufen Sie mich später an!","Rufen mich später an!","Anrufen Sie mich später!"],"correctIndex":0,"explain":"Formal imperative: Rufen Sie ... an."}},
+    {"kind":"exercise","exercise":{"id":"imp4-mc-11","type":"multiple-choice","title":"Practice","instruction":"Choose the correct answer.","prompt":"Please stand up! (formal)","options":["Stehen Sie bitte auf!","Stehen bitte auf!","Aufstehen Sie bitte!"],"correctIndex":0,"explain":"Formal imperative: Stehen Sie ... auf."}},
+    {"kind":"exercise","exercise":{"id":"imp4-mc-12","type":"multiple-choice","title":"Practice","instruction":"Choose the correct answer.","prompt":"Close the door! (formal)","options":["Machen Sie die Tür zu!","Machen die Tür zu!","Zumachen Sie die Tür!"],"correctIndex":0,"explain":"Formal imperative: Machen Sie ... zu."}},
+    {"kind":"exercise","exercise":{"id":"imp4-mc-13","type":"multiple-choice","title":"Practice","instruction":"Choose the correct answer.","prompt":"Go shopping! (formal)","options":["Kaufen Sie ein!","Kaufen ein!","Einkaufen Sie!"],"correctIndex":0,"explain":"Formal imperative: Kaufen Sie ... ein."}},
+    {"kind":"exercise","exercise":{"id":"imp4-mc-14","type":"multiple-choice","title":"Practice","instruction":"Choose the correct answer.","prompt":"Let's go shopping!","options":["Gehen wir einkaufen!","Gehen einkaufen!","Geht einkaufen!"],"correctIndex":0,"explain":"The wir form invites: Gehen wir einkaufen."}},
+    {"kind":"exercise","exercise":{"id":"imp4-mc-15","type":"multiple-choice","title":"Practice","instruction":"Choose the correct answer.","prompt":"Let's begin!","options":["Fangen wir an!","Fangen an!","Fangt an!"],"correctIndex":0,"explain":"anfangen splits: Fangen wir an."}},
+    {"kind":"exercise","exercise":{"id":"imp4-ls-1","type":"listening","title":"Practice","instruction":"Listen and choose what you hear.","prompt":"Ruf mich später an!","options":["Ruf mich später an!","Ruf mich an später!","Anruf mich später!"],"correctIndex":0,"explain":"The command is Ruf mich später an: verb first, prefix at the end."}},
+    {"kind":"exercise","exercise":{"id":"imp4-ls-2","type":"listening","title":"Practice","instruction":"Listen and choose what you hear.","prompt":"Steh um 6 Uhr auf!","options":["Steh um 6 Uhr auf!","Steh auf um 6 Uhr!","Aufsteh um 6 Uhr!"],"correctIndex":0,"explain":"The command is Steh um 6 Uhr auf: verb first, prefix at the end."}},
+    {"kind":"exercise","exercise":{"id":"imp4-ls-3","type":"listening","title":"Practice","instruction":"Listen and choose what you hear.","prompt":"Stehen Sie bitte auf!","options":["Stehen Sie bitte auf!","Stehen bitte auf!","Aufstehen Sie bitte!"],"correctIndex":0,"explain":"The formal command keeps Sie: Stehen Sie bitte auf."}},
+    {"kind":"exercise","exercise":{"id":"imp4-ls-4","type":"listening","title":"Practice","instruction":"Listen and choose what you hear.","prompt":"Meld dich im Kurs an!","options":["Meld dich im Kurs an!","Meld an dich im Kurs!","Anmeld dich im Kurs!"],"correctIndex":0,"explain":"anmelden splits: Meld ... an."}},
+    {"kind":"exercise","exercise":{"id":"imp4-ls-5","type":"listening","title":"Practice","instruction":"Listen and choose what you hear.","prompt":"Machen Sie die Tür zu!","options":["Machen Sie die Tür zu!","Machen die Tür zu!","Zumachen Sie die Tür!"],"correctIndex":0,"explain":"The formal command keeps Sie: Machen Sie ... zu."}},
 ];
 
 export const imperativeGame: Game = {
